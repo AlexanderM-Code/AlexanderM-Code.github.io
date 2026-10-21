@@ -340,7 +340,11 @@ a { color: var(--signal); text-underline-offset: 4px; text-decoration-thickness:
 }
 @media (max-width: 560px) {
   .hide-sm { display: none; }
-  .brand { font-size: 1.0625rem; }
+  .brand { font-size: 1rem; }
+  .nav { gap: .5rem; }
+  .nav ul { gap: .5rem; }
+  .nav .btn-sm { padding: .65rem .9rem; }
+  .lang-toggle { padding: .55rem .65rem; }
   .js .card-left, .js .card-right { --from: 0px; }
   .media-casa .phone-shot { right: 0; }
   .tech li { grid-template-columns: 2.5rem minmax(0, 1fr); row-gap: .1rem; }
@@ -348,6 +352,10 @@ a { color: var(--signal); text-underline-offset: 4px; text-decoration-thickness:
   .tech-plain li { grid-template-columns: 1fr; }
   .tech-where { grid-column: 2; text-align: left; font-size: var(--size-small); }
   .tech-plain .tech-where { grid-column: 1; }
+}
+
+@media (max-width: 380px) {
+  .brand-rest { display: none; }
 }
 
 /* ---------- Menos movimiento ---------- */
