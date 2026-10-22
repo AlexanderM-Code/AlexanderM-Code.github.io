@@ -28,6 +28,7 @@
 
   /* Movimiento (curvas de Emil Kowalski) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --press: 160ms;
 
   /* Espacio */
@@ -324,6 +325,67 @@ a { color: var(--signal); text-underline-offset: 4px; text-decoration-thickness:
   @keyframes arrive { from { transform: scale(.94); } }
 }
 
+
+/* =========================================================
+   Pulido de movimiento
+   ========================================================= */
+
+/* Barra de progreso de lectura bajo el menú */
+.progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--signal);
+  transform: scaleX(0); transform-origin: left;
+  opacity: 0; transition: opacity 300ms var(--ease-out);
+}
+.nav.is-scrolled .progress { opacity: 1; }
+
+/* Titular: cada palabra sube y se enfoca, en cascada */
+.headline.split { animation: none; }
+.headline .hw { display: inline-block; animation: word-in 700ms var(--ease-out) both; animation-delay: calc(var(--i) * 55ms); }
+@keyframes word-in { from { opacity: 0; transform: translateY(.45em); filter: blur(6px); } }
+
+/* Tecnologías del inicio: entran una tras otra */
+.stack-row.rise { animation: none; }
+.stack-row li { animation: chip-in 600ms var(--ease-out) both; animation-delay: calc(var(--i) * 45ms + 320ms); }
+@keyframes chip-in { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+
+/* Capturas del inicio: inclinación suave siguiendo el puntero */
+.hero-visual { transform-style: preserve-3d; }
+
+/* Imágenes de los proyectos: se descubren de abajo hacia arriba */
+.js .card .card-media > :not(figcaption) { clip-path: inset(100% -12px -12px -12px round 22px); }
+.js .card.in .card-media > :not(figcaption) {
+  clip-path: inset(-12px -12px -12px -12px round 22px);
+  transition: clip-path 1000ms var(--ease-in-out), transform 400ms var(--ease-out);
+  transition-delay: calc(var(--m, 0) * 110ms + 300ms), 0ms;
+}
+
+/* Listas: los elementos llegan en cascada cuando su bloque entra */
+.js .stagger > * { opacity: 0; transform: translateY(10px); }
+.js .in .stagger > *, .js .stagger.in > * {
+  opacity: 1; transform: none;
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 40ms + 150ms);
+}
+
+/* Botón de enviar: la flecha avanza al pasar el puntero */
+.ask-form button svg { transition: transform 200ms var(--ease-out); }
+
+/* Logos de habilidades: pequeño giro de reconocimiento */
+.tech img, .stack-row img { transition: transform 300ms var(--ease-out); }
+
+/* Cambio de idioma: fundido breve con desenfoque para no ver el salto de texto */
+.lang-swap { transition: opacity 140ms ease, filter 140ms ease; opacity: .25; filter: blur(3px); }
+.lang-swap-in { transition: opacity 220ms ease, filter 220ms ease; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ask-form button:hover svg { transform: translateX(3px); }
+  .tech li:hover img { transform: rotate(-8deg) scale(1.08); }
+  .stack-row li:hover img { transform: rotate(-8deg) scale(1.08); }
+  .btn-primary:hover, .btn-ghost:hover { transform: translateY(-1px); }
+  .btn:active { transform: scale(.97); }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr; padding-top: 5.5rem; min-height: 0; }
@@ -361,7 +423,11 @@ a { color: var(--signal); text-underline-offset: 4px; text-decoration-thickness:
 /* ---------- Menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rise, .footer-name { animation: none; }
+  .rise, .footer-name, .headline .hw, .stack-row li { animation: none; }
+  .js .card .card-media > :not(figcaption) { clip-path: none; }
+  .js .stagger > * { opacity: 1; transform: none; transition: none; }
+  .progress { display: none; }
+  .hero-visual { transform: none !important; }
   .js .card, .js .card .card-text > *, .js .card .card-media, .js .reveal { opacity: 1; transform: none; transition: none; }
   .js .letter .w { opacity: 1; }
   .hv { transform: none !important; }
