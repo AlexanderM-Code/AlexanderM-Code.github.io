@@ -109,15 +109,23 @@
       <article class="card card-right" aria-labelledby="cinex-title">
         <div class="card-text">
           <h3 class="card-name" id="cinex-title">CineX</h3>
-          <p class="kind" data-en="Full stack project: API, database and frontend · November 2025">Proyecto full stack: API, base de datos y frontend · Noviembre de 2025</p>
-          <p class="lead" data-en="A REST API to run everything in a movie theater, from the showtimes to the snack bar.">Una API REST para manejar todo lo que pasa en un cine, de la cartelera a la confitería.</p>
+          <p class="kind" data-en="Movie theater management system · Academic team project, Universidad Cooperativa de Colombia, 2025 · Version 2.0, 2026">Sistema de gestión de cine · Proyecto académico en equipo, Universidad Cooperativa de Colombia, 2025 · Versión 2.0, 2026</p>
+          <p class="lead" data-en="A web app to run a movie theater: showtimes with real movies from the TMDB API, theaters, screenings, seat sales, snack bar, users and bookings.">Una aplicación web para administrar un cine: cartelera con películas reales de la API de TMDB, salas, funciones, venta de sillas, confitería, usuarios y reservas.</p>
+          <p data-en="REST API in Java with Spring Boot and MySQL, with business rules such as never selling more seats than the theater holds or scheduling two screenings at the same time in one theater.">API REST en Java con Spring Boot y MySQL, con reglas de negocio como no vender más sillas que la capacidad de la sala ni programar dos funciones a la misma hora en una sala.</p>
+          <p data-en="In version 1.0 I set up the initial structure, the integration and the pull request reviews. I built version 2.0 on my own:">En la versión 1.0 hice la estructura inicial, la integración y la revisión de los pull requests. La versión 2.0 la desarrollé solo:</p>
           <ul class="checks">
-            <li data-en="Java 21 API with Spring Boot 3 and a layered architecture.">API en Java 21 con Spring Boot 3 y arquitectura en capas.</li>
-            <li data-en="Movies, theaters, showtimes, bookings, products and users in MySQL with Spring Data JPA.">Películas, salas, funciones, reservas, productos y usuarios en MySQL con Spring Data JPA.</li>
-            <li data-en="A web admin panel that consumes the API.">Un panel de administración web que consume la API.</li>
+            <li data-en="Movies, theaters, screenings and purchases moved from in-memory data to MySQL.">Películas, salas, funciones y compras pasaron de datos en memoria a MySQL.</li>
+            <li data-en="Validations and JSON error handling (400, 404, 409), documented with Swagger.">Validaciones y manejo de errores en JSON (400, 404, 409), documentado con Swagger.</li>
+            <li data-en="17 tests with JUnit and Mockito, and a Postman collection with 26 requests.">17 pruebas con JUnit y Mockito, y una colección de Postman con 26 solicitudes.</li>
+            <li data-en="Docker Compose, continuous integration with GitHub Actions and a free deployment.">Docker Compose, integración continua con GitHub Actions y despliegue gratuito.</li>
           </ul>
-          <p class="stack">Java, Spring Boot, Spring Data JPA, MySQL, JavaScript</p>
-          <p class="links"><a class="link" href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a></p>
+          <p class="stack">Java 21, Spring Boot, Spring Data JPA, MySQL, JUnit, Postman, Swagger, Docker, GitHub Actions, HTML, CSS, JavaScript</p>
+          <p class="links">
+            <a class="link" href="https://alexanderm-code.github.io/CineX---Proyecto-Final/" target="_blank" rel="noopener" data-en="View site">Ver sitio</a>
+            <a class="link" href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Try the API (Swagger)">Probar la API (Swagger)</a>
+            <a class="link" href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final" target="_blank" rel="noopener" data-en="Code">Código</a>
+          </p>
+          <p class="note" data-en="The API runs on a free server; the first load can take a few seconds.">La API está en un servidor gratuito; la primera carga puede tardar unos segundos.</p>
         </div>
         <figure class="card-media media-windows">
           <div class="browser" data-ui>
@@ -238,11 +246,14 @@
           <ul class="tech">
             <li><img src="assets/logos/git.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Git</span><span class="tech-where" data-en="All projects">Todos los proyectos</span></li>
             <li><img src="assets/logos/github.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">GitHub</span><span class="tech-where" data-en="All projects">Todos los proyectos</span></li>
-            <li><img src="assets/logos/docker.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Docker</span><span class="tech-where">Numi</span></li>
+            <li><img src="assets/logos/docker.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Docker</span><span class="tech-where">Numi, CineX</span></li>
+            <li><img src="assets/logos/githubactions.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">GitHub Actions</span><span class="tech-where" data-en="CineX, continuous integration">CineX, integración continua</span></li>
             <li><img src="assets/logos/googlecloud.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Google Cloud</span><span class="tech-where" data-en="Labs: Compute Engine, Cloud Functions, IAM">Laboratorios: Compute Engine, Cloud Functions, IAM</span></li>
             <li><img src="assets/logos/vscode.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">VS Code</span><span class="tech-where">Editor</span></li>
             <li><img src="assets/logos/intellij.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">IntelliJ IDEA</span><span class="tech-where" data-en="Java and Spring Boot">Java y Spring Boot</span></li>
-            <li><img src="assets/logos/postman.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Postman</span><span class="tech-where" data-en="Testing REST APIs">Pruebas de APIs REST</span></li>
+            <li><img src="assets/logos/postman.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Postman</span><span class="tech-where" data-en="Testing REST APIs, CineX">Pruebas de APIs REST, CineX</span></li>
+            <li><img src="assets/logos/swagger.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Swagger</span><span class="tech-where" data-en="CineX API documentation">Documentación de la API de CineX</span></li>
+            <li><img src="assets/logos/junit.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">JUnit</span><span class="tech-where" data-en="CineX, with Mockito">CineX, con Mockito</span></li>
             <li><img src="assets/logos/gradle.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Gradle</span><span class="tech-where" data-en="Academic events">Eventos académicos</span></li>
             <li><img src="assets/logos/maven.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Maven</span><span class="tech-where" data-en="CineX">CineX</span></li>
           </ul>
