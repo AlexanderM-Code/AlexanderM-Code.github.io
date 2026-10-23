@@ -666,9 +666,16 @@ if (numiVideo) {
 document.querySelectorAll('.case-toggle').forEach((button) => {
   const panel = document.getElementById(button.getAttribute('aria-controls'));
   const label = button.querySelector('.case-toggle-label');
+  const time = button.querySelector('.case-toggle-time');
   if (!panel || !label) return;
   const render = () => {
-    label.textContent = button.getAttribute('aria-expanded') === 'true' ? t().caseLess : t().caseMore;
+    const open = button.getAttribute('aria-expanded') === 'true';
+    label.textContent = open ? t().caseLess : t().caseMore;
+    // Tiempo de lectura de la ficha, en el idioma activo, a 200 palabras por minuto
+    if (time) {
+      const words = panel.textContent.trim().split(/\s+/).length;
+      time.textContent = open ? '' : ` · ${Math.max(1, Math.round(words / 200))} min`;
+    }
   };
   panel.inert = true;
   button.addEventListener('click', () => {

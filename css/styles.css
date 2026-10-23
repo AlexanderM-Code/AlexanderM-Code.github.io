@@ -438,6 +438,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
   border: 0; border-top: 1px solid var(--line); background: none;
   font-weight: 700; font-size: 1rem; color: var(--blue); cursor: pointer; text-align: left;
 }
+.case-toggle-time { margin-left: calc(var(--space-2) * -1); font-weight: 500; color: var(--ink-3); }
 .case-toggle-icon { transition: transform 260ms var(--ease-out); }
 .case-toggle[aria-expanded="true"] .case-toggle-icon { transform: rotate(180deg); }
 @media (hover: hover) and (pointer: fine) { .case-toggle:hover .case-toggle-label { text-decoration: underline; text-underline-offset: 0.25em; } }
@@ -455,6 +456,10 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .js .case-more.is-open .case-more-inner { opacity: 1; visibility: visible; transition: opacity 280ms ease 80ms, visibility 0s; }
 .case-more .facts { margin-top: 0; padding-top: 22px; border-top: 0; }
 .case-more .lab { margin-top: 28px; }
+/* Qué aprendí: cierre corto de cada caso */
+.learned { margin-top: var(--space-6); padding: var(--space-4) var(--space-5); background: var(--blue-soft); border-radius: var(--radius-sm); }
+.learned-title { font-size: 0.75rem; font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--blue); }
+.learned .ticks { margin-top: var(--space-3); }
 .case-kind { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 0.8125rem; color: var(--ink-2); }
 .live-pill {
   display: inline-flex; align-items: center; gap: 8px; padding: 3px 10px 3px 9px;
