@@ -851,6 +851,7 @@
             <a class="mail" href="mailto:alexmejia0112@gmail.com">alexmejia0112@gmail.com</a>
             <button class="btn btn-accent" type="button" id="copy-mail" data-mail="alexmejia0112@gmail.com" data-en="Copy">Copiar</button>
             <p class="copy-status mono" id="copy-status" role="status" aria-live="polite"></p>
+            <p class="local-time" id="local-time" hidden><span class="dot dot-ok" aria-hidden="true"></span><span id="local-time-text"></span></p>
           </div>
           <ul class="contact-links">
             <li><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="noopener">alexander-mejia-ospina</a></li>
@@ -864,9 +865,20 @@
 
   <footer class="footer">
     <div class="wrap footer-grid">
-      <p class="footer-name">Alexander Mejía Ospina</p>
-      <p class="mono" data-en="Medellin, 2026 · Last updated: October 2026">Medellín, 2026 · Última actualización: octubre de 2026</p>
-      <p class="credits" data-en="Data: SIVIGILA, datos.gov.co (Observatory) and Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0). Fonts: Schibsted Grotesk and JetBrains Mono (OFL). Built with HTML, CSS and JavaScript.">Datos: SIVIGILA, datos.gov.co (Observatorio) y Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0). Fuentes: Schibsted Grotesk y JetBrains Mono (OFL). Hecho con HTML, CSS y JavaScript.</p>
+      <div class="footer-main">
+        <p class="footer-name">Alexander Mejía Ospina</p>
+        <p class="mono footer-meta"><span data-en="Medellin, 2026">Medellín, 2026</span><span class="site-updated" id="site-updated" hidden></span></p>
+        <p class="credits" data-en="Data: SIVIGILA, datos.gov.co (Observatory) and Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0).">Datos: SIVIGILA, datos.gov.co (Observatorio) y Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0).</p>
+      </div>
+      <div class="colophon">
+        <h2 class="colophon-title mono" data-en="Colophon">Colofón</h2>
+        <p data-en="Handmade with HTML, CSS and JavaScript, with no frameworks and no build step.">Hecho a mano con HTML, CSS y JavaScript, sin frameworks ni compilación.</p>
+        <p data-en="Typefaces: Schibsted Grotesk and JetBrains Mono (OFL), served from this site.">Tipografías: Schibsted Grotesk y JetBrains Mono (OFL), servidas desde este sitio.</p>
+        <p class="colophon-actions">
+          <a href="https://github.com/AlexanderM-Code/AlexanderM-Code.github.io" target="_blank" rel="noopener" data-en="See the code of this site">Ver el código de este sitio</a>
+          <a class="btn btn-line btn-sm to-top" href="#inicio"><span data-en="Back to top">Volver arriba</span> <span aria-hidden="true">↑</span></a>
+        </p>
+      </div>
     </div>
   </footer>
 
