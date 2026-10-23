@@ -756,6 +756,18 @@ copyButton.addEventListener('click', async () => {
 });
 
 /* ---------------------------------------------------------
+   Capturas: aparecen con un fundido cuando terminan de cargar,
+   sobre un fondo del color del papel. Las que ya cargaron no cambian.
+   --------------------------------------------------------- */
+document.querySelectorAll('.browser img, img.phone, .phone-shot, .more-media img').forEach((img) => {
+  if (img.complete && img.naturalWidth) return;
+  img.classList.add('fade-img');
+  const done = () => img.classList.add('is-loaded');
+  img.addEventListener('load', done, { once: true });
+  img.addEventListener('error', done, { once: true });
+});
+
+/* ---------------------------------------------------------
    Luz que sigue al cursor en las tarjetas de proyecto. Solo con
    mouse y sin movimiento reducido; se mueve con transform.
    --------------------------------------------------------- */
@@ -991,7 +1003,10 @@ if ('IntersectionObserver' in window && !reduceMotion) {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   revealEls.forEach((el) => {
-    if (el.getBoundingClientRect().top < vh) return;
+    // Lo que ya se ve no se esconde. Lo que está dentro de una sección aún sin
+    // pintar (content-visibility) mide 0 de alto: se anima cuando aparezca.
+    const box = el.getBoundingClientRect();
+    if (box.height && box.top < vh) return;
     el.classList.add('reveal');
     io.observe(el);
   });

@@ -49,6 +49,12 @@
   --term-num: #ffa060;
   --term-str: #8fd6a4;
   --scrim: rgba(12, 14, 18, 0.55);
+  /* Marco de capturas: el mismo borde, radio y sombra en todo el sitio */
+  --shot-border: 1px solid var(--line-strong);
+  --shot-radius: 8px;
+  --shot-shadow: 0 1px 2px rgba(23, 24, 28, 0.06), 0 16px 36px -22px rgba(23, 24, 28, 0.32);
+  --shot-shadow-raised: 0 1px 2px rgba(23, 24, 28, 0.08), 0 22px 44px -20px rgba(23, 24, 28, 0.42);
+  --shot-filter: none;
 
   --font: "Schibsted Grotesk", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
@@ -104,6 +110,9 @@
     --bar-hot: #ff8a3d;
     --term-bg: #0b0d10;
     --scrim: rgba(0, 0, 0, 0.65);
+    --shot-shadow: 0 0 0 1px rgba(236, 232, 223, 0.04), 0 16px 36px -20px rgba(0, 0, 0, 0.8);
+    --shot-shadow-raised: 0 0 0 1px rgba(236, 232, 223, 0.05), 0 22px 44px -18px rgba(0, 0, 0, 0.9);
+    --shot-filter: brightness(0.9);
     color-scheme: dark;
   }
 }
@@ -129,6 +138,9 @@
   --bar-hot: #ff8a3d;
   --term-bg: #0b0d10;
   --scrim: rgba(0, 0, 0, 0.65);
+  --shot-shadow: 0 0 0 1px rgba(236, 232, 223, 0.04), 0 16px 36px -20px rgba(0, 0, 0, 0.8);
+  --shot-shadow-raised: 0 0 0 1px rgba(236, 232, 223, 0.05), 0 22px 44px -18px rgba(0, 0, 0, 0.9);
+  --shot-filter: brightness(0.9);
   color-scheme: dark;
 }
 
@@ -482,7 +494,13 @@ html { scrollbar-color: var(--line-strong) transparent; }
 }
 
 /* Navegador simulado alrededor de capturas reales */
-.browser { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--paper-2); }
+.browser { overflow: hidden; border: var(--shot-border); border-radius: var(--shot-radius); background: var(--paper-2); box-shadow: var(--shot-shadow); }
+/* Proporción fija y color de fondo mientras cargan; el JavaScript las funde al llegar */
+.browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.dlg-casa .browser img { aspect-ratio: 4 / 3; }
+.browser img, .phone, .phone-shot, .more-media img { background: var(--paper-2); filter: var(--shot-filter); }
+.js .fade-img { opacity: 0; transition: opacity 400ms ease; }
+.js .fade-img.is-loaded { opacity: 1; }
 .browser-bar {
   display: flex; align-items: center; gap: 12px; padding: 9px 12px;
   font-size: 0.75rem; color: var(--ink-2); border-bottom: 1px solid var(--line);
@@ -498,7 +516,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
    ver el 60 % de su alto (alto = 60 % del ancho × 800/1280 + barra). */
 .shots-pair { position: relative; padding-bottom: calc(15% + 12px); }
 .shots-pair .browser:first-child { width: 84%; }
-.shots-pair .browser:nth-child(2) { position: absolute; right: 0; bottom: 0; width: 60%; box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.35); }
+.shots-pair .browser:nth-child(2) { position: absolute; right: 0; bottom: 0; width: 60%; box-shadow: var(--shot-shadow-raised); }
 .shots-pair figcaption { position: absolute; left: 0; bottom: 0; max-width: 36%; }
 
 /* Laboratorio: el bloque interactivo de cada caso */
@@ -550,8 +568,10 @@ html { scrollbar-color: var(--line-strong) transparent; }
 
 /* Numi: tres pantallas reales con el video al centro */
 .case-phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 18px); align-items: center; padding: 8px 4% 0; }
-.case-phones .phone { width: 100%; border-radius: 18px; border: 1px solid var(--line-strong); background: var(--paper-2); }
-.case-phones .phone-main { transform: scale(1.08); box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.45); }
+.case-phones .phone { width: 100%; border-radius: 18px; border: var(--shot-border); background: var(--paper-2); box-shadow: var(--shot-shadow); }
+.case-phones img.phone { aspect-ratio: 560 / 1211; }
+.case-phones video.phone { aspect-ratio: 540 / 1200; }
+.case-phones .phone-main { transform: scale(1.08); box-shadow: var(--shot-shadow-raised); }
 .case-phones figcaption { grid-column: 1 / -1; margin-top: 18px; }
 
 /* Numi: el recorrido de una pregunta dentro del celular */
@@ -667,7 +687,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .dlg-phones figcaption { grid-column: 1 / -1; }
 .dlg-casa { position: relative; padding-bottom: 8%; }
 .dlg-casa .browser { width: 84%; }
-.dlg-casa .phone-shot { position: absolute; right: 0; bottom: 30px; width: 28%; border-radius: 14px; border: 1px solid var(--line-strong); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.35); }
+.dlg-casa .phone-shot { position: absolute; right: 0; bottom: 30px; width: 28%; aspect-ratio: 420 / 860; border-radius: 14px; border: var(--shot-border); box-shadow: var(--shot-shadow-raised); }
 .dlg-casa figcaption { margin-top: 12px; }
 .plot { padding: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
 .plot-title { font-weight: 700; font-size: 1.125rem; }
@@ -949,7 +969,7 @@ main, .footer { transition: opacity 180ms ease; }
   .finding p:last-child { margin-top: 0; }
   .finding-num { font-size: 1.25rem; }
   .shots-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .shots-pair .browser:first-child, .shots-pair .browser:nth-child(2) { width: auto; margin: 0; box-shadow: none; }
+  .shots-pair .browser:first-child, .shots-pair .browser:nth-child(2) { width: auto; margin: 0; box-shadow: var(--shot-shadow); }
   .shots-pair figcaption { grid-column: 1 / -1; }
   .shots-pair .browser-bar { padding: 6px 8px; gap: 8px; font-size: 0.625rem; }
   .shots-pair .browser-dots { width: 6px; height: 6px; margin-right: 16px; box-shadow: 9px 0 0 var(--line-strong), 18px 0 0 var(--line-strong); }
@@ -962,7 +982,7 @@ main, .footer { transition: opacity 180ms ease; }
   .habit { padding: var(--space-4); gap: var(--space-2); }
   .habit > p:not(.evidence) { font-size: 0.9375rem; }
   .evidence { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; padding-top: 10px; }
-  :root { --section-y: var(--space-7); }
+  :root { --section-y: calc(var(--space-6) + var(--space-2)); }
   .availability { font-size: 0.875rem; padding: 6px 12px 6px 10px; }
   .case { padding: var(--space-4); }
   .case-links .btn, .more-actions .btn { padding-inline: 14px; }
