@@ -137,12 +137,22 @@ const currentTheme = () => root.getAttribute('data-theme') || (systemDark.matche
 function syncThemeButton() {
   themeToggle.setAttribute('aria-label', currentTheme() === 'dark' ? t().themeLight : t().themeDark);
 }
+// La barra del navegador (theme-color) sigue al tema elegido a mano
+const THEME_COLORS = { light: '#f3efe6', dark: '#121418' };
+function syncThemeColor() {
+  const chosen = root.getAttribute('data-theme');
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+    const own = m.media.includes('dark') ? THEME_COLORS.dark : THEME_COLORS.light;
+    m.setAttribute('content', chosen ? THEME_COLORS[chosen] : own);
+  });
+}
 themeToggle.addEventListener('click', () => {
   const next = currentTheme() === 'dark' ? 'light' : 'dark';
   const apply = () => {
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) { /* sin almacenamiento */ }
     syncThemeButton();
+    syncThemeColor();
   };
   if (!document.startViewTransition || reduceMotion) { apply(); return; }
   // Revelado circular desde el botón; si el botón está oculto (menú cerrado), desde la esquina
@@ -776,6 +786,11 @@ document.querySelectorAll('.browser img, img.phone, .phone-shot, .more-media img
   const done = () => img.classList.add('is-loaded');
   img.addEventListener('load', done, { once: true });
   img.addEventListener('error', done, { once: true });
+});
+
+// Al imprimir, las capturas diferidas se cargan para que no salgan en blanco
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = 'eager'; });
 });
 
 /* ---------------------------------------------------------

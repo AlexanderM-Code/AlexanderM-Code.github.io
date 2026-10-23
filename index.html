@@ -30,6 +30,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="me" href="https://github.com/AlexanderM-Code">
+  <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
   <link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css?v=2026-10-23b">
@@ -39,7 +41,11 @@
       var d = document.documentElement, theme = null, lang = null;
       d.classList.add('js');
       try { theme = localStorage.getItem('theme'); lang = localStorage.getItem('lang'); } catch (e) { /* sin almacenamiento */ }
-      if (theme === 'light' || theme === 'dark') d.setAttribute('data-theme', theme);
+      if (theme === 'light' || theme === 'dark') {
+        d.setAttribute('data-theme', theme);
+        // Con un tema elegido a mano, la barra del navegador lo sigue aunque el sistema diga otra cosa
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute('content', theme === 'dark' ? '#121418' : '#f3efe6'); });
+      }
       var q = /[?&]lang=(es|en)\b/.exec(location.search);
       if (q) lang = q[1];
       if (lang === 'en') {
@@ -878,8 +884,8 @@
             <p class="local-time" id="local-time" hidden><span class="dot dot-ok" aria-hidden="true"></span><span id="local-time-text"></span></p>
           </div>
           <ul class="contact-links">
-            <li><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="noopener">alexander-mejia-ospina</a></li>
-            <li><span class="mono">GitHub</span><a href="https://github.com/AlexanderM-Code" target="_blank" rel="noopener">AlexanderM-Code</a></li>
+            <li><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="me noopener">alexander-mejia-ospina</a></li>
+            <li><span class="mono">GitHub</span><a href="https://github.com/AlexanderM-Code" target="_blank" rel="me noopener">AlexanderM-Code</a></li>
             <li><span class="mono" data-en="Resume">Hoja de vida</span><span><a href="cv/CV_Alexander_Mejia_Ospina.pdf" download hreflang="es" data-en="Spanish">Español</a> · <a href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download hreflang="en" data-en="English">Inglés</a></span></li>
           </ul>
         </div>
