@@ -290,6 +290,8 @@ html { scrollbar-color: var(--line-strong) transparent; }
   :root:not([data-theme="light"]) .i-sun { display: block; }
   :root:not([data-theme="light"]) .i-moon { display: none; }
 }
+.cmdk-open-mobile { display: none; margin-left: auto; }
+.cmdk-kbd { font-size: 0.75rem; letter-spacing: 0; color: var(--ink-2); }
 .menu-toggle {
   display: none; align-items: center; gap: 8px; height: 40px; padding: 0 12px;
   border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: transparent;
@@ -658,6 +660,57 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .mpg { width: 100%; height: auto; margin-top: 12px; }
 .plot-axis { margin-top: 8px; font-size: 0.8125rem; color: var(--ink-3); }
 
+/* Paleta de comandos: sin animación de entrada; se usa con el teclado y debe sentirse inmediata */
+.cmdk {
+  width: min(640px, calc(100% - 24px)); max-height: min(72dvh, 560px); margin: 12vh auto auto;
+  padding: 0; overflow: hidden; flex-direction: column;
+  border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); color: var(--ink);
+  box-shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.45);
+}
+.cmdk[open] { display: flex; }
+.cmdk::backdrop { background: var(--scrim); }
+.cmdk-search { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line); color: var(--ink-3); }
+.cmdk-search svg { flex: none; }
+.cmdk-input {
+  flex: 1; min-width: 0; height: 40px; border: 0; background: transparent; color: var(--ink);
+  font: inherit; font-size: 1.0625rem; outline: none;
+}
+.cmdk-input::placeholder { color: var(--ink-3); }
+.cmdk-close {
+  flex: none; min-height: 28px; padding: 2px 8px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  background: transparent; font-size: 0.75rem; color: var(--ink-2); cursor: pointer;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+.cmdk-close:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .cmdk-close:hover { background: var(--blue-soft); } }
+.cmdk-list { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-2); scroll-padding: var(--space-2); }
+.cmdk-group {
+  padding: var(--space-3) var(--space-3) var(--space-1); font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-3);
+}
+.cmdk-item {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  min-height: 44px; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); cursor: pointer;
+}
+.cmdk-item[aria-selected="true"] { background: var(--blue-soft); color: var(--ink); box-shadow: inset 2px 0 0 var(--blue); }
+.cmdk-label { font-weight: 500; }
+.cmdk-hint { flex: none; font-family: var(--mono); font-size: 0.75rem; color: var(--ink-3); }
+.cmdk-empty { padding: var(--space-5) var(--space-4); color: var(--ink-2); }
+.cmdk-foot { padding: var(--space-2) var(--space-4); border-top: 1px solid var(--line); font-size: 0.75rem; color: var(--ink-3); }
+@media (pointer: coarse) { .cmdk-foot { display: none; } }
+@media (max-width: 640px) { .cmdk { margin-top: var(--space-3); max-height: calc(100dvh - 24px); } }
+
+/* Aviso breve (correo copiado desde la paleta) */
+.toast {
+  position: fixed; left: 50%; bottom: var(--space-5); z-index: 70; max-width: calc(100% - 32px);
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-sm); background: var(--ink); color: var(--paper);
+  font-weight: 500; font-size: 0.9375rem; pointer-events: none;
+  opacity: 0; transform: translate(-50%, 8px); transition: opacity 180ms ease, transform 220ms var(--ease-out);
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+.toast:empty { visibility: hidden; }
+[tabindex="-1"]:focus { outline: none; }
+
 /* ---------- Habilidades ---------- */
 .tiers { display: grid; gap: var(--space-6); }
 @media (min-width: 961px) {
@@ -806,6 +859,8 @@ main, .footer { transition: opacity 180ms ease; }
 @media (max-width: 960px) {
   :root { --nav-h: 60px; }
   .menu-toggle { display: inline-flex; }
+  .cmdk-open-mobile { display: grid; }
+  .menu-tools .cmdk-open { display: none; }
   .menu {
     position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; align-items: stretch; gap: 16px;
