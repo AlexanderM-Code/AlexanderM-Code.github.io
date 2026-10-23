@@ -253,13 +253,26 @@ html { scrollbar-color: var(--line-strong) transparent; }
 }
 .brand-name { font-size: 1rem; }
 .menu { display: flex; align-items: center; gap: 28px; }
-.menu-links { display: flex; gap: 4px; }
+/* El fondo del enlace activo es una sola pieza que se desliza entre enlaces */
+.menu-rail { position: relative; }
+.menu-links { position: relative; z-index: 1; display: flex; gap: 4px; }
+.menu-indicator {
+  position: absolute; top: 0; left: 0; z-index: 0; height: 100%; width: 0;
+  border-radius: var(--radius-sm); background: var(--blue-soft); opacity: 0; pointer-events: none;
+  transition: transform 250ms var(--ease-out), width 250ms var(--ease-out), opacity 160ms ease;
+}
+.menu-indicator.is-on { opacity: 1; }
+.menu-indicator.is-instant { transition: opacity 160ms ease; }
 .menu-links a {
   display: block; padding: 8px 10px; border-radius: var(--radius-sm);
   font-weight: 500; font-size: 0.9375rem; text-decoration: none; color: var(--ink-2);
   transition: color 160ms ease, background-color 160ms ease;
 }
-.menu-links a.is-active { color: var(--ink); background: var(--blue-soft); }
+.menu-links a.is-active { color: var(--ink); }
+
+/* Progreso de lectura */
+.progress { position: fixed; inset: 0 0 auto; z-index: 60; height: 2px; pointer-events: none; }
+.progress span { display: block; height: 100%; background: var(--blue); transform: scaleX(0); transform-origin: 0 50%; will-change: transform; }
 @media (hover: hover) and (pointer: fine) { .menu-links a:hover { color: var(--ink); } }
 .menu-tools { display: flex; align-items: center; gap: 8px; }
 .tool {
@@ -805,6 +818,7 @@ main, .footer { transition: opacity 180ms ease; }
   .menu-links { flex-direction: column; gap: 0; }
   .menu-links a { padding: 13px 4px; font-size: 1.0625rem; border-bottom: 1px solid var(--line); border-radius: 0; }
   .menu-links a.is-active { background: transparent; color: var(--blue); }
+  .menu-indicator { display: none; }
   .menu-tools .btn { flex: 1; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
   .case { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "head" "shot" "chips" "links" "note" "lab" "more"; }

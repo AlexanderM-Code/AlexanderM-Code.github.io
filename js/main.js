@@ -155,22 +155,60 @@ const sectionToLink = [
   ['trayectoria', '#trayectoria'], ['sobre-mi', '#trayectoria'], ['contacto', '#contacto']
 ].map(([id, href]) => [document.getElementById(id), href]).filter(([el]) => el);
 
+// Barra compacta y progreso de lectura
+const progressBar = document.getElementById('progress-bar');
 let ticking = false;
 function onScroll() {
   ticking = false;
   nav.classList.toggle('is-scrolled', window.scrollY > 24);
-  const line = window.innerHeight * 0.4;
-  let active = null;
-  sectionToLink.forEach(([el, href]) => {
-    const box = el.getBoundingClientRect();
-    if (box.top <= line && box.bottom > line) active = href;
-  });
-  navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === active));
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, window.scrollY / max) : 0})`;
 }
 window.addEventListener('scroll', () => {
   if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
 }, { passive: true });
 onScroll();
+
+// Sección visible: la que cruza una línea al 40 % de la pantalla. El fondo
+// del enlace activo se desliza de un enlace al siguiente.
+const indicator = document.getElementById('menu-indicator');
+const visible = new Set();
+let activeHref = null;
+
+function placeIndicator({ instant = false } = {}) {
+  const link = navLinks.find((a) => a.getAttribute('href') === activeHref);
+  indicator.classList.toggle('is-instant', instant);
+  indicator.classList.toggle('is-on', Boolean(link));
+  if (!link) return;
+  indicator.style.width = `${link.offsetWidth}px`;
+  indicator.style.transform = `translateX(${link.parentElement.offsetLeft}px)`;
+}
+
+function setActiveLink(href) {
+  const first = activeHref === null;
+  activeHref = href;
+  navLinks.forEach((a) => {
+    const on = a.getAttribute('href') === href;
+    a.classList.toggle('is-active', on);
+    if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+  });
+  placeIndicator({ instant: first || reduceMotion });
+}
+
+if ('IntersectionObserver' in window) {
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => { if (entry.isIntersecting) visible.add(entry.target); else visible.delete(entry.target); });
+    // La última coincidencia en el orden de la lista es la más específica (Datos dentro de Proyectos)
+    let href = null;
+    sectionToLink.forEach(([el, h]) => { if (visible.has(el)) href = h; });
+    if (href !== activeHref) setActiveLink(href);
+  }, { rootMargin: '-40% 0px -59% 0px' });
+  sectionToLink.forEach(([el]) => spy.observe(el));
+}
+const replaceIndicator = () => placeIndicator({ instant: true });
+window.addEventListener('resize', replaceIndicator, { passive: true });
+document.fonts?.ready.then(replaceIndicator);
+langListeners.push(replaceIndicator);
 
 function setMenu(open, { focus = true } = {}) {
   nav.classList.toggle('is-open', open);
