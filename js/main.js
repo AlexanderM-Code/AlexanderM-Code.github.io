@@ -102,6 +102,8 @@ function setLang(next, { save = true } = {}) {
 
   root.lang = next;
   document.title = t().title;
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.href = next === 'en' ? 'https://alexanderm-code.github.io/?lang=en' : 'https://alexanderm-code.github.io/';
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.setAttribute('content', t().description);
   langToggle.querySelector('span').textContent = t().langButton;
