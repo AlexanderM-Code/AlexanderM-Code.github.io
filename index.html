@@ -30,11 +30,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;700;800&amp;display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;700;800&amp;display=swap"></noscript>
   <link rel="stylesheet" href="css/styles.css">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
@@ -145,6 +141,14 @@
               </div>
               <span class="status-metric mono" data-en="cron">cron</span>
             </li>
+            <li class="status-row" data-state="dev">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="status-text">
+                <p class="status-name"><a href="#numi">Numi</a></p>
+                <p class="status-detail" data-en="Mobile app in active development">App móvil en desarrollo activo</p>
+              </div>
+              <span class="status-metric mono">dev</span>
+            </li>
             <li class="status-row" data-state="ok">
               <span class="dot" aria-hidden="true"></span>
               <div class="status-text">
@@ -185,8 +189,8 @@
       <div class="wrap">
         <div class="section-head">
           <p class="label mono" aria-hidden="true">01 / <span data-en="Projects">Proyectos</span></p>
-          <h2 class="section-title" id="proyectos-title" data-en="Live, tested and deployed.">En vivo, probados y desplegados.</h2>
-          <p class="section-lede" data-en="Two case studies. Both are online right now, and this page talks to them.">Dos casos de estudio. Los dos están en línea ahora mismo, y esta página les habla.</p>
+          <h2 class="section-title" id="proyectos-title" data-en="Built to be used.">Hechos para usarse.</h2>
+          <p class="section-lede" data-en="Three case studies: two are online right now and this page talks to them; the third is an app we keep building as a team.">Tres casos de estudio: dos están en línea ahora mismo y esta página les habla; el tercero es una app que seguimos construyendo en equipo.</p>
         </div>
 
         <!-- Caso 1: Observatorio -->
@@ -279,7 +283,104 @@
           </figure>
         </article>
 
-        <!-- Caso 2: CineX -->
+        <!-- Caso 2: Numi -->
+        <article class="case case-numi" id="numi" aria-labelledby="numi-title">
+          <div class="case-top">
+            <header class="case-head">
+              <p class="case-kind mono"><span class="live-pill dev-pill"><span class="dot dot-dev" aria-hidden="true"></span><span data-en="In development">En desarrollo</span></span> <span data-en="Mobile app · Team project · 2026">App móvil · Proyecto en equipo · 2026</span></p>
+              <h3 class="case-title" id="numi-title">Numi</h3>
+              <p class="case-lede" data-en="An educational app that works with no internet, with an AI assistant that runs on the phone itself, for children in rural Medellin.">Una app educativa que funciona sin internet, con un asistente de IA que corre en el propio celular, para niños de zonas rurales de Medellín.</p>
+            </header>
+            <dl class="facts">
+              <div class="fact">
+                <dt class="mono" data-en="Problem">Problema</dt>
+                <dd data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="What we built">Qué construimos</dt>
+                <dd data-en="A Flutter app for 1st to 5th graders: 15 activities across the 5 subjects of the Colombian curriculum, with audio in every one, and an AI assistant that answers with no connection.">Una app en Flutter para niños de 1.° a 5.° de primaria: 15 actividades en las 5 materias del currículo colombiano, con audio en todas, y un asistente de IA que responde sin conexión.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                <dd>
+                  <ul class="ticks">
+                    <li data-en="MVVM with Riverpod: views never touch the data, so the Engineering and Crossmedia teams work on separate layers.">MVVM con Riverpod: las vistas nunca tocan los datos, así el equipo de Ingeniería y el de Crosmedia trabajan en capas separadas.</li>
+                    <li data-en="The RAG is always offline: the phone is the source of truth and Gemma 2B runs on the device.">El RAG siempre es offline: el celular es la fuente de verdad y Gemma 2B corre en el dispositivo.</li>
+                    <li data-en="Progress is stored in local SQLite, syncs with a FastAPI backend and is restored when you sign in on another phone.">El progreso se guarda en SQLite local, se sincroniza con un backend en FastAPI y se restaura al iniciar sesión en otro celular.</li>
+                  </ul>
+                </dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Status">Estado</dt>
+                <dd data-en="In development: the team keeps working on the app. It runs on 5-inch phones and 10-inch tablets.">En desarrollo: el equipo sigue trabajando en la app. Funciona en celulares de 5 pulgadas y tablets de 10.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="My role">Mi rol</dt>
+                <dd data-en="The app architecture, the logic and screens for Natural Science, the assistant&#39;s offline RAG, and responsive layouts across every screen.">La arquitectura de la app, la lógica y las pantallas de Ciencias Naturales, el RAG offline del asistente y el diseño responsive de todas las pantallas.</dd>
+              </div>
+            </dl>
+            <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
+              <li>Flutter</li><li>Dart</li><li>Riverpod</li><li>SQLite</li><li>Gemma 2B</li><li>TFLite</li><li>FastAPI</li><li>Firebase Auth</li>
+            </ul>
+            <p class="case-links">
+              <a class="btn btn-accent" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+            </p>
+          </div>
+
+          <div class="lab lab-numi" aria-labelledby="rag-title">
+            <div class="lab-head">
+              <div>
+                <h4 class="lab-title" id="rag-title" data-en="How the assistant answers with no internet">Así responde el asistente sin internet</h4>
+                <p class="lab-sub mono" data-en="Everything happens on the phone, in airplane mode">Todo ocurre en el celular, en modo avión</p>
+              </div>
+            </div>
+            <ol class="pipeline">
+              <li>
+                <span class="step-tag mono" data-en="input">entrada</span>
+                <div><p class="step-name" data-en="The child asks">El niño pregunta</p><p data-en="For example: what is a fraction?">Por ejemplo: ¿qué es una fracción?</p></div>
+              </li>
+              <li>
+                <span class="step-tag mono">TFLite</span>
+                <div><p class="step-name" data-en="Embedding on the phone">Embedding en el celular</p><p data-en="The question becomes a vector with an on-device model, with a bigram fallback.">La pregunta se convierte en vector con un modelo en el dispositivo, con respaldo de bigramas.</p></div>
+              </li>
+              <li>
+                <span class="step-tag mono">SQLite</span>
+                <div><p class="step-name" data-en="Local search">Búsqueda local</p><p data-en="BM25 and cosine similarity over precomputed vectors in the knowledge base.">BM25 y similitud coseno sobre vectores precalculados de la base de conocimiento.</p></div>
+              </li>
+              <li>
+                <span class="step-tag mono">RAG</span>
+                <div><p class="step-name" data-en="Top 3 passages">Los 3 mejores fragmentos</p><p data-en="The most relevant passages go to the model as context.">Los fragmentos más relevantes pasan al modelo como contexto.</p></div>
+              </li>
+              <li>
+                <span class="step-tag mono">Gemma 2B</span>
+                <div><p class="step-name" data-en="Answer for their grade">Respuesta a su nivel</p><p data-en="The model runs on the phone and adapts the answer to the child&#39;s grade.">El modelo corre en el celular y adapta la respuesta al grado del niño.</p></div>
+              </li>
+            </ol>
+            <ul class="findings">
+              <li class="finding">
+                <p class="finding-num mono" data-en="100%">100 %</p>
+                <p data-en="Offline once installed: activities, audio and the AI assistant.">Offline una vez instalada: actividades, audio y asistente de IA.</p>
+              </li>
+              <li class="finding">
+                <p class="finding-num mono">2 GB</p>
+                <p data-en="of RAM is enough: built for low-end Android 8+ phones.">de RAM bastan: pensada para celulares Android 8+ de gama baja.</p>
+              </li>
+              <li class="finding">
+                <p class="finding-num mono">15</p>
+                <p data-en="activities across 5 subjects, from 1st to 5th grade.">actividades en 5 materias, de 1.° a 5.° de primaria.</p>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="case-shot case-phones">
+            <img class="phone" src="assets/numi-progreso.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" data-en-alt="Numi progress screen with the five subjects: math, English, science, Spanish and social studies">
+            <video class="phone phone-main" id="numi-video" data-src="assets/numi-demo.mp4" data-poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet" data-en-aria="Numi video in airplane mode: someone types what is a fraction and the assistant answers with no internet"></video>
+            <img class="phone" src="assets/numi-quiz.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" data-en-alt="A math question in Numi: what is 347 plus 285, with four options">
+            <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
+          </figure>
+        </article>
+
+        <!-- Caso 3: CineX -->
         <article class="case case-cinex" id="cinex" aria-labelledby="cinex-title">
           <div class="case-top">
             <header class="case-head">
@@ -396,22 +497,6 @@
 
         <ul class="more-grid">
           <li class="more-card">
-            <button class="more-open" type="button" data-dialog="dlg-numi" aria-haspopup="dialog">
-              <span class="more-media more-media-phone">
-                <span class="phone-frame">
-                  <img src="assets/numi-demo-poster.webp" width="540" height="1200" loading="lazy" decoding="async" alt="">
-                  <video class="hover-video" data-src="assets/numi-demo.mp4" width="540" height="1200" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-                </span>
-              </span>
-              <span class="more-body">
-                <span class="more-kind mono" data-en="Mobile app · Team · 2026">App móvil · Equipo · 2026</span>
-                <span class="more-name">Numi</span>
-                <span class="more-text" data-en="Educational software that works where there is no signal.">Software educativo que funciona donde no llega la señal.</span>
-                <span class="more-cta mono" data-en="See details">Ver detalle</span>
-              </span>
-            </button>
-          </li>
-          <li class="more-card">
             <button class="more-open" type="button" data-dialog="dlg-casa" aria-haspopup="dialog">
               <span class="more-media">
                 <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="">
@@ -441,36 +526,6 @@
       </div>
 
       <!-- Diálogos de proyectos -->
-      <dialog class="dlg" id="dlg-numi" aria-labelledby="dlg-numi-title">
-        <div class="dlg-inner">
-          <div class="dlg-head">
-            <p class="more-kind mono" data-en="Mobile app with a FastAPI backend · Team project, 2026">App móvil con backend en FastAPI · Proyecto en equipo, 2026</p>
-            <h3 class="dlg-title" id="dlg-numi-title">Numi</h3>
-            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
-          </div>
-          <div class="dlg-body">
-            <div class="dlg-text">
-              <p class="dlg-lede" data-en="Software that works where there is no signal.">Software que funciona donde no llega la señal.</p>
-              <p data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</p>
-              <ul class="ticks">
-                <li data-en="15 interactive activities across 5 subjects of the Colombian curriculum.">15 actividades interactivas en 5 materias del currículo colombiano.</li>
-                <li data-en="An AI assistant that runs on the phone itself: Gemma 2B with RAG over a local SQLite knowledge base.">Un asistente de IA que corre en el propio celular: Gemma 2B con RAG sobre una base de conocimiento local en SQLite.</li>
-                <li data-en="Progress that syncs with a FastAPI backend when there is a connection, with Firebase Auth login.">Progreso que se sincroniza con un backend en FastAPI cuando hay conexión, con login por Firebase Auth.</li>
-              </ul>
-              <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="the app architecture, the logic and screens for Natural Science, the assistant's offline RAG, and responsive layouts across every screen.">la arquitectura de la app, la lógica y las pantallas de Ciencias Naturales, el RAG offline del asistente y el diseño responsive de todas las pantallas.</span></p>
-              <ul class="chips"><li>Flutter</li><li>Dart</li><li>Riverpod (MVVM)</li><li>SQLite</li><li>Gemma 2B</li><li>FastAPI</li><li>Firebase</li></ul>
-              <p class="case-links"><a class="btn btn-line btn-sm" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a></p>
-            </div>
-            <figure class="dlg-media dlg-phones">
-              <img class="phone" src="assets/numi-progreso.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" data-en-alt="Numi progress screen with the five subjects: math, English, science, Spanish and social studies">
-              <video class="phone phone-main" id="numi-video" data-src="assets/numi-demo.mp4" data-poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet" data-en-aria="Numi video in airplane mode: someone types what is a fraction and the assistant answers with no internet"></video>
-              <img class="phone" src="assets/numi-quiz.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" data-en-alt="A math question in Numi: what is 347 plus 285, with four options">
-              <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
-            </figure>
-          </div>
-        </div>
-      </dialog>
-
       <dialog class="dlg" id="dlg-casa" aria-labelledby="dlg-casa-title">
         <div class="dlg-inner">
           <div class="dlg-head">
@@ -649,9 +704,10 @@
           </li>
           <li class="habit">
             <h3 class="habit-title" data-en="I work in a team with Git">Trabajo en equipo con Git</h3>
-            <p data-en="In CineX 1.0 I set up the repository, and reviewed and integrated my teammates' pull requests.">En CineX 1.0 armé el repositorio, y revisé e integré los pull requests de mis compañeros.</p>
+            <p data-en="In CineX I set up the repository and reviewed and integrated my teammates&#39; pull requests. In Numi, three of us work on the same repository, each team on its own layer.">En CineX armé el repositorio y revisé e integré los pull requests de mis compañeros. En Numi trabajamos tres personas sobre el mismo repositorio, cada equipo en su capa.</p>
             <p class="evidence mono">
               <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/pulls?q=is%3Apr+is%3Aclosed" target="_blank" rel="noopener" data-en="CineX pull requests">Pull requests de CineX</a>
+              <a href="https://github.com/geminitodo5-sketch/app-educativa-medellin/graphs/contributors" target="_blank" rel="noopener" data-en="Numi contributors">Colaboradores de Numi</a>
             </p>
           </li>
         </ol>
@@ -676,8 +732,8 @@
           <li class="t-item">
             <p class="t-year mono">2025</p>
             <div class="t-body">
-              <h3 class="t-title" data-en="CineX 1.0, as a team">CineX 1.0, en equipo</h3>
-              <p data-en="Repository structure, integration and pull request reviews.">Estructura del repositorio, integración y revisión de pull requests.</p>
+              <h3 class="t-title" data-en="My first full stack team project">Mi primer proyecto full stack en equipo</h3>
+              <p data-en="CineX, a movie theater management system in Java, Spring Boot and MySQL. I set up the repository, integrated the team&#39;s work and reviewed the pull requests.">CineX, un sistema de gestión de cine en Java, Spring Boot y MySQL. Armé el repositorio, integré el trabajo del equipo y revisé los pull requests.</p>
             </div>
           </li>
           <li class="t-item">
@@ -685,9 +741,9 @@
             <div class="t-body">
               <h3 class="t-title" data-en="Seventh semester and five projects">Séptimo semestre y cinco proyectos</h3>
               <ul class="t-list">
-                <li data-en="Numi, an educational app that works offline (team).">Numi, app educativa que funciona sin internet (equipo).</li>
+                <li data-en="Numi, an offline educational app with on-device AI (team, in development).">Numi, app educativa sin internet con IA en el celular (equipo, en desarrollo).</li>
                 <li data-en="Casa Rendon, a website in production (team).">Casa Rendón, sitio web en producción (equipo).</li>
-                <li data-en="CineX 2.0, on my own: MySQL, tests, CI and deployment.">CineX 2.0, individual: MySQL, pruebas, CI y despliegue.</li>
+                <li data-en="CineX, now on my own: MySQL, tests, CI and deployment.">CineX, ahora individual: MySQL, pruebas, CI y despliegue.</li>
                 <li data-en="Antioquia Public Health Observatory.">Observatorio de Salud Pública de Antioquia.</li>
                 <li data-en="Java Programming diploma, Politecnico de Colombia.">Diplomado en Programación en Java, Politécnico de Colombia.</li>
               </ul>
@@ -754,7 +810,7 @@
     <div class="wrap footer-grid">
       <p class="footer-name">Alexander Mejía Ospina</p>
       <p class="mono" data-en="Medellin, 2026 · Last updated: October 2026">Medellín, 2026 · Última actualización: octubre de 2026</p>
-      <p class="credits" data-en="Data: SIVIGILA, datos.gov.co (Observatory) and Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0). Built with HTML, CSS and JavaScript.">Datos: SIVIGILA, datos.gov.co (Observatorio) y Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0). Hecho con HTML, CSS y JavaScript.</p>
+      <p class="credits" data-en="Data: SIVIGILA, datos.gov.co (Observatory) and Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0). Fonts: Schibsted Grotesk and JetBrains Mono (OFL). Built with HTML, CSS and JavaScript.">Datos: SIVIGILA, datos.gov.co (Observatorio) y Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0). Fuentes: Schibsted Grotesk y JetBrains Mono (OFL). Hecho con HTML, CSS y JavaScript.</p>
     </div>
   </footer>
 
