@@ -31,7 +31,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-10-22c">
+  <link rel="stylesheet" href="css/styles.css?v=2026-10-22d">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -47,7 +47,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-10-22c" defer></script>
+  <script src="js/main.js?v=2026-10-22d" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -141,14 +141,6 @@
               </div>
               <span class="status-metric mono" data-en="cron">cron</span>
             </li>
-            <li class="status-row" data-state="dev">
-              <span class="dot" aria-hidden="true"></span>
-              <div class="status-text">
-                <p class="status-name"><a href="#numi">Numi</a></p>
-                <p class="status-detail" data-en="Mobile app in active development">App móvil en desarrollo activo</p>
-              </div>
-              <span class="status-metric mono">dev</span>
-            </li>
             <li class="status-row" data-state="ok">
               <span class="dot" aria-hidden="true"></span>
               <div class="status-text">
@@ -190,7 +182,7 @@
         <div class="section-head">
           <p class="label mono" aria-hidden="true">01 / <span data-en="Projects">Proyectos</span></p>
           <h2 class="section-title" id="proyectos-title" data-en="Built to be used.">Hechos para usarse.</h2>
-          <p class="section-lede" data-en="Three case studies: two are online right now and this page talks to them; the third is an app we keep building as a team.">Tres casos de estudio: dos están en línea ahora mismo y esta página les habla; el tercero es una app que seguimos construyendo en equipo.</p>
+          <p class="section-lede" data-en="Three case studies. The Observatory and CineX are online and this page talks to them live; Numi is an app we keep building as a team.">Tres casos de estudio. El Observatorio y CineX están en línea y esta página les habla en vivo; Numi es una app que seguimos construyendo en equipo.</p>
         </div>
 
         <!-- Caso 1: Observatorio -->
@@ -201,34 +193,6 @@
               <h3 class="case-title" id="obs-title" data-en="Antioquia Public Health Observatory">Observatorio de Salud Pública de Antioquia</h3>
               <p class="case-lede" data-en="A data pipeline, an API and a public page about the cases reported to SIVIGILA in Antioquia between 2007 and 2022.">Pipeline de datos, API y página pública sobre los casos notificados al SIVIGILA en Antioquia entre 2007 y 2022.</p>
             </header>
-            <dl class="facts">
-              <div class="fact">
-                <dt class="mono" data-en="Problem">Problema</dt>
-                <dd data-en="The open SIVIGILA data arrives as text, with incomplete municipality codes and repeated rows. As it is, it cannot answer questions.">Los datos abiertos del SIVIGILA llegan como texto, con códigos de municipio incompletos y filas repetidas. Así no responden preguntas.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="What I built">Qué construí</dt>
-                <dd data-en="An ETL pipeline in Python and pandas that downloads the data from datos.gov.co, cleans and validates it, loads it into a star schema in MySQL and publishes it through a read-only FastAPI API and this page's chart.">Un pipeline ETL en Python y pandas que descarga los datos de datos.gov.co, los limpia y valida, los carga en un modelo estrella en MySQL y los publica con una API de solo lectura en FastAPI y en la gráfica de esta página.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
-                <dd>
-                  <ul class="ticks">
-                    <li data-en="DIVIPOLA codes padded to 5 digits; unknown municipalities are kept but left out of rankings.">Códigos DIVIPOLA rellenados a 5 dígitos; los municipios desconocidos se conservan pero quedan fuera de los rankings.</li>
-                    <li data-en="Analysis in SQL with CTEs and window functions (LAG, ROW_NUMBER) to compute the endemic channel.">Análisis en SQL con CTE y funciones de ventana (LAG, ROW_NUMBER) para calcular el canal endémico.</li>
-                    <li data-en="GitHub Actions runs the pytest suite on every push and refreshes the data on the 1st of every month.">GitHub Actions corre las pruebas con pytest en cada push y actualiza los datos el día 1 de cada mes.</li>
-                  </ul>
-                </dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Result">Resultado</dt>
-                <dd data-en="1,185,468 reported cases, cleaned and published in an observatory that updates itself.">1.185.468 casos notificados, limpios y publicados en un observatorio que se actualiza solo.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="My role">Mi rol</dt>
-                <dd data-en="Personal project: I did all of it, from data extraction to the published page.">Proyecto personal: lo hice todo, de la extracción de los datos a la página publicada.</dd>
-              </div>
-            </dl>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
               <li>Python</li><li>pandas</li><li>SQL</li><li>MySQL</li><li>FastAPI</li><li>pytest</li><li>Docker</li><li>GitHub Actions</li>
             </ul>
@@ -281,6 +245,45 @@
             </div>
             <figcaption data-en="The observatory online: weekly dengue cases against the endemic channel.">El observatorio en línea: casos semanales de dengue frente al canal endémico.</figcaption>
           </figure>
+
+          <div class="case-more-wrap">
+            <button class="case-toggle" type="button" aria-expanded="false" aria-controls="obs-more">
+              <span class="case-toggle-label">Ver caso completo</span>
+              <svg class="case-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="case-more" id="obs-more">
+              <div class="case-more-inner">
+                <dl class="facts">
+                  <div class="fact">
+                    <dt class="mono" data-en="Problem">Problema</dt>
+                    <dd data-en="The open SIVIGILA data arrives as text, with incomplete municipality codes and repeated rows. As it is, it cannot answer questions.">Los datos abiertos del SIVIGILA llegan como texto, con códigos de municipio incompletos y filas repetidas. Así no responden preguntas.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="What I built">Qué construí</dt>
+                    <dd data-en="An ETL pipeline in Python and pandas that downloads the data from datos.gov.co, cleans and validates it, loads it into a star schema in MySQL and publishes it through a read-only FastAPI API and this page's chart.">Un pipeline ETL en Python y pandas que descarga los datos de datos.gov.co, los limpia y valida, los carga en un modelo estrella en MySQL y los publica con una API de solo lectura en FastAPI y en la gráfica de esta página.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                    <dd>
+                      <ul class="ticks">
+                        <li data-en="DIVIPOLA codes padded to 5 digits; unknown municipalities are kept but left out of rankings.">Códigos DIVIPOLA rellenados a 5 dígitos; los municipios desconocidos se conservan pero quedan fuera de los rankings.</li>
+                        <li data-en="Analysis in SQL with CTEs and window functions (LAG, ROW_NUMBER) to compute the endemic channel.">Análisis en SQL con CTE y funciones de ventana (LAG, ROW_NUMBER) para calcular el canal endémico.</li>
+                        <li data-en="GitHub Actions runs the pytest suite on every push and refreshes the data on the 1st of every month.">GitHub Actions corre las pruebas con pytest en cada push y actualiza los datos el día 1 de cada mes.</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Result">Resultado</dt>
+                    <dd data-en="1,185,468 reported cases, cleaned and published in an observatory that updates itself.">1.185.468 casos notificados, limpios y publicados en un observatorio que se actualiza solo.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="My role">Mi rol</dt>
+                    <dd data-en="Personal project: I did all of it, from data extraction to the published page.">Proyecto personal: lo hice todo, de la extracción de los datos a la página publicada.</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
         </article>
 
         <!-- Caso 2: Numi -->
@@ -291,34 +294,6 @@
               <h3 class="case-title" id="numi-title">Numi</h3>
               <p class="case-lede" data-en="An educational app that works with no internet, with an AI assistant that runs on the phone itself, for children in rural Medellin.">Una app educativa que funciona sin internet, con un asistente de IA que corre en el propio celular, para niños de zonas rurales de Medellín.</p>
             </header>
-            <dl class="facts">
-              <div class="fact">
-                <dt class="mono" data-en="Problem">Problema</dt>
-                <dd data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="What we built">Qué construimos</dt>
-                <dd data-en="A Flutter app for 1st to 5th graders: 15 activities across the 5 subjects of the Colombian curriculum, with audio in every one, and an AI assistant that answers with no connection.">Una app en Flutter para niños de 1.° a 5.° de primaria: 15 actividades en las 5 materias del currículo colombiano, con audio en todas, y un asistente de IA que responde sin conexión.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
-                <dd>
-                  <ul class="ticks">
-                    <li data-en="MVVM with Riverpod: views never touch the data, so the Engineering and Crossmedia teams work on separate layers.">MVVM con Riverpod: las vistas nunca tocan los datos, así el equipo de Ingeniería y el de Crosmedia trabajan en capas separadas.</li>
-                    <li data-en="The RAG is always offline: the phone is the source of truth and Gemma 2B runs on the device.">El RAG siempre es offline: el celular es la fuente de verdad y Gemma 2B corre en el dispositivo.</li>
-                    <li data-en="Progress is stored in local SQLite, syncs with a FastAPI backend and is restored when you sign in on another phone.">El progreso se guarda en SQLite local, se sincroniza con un backend en FastAPI y se restaura al iniciar sesión en otro celular.</li>
-                  </ul>
-                </dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Status">Estado</dt>
-                <dd data-en="In development: the team keeps working on the app. It runs on 5-inch phones and 10-inch tablets.">En desarrollo: el equipo sigue trabajando en la app. Funciona en celulares de 5 pulgadas y tablets de 10.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="My role">Mi rol</dt>
-                <dd data-en="The app architecture, the logic and screens for Natural Science, the assistant&#39;s offline RAG, and responsive layouts across every screen.">La arquitectura de la app, la lógica y las pantallas de Ciencias Naturales, el RAG offline del asistente y el diseño responsive de todas las pantallas.</dd>
-              </div>
-            </dl>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
               <li>Flutter</li><li>Dart</li><li>Riverpod</li><li>SQLite</li><li>Gemma 2B</li><li>TFLite</li><li>FastAPI</li><li>Firebase Auth</li>
             </ul>
@@ -327,50 +302,6 @@
             </p>
           </div>
 
-          <div class="lab lab-numi" aria-labelledby="rag-title">
-            <div class="lab-head">
-              <div>
-                <h4 class="lab-title" id="rag-title" data-en="How the assistant answers with no internet">Así responde el asistente sin internet</h4>
-                <p class="lab-sub mono" data-en="Everything happens on the phone, in airplane mode">Todo ocurre en el celular, en modo avión</p>
-              </div>
-            </div>
-            <ol class="pipeline">
-              <li>
-                <span class="step-tag mono" data-en="input">entrada</span>
-                <div><p class="step-name" data-en="The child asks">El niño pregunta</p><p data-en="For example: what is a fraction?">Por ejemplo: ¿qué es una fracción?</p></div>
-              </li>
-              <li>
-                <span class="step-tag mono">TFLite</span>
-                <div><p class="step-name" data-en="Embedding on the phone">Embedding en el celular</p><p data-en="The question becomes a vector with an on-device model, with a bigram fallback.">La pregunta se convierte en vector con un modelo en el dispositivo, con respaldo de bigramas.</p></div>
-              </li>
-              <li>
-                <span class="step-tag mono">SQLite</span>
-                <div><p class="step-name" data-en="Local search">Búsqueda local</p><p data-en="BM25 and cosine similarity over precomputed vectors in the knowledge base.">BM25 y similitud coseno sobre vectores precalculados de la base de conocimiento.</p></div>
-              </li>
-              <li>
-                <span class="step-tag mono">RAG</span>
-                <div><p class="step-name" data-en="Top 3 passages">Los 3 mejores fragmentos</p><p data-en="The most relevant passages go to the model as context.">Los fragmentos más relevantes pasan al modelo como contexto.</p></div>
-              </li>
-              <li>
-                <span class="step-tag mono">Gemma 2B</span>
-                <div><p class="step-name" data-en="Answer for their grade">Respuesta a su nivel</p><p data-en="The model runs on the phone and adapts the answer to the child&#39;s grade.">El modelo corre en el celular y adapta la respuesta al grado del niño.</p></div>
-              </li>
-            </ol>
-            <ul class="findings">
-              <li class="finding">
-                <p class="finding-num mono" data-en="100%">100 %</p>
-                <p data-en="Offline once installed: activities, audio and the AI assistant.">Offline una vez instalada: actividades, audio y asistente de IA.</p>
-              </li>
-              <li class="finding">
-                <p class="finding-num mono">2 GB</p>
-                <p data-en="of RAM is enough: built for low-end Android 8+ phones.">de RAM bastan: pensada para celulares Android 8+ de gama baja.</p>
-              </li>
-              <li class="finding">
-                <p class="finding-num mono">15</p>
-                <p data-en="activities across 5 subjects, from 1st to 5th grade.">actividades en 5 materias, de 1.° a 5.° de primaria.</p>
-              </li>
-            </ul>
-          </div>
 
           <figure class="case-shot case-phones">
             <img class="phone" src="assets/numi-progreso.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" data-en-alt="Numi progress screen with the five subjects: math, English, science, Spanish and social studies">
@@ -378,6 +309,89 @@
             <img class="phone" src="assets/numi-quiz.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" data-en-alt="A math question in Numi: what is 347 plus 285, with four options">
             <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
           </figure>
+
+          <div class="case-more-wrap">
+            <button class="case-toggle" type="button" aria-expanded="false" aria-controls="numi-more">
+              <span class="case-toggle-label">Ver caso completo</span>
+              <svg class="case-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="case-more" id="numi-more">
+              <div class="case-more-inner">
+                <dl class="facts">
+                  <div class="fact">
+                    <dt class="mono" data-en="Problem">Problema</dt>
+                    <dd data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="What we built">Qué construimos</dt>
+                    <dd data-en="A Flutter app for 1st to 5th graders: 15 activities across the 5 subjects of the Colombian curriculum, with audio in every one, and an AI assistant that answers with no connection.">Una app en Flutter para niños de 1.° a 5.° de primaria: 15 actividades en las 5 materias del currículo colombiano, con audio en todas, y un asistente de IA que responde sin conexión.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                    <dd>
+                      <ul class="ticks">
+                        <li data-en="MVVM with Riverpod: views never touch the data, so the Engineering and Crossmedia teams work on separate layers.">MVVM con Riverpod: las vistas nunca tocan los datos, así el equipo de Ingeniería y el de Crosmedia trabajan en capas separadas.</li>
+                        <li data-en="The RAG is always offline: the phone is the source of truth and Gemma 2B runs on the device.">El RAG siempre es offline: el celular es la fuente de verdad y Gemma 2B corre en el dispositivo.</li>
+                        <li data-en="Progress is stored in local SQLite, syncs with a FastAPI backend and is restored when you sign in on another phone.">El progreso se guarda en SQLite local, se sincroniza con un backend en FastAPI y se restaura al iniciar sesión en otro celular.</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Status">Estado</dt>
+                    <dd data-en="In development: the team keeps working on the app. It runs on 5-inch phones and 10-inch tablets.">En desarrollo: el equipo sigue trabajando en la app. Funciona en celulares de 5 pulgadas y tablets de 10.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="My role">Mi rol</dt>
+                    <dd data-en="The app architecture, the logic and screens for Natural Science, the assistant&#39;s offline RAG, and responsive layouts across every screen.">La arquitectura de la app, la lógica y las pantallas de Ciencias Naturales, el RAG offline del asistente y el diseño responsive de todas las pantallas.</dd>
+                  </div>
+                </dl>
+              <div class="lab lab-numi" aria-labelledby="rag-title">
+                <div class="lab-head">
+                  <div>
+                    <h4 class="lab-title" id="rag-title" data-en="How the assistant answers with no internet">Así responde el asistente sin internet</h4>
+                    <p class="lab-sub mono" data-en="Everything happens on the phone, in airplane mode">Todo ocurre en el celular, en modo avión</p>
+                  </div>
+                </div>
+                <ol class="pipeline">
+                  <li>
+                    <span class="step-tag mono" data-en="input">entrada</span>
+                    <div><p class="step-name" data-en="The child asks">El niño pregunta</p><p data-en="For example: what is a fraction?">Por ejemplo: ¿qué es una fracción?</p></div>
+                  </li>
+                  <li>
+                    <span class="step-tag mono">TFLite</span>
+                    <div><p class="step-name" data-en="Embedding on the phone">Embedding en el celular</p><p data-en="The question becomes a vector with an on-device model, with a bigram fallback.">La pregunta se convierte en vector con un modelo en el dispositivo, con respaldo de bigramas.</p></div>
+                  </li>
+                  <li>
+                    <span class="step-tag mono">SQLite</span>
+                    <div><p class="step-name" data-en="Local search">Búsqueda local</p><p data-en="BM25 and cosine similarity over precomputed vectors in the knowledge base.">BM25 y similitud coseno sobre vectores precalculados de la base de conocimiento.</p></div>
+                  </li>
+                  <li>
+                    <span class="step-tag mono">RAG</span>
+                    <div><p class="step-name" data-en="Top 3 passages">Los 3 mejores fragmentos</p><p data-en="The most relevant passages go to the model as context.">Los fragmentos más relevantes pasan al modelo como contexto.</p></div>
+                  </li>
+                  <li>
+                    <span class="step-tag mono">Gemma 2B</span>
+                    <div><p class="step-name" data-en="Answer for their grade">Respuesta a su nivel</p><p data-en="The model runs on the phone and adapts the answer to the child&#39;s grade.">El modelo corre en el celular y adapta la respuesta al grado del niño.</p></div>
+                  </li>
+                </ol>
+                <ul class="findings">
+                  <li class="finding">
+                    <p class="finding-num mono" data-en="100%">100 %</p>
+                    <p data-en="Offline once installed: activities, audio and the AI assistant.">Offline una vez instalada: actividades, audio y asistente de IA.</p>
+                  </li>
+                  <li class="finding">
+                    <p class="finding-num mono">2 GB</p>
+                    <p data-en="of RAM is enough: built for low-end Android 8+ phones.">de RAM bastan: pensada para celulares Android 8+ de gama baja.</p>
+                  </li>
+                  <li class="finding">
+                    <p class="finding-num mono">15</p>
+                    <p data-en="activities across 5 subjects, from 1st to 5th grade.">actividades en 5 materias, de 1.° a 5.° de primaria.</p>
+                  </li>
+                </ul>
+              </div>
+              </div>
+            </div>
+          </div>
         </article>
 
         <!-- Caso 3: CineX -->
@@ -388,34 +402,6 @@
               <h3 class="case-title" id="cinex-title">CineX</h3>
               <p class="case-lede" data-en="A movie theater management system: showtimes with real movies from the TMDB API, theaters, screenings, seat sales, snack bar, users and bookings.">Sistema de gestión de cine: cartelera con películas reales de la API de TMDB, salas, funciones, venta de sillas, confitería, usuarios y reservas.</p>
             </header>
-            <dl class="facts">
-              <div class="fact">
-                <dt class="mono" data-en="Problem">Problema</dt>
-                <dd data-en="A theater cannot sell seats it does not have, or schedule two screenings in the same room at the same time. Version 1.0 kept movies, theaters, screenings and purchases in memory, so nothing survived a restart.">Un cine no puede vender sillas que no tiene ni programar dos funciones en la misma sala a la misma hora. La versión 1.0 guardaba películas, salas, funciones y compras en memoria: nada sobrevivía a un reinicio.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="What I built">Qué construí</dt>
-                <dd data-en="A REST API in Java 21 with Spring Boot and MySQL, consumed by a web frontend in HTML, CSS and JavaScript.">Una API REST en Java 21 con Spring Boot y MySQL, consumida por un frontend web en HTML, CSS y JavaScript.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
-                <dd>
-                  <ul class="ticks">
-                    <li data-en="Business rules live in the service layer and answer 409 Conflict when they are broken.">Las reglas de negocio viven en la capa de servicios y responden 409 Conflict cuando se rompen.</li>
-                    <li data-en="One error format for the whole API: JSON with status, message and path (400, 404, 409).">Un solo formato de error para toda la API: JSON con estado, mensaje y ruta (400, 404, 409).</li>
-                    <li data-en="Docker Compose for the local environment, CI with GitHub Actions and a free deployment.">Docker Compose para el entorno local, CI con GitHub Actions y despliegue gratuito.</li>
-                  </ul>
-                </dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="Result">Resultado</dt>
-                <dd data-en="A documented API online, with 17 automated tests and a 26-request Postman collection.">Una API documentada y en línea, con 17 pruebas automáticas y una colección de Postman de 26 solicitudes.</dd>
-              </div>
-              <div class="fact">
-                <dt class="mono" data-en="My role">Mi rol</dt>
-                <dd data-en="v1.0 as a team: repository structure, integration and pull request reviews. v2.0 on my own: MySQL persistence, validations, error handling, Swagger, 17 tests (JUnit + Mockito), a 26-request Postman collection, Docker Compose, CI and deployment.">v1.0 en equipo: estructura del repositorio, integración y revisión de pull requests. v2.0 individual: persistencia en MySQL, validaciones, manejo de errores, Swagger, 17 pruebas (JUnit + Mockito), colección de Postman de 26 solicitudes, Docker Compose, CI y despliegue.</dd>
-              </div>
-            </dl>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
               <li>Java 21</li><li>Spring Boot</li><li>Spring Data JPA</li><li>MySQL</li><li>JUnit</li><li>Postman</li><li>Swagger</li><li>Docker</li><li>GitHub Actions</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
             </ul>
@@ -482,6 +468,45 @@
             </div>
             <figcaption data-en="The home page and the admin panel, both running against the API.">La página principal y el panel de administración, los dos conectados a la API.</figcaption>
           </figure>
+
+          <div class="case-more-wrap">
+            <button class="case-toggle" type="button" aria-expanded="false" aria-controls="cinex-more">
+              <span class="case-toggle-label">Ver caso completo</span>
+              <svg class="case-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="case-more" id="cinex-more">
+              <div class="case-more-inner">
+                <dl class="facts">
+                  <div class="fact">
+                    <dt class="mono" data-en="Problem">Problema</dt>
+                    <dd data-en="A theater cannot sell seats it does not have, or schedule two screenings in the same room at the same time. Version 1.0 kept movies, theaters, screenings and purchases in memory, so nothing survived a restart.">Un cine no puede vender sillas que no tiene ni programar dos funciones en la misma sala a la misma hora. La versión 1.0 guardaba películas, salas, funciones y compras en memoria: nada sobrevivía a un reinicio.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="What I built">Qué construí</dt>
+                    <dd data-en="A REST API in Java 21 with Spring Boot and MySQL, consumed by a web frontend in HTML, CSS and JavaScript.">Una API REST en Java 21 con Spring Boot y MySQL, consumida por un frontend web en HTML, CSS y JavaScript.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                    <dd>
+                      <ul class="ticks">
+                        <li data-en="Business rules live in the service layer and answer 409 Conflict when they are broken.">Las reglas de negocio viven en la capa de servicios y responden 409 Conflict cuando se rompen.</li>
+                        <li data-en="One error format for the whole API: JSON with status, message and path (400, 404, 409).">Un solo formato de error para toda la API: JSON con estado, mensaje y ruta (400, 404, 409).</li>
+                        <li data-en="Docker Compose for the local environment, CI with GitHub Actions and a free deployment.">Docker Compose para el entorno local, CI con GitHub Actions y despliegue gratuito.</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Result">Resultado</dt>
+                    <dd data-en="A documented API online, with 17 automated tests and a 26-request Postman collection.">Una API documentada y en línea, con 17 pruebas automáticas y una colección de Postman de 26 solicitudes.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="My role">Mi rol</dt>
+                    <dd data-en="v1.0 as a team: repository structure, integration and pull request reviews. v2.0 on my own: MySQL persistence, validations, error handling, Swagger, 17 tests (JUnit + Mockito), a 26-request Postman collection, Docker Compose, CI and deployment.">v1.0 en equipo: estructura del repositorio, integración y revisión de pull requests. v2.0 individual: persistencia en MySQL, validaciones, manejo de errores, Swagger, 17 pruebas (JUnit + Mockito), colección de Postman de 26 solicitudes, Docker Compose, CI y despliegue.</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -496,31 +521,33 @@
         </div>
 
         <ul class="more-grid">
-          <li class="more-card">
-            <button class="more-open" type="button" data-dialog="dlg-casa" aria-haspopup="dialog">
-              <span class="more-media">
-                <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="">
-              </span>
-              <span class="more-body">
-                <span class="more-kind mono"><span class="dot dot-live" aria-hidden="true"></span> <span data-en="Frontend in production · Team · 2026">Frontend en producción · Equipo · 2026</span></span>
-                <span class="more-name">Casa Rendón</span>
-                <span class="more-text" data-en="The website of a family that makes craft coffee and wine in Andes, Antioquia.">El sitio de una familia que hace café y vino artesanal en Andes, Antioquia.</span>
-                <span class="more-cta mono" data-en="See details">Ver detalle</span>
-              </span>
-            </button>
+          <li class="more-card more-casa">
+            <div class="more-media">
+              <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="">
+            </div>
+            <div class="more-body">
+              <p class="more-tags"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Real client · In production">Cliente real · En producción</span></span></p>
+              <p class="more-kind mono" data-en="Frontend in production · Team · 2026">Frontend en producción · Equipo · 2026</p>
+              <h3 class="more-name">Casa Rendón</h3>
+              <p class="more-text" data-en="The website of a family that makes craft coffee and wine in Andes, Antioquia.">El sitio de una familia que hace café y vino artesanal en Andes, Antioquia.</p>
+              <p class="more-actions">
+                <a class="btn btn-accent btn-sm" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
+                <button class="btn btn-line btn-sm" type="button" data-dialog="dlg-casa" aria-haspopup="dialog" data-en="See details">Ver detalle</button>
+              </p>
+            </div>
           </li>
           <li class="more-card">
-            <button class="more-open" type="button" data-dialog="dlg-datos" aria-haspopup="dialog">
-              <span class="more-media more-media-plot">
-                <svg class="mini-plot" viewBox="0 0 640 440" aria-hidden="true" focusable="false"><use href="#mpg-plot"/></svg>
-              </span>
-              <span class="more-body">
-                <span class="more-kind mono" data-en="Data Analytics course · 2026">Curso de Analítica de Datos · 2026</span>
-                <span class="more-name" data-en="Data with Python">Datos con Python</span>
-                <span class="more-text" data-en="Two models, two questions: how far a car goes on a liter and whether a tumor is benign.">Dos modelos, dos preguntas: cuánto rinde un carro y si un tumor es benigno.</span>
-                <span class="more-cta mono" data-en="See details">Ver detalle</span>
-              </span>
-            </button>
+            <div class="more-media more-media-plot">
+              <svg class="mini-plot" viewBox="0 0 640 440" aria-hidden="true" focusable="false"><use href="#mpg-plot"/></svg>
+            </div>
+            <div class="more-body">
+              <p class="more-kind mono" data-en="Data Analytics course · 2026">Curso de Analítica de Datos · 2026</p>
+              <h3 class="more-name" data-en="Data with Python">Datos con Python</h3>
+              <p class="more-text" data-en="Two models, two questions: how far a car goes on a liter and whether a tumor is benign.">Dos modelos, dos preguntas: cuánto rinde un carro y si un tumor es benigno.</p>
+              <p class="more-actions">
+                <button class="btn btn-line btn-sm" type="button" data-dialog="dlg-datos" aria-haspopup="dialog" data-en="See details">Ver detalle</button>
+              </p>
+            </div>
           </li>
         </ul>
       </div>
@@ -529,6 +556,7 @@
       <dialog class="dlg" id="dlg-casa" aria-labelledby="dlg-casa-title">
         <div class="dlg-inner">
           <div class="dlg-head">
+            <p class="more-tags"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Real client · In production">Cliente real · En producción</span></span></p>
             <p class="more-kind mono" data-en="Frontend in production · Team project, 2026">Frontend en producción · Proyecto en equipo, 2026</p>
             <h3 class="dlg-title" id="dlg-casa-title">Casa Rendón</h3>
             <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -543,8 +571,8 @@
               <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="design and development of the site.">diseño y desarrollo del sitio.</span></p>
               <ul class="chips"><li>React</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
               <p class="case-links">
-                <a class="btn btn-accent btn-sm" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
-                <a class="btn btn-line btn-sm" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+                <a class="btn btn-accent" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
+                <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
               </p>
             </div>
             <figure class="dlg-media dlg-casa">
