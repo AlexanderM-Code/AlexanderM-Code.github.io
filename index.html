@@ -3,325 +3,763 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alexander Mejía Ospina | Desarrollador Full Stack</title>
-  <meta name="description" content="Portafolio de Alexander Mejía Ospina, desarrollador full stack en formación en Medellín: backend con Java y Spring Boot, frontend con React, apps con Flutter y análisis de datos con Python.">
-  <meta property="og:title" content="Alexander Mejía Ospina | Desarrollador Full Stack">
-  <meta property="og:description" content="Desarrollo full stack: APIs, web, apps móviles y datos. Buscando práctica empresarial en Medellín.">
+  <title>Alexander Mejía Ospina | Desarrollador full stack y datos</title>
+  <meta name="description" content="Portafolio de Alexander Mejía Ospina, estudiante de Ingeniería de Software en Medellín. APIs, sitios web y análisis de datos en producción, con pruebas automáticas y despliegue. Disponible para práctica empresarial.">
+  <link rel="canonical" href="https://alexanderm-code.github.io/">
+  <link rel="alternate" hreflang="es" href="https://alexanderm-code.github.io/">
+  <link rel="alternate" hreflang="en" href="https://alexanderm-code.github.io/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://alexanderm-code.github.io/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alexander Mejía Ospina">
+  <meta property="og:title" content="Alexander Mejía Ospina | Desarrollador full stack y datos">
+  <meta property="og:description" content="Construyo APIs, sitios web y análisis de datos que funcionan en producción, con pruebas y despliegue.">
   <meta property="og:url" content="https://alexanderm-code.github.io/">
   <meta property="og:image" content="https://alexanderm-code.github.io/assets/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Alexander Mejía Ospina, desarrollador full stack, con capturas de Numi y CineX">
+  <meta property="og:image:alt" content="Alexander Mejía Ospina, desarrollador full stack y de datos, con capturas del Observatorio de Salud Pública y de CineX">
   <meta property="og:locale" content="es_CO">
+  <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0f2027">
-  <link rel="canonical" href="https://alexanderm-code.github.io/">
+  <meta name="twitter:title" content="Alexander Mejía Ospina | Desarrollador full stack y datos">
+  <meta name="twitter:description" content="APIs, sitios web y análisis de datos en producción, con pruebas y despliegue.">
+  <meta name="twitter:image" content="https://alexanderm-code.github.io/assets/og.jpg">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3efe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121418" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
   <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    // Tema e idioma antes de pintar, para que la página no parpadee.
+    (function () {
+      var d = document.documentElement, theme = null, lang = null;
+      d.classList.add('js');
+      try { theme = localStorage.getItem('theme'); lang = localStorage.getItem('lang'); } catch (e) { /* sin almacenamiento */ }
+      if (theme === 'light' || theme === 'dark') d.setAttribute('data-theme', theme);
+      var q = /[?&]lang=(es|en)\b/.exec(location.search);
+      if (q) lang = q[1];
+      if (lang === 'en') {
+        d.setAttribute('data-lang-pending', 'en');
+        setTimeout(function () { d.removeAttribute('data-lang-pending'); }, 1500);
+      }
+    })();
+  </script>
+  <script src="js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alexander Mejía Ospina",
+    "url": "https://alexanderm-code.github.io/",
+    "image": "https://alexanderm-code.github.io/assets/og.jpg",
+    "jobTitle": "Estudiante de Ingeniería de Software · Desarrollador full stack en formación",
+    "email": "mailto:alexmejia0112@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Medellín", "addressCountry": "CO" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Cooperativa de Colombia" },
+    "knowsLanguage": ["es", "en"],
+    "knowsAbout": ["Java", "Spring Boot", "MySQL", "Python", "pandas", "SQL", "FastAPI", "JavaScript", "React", "Docker", "GitHub Actions"],
+    "sameAs": [
+      "https://www.linkedin.com/in/alexander-mejia-ospina",
+      "https://github.com/AlexanderM-Code"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <a class="skip" href="#proyectos" data-en="Skip to projects">Saltar a proyectos</a>
+  <a class="skip" href="#contenido" data-en="Skip to content">Saltar al contenido</a>
 
-  <!-- Barra fija: al bajar toma fondo y marca la sección visible -->
   <header class="nav" id="nav">
-    <span class="progress" aria-hidden="true"></span>
-    <a class="brand" href="#inicio">Alexander<span class="brand-rest"> Mejía Ospina</span></a>
-    <nav aria-label="Principal">
-      <ul>
-        <li class="hide-sm"><a href="#proyectos" data-en="Projects">Proyectos</a></li>
-        <li class="hide-sm"><a href="#habilidades" data-en="Skills">Habilidades</a></li>
-        <li class="hide-sm"><a href="#sobre-mi" data-en="About me">Sobre mí</a></li>
-        <li class="hide-sm"><a href="#contacto" data-en="Contact">Contacto</a></li>
-        <li><button class="lang-toggle" type="button" id="lang-toggle" aria-label="EN: read this page in English">EN</button></li>
-        <li><a class="btn btn-primary btn-sm" href="cv/CV_Alexander_Mejia_Ospina.pdf" data-en-href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download data-en="Resume">Hoja de vida</a></li>
-      </ul>
-    </nav>
+    <div class="wrap nav-row">
+      <a class="brand" href="#inicio" aria-label="Alexander Mejía Ospina, inicio" data-en-aria="Alexander Mejia Ospina, home">
+        <span class="brand-mark" aria-hidden="true">AM</span><span class="brand-name">Alexander Mejía Ospina</span>
+      </a>
+      <button class="menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+        <span data-en="Menu">Menú</span>
+      </button>
+      <nav class="menu" id="menu" aria-label="Principal" data-en-aria="Main">
+        <ul class="menu-links">
+          <li><a href="#proyectos" data-en="Projects">Proyectos</a></li>
+          <li><a href="#datos" data-en="Data">Datos</a></li>
+          <li><a href="#habilidades" data-en="Skills">Habilidades</a></li>
+          <li><a href="#trayectoria" data-en="Journey">Trayectoria</a></li>
+          <li><a href="#contacto" data-en="Contact">Contacto</a></li>
+        </ul>
+        <div class="menu-tools">
+          <button class="tool" type="button" id="lang-toggle" aria-label="Read this page in English" lang="en"><span class="mono">EN</span></button>
+          <button class="tool" type="button" id="theme-toggle" aria-label="Cambiar a tema oscuro" data-label-dark="Cambiar a tema oscuro" data-label-light="Cambiar a tema claro" data-en-label-dark="Switch to dark theme" data-en-label-light="Switch to light theme">
+            <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <a class="btn btn-ink btn-sm" href="cv/CV_Alexander_Mejia_Ospina.pdf" data-en-href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download data-en="Resume">Hoja de vida</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <!-- INICIO: lo que hago a la izquierda; mis proyectos reales a la derecha, que se abren al bajar -->
-    <section id="inicio" class="hero">
-      <div class="hero-main">
-        <h1 class="headline rise" data-en="Full stack: APIs, web and mobile apps.">Desarrollo full stack: APIs, web y apps.</h1>
-        <p class="hero-sub rise" style="--delay:120ms" data-en="Software Engineering student in Medellin, Colombia. I build backends, frontends, mobile apps and data analysis. Available for an internship.">Estudiante de Ingeniería de Software en Medellín. Hago backend, frontend, apps móviles y análisis de datos. Disponible para práctica empresarial.</p>
-        <ul class="stack-row rise" style="--delay:200ms" aria-label="Tecnologías principales">
-          <li><img src="assets/logos/java.svg" width="24" height="24" alt="">Java</li>
-          <li><img src="assets/logos/spring.svg" width="24" height="24" alt="">Spring Boot</li>
-          <li><img src="assets/logos/react.svg" width="24" height="24" alt="">React</li>
-          <li><img src="assets/logos/mysql.svg" width="24" height="24" alt="">MySQL</li>
-          <li><img src="assets/logos/flutter.svg" width="24" height="24" alt="">Flutter</li>
-          <li><img src="assets/logos/python.svg" width="24" height="24" alt="">Python</li>
+  <main id="contenido" tabindex="-1">
+
+    <!-- INICIO -->
+    <section class="hero" id="inicio" aria-labelledby="hero-name">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="tag mono rise" style="--i:0" data-en="Software Engineering · Medellin">Ingeniería de Software · Medellín</p>
+          <p class="availability rise" style="--i:1">
+            <span class="dot dot-ok" aria-hidden="true"></span>
+            <span data-en="Available for an internship">Disponible para práctica empresarial</span>
+            <!-- TODO fecha: agrega desde cuándo estás disponible, por ejemplo "desde enero de 2027" (y su traducción en data-en). -->
+          </p>
+          <h1 class="name rise" style="--i:2" id="hero-name">Alexander <span>Mejía Ospina</span></h1>
+          <p class="value rise" style="--i:3" data-en="I build APIs, websites and data analysis that run in production, with tests and deployment.">Construyo APIs, sitios web y análisis de datos que funcionan en producción, con pruebas y despliegue.</p>
+          <div class="actions rise" style="--i:4">
+            <a class="btn btn-accent" href="#proyectos" data-en="See projects">Ver proyectos</a>
+            <a class="btn btn-line" href="cv/CV_Alexander_Mejia_Ospina.pdf" data-en-href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download data-en="Download resume">Descargar hoja de vida</a>
+          </div>
+        </div>
+
+        <aside class="panel status rise" style="--i:3" aria-labelledby="status-title">
+          <div class="panel-head">
+            <h2 class="panel-title mono" id="status-title" data-en="System status">Estado del sistema</h2>
+            <span class="mono panel-meta" id="status-clock" aria-hidden="true"></span>
+          </div>
+          <ul class="status-list">
+            <li class="status-row" id="api-row" data-state="checking">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="status-text">
+                <p class="status-name"><a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="CineX API">API de CineX</a></p>
+                <p class="status-detail" id="api-detail" role="status" aria-live="polite">Comprobando…</p>
+              </div>
+              <span class="status-metric mono" id="api-ms" aria-hidden="true"></span>
+            </li>
+            <li class="status-row" data-state="ok">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="status-text">
+                <p class="status-name"><a href="https://alexanderm-code.github.io/observatorio-salud-antioquia/" target="_blank" rel="noopener" data-en="Public Health Observatory">Observatorio de Salud</a></p>
+                <p class="status-detail" data-en="Data updated monthly with GitHub Actions">Datos actualizados mensualmente con GitHub Actions</p>
+              </div>
+              <span class="status-metric mono" data-en="cron">cron</span>
+            </li>
+            <li class="status-row" data-state="ok">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="status-text">
+                <p class="status-name"><a href="https://casarendon.com" target="_blank" rel="noopener">casarendon.com</a></p>
+                <p class="status-detail" data-en="In production">En producción</p>
+              </div>
+              <span class="status-metric mono">web</span>
+            </li>
+          </ul>
+          <p class="panel-foot mono"><span>GET /productos</span><span data-en="real request from your browser">petición real desde tu navegador</span></p>
+        </aside>
+      </div>
+
+      <div class="wrap">
+        <dl class="metrics rise" style="--i:5">
+          <div class="metric">
+            <dt data-en="projects online">proyectos en línea</dt>
+            <dd class="mono"><span class="count" data-count="3">3</span></dd>
+          </div>
+          <div class="metric">
+            <dt data-en="public health cases analyzed">casos de salud pública analizados</dt>
+            <dd class="mono"><span class="count" data-count="1.18" data-decimals="2" data-suffix=" M">1,18 M</span></dd>
+          </div>
+          <div class="metric">
+            <dt data-en="automated tests in CineX">pruebas automáticas en CineX</dt>
+            <dd class="mono"><span class="count" data-count="17">17</span></dd>
+          </div>
+          <div class="metric">
+            <dt data-en="semester of Software Engineering">semestre de Ingeniería de Software</dt>
+            <dd class="mono"><span class="count" data-count="7" data-suffix=".º" data-en-suffix="th">7.º</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- PROYECTOS DESTACADOS -->
+    <section class="section" id="proyectos" aria-labelledby="proyectos-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label mono" aria-hidden="true">01 / <span data-en="Projects">Proyectos</span></p>
+          <h2 class="section-title" id="proyectos-title" data-en="Live, tested and deployed.">En vivo, probados y desplegados.</h2>
+          <p class="section-lede" data-en="Two case studies. Both are online right now, and this page talks to them.">Dos casos de estudio. Los dos están en línea ahora mismo, y esta página les habla.</p>
+        </div>
+
+        <!-- Caso 1: Observatorio -->
+        <article class="case" id="observatorio" aria-labelledby="obs-title">
+          <div class="case-top">
+            <header class="case-head">
+              <p class="case-kind mono"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Live">En vivo</span></span> <span data-en="Personal project · 2026">Proyecto personal · 2026</span></p>
+              <h3 class="case-title" id="obs-title" data-en="Antioquia Public Health Observatory">Observatorio de Salud Pública de Antioquia</h3>
+              <p class="case-lede" data-en="A data pipeline, an API and a public page about the cases reported to SIVIGILA in Antioquia between 2007 and 2022.">Pipeline de datos, API y página pública sobre los casos notificados al SIVIGILA en Antioquia entre 2007 y 2022.</p>
+            </header>
+            <dl class="facts">
+              <div class="fact">
+                <dt class="mono" data-en="Problem">Problema</dt>
+                <dd data-en="The open SIVIGILA data arrives as text, with incomplete municipality codes and repeated rows. As it is, it cannot answer questions.">Los datos abiertos del SIVIGILA llegan como texto, con códigos de municipio incompletos y filas repetidas. Así no responden preguntas.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="What I built">Qué construí</dt>
+                <dd data-en="An ETL pipeline in Python and pandas that downloads the data from datos.gov.co, cleans and validates it, loads it into a star schema in MySQL and publishes it through a read-only FastAPI API and this page's chart.">Un pipeline ETL en Python y pandas que descarga los datos de datos.gov.co, los limpia y valida, los carga en un modelo estrella en MySQL y los publica con una API de solo lectura en FastAPI y en la gráfica de esta página.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                <dd>
+                  <ul class="ticks">
+                    <li data-en="DIVIPOLA codes padded to 5 digits; unknown municipalities are kept but left out of rankings.">Códigos DIVIPOLA rellenados a 5 dígitos; los municipios desconocidos se conservan pero quedan fuera de los rankings.</li>
+                    <li data-en="Analysis in SQL with CTEs and window functions (LAG, ROW_NUMBER) to compute the endemic channel.">Análisis en SQL con CTE y funciones de ventana (LAG, ROW_NUMBER) para calcular el canal endémico.</li>
+                    <li data-en="GitHub Actions runs the pytest suite on every push and refreshes the data on the 1st of every month.">GitHub Actions corre las pruebas con pytest en cada push y actualiza los datos el día 1 de cada mes.</li>
+                  </ul>
+                </dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Result">Resultado</dt>
+                <dd data-en="1,185,468 reported cases, cleaned and published in an observatory that updates itself.">1.185.468 casos notificados, limpios y publicados en un observatorio que se actualiza solo.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="My role">Mi rol</dt>
+                <dd data-en="Personal project: I did all of it, from data extraction to the published page.">Proyecto personal: lo hice todo, de la extracción de los datos a la página publicada.</dd>
+              </div>
+            </dl>
+            <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
+              <li>Python</li><li>pandas</li><li>SQL</li><li>MySQL</li><li>FastAPI</li><li>pytest</li><li>Docker</li><li>GitHub Actions</li>
+            </ul>
+            <p class="case-links">
+              <a class="btn btn-accent" href="https://alexanderm-code.github.io/observatorio-salud-antioquia/" target="_blank" rel="noopener" data-en="Open the observatory">Ver observatorio</a>
+              <a class="btn btn-line" href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia" target="_blank" rel="noopener" data-en="Code">Código</a>
+            </p>
+          </div>
+
+          <div class="lab" id="datos" aria-labelledby="chart-title">
+            <div class="lab-head">
+              <div>
+                <h4 class="lab-title" id="chart-title" data-en="Cases per year in Antioquia, 2007–2022">Casos por año en Antioquia, 2007–2022</h4>
+                <p class="lab-sub mono" id="chart-source">Cargando datos del observatorio…</p>
+              </div>
+              <div class="segmented" role="group" aria-label="Evento" data-en-aria="Disease">
+                <button type="button" data-event="210" aria-pressed="true" data-en="Dengue">Dengue</button>
+                <button type="button" data-event="490" aria-pressed="false" data-en="Malaria (vivax)">Malaria vivax</button>
+                <button type="button" data-event="831" aria-pressed="false" data-en="Chickenpox">Varicela</button>
+              </div>
+            </div>
+            <figure class="chart-box">
+              <div class="chart" id="chart" tabindex="0" role="img" aria-roledescription="gráfica" aria-describedby="chart-help" aria-label="Casos anuales de dengue">
+                <svg id="chart-svg" viewBox="0 0 720 320" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
+                <div class="chart-tip mono" id="chart-tip" aria-hidden="true"></div>
+              </div>
+              <p class="chart-readout mono" id="chart-readout" aria-live="polite"></p>
+              <figcaption class="chart-help" id="chart-help" data-en="Hover over a year or focus the chart and use the arrow keys. Source: SIVIGILA, datos.gov.co.">Pasa el cursor por un año o enfoca la gráfica y usa las flechas. Fuente: SIVIGILA, datos.gov.co.</figcaption>
+            </figure>
+            <ul class="findings">
+              <li class="finding">
+                <p class="finding-num mono">27.628</p>
+                <p data-en="Dengue comes in waves: epidemics in 2010 (25,804 cases) and 2016 (27,628).">El dengue llega en olas: epidemias en 2010 (25.804 casos) y 2016 (27.628).</p>
+              </li>
+              <li class="finding">
+                <p class="finding-num mono">51 %</p>
+                <p data-en="Medellin accounts for 51% of all dengue cases in the department.">Medellín concentra el 51 % del dengue del departamento.</p>
+              </li>
+              <li class="finding">
+                <p class="finding-num mono">−90 %</p>
+                <p data-en="Vivax malaria fell almost 90% between 2010 and 2017: from 36,768 to 3,748 cases.">La malaria vivax cayó casi 90 % entre 2010 y 2017: de 36.768 a 3.748 casos.</p>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="case-shot">
+            <div class="browser" data-ui>
+              <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>alexanderm-code.github.io/observatorio-salud-antioquia</span></p>
+              <img src="assets/observatorio.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Página del Observatorio: título ¿Cuándo el dengue se vuelve epidemia?, selector de años y la gráfica semanal de 2016 con el canal endémico" data-en-alt="Observatory page: the title When does dengue become an epidemic?, a year picker and the 2016 weekly chart with the endemic channel">
+            </div>
+            <figcaption data-en="The observatory online: weekly dengue cases against the endemic channel.">El observatorio en línea: casos semanales de dengue frente al canal endémico.</figcaption>
+          </figure>
+        </article>
+
+        <!-- Caso 2: CineX -->
+        <article class="case case-cinex" id="cinex" aria-labelledby="cinex-title">
+          <div class="case-top">
+            <header class="case-head">
+              <p class="case-kind mono"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Live">En vivo</span></span> <span data-en="Academic team project · 2025 · v2.0 solo, 2026">Proyecto académico en equipo · 2025 · v2.0 individual, 2026</span></p>
+              <h3 class="case-title" id="cinex-title">CineX</h3>
+              <p class="case-lede" data-en="A movie theater management system: showtimes with real movies from the TMDB API, theaters, screenings, seat sales, snack bar, users and bookings.">Sistema de gestión de cine: cartelera con películas reales de la API de TMDB, salas, funciones, venta de sillas, confitería, usuarios y reservas.</p>
+            </header>
+            <dl class="facts">
+              <div class="fact">
+                <dt class="mono" data-en="Problem">Problema</dt>
+                <dd data-en="A theater cannot sell seats it does not have, or schedule two screenings in the same room at the same time. Version 1.0 kept movies, theaters, screenings and purchases in memory, so nothing survived a restart.">Un cine no puede vender sillas que no tiene ni programar dos funciones en la misma sala a la misma hora. La versión 1.0 guardaba películas, salas, funciones y compras en memoria: nada sobrevivía a un reinicio.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="What I built">Qué construí</dt>
+                <dd data-en="A REST API in Java 21 with Spring Boot and MySQL, consumed by a web frontend in HTML, CSS and JavaScript.">Una API REST en Java 21 con Spring Boot y MySQL, consumida por un frontend web en HTML, CSS y JavaScript.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                <dd>
+                  <ul class="ticks">
+                    <li data-en="Business rules live in the service layer and answer 409 Conflict when they are broken.">Las reglas de negocio viven en la capa de servicios y responden 409 Conflict cuando se rompen.</li>
+                    <li data-en="One error format for the whole API: JSON with status, message and path (400, 404, 409).">Un solo formato de error para toda la API: JSON con estado, mensaje y ruta (400, 404, 409).</li>
+                    <li data-en="Docker Compose for the local environment, CI with GitHub Actions and a free deployment.">Docker Compose para el entorno local, CI con GitHub Actions y despliegue gratuito.</li>
+                  </ul>
+                </dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="Result">Resultado</dt>
+                <dd data-en="A documented API online, with 17 automated tests and a 26-request Postman collection.">Una API documentada y en línea, con 17 pruebas automáticas y una colección de Postman de 26 solicitudes.</dd>
+              </div>
+              <div class="fact">
+                <dt class="mono" data-en="My role">Mi rol</dt>
+                <dd data-en="v1.0 as a team: repository structure, integration and pull request reviews. v2.0 on my own: MySQL persistence, validations, error handling, Swagger, 17 tests (JUnit + Mockito), a 26-request Postman collection, Docker Compose, CI and deployment.">v1.0 en equipo: estructura del repositorio, integración y revisión de pull requests. v2.0 individual: persistencia en MySQL, validaciones, manejo de errores, Swagger, 17 pruebas (JUnit + Mockito), colección de Postman de 26 solicitudes, Docker Compose, CI y despliegue.</dd>
+              </div>
+            </dl>
+            <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
+              <li>Java 21</li><li>Spring Boot</li><li>Spring Data JPA</li><li>MySQL</li><li>JUnit</li><li>Postman</li><li>Swagger</li><li>Docker</li><li>GitHub Actions</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <p class="case-links">
+              <a class="btn btn-accent" href="https://alexanderm-code.github.io/CineX---Proyecto-Final/" target="_blank" rel="noopener" data-en="View site">Ver sitio</a>
+              <a class="btn btn-line" href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Try the API (Swagger)">Probar la API (Swagger)</a>
+              <a class="btn btn-line" href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final" target="_blank" rel="noopener" data-en="Code">Código</a>
+            </p>
+            <p class="small-note" data-en="The API runs on a free server; the first load can take a few seconds.">La API está en un servidor gratuito; la primera carga puede tardar unos segundos.</p>
+          </div>
+
+          <div class="lab lab-cinex" aria-labelledby="rules-title">
+            <div class="rules">
+              <h4 class="lab-title" id="rules-title" data-en="Rules the API enforces">Reglas que la API hace cumplir</h4>
+              <ol class="rule-list">
+                <li>
+                  <span class="code mono">409</span>
+                  <p data-en="It never sells more seats than the theater holds.">Nunca vende más sillas que la capacidad de la sala.</p>
+                </li>
+                <li>
+                  <span class="code mono">409</span>
+                  <p data-en="A theater cannot have two screenings at the same time.">Una sala no puede tener dos funciones a la misma hora.</p>
+                </li>
+                <li>
+                  <span class="code mono">400</span>
+                  <p data-en="Invalid data is rejected with the fields that failed.">Los datos inválidos se rechazan indicando los campos que fallaron.</p>
+                </li>
+                <li>
+                  <span class="code mono">404</span>
+                  <p data-en="Missing resources answer with a clear JSON message.">Los recursos que no existen responden con un mensaje claro en JSON.</p>
+                </li>
+              </ol>
+            </div>
+            <div class="terminal" data-ui>
+              <div class="terminal-bar mono">
+                <span class="browser-dots" aria-hidden="true"></span>
+                <span data-en="Live demo · read-only (GET)">Demo en vivo · solo lectura (GET)</span>
+              </div>
+              <div class="terminal-actions">
+                <button class="btn btn-accent btn-sm" type="button" id="demo-run" data-path="/showtimes/1/availability" data-en="Check real availability">Consultar disponibilidad real</button>
+                <button class="btn btn-line btn-sm" type="button" id="demo-404" data-path="/showtimes/999/availability" data-en="Try a screening that does not exist">Probar una función que no existe</button>
+              </div>
+              <pre class="terminal-out mono" id="demo-out" tabindex="0" role="region" aria-label="Respuesta de la API" data-en-aria="API response"><code><span class="t-dim">$ curl https://cinex-api-lt2q.onrender.com/showtimes/1/availability</span>
+<span class="t-dim" data-en="# Press the button to send the real request.">
+# Pulsa el botón para enviar la petición real.</span></code></pre>
+              <p class="terminal-status mono" id="demo-status" role="status" aria-live="polite"></p>
+              <dl class="seats" id="demo-seats" hidden>
+                <div><dt data-en="Capacity">Capacidad</dt><dd class="mono" id="seat-cap">–</dd></div>
+                <div><dt data-en="Sold">Vendidas</dt><dd class="mono" id="seat-sold">–</dd></div>
+                <div><dt data-en="Available">Disponibles</dt><dd class="mono" id="seat-free">–</dd></div>
+                <div class="seat-bar" aria-hidden="true"><span id="seat-fill"></span></div>
+              </dl>
+            </div>
+          </div>
+
+          <figure class="case-shot shots-pair">
+            <div class="browser" data-ui>
+              <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>alexanderm-code.github.io/CineX---Proyecto-Final</span></p>
+              <img src="assets/cinex-inicio.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Página principal de CineX: estreno destacado con el título Estrenos que no te puedes perder y el botón Ver ahora" data-en-alt="CineX home page: a featured release under the title Premieres you cannot miss and a Watch now button">
+            </div>
+            <div class="browser" data-ui>
+              <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>alexanderm-code.github.io/CineX---Proyecto-Final</span></p>
+              <img src="assets/cinex-admin.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Panel de administración de CineX con el formulario de reservas y la lista de usuarios" data-en-alt="CineX admin panel with the booking form and the user list">
+            </div>
+            <figcaption data-en="The home page and the admin panel, both running against the API.">La página principal y el panel de administración, los dos conectados a la API.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <!-- MÁS PROYECTOS -->
+    <section class="section section-alt" id="mas-proyectos" aria-labelledby="more-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label mono" aria-hidden="true">02 / <span data-en="More projects">Más proyectos</span></p>
+          <h2 class="section-title" id="more-title" data-en="More work, in a team and in class.">Más trabajo, en equipo y en clase.</h2>
+          <p class="section-lede" data-en="Open each one to see what it is, what I did and how it is built.">Abre cada uno para ver qué es, qué hice y con qué está hecho.</p>
+        </div>
+
+        <ul class="more-grid">
+          <li class="more-card">
+            <button class="more-open" type="button" data-dialog="dlg-numi" aria-haspopup="dialog">
+              <span class="more-media more-media-phone">
+                <video class="hover-video" src="assets/numi-demo.mp4" poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+              </span>
+              <span class="more-body">
+                <span class="more-kind mono" data-en="Mobile app · Team · 2026">App móvil · Equipo · 2026</span>
+                <span class="more-name">Numi</span>
+                <span class="more-text" data-en="Educational software that works where there is no signal.">Software educativo que funciona donde no llega la señal.</span>
+                <span class="more-cta mono" data-en="See details">Ver detalle</span>
+              </span>
+            </button>
+          </li>
+          <li class="more-card">
+            <button class="more-open" type="button" data-dialog="dlg-casa" aria-haspopup="dialog">
+              <span class="more-media">
+                <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="">
+              </span>
+              <span class="more-body">
+                <span class="more-kind mono"><span class="dot dot-live" aria-hidden="true"></span> <span data-en="Frontend in production · Team · 2026">Frontend en producción · Equipo · 2026</span></span>
+                <span class="more-name">Casa Rendón</span>
+                <span class="more-text" data-en="The website of a family that makes craft coffee and wine in Andes, Antioquia.">El sitio de una familia que hace café y vino artesanal en Andes, Antioquia.</span>
+                <span class="more-cta mono" data-en="See details">Ver detalle</span>
+              </span>
+            </button>
+          </li>
+          <li class="more-card">
+            <button class="more-open" type="button" data-dialog="dlg-datos" aria-haspopup="dialog">
+              <span class="more-media more-media-plot">
+                <svg class="mini-plot" viewBox="0 0 640 440" aria-hidden="true" focusable="false"><use href="#mpg-plot"/></svg>
+              </span>
+              <span class="more-body">
+                <span class="more-kind mono" data-en="Data Analytics course · 2026">Curso de Analítica de Datos · 2026</span>
+                <span class="more-name" data-en="Data with Python">Datos con Python</span>
+                <span class="more-text" data-en="Two models, two questions: how far a car goes on a liter and whether a tumor is benign.">Dos modelos, dos preguntas: cuánto rinde un carro y si un tumor es benigno.</span>
+                <span class="more-cta mono" data-en="See details">Ver detalle</span>
+              </span>
+            </button>
+          </li>
         </ul>
-        <div class="actions rise" style="--delay:280ms">
-          <a class="btn btn-primary" href="#proyectos" data-en="See projects">Ver proyectos</a>
-          <a class="btn btn-ghost" href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" data-en-href="cv/CV_Alexander_Mejia_Ospina.pdf" download data-en="Hoja de vida en español">Resume in English</a>
-        </div>
       </div>
 
-      <div class="hero-visual rise" style="--delay:220ms">
-        <div class="hv hv-back" data-ui>
-          <p class="browser-bar"><span>CineX</span></p>
-          <img src="assets/cinex-inicio.webp" width="1280" height="800" alt="Página principal de CineX" fetchpriority="high">
+      <!-- Diálogos de proyectos -->
+      <dialog class="dlg" id="dlg-numi" aria-labelledby="dlg-numi-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-kind mono" data-en="Mobile app with a FastAPI backend · Team project, 2026">App móvil con backend en FastAPI · Proyecto en equipo, 2026</p>
+            <h3 class="dlg-title" id="dlg-numi-title">Numi</h3>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="Software that works where there is no signal.">Software que funciona donde no llega la señal.</p>
+              <p data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</p>
+              <ul class="ticks">
+                <li data-en="15 interactive activities across 5 subjects of the Colombian curriculum.">15 actividades interactivas en 5 materias del currículo colombiano.</li>
+                <li data-en="An AI assistant that runs on the phone itself: Gemma 2B with RAG over a local SQLite knowledge base.">Un asistente de IA que corre en el propio celular: Gemma 2B con RAG sobre una base de conocimiento local en SQLite.</li>
+                <li data-en="Progress that syncs with a FastAPI backend when there is a connection, with Firebase Auth login.">Progreso que se sincroniza con un backend en FastAPI cuando hay conexión, con login por Firebase Auth.</li>
+              </ul>
+              <!-- TODO rol: escribe qué hiciste tú en Numi (y su traducción en data-en) y quita el atributo hidden. -->
+              <p class="role" hidden><strong data-en="My role:">Mi rol:</strong> <span data-en="to be completed.">por completar.</span></p>
+              <ul class="chips"><li>Flutter</li><li>Dart</li><li>Riverpod (MVVM)</li><li>SQLite</li><li>Gemma 2B</li><li>FastAPI</li><li>Firebase</li></ul>
+              <p class="case-links"><a class="btn btn-line btn-sm" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a></p>
+            </div>
+            <figure class="dlg-media dlg-phones">
+              <img class="phone" src="assets/numi-progreso.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" data-en-alt="Numi progress screen with the five subjects: math, English, science, Spanish and social studies">
+              <video class="phone phone-main" id="numi-video" src="assets/numi-demo.mp4" poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet" data-en-aria="Numi video in airplane mode: someone types what is a fraction and the assistant answers with no internet"></video>
+              <img class="phone" src="assets/numi-quiz.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" data-en-alt="A math question in Numi: what is 347 plus 285, with four options">
+              <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="hv hv-front" data-ui>
-          <p class="browser-bar"><span>casarendon.com</span></p>
-          <img src="assets/casa-rendon.webp" width="1280" height="960" alt="Página de inicio de Casa Rendón">
+      </dialog>
+
+      <dialog class="dlg" id="dlg-casa" aria-labelledby="dlg-casa-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-kind mono" data-en="Frontend in production · Team project, 2026">Frontend en producción · Proyecto en equipo, 2026</p>
+            <h3 class="dlg-title" id="dlg-casa-title">Casa Rendón</h3>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="The website of a family that makes craft coffee and wine in Andes, Antioquia.">El sitio de una familia que hace café y vino artesanal en Andes, Antioquia.</p>
+              <ul class="ticks">
+                <li data-en="React components for the catalog, the gallery and the FAQ.">Componentes en React para el catálogo, la galería y las preguntas frecuentes.</li>
+                <li data-en="A form that sends visit bookings through WhatsApp, where the family already talks to its customers.">Un formulario que envía las reservas de visita por WhatsApp, donde la familia ya atiende a sus clientes.</li>
+              </ul>
+              <!-- TODO rol: escribe qué hiciste tú en Casa Rendón (y su traducción en data-en) y quita el atributo hidden. -->
+              <p class="role" hidden><strong data-en="My role:">Mi rol:</strong> <span data-en="to be completed.">por completar.</span></p>
+              <ul class="chips"><li>React</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+              <p class="case-links">
+                <a class="btn btn-accent btn-sm" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
+                <a class="btn btn-line btn-sm" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+              </p>
+            </div>
+            <figure class="dlg-media dlg-casa">
+              <div class="browser" data-ui>
+                <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>casarendon.com</span></p>
+                <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="Página de inicio de Entre Sorbos, Casa Rendón: título grande, la frase de la familia y los botones para conocer su historia y escribir" data-en-alt="Entre Sorbos, Casa Rendon home page: a large title, the family's tagline and buttons to read their story and get in touch">
+              </div>
+              <img class="phone-shot" src="assets/casa-rendon-movil.webp" width="420" height="860" loading="lazy" decoding="async" alt="El mismo sitio en un celular" data-en-alt="The same site on a phone">
+              <figcaption data-en="casarendon.com on desktop and on mobile.">casarendon.com en escritorio y en celular.</figcaption>
+            </figure>
+          </div>
         </div>
-        <img class="hv hv-phone" data-ui src="assets/numi-asistente.webp" width="560" height="1211" alt="El asistente de Numi respondiendo en modo avión">
-      </div>
+      </dialog>
+
+      <dialog class="dlg" id="dlg-datos" aria-labelledby="dlg-datos-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-kind mono" data-en="Data Analytics course · October 2026">Curso de Analítica de Datos · Octubre de 2026</p>
+            <h3 class="dlg-title" id="dlg-datos-title" data-en="Data with Python">Datos con Python</h3>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="Two models, two questions: how far a car goes on a liter and whether a tumor is benign.">Dos modelos, dos preguntas: cuánto rinde un carro y si un tumor es benigno.</p>
+              <ul class="ticks">
+                <li data-en="Linear regression and ANOVA to predict vehicle fuel efficiency.">Regresión lineal y ANOVA para predecir el rendimiento de combustible de vehículos.</li>
+                <li data-en="Logistic regression to classify benign and malignant tumors.">Regresión logística para clasificar tumores benignos y malignos.</li>
+                <li data-en="Data cleaning, exploration and visualization with Pandas.">Limpieza, exploración y visualización de datos con Pandas.</li>
+              </ul>
+              <ul class="chips"><li>Python</li><li>Pandas</li><li>Jupyter</li><li>Google Colab</li></ul>
+            </div>
+            <figure class="dlg-media plot">
+              <p class="plot-title" data-en="Every extra 100 kg, 0.72 km/l less">Cada 100 kg de más, 0,72 km/l menos</p>
+              <p class="plot-sub mono" data-en="398 vehicles from the Auto MPG dataset · linear regression · R² = 0.69">398 vehículos del conjunto Auto MPG · regresión lineal · R² = 0,69</p>
+              <svg class="mpg" viewBox="0 0 640 440" role="img" aria-labelledby="mpg-t mpg-d"><title id="mpg-t">Peso del vehículo contra rendimiento de combustible</title><desc id="mpg-d">398 vehículos del conjunto Auto MPG. La recta de regresión muestra que cada 100 kg más reducen el rendimiento en 0,72 km/l; R² = 0,69.</desc><use href="#mpg-plot"/><g class="mpg-axis"><text x="162" y="422" text-anchor="middle">1.000 kg</text><text x="304" y="422" text-anchor="middle">1.400 kg</text><text x="446" y="422" text-anchor="middle">1.800 kg</text><text x="588" y="422" text-anchor="middle">2.200 kg</text><text x="46" y="355" text-anchor="end">5</text><text x="46" y="251" text-anchor="end">10</text><text x="46" y="146" text-anchor="end">15</text><text x="46" y="42" text-anchor="end">20</text></g></svg>
+              <figcaption class="plot-axis" data-en="Vertical axis: fuel efficiency in km/l. Horizontal axis: vehicle weight.">Eje vertical: rendimiento en km/l. Eje horizontal: peso del vehículo.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </dialog>
     </section>
 
-    <!-- PROYECTOS: tarjetas alternadas que entran desde su lado -->
-    <section id="proyectos" class="projects" aria-labelledby="projects-title">
-      <h2 class="section-title" id="projects-title" data-en="Projects">Proyectos</h2>
-
-      <article class="card card-left" aria-labelledby="numi-title">
-        <div class="card-text">
-          <h3 class="card-name" id="numi-title">Numi</h3>
-          <p class="kind" data-en="Mobile app with a FastAPI backend · Team project, 2026">App móvil con backend en FastAPI · Proyecto en equipo, 2026</p>
-          <p class="claim" data-en="Software that works where there is no signal.">Software que funciona donde no llega la señal.</p>
-          <p data-en="Many primary school children in rural Medellin have little or no internet access, and almost every educational app needs it.">Muchos niños de primaria en zonas rurales de Medellín tienen poco o ningún acceso a internet, y casi todas las apps educativas lo necesitan.</p>
-          <ul class="checks">
-            <li data-en="15 interactive activities across 5 subjects of the Colombian curriculum.">15 actividades interactivas en 5 materias del currículo colombiano.</li>
-            <li data-en="An AI assistant that runs on the phone itself: Gemma 2B with RAG over a local SQLite knowledge base.">Un asistente de IA que corre en el propio celular: Gemma 2B con RAG sobre una base de conocimiento local en SQLite.</li>
-            <li data-en="Progress that syncs with a FastAPI backend when there is a connection, with Firebase Auth login.">Progreso que se sincroniza con un backend en FastAPI cuando hay conexión, con login por Firebase Auth.</li>
-          </ul>
-          <p class="stack">Flutter, Dart, Riverpod (MVVM), SQLite, Gemma 2B, FastAPI, Firebase</p>
-          <p class="links"><a class="link" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a></p>
+    <!-- HABILIDADES -->
+    <section class="section" id="habilidades" aria-labelledby="skills-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label mono" aria-hidden="true">03 / <span data-en="Skills">Habilidades</span></p>
+          <h2 class="section-title" id="skills-title" data-en="What I have used, and where.">Lo que he usado, y dónde.</h2>
+          <p class="section-lede" data-en="Sorted by honesty, not by fashion. Hover or focus a skill to see the project.">Ordenado por honestidad, no por moda. Pasa el cursor o enfoca una habilidad para ver el proyecto.</p>
         </div>
-        <figure class="card-media media-phones">
-          <img class="phone" data-ui src="assets/numi-progreso.webp" width="560" height="1211" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" loading="lazy">
-          <video class="phone phone-main" data-ui src="assets/numi-demo.mp4" poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet"></video>
-          <img class="phone" data-ui src="assets/numi-quiz.webp" width="560" height="1211" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" loading="lazy">
-          <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
-        </figure>
-      </article>
 
-      <article class="card card-right" aria-labelledby="cinex-title">
-        <div class="card-text">
-          <h3 class="card-name" id="cinex-title">CineX</h3>
-          <p class="kind" data-en="Movie theater management system · Academic team project, Universidad Cooperativa de Colombia, 2025 · Version 2.0, 2026">Sistema de gestión de cine · Proyecto académico en equipo, Universidad Cooperativa de Colombia, 2025 · Versión 2.0, 2026</p>
-          <p class="lead" data-en="A web app to run a movie theater: showtimes with real movies from the TMDB API, theaters, screenings, seat sales, snack bar, users and bookings.">Una aplicación web para administrar un cine: cartelera con películas reales de la API de TMDB, salas, funciones, venta de sillas, confitería, usuarios y reservas.</p>
-          <p data-en="REST API in Java with Spring Boot and MySQL, with business rules such as never selling more seats than the theater holds or scheduling two screenings at the same time in one theater.">API REST en Java con Spring Boot y MySQL, con reglas de negocio como no vender más sillas que la capacidad de la sala ni programar dos funciones a la misma hora en una sala.</p>
-          <p data-en="In version 1.0 I set up the initial structure, the integration and the pull request reviews. I built version 2.0 on my own:">En la versión 1.0 hice la estructura inicial, la integración y la revisión de los pull requests. La versión 2.0 la desarrollé solo:</p>
-          <ul class="checks">
-            <li data-en="Movies, theaters, screenings and purchases moved from in-memory data to MySQL.">Películas, salas, funciones y compras pasaron de datos en memoria a MySQL.</li>
-            <li data-en="Validations and JSON error handling (400, 404, 409), documented with Swagger.">Validaciones y manejo de errores en JSON (400, 404, 409), documentado con Swagger.</li>
-            <li data-en="17 tests with JUnit and Mockito, and a Postman collection with 26 requests.">17 pruebas con JUnit y Mockito, y una colección de Postman con 26 solicitudes.</li>
-            <li data-en="Docker Compose, continuous integration with GitHub Actions and a free deployment.">Docker Compose, integración continua con GitHub Actions y despliegue gratuito.</li>
-          </ul>
-          <p class="stack">Java 21, Spring Boot, Spring Data JPA, MySQL, JUnit, Postman, Swagger, Docker, GitHub Actions, HTML, CSS, JavaScript</p>
-          <p class="links">
-            <a class="link" href="https://alexanderm-code.github.io/CineX---Proyecto-Final/" target="_blank" rel="noopener" data-en="View site">Ver sitio</a>
-            <a class="link" href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Try the API (Swagger)">Probar la API (Swagger)</a>
-            <a class="link" href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final" target="_blank" rel="noopener" data-en="Code">Código</a>
-          </p>
-          <p class="note" data-en="The API runs on a free server; the first load can take a few seconds.">La API está en un servidor gratuito; la primera carga puede tardar unos segundos.</p>
-        </div>
-        <figure class="card-media media-windows">
-          <div class="browser" data-ui>
-            <p class="browser-bar"><span>localhost:5500/html/index.html</span></p>
-            <img src="assets/cinex-inicio.webp" width="1280" height="800" alt="Página principal de CineX: estreno destacado con el título Estrenos que no te puedes perder y el botón Ver ahora" loading="lazy">
+        <div class="tiers">
+          <div class="tier tier-1">
+            <h3 class="tier-title"><span class="tier-mark mono" aria-hidden="true">A</span><span data-en="Used in published projects">Lo he usado en proyectos publicados</span></h3>
+            <ul class="skills">
+              <li tabindex="0"><img src="assets/logos/java.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Java</span><span class="s-where" data-en="CineX, academic events">CineX, eventos académicos</span></li>
+              <li tabindex="0"><img src="assets/logos/spring.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Spring Boot</span><span class="s-where" data-en="CineX, academic events">CineX, eventos académicos</span></li>
+              <li tabindex="0"><img src="assets/logos/spring.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Spring Data JPA</span><span class="s-where">CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/mysql.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">MySQL</span><span class="s-where" data-en="CineX, Observatory">CineX, Observatorio</span></li>
+              <li tabindex="0"><img src="assets/logos/python.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Python</span><span class="s-where" data-en="Observatory, Numi, data analytics">Observatorio, Numi, analítica de datos</span></li>
+              <li tabindex="0"><img src="assets/logos/pandas.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">pandas</span><span class="s-where" data-en="Observatory, Data Analytics">Observatorio, Analítica de Datos</span></li>
+              <li tabindex="0"><img src="assets/logos/sql.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">SQL</span><span class="s-where" data-en="Observatory: window functions">Observatorio: funciones de ventana</span></li>
+              <li tabindex="0"><img src="assets/logos/fastapi.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">FastAPI</span><span class="s-where" data-en="Observatory, Numi">Observatorio, Numi</span></li>
+              <li tabindex="0"><img src="assets/logos/html5.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">HTML</span><span class="s-where">Casa Rendón, CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/css3.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">CSS</span><span class="s-where">Casa Rendón, CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/javascript.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">JavaScript</span><span class="s-where">Casa Rendón, CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/react.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">React</span><span class="s-where">Casa Rendón</span></li>
+              <li tabindex="0"><img src="assets/logos/git.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Git</span><span class="s-where" data-en="All projects">Todos los proyectos</span></li>
+              <li tabindex="0"><img src="assets/logos/github.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">GitHub</span><span class="s-where" data-en="All projects">Todos los proyectos</span></li>
+              <li tabindex="0"><img src="assets/logos/githubactions.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">GitHub Actions</span><span class="s-where" data-en="CineX CI, Observatory monthly update">CI de CineX, actualización mensual del Observatorio</span></li>
+              <li tabindex="0"><img src="assets/logos/docker.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Docker</span><span class="s-where" data-en="CineX, Observatory, Numi">CineX, Observatorio, Numi</span></li>
+              <li tabindex="0"><img src="assets/logos/junit.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">JUnit</span><span class="s-where" data-en="CineX, with Mockito">CineX, con Mockito</span></li>
+              <li tabindex="0"><img src="assets/logos/postman.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Postman</span><span class="s-where" data-en="CineX: 26-request collection">CineX: colección de 26 solicitudes</span></li>
+              <li tabindex="0"><img src="assets/logos/swagger.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Swagger</span><span class="s-where" data-en="CineX API documentation">Documentación de la API de CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/pytest.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">pytest</span><span class="s-where" data-en="Observatory">Observatorio</span></li>
+            </ul>
           </div>
-          <div class="browser" data-ui>
-            <p class="browser-bar"><span>localhost:5500/html/admin.html</span></p>
-            <img src="assets/cinex-admin.webp" width="1280" height="800" alt="Panel de administración de CineX con el formulario de reservas y la lista de usuarios" loading="lazy">
-          </div>
-          <figcaption data-en="The home page and the admin panel, running against the API.">La página principal y el panel de administración, corriendo con la API.</figcaption>
-        </figure>
-      </article>
 
-      <article class="card card-left" aria-labelledby="casa-title">
-        <div class="card-text">
-          <h3 class="card-name" id="casa-title">Casa Rendón</h3>
-          <p class="kind" data-en="Frontend in production · Team project, 2026">Frontend en producción · Proyecto en equipo, 2026</p>
-          <p class="lead" data-en="The website of a family that makes craft coffee and wine in Andes, Antioquia.">El sitio de una familia que hace café y vino artesanal en Andes, Antioquia.</p>
-          <ul class="checks">
-            <li data-en="React components for the catalog, the gallery and the FAQ.">Componentes en React para el catálogo, la galería y las preguntas frecuentes.</li>
-            <li data-en="A form that sends visit bookings through WhatsApp, where the family already talks to its customers.">Un formulario que envía las reservas de visita por WhatsApp, donde la familia ya atiende a sus clientes.</li>
-          </ul>
-          <p class="stack">React, JavaScript, HTML, CSS</p>
-          <p class="links">
-            <a class="link" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
-            <a class="link" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
-          </p>
-        </div>
-        <figure class="card-media media-casa">
-          <div class="browser" data-ui>
-            <p class="browser-bar"><span>casarendon.com</span></p>
-            <img src="assets/casa-rendon.webp" width="1280" height="960" alt="Página de inicio de Entre Sorbos, Casa Rendón: título grande, la frase de la familia y los botones para conocer su historia y escribir" loading="lazy">
+          <div class="tier tier-2">
+            <h3 class="tier-title"><span class="tier-mark mono" aria-hidden="true">B</span><span data-en="Used in academic or team projects">Lo he usado en proyectos académicos o en equipo</span></h3>
+            <ul class="skills">
+              <li tabindex="0"><img src="assets/logos/flutter.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Flutter</span><span class="s-where">Numi</span></li>
+              <li tabindex="0"><img src="assets/logos/dart.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Dart</span><span class="s-where">Numi</span></li>
+              <li tabindex="0"><img src="assets/logos/sqlite.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">SQLite</span><span class="s-where" data-en="Numi: on-device knowledge base">Numi: base de conocimiento local</span></li>
+              <li tabindex="0"><img src="assets/logos/firebase.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Firebase</span><span class="s-where" data-en="Numi: Firebase Auth">Numi: Firebase Auth</span></li>
+              <li tabindex="0"><img src="assets/logos/bootstrap.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Bootstrap</span><span class="s-where" data-en="Academic projects">Proyectos académicos</span></li>
+              <li tabindex="0"><img src="assets/logos/jupyter.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Jupyter</span><span class="s-where" data-en="Data Analytics">Analítica de Datos</span></li>
+              <li tabindex="0"><img src="assets/logos/googlecolab.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Google Colab</span><span class="s-where" data-en="Data Analytics">Analítica de Datos</span></li>
+              <li tabindex="0"><img src="assets/logos/powerbi.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Power BI</span><span class="s-where" data-en="Data dashboards">Tableros de datos</span></li>
+              <li tabindex="0"><img src="assets/logos/lookerstudio.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Looker Studio</span><span class="s-where" data-en="Data dashboards">Tableros de datos</span></li>
+              <li tabindex="0"><img src="assets/logos/googlecloud.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Google Cloud</span><span class="s-where" data-en="Labs: Compute Engine, Cloud Functions, IAM">Laboratorios: Compute Engine, Cloud Functions, IAM</span></li>
+              <li tabindex="0"><img src="assets/logos/maven.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Maven</span><span class="s-where">CineX</span></li>
+              <li tabindex="0"><img src="assets/logos/gradle.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">Gradle</span><span class="s-where" data-en="Academic events">Eventos académicos</span></li>
+              <li tabindex="0"><img src="assets/logos/intellij.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">IntelliJ IDEA</span><span class="s-where" data-en="Java and Spring Boot">Java y Spring Boot</span></li>
+              <li tabindex="0"><img src="assets/logos/vscode.svg" width="28" height="28" alt="" loading="lazy"><span class="s-name">VS Code</span><span class="s-where" data-en="Editor">Editor</span></li>
+              <li tabindex="0" class="s-plain"><span class="s-name">Scrum</span><span class="s-where" data-en="Team projects">Proyectos en equipo</span></li>
+              <li tabindex="0" class="s-plain"><span class="s-name" data-en="MVVM architecture">Arquitectura MVVM</span><span class="s-where">Numi</span></li>
+              <li tabindex="0" class="s-plain"><span class="s-name" data-en="Software testing">Pruebas de software</span><span class="s-where" data-en="Test lead on an academic project">Líder de pruebas en proyecto académico</span></li>
+            </ul>
           </div>
-          <img class="phone-shot" data-ui src="assets/casa-rendon-movil.webp" width="420" height="860" alt="El mismo sitio en un celular" loading="lazy">
-          <figcaption data-en="casarendon.com on desktop and on mobile.">casarendon.com en escritorio y en celular.</figcaption>
-        </figure>
-      </article>
 
-      <article class="card card-right" aria-labelledby="datos-title">
-        <div class="card-text">
-          <h3 class="card-name" id="datos-title" data-en="Data with Python">Datos con Python</h3>
-          <p class="kind" data-en="Data Analytics course · October 2026">Curso de Analítica de Datos · Octubre de 2026</p>
-          <p class="lead" data-en="Two models, two questions: how far a car goes on a liter and whether a tumor is benign.">Dos modelos, dos preguntas: cuánto rinde un carro y si un tumor es benigno.</p>
-          <ul class="checks">
-            <li data-en="Linear regression and ANOVA to predict vehicle fuel efficiency.">Regresión lineal y ANOVA para predecir el rendimiento de combustible de vehículos.</li>
-            <li data-en="Logistic regression to classify benign and malignant tumors.">Regresión logística para clasificar tumores benignos y malignos.</li>
-            <li data-en="Data cleaning, exploration and visualization with Pandas.">Limpieza, exploración y visualización de datos con Pandas.</li>
-          </ul>
-          <p class="stack">Python, Pandas, Jupyter, Google Colab</p>
-        </div>
-        <figure class="card-media">
-          <div class="plot" data-ui>
-            <p class="plot-title" data-en="Every extra 100 kg, 0.72 km/l less">Cada 100 kg de más, 0,72 km/l menos</p>
-            <p class="plot-sub" data-en="398 vehicles from the Auto MPG dataset · linear regression · R² = 0.69">398 vehículos del conjunto Auto MPG · regresión lineal · R² = 0,69</p>
-            <svg class="chart" viewBox="0 0 640 440" role="img" aria-labelledby="chart-t chart-d"><title id="chart-t">Peso del vehículo contra rendimiento de combustible</title><desc id="chart-d">398 vehículos del conjunto Auto MPG. La recta de regresión muestra que cada 100 kg más reducen el rendimiento en 0.72 km/l; R² = 0.69.</desc><text x="162" y="422" text-anchor="middle">1.000 kg</text><text x="304" y="422" text-anchor="middle">1.400 kg</text><text x="446" y="422" text-anchor="middle">1.800 kg</text><text x="588" y="422" text-anchor="middle">2.200 kg</text><text x="46" y="355" text-anchor="end">5</text><text x="46" y="251" text-anchor="end">10</text><text x="46" y="146" text-anchor="end">15</text><text x="46" y="42" text-anchor="end">20</text><g class="dots"><circle cx="371.7" cy="294.8" r="3.2"/><circle cx="402.2" cy="321.5" r="3.2"/><circle cx="360.8" cy="294.8" r="3.2"/><circle cx="360.3" cy="312.6" r="3.2"/><circle cx="362.9" cy="303.7" r="3.2"/><circle cx="506.5" cy="321.5" r="3.2"/><circle cx="508.6" cy="330.3" r="3.2"/><circle cx="501.9" cy="330.3" r="3.2"/><circle cx="520.0" cy="330.3" r="3.2"/><circle cx="427.5" cy="321.5" r="3.2"/><circle cx="381.2" cy="321.5" r="3.2"/><circle cx="388.7" cy="330.3" r="3.2"/><circle cx="413.1" cy="321.5" r="3.2"/><circle cx="304.4" cy="330.3" r="3.2"/><circle cx="189.5" cy="241.5" r="3.2"/><circle cx="263.7" cy="259.3" r="3.2"/><circle cx="254.2" cy="294.8" r="3.2"/><circle cx="224.1" cy="268.2" r="3.2"/><circle cx="150.5" cy="214.9" r="3.2"/><circle cx="103.0" cy="223.8" r="3.2"/><circle cx="237.8" cy="232.7" r="3.2"/><circle cx="198.8" cy="241.5" r="3.2"/><circle cx="189.9" cy="232.7" r="3.2"/><circle cx="167.2" cy="223.8" r="3.2"/><circle cx="233.9" cy="268.2" r="3.2"/><circle cx="550.6" cy="365.9" r="3.2"/><circle cx="512.2" cy="365.9" r="3.2"/><circle cx="513.1" cy="357.0" r="3.2"/><circle cx="569.5" cy="374.7" r="3.2"/><circle cx="150.5" cy="214.9" r="3.2"/><circle cx="172.1" cy="206.0" r="3.2"/><circle cx="166.3" cy="232.7" r="3.2"/><circle cx="137.0" cy="232.7" r="3.2"/><circle cx="231.6" cy="285.9" r="3.2"/><circle cx="361.3" cy="312.6" r="3.2"/><circle cx="343.6" cy="303.7" r="3.2"/><circle cx="339.2" cy="285.9" r="3.2"/><circle cx="337.0" cy="294.8" r="3.2"/><circle cx="485.3" cy="330.3" r="3.2"/><circle cx="526.3" cy="330.3" r="3.2"/><circle cx="476.4" cy="330.3" r="3.2"/><circle cx="467.1" cy="330.3" r="3.2"/><circle cx="605.4" cy="348.1" r="3.2"/><circle cx="571.7" cy="339.2" r="3.2"/><circle cx="635.2" cy="339.2" r="3.2"/><circle cx="284.5" cy="294.8" r="3.2"/><circle cx="195.3" cy="259.3" r="3.2"/><circle cx="336.0" cy="285.9" r="3.2"/><circle cx="313.0" cy="294.8" r="3.2"/><circle cx="165.0" cy="250.4" r="3.2"/><circle cx="149.4" cy="206.0" r="3.2"/><circle cx="141.5" cy="188.3" r="3.2"/><circle cx="140.0" cy="188.3" r="3.2"/><circle cx="93.0" cy="179.4" r="3.2"/><circle cx="67.2" cy="143.9" r="3.2"/><circle cx="102.8" cy="214.9" r="3.2"/><circle cx="122.3" cy="223.8" r="3.2"/><circle cx="174.3" cy="241.5" r="3.2"/><circle cx="149.8" cy="232.7" r="3.2"/><circle cx="170.5" cy="250.4" r="3.2"/><circle cx="195.3" cy="277.1" r="3.2"/><circle cx="165.9" cy="268.2" r="3.2"/><circle cx="495.7" cy="339.2" r="3.2"/><circle cx="513.6" cy="330.3" r="3.2"/><circle cx="473.4" cy="321.5" r="3.2"/><circle cx="472.4" cy="330.3" r="3.2"/><circle cx="398.8" cy="303.7" r="3.2"/><circle cx="553.5" cy="357.0" r="3.2"/><circle cx="532.4" cy="339.2" r="3.2"/><circle cx="525.0" cy="348.1" r="3.2"/><circle cx="519.6" cy="339.2" r="3.2"/><circle cx="182.7" cy="285.9" r="3.2"/><circle cx="434.2" cy="321.5" r="3.2"/><circle cx="467.4" cy="339.2" r="3.2"/><circle cx="499.0" cy="339.2" r="3.2"/><circle cx="464.0" cy="330.3" r="3.2"/><circle cx="279.8" cy="294.8" r="3.2"/><circle cx="211.8" cy="259.3" r="3.2"/><circle cx="287.2" cy="268.2" r="3.2"/><circle cx="160.0" cy="223.8" r="3.2"/><circle cx="193.2" cy="259.3" r="3.2"/><circle cx="175.9" cy="206.0" r="3.2"/><circle cx="211.0" cy="250.4" r="3.2"/><circle cx="156.0" cy="206.0" r="3.2"/><circle cx="145.7" cy="214.9" r="3.2"/><circle cx="467.7" cy="339.2" r="3.2"/><circle cx="398.8" cy="330.3" r="3.2"/><circle cx="449.7" cy="339.2" r="3.2"/><circle cx="458.4" cy="330.3" r="3.2"/><circle cx="415.7" cy="321.5" r="3.2"/><circle cx="604.9" cy="348.1" r="3.2"/><circle cx="526.3" cy="339.2" r="3.2"/><circle cx="510.1" cy="339.2" r="3.2"/><circle cx="489.8" cy="330.3" r="3.2"/><circle cx="570.0" cy="339.2" r="3.2"/><circle cx="604.7" cy="348.1" r="3.2"/><circle cx="422.8" cy="339.2" r="3.2"/><circle cx="310.1" cy="294.8" r="3.2"/><circle cx="335.3" cy="312.6" r="3.2"/><circle cx="281.7" cy="294.8" r="3.2"/><circle cx="294.0" cy="294.8" r="3.2"/><circle cx="275.1" cy="250.4" r="3.2"/><circle cx="121.5" cy="223.8" r="3.2"/><circle cx="612.2" cy="357.0" r="3.2"/><circle cx="597.5" cy="348.1" r="3.2"/><circle cx="556.9" cy="339.2" r="3.2"/><circle cx="532.0" cy="348.1" r="3.2"/><circle cx="256.6" cy="294.8" r="3.2"/><circle cx="174.5" cy="277.1" r="3.2"/><circle cx="194.1" cy="268.2" r="3.2"/><circle cx="190.6" cy="259.3" r="3.2"/><circle cx="149.5" cy="294.8" r="3.2"/><circle cx="179.5" cy="285.9" r="3.2"/><circle cx="205.6" cy="268.2" r="3.2"/><circle cx="172.2" cy="223.8" r="3.2"/><circle cx="464.8" cy="321.5" r="3.2"/><circle cx="496.4" cy="312.6" r="3.2"/><circle cx="108.1" cy="197.2" r="3.2"/><circle cx="155.0" cy="241.5" r="3.2"/><circle cx="223.3" cy="277.1" r="3.2"/><circle cx="269.3" cy="285.9" r="3.2"/><circle cx="354.8" cy="321.5" r="3.2"/><circle cx="235.8" cy="241.5" r="3.2"/><circle cx="259.5" cy="277.1" r="3.2"/><circle cx="397.5" cy="357.0" r="3.2"/><circle cx="307.0" cy="277.1" r="3.2"/><circle cx="270.5" cy="268.2" r="3.2"/><circle cx="274.6" cy="285.9" r="3.2"/><circle cx="344.7" cy="321.5" r="3.2"/><circle cx="121.5" cy="179.4" r="3.2"/><circle cx="202.2" cy="223.8" r="3.2"/><circle cx="103.1" cy="170.5" r="3.2"/><circle cx="216.8" cy="232.7" r="3.2"/><circle cx="416.3" cy="312.6" r="3.2"/><circle cx="392.4" cy="312.6" r="3.2"/><circle cx="389.3" cy="294.8" r="3.2"/><circle cx="474.3" cy="312.6" r="3.2"/><circle cx="564.2" cy="339.2" r="3.2"/><circle cx="525.2" cy="330.3" r="3.2"/><circle cx="554.3" cy="330.3" r="3.2"/><circle cx="493.0" cy="330.3" r="3.2"/><circle cx="164.8" cy="197.2" r="3.2"/><circle cx="123.6" cy="223.8" r="3.2"/><circle cx="177.9" cy="223.8" r="3.2"/><circle cx="73.0" cy="179.4" r="3.2"/><circle cx="130.0" cy="170.5" r="3.2"/><circle cx="149.7" cy="206.0" r="3.2"/><circle cx="146.9" cy="241.5" r="3.2"/><circle cx="169.2" cy="223.8" r="3.2"/><circle cx="208.3" cy="241.5" r="3.2"/><circle cx="192.5" cy="223.8" r="3.2"/><circle cx="129.6" cy="179.4" r="3.2"/><circle cx="333.1" cy="285.9" r="3.2"/><circle cx="364.5" cy="294.8" r="3.2"/><circle cx="360.1" cy="321.5" r="3.2"/><circle cx="316.0" cy="321.5" r="3.2"/><circle cx="559.2" cy="312.6" r="3.2"/><circle cx="522.5" cy="321.5" r="3.2"/><circle cx="531.8" cy="312.6" r="3.2"/><circle cx="557.4" cy="330.3" r="3.2"/><circle cx="436.6" cy="303.7" r="3.2"/><circle cx="435.0" cy="312.6" r="3.2"/><circle cx="408.1" cy="321.5" r="3.2"/><circle cx="417.0" cy="294.8" r="3.2"/><circle cx="296.9" cy="268.2" r="3.2"/><circle cx="326.2" cy="277.1" r="3.2"/><circle cx="317.8" cy="339.2" r="3.2"/><circle cx="157.1" cy="197.2" r="3.2"/><circle cx="232.5" cy="250.4" r="3.2"/><circle cx="276.7" cy="277.1" r="3.2"/><circle cx="224.9" cy="250.4" r="3.2"/><circle cx="242.6" cy="241.5" r="3.2"/><circle cx="165.5" cy="232.7" r="3.2"/><circle cx="217.3" cy="241.5" r="3.2"/><circle cx="288.0" cy="294.8" r="3.2"/><circle cx="119.4" cy="197.2" r="3.2"/><circle cx="324.6" cy="285.9" r="3.2"/><circle cx="241.3" cy="250.4" r="3.2"/><circle cx="283.7" cy="250.4" r="3.2"/><circle cx="281.7" cy="259.3" r="3.2"/><circle cx="237.6" cy="232.7" r="3.2"/><circle cx="96.5" cy="161.6" r="3.2"/><circle cx="204.3" cy="206.0" r="3.2"/><circle cx="165.0" cy="232.7" r="3.2"/><circle cx="221.7" cy="232.7" r="3.2"/><circle cx="170.6" cy="223.8" r="3.2"/><circle cx="162.1" cy="214.9" r="3.2"/><circle cx="486.2" cy="299.3" r="3.2"/><circle cx="482.2" cy="312.6" r="3.2"/><circle cx="445.5" cy="317.0" r="3.2"/><circle cx="486.2" cy="325.9" r="3.2"/><circle cx="328.1" cy="259.3" r="3.2"/><circle cx="347.4" cy="259.3" r="3.2"/><circle cx="292.5" cy="241.5" r="3.2"/><circle cx="304.3" cy="254.9" r="3.2"/><circle cx="135.2" cy="197.2" r="3.2"/><circle cx="156.0" cy="237.1" r="3.2"/><circle cx="119.4" cy="197.2" r="3.2"/><circle cx="96.5" cy="161.6" r="3.2"/><circle cx="395.4" cy="277.1" r="3.2"/><circle cx="383.0" cy="294.8" r="3.2"/><circle cx="394.4" cy="290.4" r="3.2"/><circle cx="321.7" cy="299.3" r="3.2"/><circle cx="101.4" cy="192.7" r="3.2"/><circle cx="127.9" cy="170.5" r="3.2"/><circle cx="154.5" cy="206.0" r="3.2"/><circle cx="220.5" cy="219.4" r="3.2"/><circle cx="314.7" cy="277.1" r="3.2"/><circle cx="442.0" cy="339.2" r="3.2"/><circle cx="334.1" cy="285.9" r="3.2"/><circle cx="279.3" cy="285.9" r="3.2"/><circle cx="422.6" cy="308.1" r="3.2"/><circle cx="512.8" cy="308.1" r="3.2"/><circle cx="460.5" cy="339.2" r="3.2"/><circle cx="430.7" cy="339.2" r="3.2"/><circle cx="412.2" cy="339.2" r="3.2"/><circle cx="136.8" cy="175.0" r="3.2"/><circle cx="154.5" cy="188.3" r="3.2"/><circle cx="101.4" cy="135.0" r="3.2"/><circle cx="177.9" cy="228.2" r="3.2"/><circle cx="120.7" cy="157.2" r="3.2"/><circle cx="432.3" cy="299.3" r="3.2"/><circle cx="461.3" cy="303.7" r="3.2"/><circle cx="474.2" cy="317.0" r="3.2"/><circle cx="499.1" cy="321.5" r="3.2"/><circle cx="374.3" cy="299.3" r="3.2"/><circle cx="359.0" cy="272.6" r="3.2"/><circle cx="392.0" cy="285.9" r="3.2"/><circle cx="375.1" cy="290.4" r="3.2"/><circle cx="487.0" cy="312.6" r="3.2"/><circle cx="478.2" cy="317.0" r="3.2"/><circle cx="503.9" cy="317.0" r="3.2"/><circle cx="505.6" cy="312.6" r="3.2"/><circle cx="119.9" cy="197.2" r="3.2"/><circle cx="248.7" cy="237.1" r="3.2"/><circle cx="172.2" cy="223.8" r="3.2"/><circle cx="251.1" cy="228.2" r="3.2"/><circle cx="137.8" cy="183.8" r="3.2"/><circle cx="141.6" cy="157.2" r="3.2"/><circle cx="127.1" cy="188.3" r="3.2"/><circle cx="160.2" cy="183.8" r="3.2"/><circle cx="260.8" cy="259.3" r="3.2"/><circle cx="226.2" cy="263.7" r="3.2"/><circle cx="245.5" cy="263.7" r="3.2"/><circle cx="127.1" cy="71.9" r="3.2"/><circle cx="97.4" cy="134.1" r="3.2"/><circle cx="127.1" cy="163.4" r="3.2"/><circle cx="140.8" cy="104.8" r="3.2"/><circle cx="97.4" cy="134.1" r="3.2"/><circle cx="349.4" cy="278.0" r="3.2"/><circle cx="408.9" cy="282.4" r="3.2"/><circle cx="382.4" cy="275.3" r="3.2"/><circle cx="376.7" cy="284.2" r="3.2"/><circle cx="315.5" cy="272.6" r="3.2"/><circle cx="284.9" cy="275.3" r="3.2"/><circle cx="245.5" cy="231.8" r="3.2"/><circle cx="359.8" cy="272.6" r="3.2"/><circle cx="324.4" cy="282.4" r="3.2"/><circle cx="351.8" cy="271.7" r="3.2"/><circle cx="301.9" cy="270.0" r="3.2"/><circle cx="390.4" cy="289.5" r="3.2"/><circle cx="356.6" cy="293.9" r="3.2"/><circle cx="359.0" cy="284.2" r="3.2"/><circle cx="362.2" cy="297.5" r="3.2"/><circle cx="323.6" cy="293.9" r="3.2"/><circle cx="464.5" cy="299.3" r="3.2"/><circle cx="154.5" cy="188.3" r="3.2"/><circle cx="219.7" cy="210.5" r="3.2"/><circle cx="177.9" cy="213.1" r="3.2"/><circle cx="166.6" cy="180.3" r="3.2"/><circle cx="212.5" cy="267.3" r="3.2"/><circle cx="249.5" cy="248.7" r="3.2"/><circle cx="267.2" cy="243.3" r="3.2"/><circle cx="194.8" cy="242.4" r="3.2"/><circle cx="263.2" cy="274.4" r="3.2"/><circle cx="313.1" cy="303.7" r="3.2"/><circle cx="257.6" cy="262.9" r="3.2"/><circle cx="356.6" cy="310.8" r="3.2"/><circle cx="127.9" cy="175.0" r="3.2"/><circle cx="151.3" cy="192.7" r="3.2"/><circle cx="330.0" cy="263.7" r="3.2"/><circle cx="289.0" cy="278.8" r="3.2"/><circle cx="272.9" cy="256.6" r="3.2"/><circle cx="333.3" cy="275.3" r="3.2"/><circle cx="348.6" cy="271.7" r="3.2"/><circle cx="425.8" cy="303.7" r="3.2"/><circle cx="407.3" cy="298.4" r="3.2"/><circle cx="444.4" cy="308.1" r="3.2"/><circle cx="424.2" cy="293.1" r="3.2"/><circle cx="509.6" cy="304.6" r="3.2"/><circle cx="460.3" cy="317.0" r="3.2"/><circle cx="388.0" cy="284.2" r="3.2"/><circle cx="442.0" cy="290.4" r="3.2"/><circle cx="117.5" cy="171.4" r="3.2"/><circle cx="125.5" cy="151.9" r="3.2"/><circle cx="115.9" cy="137.7" r="3.2"/><circle cx="237.4" cy="211.4" r="3.2"/><circle cx="375.9" cy="229.1" r="3.2"/><circle cx="435.5" cy="250.4" r="3.2"/><circle cx="321.2" cy="213.1" r="3.2"/><circle cx="358.2" cy="242.4" r="3.2"/><circle cx="161.8" cy="151.0" r="3.2"/><circle cx="153.7" cy="148.3" r="3.2"/><circle cx="132.8" cy="172.3" r="3.2"/><circle cx="150.5" cy="123.4" r="3.2"/><circle cx="237.4" cy="202.5" r="3.2"/><circle cx="225.4" cy="198.9" r="3.2"/><circle cx="242.3" cy="216.7" r="3.2"/><circle cx="219.1" cy="157.2" r="3.2"/><circle cx="152.7" cy="86.2" r="3.2"/><circle cx="124.4" cy="116.3" r="3.2"/><circle cx="148.9" cy="169.6" r="3.2"/><circle cx="132.6" cy="124.3" r="3.2"/><circle cx="238.7" cy="206.0" r="3.2"/><circle cx="269.7" cy="220.2" r="3.2"/><circle cx="291.1" cy="238.9" r="3.2"/><circle cx="351.9" cy="285.1" r="3.2"/><circle cx="159.8" cy="150.1" r="3.2"/><circle cx="244.0" cy="190.0" r="3.2"/><circle cx="216.8" cy="176.7" r="3.2"/><circle cx="199.4" cy="126.1" r="3.2"/><circle cx="172.2" cy="168.7" r="3.2"/><circle cx="147.3" cy="40.9" r="3.2"/><circle cx="258.4" cy="206.9" r="3.2"/><circle cx="147.3" cy="92.4" r="3.2"/><circle cx="143.2" cy="61.3" r="3.2"/><circle cx="183.5" cy="69.3" r="3.2"/><circle cx="282.5" cy="131.4" r="3.2"/><circle cx="330.8" cy="188.3" r="3.2"/><circle cx="105.4" cy="58.6" r="3.2"/><circle cx="103.0" cy="91.5" r="3.2"/><circle cx="152.9" cy="154.5" r="3.2"/><circle cx="104.6" cy="190.0" r="3.2"/><circle cx="276.1" cy="164.3" r="3.2"/><circle cx="197.2" cy="244.2" r="3.2"/><circle cx="210.1" cy="143.9" r="3.2"/><circle cx="275.3" cy="245.1" r="3.2"/><circle cx="176.3" cy="167.0" r="3.2"/><circle cx="208.5" cy="213.1" r="3.2"/><circle cx="231.8" cy="218.5" r="3.2"/><circle cx="229.4" cy="225.6" r="3.2"/><circle cx="246.3" cy="246.0" r="3.2"/><circle cx="191.6" cy="188.3" r="3.2"/><circle cx="90.1" cy="107.5" r="3.2"/><circle cx="109.4" cy="108.4" r="3.2"/><circle cx="90.9" cy="143.0" r="3.2"/><circle cx="140.0" cy="167.8" r="3.2"/><circle cx="125.5" cy="126.1" r="3.2"/><circle cx="137.6" cy="119.9" r="3.2"/><circle cx="127.1" cy="151.9" r="3.2"/><circle cx="164.2" cy="146.5" r="3.2"/><circle cx="136.8" cy="149.2" r="3.2"/><circle cx="190.7" cy="189.2" r="3.2"/><circle cx="160.2" cy="161.6" r="3.2"/><circle cx="181.1" cy="148.3" r="3.2"/><circle cx="163.4" cy="155.4" r="3.2"/><circle cx="185.9" cy="167.0" r="3.2"/><circle cx="228.6" cy="162.5" r="3.2"/><circle cx="231.8" cy="174.1" r="3.2"/><circle cx="327.6" cy="205.1" r="3.2"/><circle cx="316.3" cy="182.1" r="3.2"/><circle cx="274.5" cy="229.1" r="3.2"/><circle cx="279.3" cy="239.8" r="3.2"/><circle cx="357.4" cy="255.8" r="3.2"/><circle cx="407.3" cy="218.5" r="3.2"/><circle cx="300.2" cy="275.3" r="3.2"/><circle cx="365.5" cy="298.4" r="3.2"/><circle cx="227.0" cy="206.0" r="3.2"/><circle cx="232.6" cy="214.9" r="3.2"/><circle cx="193.2" cy="152.8" r="3.2"/><circle cx="222.1" cy="179.4" r="3.2"/><circle cx="214.1" cy="197.2" r="3.2"/><circle cx="247.9" cy="214.9" r="3.2"/><circle cx="268.8" cy="241.5" r="3.2"/><circle cx="296.2" cy="250.4" r="3.2"/><circle cx="126.3" cy="135.0" r="3.2"/><circle cx="133.6" cy="126.1" r="3.2"/><circle cx="124.7" cy="179.4" r="3.2"/><circle cx="149.7" cy="117.2" r="3.2"/><circle cx="149.7" cy="135.0" r="3.2"/><circle cx="155.3" cy="135.0" r="3.2"/><circle cx="162.6" cy="135.0" r="3.2"/><circle cx="169.0" cy="152.8" r="3.2"/><circle cx="123.9" cy="117.2" r="3.2"/><circle cx="123.9" cy="170.5" r="3.2"/><circle cx="128.8" cy="117.2" r="3.2"/><circle cx="281.7" cy="232.7" r="3.2"/><circle cx="293.0" cy="117.2" r="3.2"/><circle cx="223.8" cy="223.8" r="3.2"/><circle cx="264.0" cy="259.3" r="3.2"/><circle cx="236.6" cy="170.5" r="3.2"/><circle cx="189.1" cy="135.0" r="3.2"/><circle cx="282.5" cy="214.9" r="3.2"/><circle cx="256.8" cy="214.9" r="3.2"/><circle cx="150.5" cy="64.0" r="3.2"/><circle cx="177.1" cy="170.5" r="3.2"/><circle cx="230.2" cy="206.0" r="3.2"/><circle cx="245.5" cy="179.4" r="3.2"/></g><line class="fit" x1="56.0" y1="148.6" x2="624.0" y2="389.0"/></svg>
-            <p class="plot-axis" data-en="Vertical axis: fuel efficiency in km/l. Horizontal axis: vehicle weight.">Eje vertical: rendimiento en km/l. Eje horizontal: peso del vehículo.</p>
+          <div class="tier tier-3">
+            <h3 class="tier-title"><span class="tier-mark mono" aria-hidden="true">C</span><span data-en="Learning now">Aprendiendo ahora</span></h3>
+            <ul class="learning">
+              <li>
+                <img src="assets/logos/java.svg" width="28" height="28" alt="" loading="lazy">
+                <div>
+                  <p class="s-name" data-en="Java Programming diploma">Diplomado en Programación en Java</p>
+                  <p class="s-where" data-en="Politecnico de Colombia · in progress">Politécnico de Colombia · en curso</p>
+                </div>
+              </li>
+              <li>
+                <img src="assets/logos/python.svg" width="28" height="28" alt="" loading="lazy">
+                <div>
+                  <p class="s-name" data-en="Data analysis with Python">Análisis de datos con Python</p>
+                  <p class="s-where" data-en="I keep learning it on my own">Sigo aprendiéndolo por mi cuenta</p>
+                </div>
+              </li>
+            </ul>
           </div>
-        </figure>
-      </article>
-    </section>
-
-    <!-- HABILIDADES: cada tecnología con su logo y dónde la usé -->
-    <section id="habilidades" class="skills">
-      <h2 class="giant" data-en="Skills">Habilidades</h2>
-      <div class="bars">
-        <div class="skill-group">
-          <h3>Backend</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/java.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Java</span><span class="tech-where" data-en="CineX, academic events">CineX, eventos académicos</span></li>
-            <li><img src="assets/logos/spring.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Spring Boot</span><span class="tech-where" data-en="CineX, academic events">CineX, eventos académicos</span></li>
-            <li><img src="assets/logos/python.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Python</span><span class="tech-where" data-en="Numi, data analytics">Numi, analítica de datos</span></li>
-            <li><img src="assets/logos/fastapi.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">FastAPI</span><span class="tech-where">Numi</span></li>
-          </ul>
-          <p class="tech-note" data-en="REST APIs with Spring Data JPA and a layered architecture.">APIs REST con Spring Data JPA y arquitectura en capas.</p>
-        </div>
-        <div class="skill-group">
-          <h3>Frontend</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/html5.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">HTML</span><span class="tech-where">Casa Rendón, CineX</span></li>
-            <li><img src="assets/logos/css3.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">CSS</span><span class="tech-where">Casa Rendón, CineX</span></li>
-            <li><img src="assets/logos/bootstrap.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Bootstrap</span><span class="tech-where" data-en="Academic projects">Proyectos académicos</span></li>
-            <li><img src="assets/logos/javascript.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">JavaScript</span><span class="tech-where">Casa Rendón, CineX</span></li>
-            <li><img src="assets/logos/react.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">React</span><span class="tech-where">Casa Rendón</span></li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <h3 data-en="Databases">Bases de datos</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/mysql.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">MySQL</span><span class="tech-where">CineX</span></li>
-            <li><img src="assets/logos/sqlite.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">SQLite</span><span class="tech-where">Numi</span></li>
-            <li><img src="assets/logos/firebase.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Firebase</span><span class="tech-where">Numi</span></li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <h3 data-en="Mobile">Móvil</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/flutter.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Flutter</span><span class="tech-where">Numi</span></li>
-            <li><img src="assets/logos/dart.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Dart</span><span class="tech-where">Numi</span></li>
-          </ul>
-          <p class="tech-note" data-en="Riverpod, MVVM architecture, local SQLite and on-device Gemma 2B with RAG, in Numi.">Riverpod, arquitectura MVVM, SQLite local y Gemma 2B con RAG en el dispositivo, en Numi.</p>
-        </div>
-        <div class="skill-group">
-          <h3 data-en="Data analysis">Análisis de datos</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/python.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Python</span><span class="tech-where" data-en="Data Analytics">Analítica de Datos</span></li>
-            <li><img src="assets/logos/pandas.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Pandas</span><span class="tech-where" data-en="Data Analytics">Analítica de Datos</span></li>
-            <li><img src="assets/logos/jupyter.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Jupyter</span><span class="tech-where" data-en="Data Analytics">Analítica de Datos</span></li>
-            <li><img src="assets/logos/googlecolab.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Google Colab</span><span class="tech-where" data-en="Data Analytics">Analítica de Datos</span></li>
-            <li><img src="assets/logos/sql.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">SQL</span><span class="tech-where" data-en="Queries and analysis">Consultas y análisis</span></li>
-            <li><img src="assets/logos/powerbi.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Power BI</span><span class="tech-where" data-en="Data dashboards">Tableros de datos</span></li>
-            <li><img src="assets/logos/lookerstudio.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Looker Studio</span><span class="tech-where" data-en="Data dashboards">Tableros de datos</span></li>
-          </ul>
-          <p class="tech-note" data-en="Linear regression, logistic regression and ANOVA in the Data Analytics course.">Regresión lineal, regresión logística y ANOVA en el curso de Analítica de Datos.</p>
-        </div>
-        <div class="skill-group">
-          <h3 data-en="Tools">Herramientas</h3>
-          <ul class="tech">
-            <li><img src="assets/logos/git.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Git</span><span class="tech-where" data-en="All projects">Todos los proyectos</span></li>
-            <li><img src="assets/logos/github.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">GitHub</span><span class="tech-where" data-en="All projects">Todos los proyectos</span></li>
-            <li><img src="assets/logos/docker.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Docker</span><span class="tech-where">Numi, CineX</span></li>
-            <li><img src="assets/logos/githubactions.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">GitHub Actions</span><span class="tech-where" data-en="CineX, continuous integration">CineX, integración continua</span></li>
-            <li><img src="assets/logos/googlecloud.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Google Cloud</span><span class="tech-where" data-en="Labs: Compute Engine, Cloud Functions, IAM">Laboratorios: Compute Engine, Cloud Functions, IAM</span></li>
-            <li><img src="assets/logos/vscode.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">VS Code</span><span class="tech-where">Editor</span></li>
-            <li><img src="assets/logos/intellij.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">IntelliJ IDEA</span><span class="tech-where" data-en="Java and Spring Boot">Java y Spring Boot</span></li>
-            <li><img src="assets/logos/postman.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Postman</span><span class="tech-where" data-en="Testing REST APIs, CineX">Pruebas de APIs REST, CineX</span></li>
-            <li><img src="assets/logos/swagger.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Swagger</span><span class="tech-where" data-en="CineX API documentation">Documentación de la API de CineX</span></li>
-            <li><img src="assets/logos/junit.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">JUnit</span><span class="tech-where" data-en="CineX, with Mockito">CineX, con Mockito</span></li>
-            <li><img src="assets/logos/gradle.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Gradle</span><span class="tech-where" data-en="Academic events">Eventos académicos</span></li>
-            <li><img src="assets/logos/maven.svg" width="28" height="28" alt="" loading="lazy"><span class="tech-name">Maven</span><span class="tech-where" data-en="CineX">CineX</span></li>
-          </ul>
-        </div>
-        <div class="skill-group">
-          <h3 data-en="Methodologies">Metodologías</h3>
-          <ul class="tech tech-plain">
-            <li><span class="tech-name">Scrum</span><span class="tech-where" data-en="Team projects">Proyectos en equipo</span></li>
-            <li><span class="tech-name" data-en="MVVM architecture">Arquitectura MVVM</span><span class="tech-where">Numi</span></li>
-            <li><span class="tech-name" data-en="Software testing">Pruebas de software</span><span class="tech-where" data-en="Test lead on an academic project">Líder de pruebas en proyecto académico</span></li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- SOBRE MÍ: la carta se enciende palabra por palabra; los datos a la mano -->
-    <section id="sobre-mi" class="about" aria-labelledby="about-title">
-      <div class="about-letter">
-        <h2 class="section-title" id="about-title" data-en="About me">Sobre mí</h2>
-        <div class="letter" data-words>
-          <p data-en="I have been studying Software Engineering at Universidad Cooperativa de Colombia since 2023. I am in my seventh semester.">Estudio Ingeniería de Software en la Universidad Cooperativa de Colombia desde 2023. Voy en séptimo semestre.</p>
-          <p data-en="I am training as a full stack developer: I like understanding a whole application, from the database and the API to the interface people use.">Me formo como desarrollador full stack: me gusta entender una aplicación completa, desde la base de datos y la API hasta la interfaz que usa la gente.</p>
-          <p data-en="I care about building software for people who are usually left out of technology. That is why I enjoyed working on Numi so much: the hard part was making it work on a phone with no internet.">Me interesa construir software para personas que normalmente quedan por fuera de la tecnología. Por eso me gustó tanto trabajar en Numi: el reto no era solo programar, sino lograr que funcionara en un celular sin internet.</p>
-          <p data-en="I am currently taking the Java Programming diploma at Politecnico de Colombia, and I keep learning data analysis with Python.">Ahora hago el Diplomado en Programación en Java del Politécnico de Colombia, y sigo aprendiendo análisis de datos con Python.</p>
-          <p data-en="I learn fast, I work well in a team, and I am looking for an internship where I can contribute to a real team, in software development or data analysis.">Aprendo rápido, trabajo bien en equipo y busco mi práctica empresarial para aportar en un equipo real, ya sea en desarrollo de software o en análisis de datos.</p>
+    <!-- CÓMO TRABAJO -->
+    <section class="section section-alt" id="como-trabajo" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label mono" aria-hidden="true">04 / <span data-en="How I work">Cómo trabajo</span></p>
+          <h2 class="section-title" id="work-title" data-en="Habits you can check.">Hábitos que se pueden comprobar.</h2>
+          <p class="section-lede" data-en="Each one links to the evidence in my repositories.">Cada uno enlaza a la evidencia en mis repositorios.</p>
         </div>
-        <p class="sign">Alexander Mejía Ospina</p>
-        <p class="sign-role">Medellín, Colombia</p>
+        <ol class="habits">
+          <li class="habit">
+            <h3 class="habit-title" data-en="I test what I build">Pruebo lo que construyo</h3>
+            <p data-en="17 tests with JUnit and Mockito in CineX, and pytest tests for cleaning, MySQL loading and the API in the Observatory.">17 pruebas con JUnit y Mockito en CineX, y pruebas con pytest para la limpieza, la carga en MySQL y la API del Observatorio.</p>
+            <p class="evidence mono">
+              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/tree/main/CineX-Backend/cineX_spring_boot/demo/src/test" target="_blank" rel="noopener" data-en="CineX tests">Pruebas de CineX</a>
+              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/tree/main/tests" target="_blank" rel="noopener" data-en="Observatory tests">Pruebas del Observatorio</a>
+            </p>
+          </li>
+          <li class="habit">
+            <h3 class="habit-title" data-en="I automate">Automatizo</h3>
+            <p data-en="GitHub Actions runs CineX's tests on every push and pull request, and refreshes the Observatory's data every month.">GitHub Actions corre las pruebas de CineX en cada push y pull request, y actualiza los datos del Observatorio cada mes.</p>
+            <p class="evidence mono">
+              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/blob/main/.github/workflows/backend.yml" target="_blank" rel="noopener" data-en="CineX CI">CI de CineX</a>
+              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/blob/main/.github/workflows/actualizar-datos.yml" target="_blank" rel="noopener" data-en="Monthly update">Actualización mensual</a>
+            </p>
+          </li>
+          <li class="habit">
+            <h3 class="habit-title" data-en="I document">Documento</h3>
+            <p data-en="The CineX API is documented with Swagger, and every repository has a README that explains how to run it.">La API de CineX está documentada con Swagger, y cada repositorio tiene un README que explica cómo correrlo.</p>
+            <p class="evidence mono">
+              <a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Swagger">Swagger</a>
+              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia#readme" target="_blank" rel="noopener" data-en="Observatory README">README del Observatorio</a>
+            </p>
+          </li>
+          <li class="habit">
+            <h3 class="habit-title" data-en="I work in a team with Git">Trabajo en equipo con Git</h3>
+            <p data-en="In CineX 1.0 I set up the repository, and reviewed and integrated my teammates' pull requests.">En CineX 1.0 armé el repositorio, y revisé e integré los pull requests de mis compañeros.</p>
+            <p class="evidence mono">
+              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/pulls?q=is%3Apr+is%3Aclosed" target="_blank" rel="noopener" data-en="CineX pull requests">Pull requests de CineX</a>
+            </p>
+          </li>
+        </ol>
       </div>
-      <dl class="facts-panel">
-        <div><dt data-en="Profile">Perfil</dt><dd data-en="Full stack developer in training">Desarrollador full stack en formación</dd></div>
-        <div><dt data-en="Education">Formación</dt><dd data-en="Software Engineering, seventh semester">Ingeniería de Software, séptimo semestre</dd></div>
-        <div><dt data-en="University">Universidad</dt><dd>Universidad Cooperativa de Colombia</dd></div>
-        <div><dt data-en="In progress">En curso</dt><dd data-en="Java Programming diploma, Politecnico de Colombia">Diplomado en Programación en Java, Politécnico de Colombia</dd></div>
-        <div><dt data-en="Languages">Idiomas</dt><dd data-en="Native Spanish, intermediate English (B1)">Español nativo, inglés intermedio (B1)</dd></div>
-      </dl>
+    </section>
+
+    <!-- TRAYECTORIA -->
+    <section class="section" id="trayectoria" aria-labelledby="journey-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="label mono" aria-hidden="true">05 / <span data-en="Journey">Trayectoria</span></p>
+          <h2 class="section-title" id="journey-title" data-en="From the first class to production.">De la primera clase a producción.</h2>
+        </div>
+        <ol class="timeline">
+          <li class="t-item">
+            <p class="t-year mono">2023</p>
+            <div class="t-body">
+              <h3 class="t-title" data-en="I start Software Engineering">Empiezo Ingeniería de Software</h3>
+              <p data-en="Universidad Cooperativa de Colombia, Medellin.">Universidad Cooperativa de Colombia, Medellín.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <p class="t-year mono">2025</p>
+            <div class="t-body">
+              <h3 class="t-title" data-en="CineX 1.0, as a team">CineX 1.0, en equipo</h3>
+              <p data-en="Repository structure, integration and pull request reviews.">Estructura del repositorio, integración y revisión de pull requests.</p>
+            </div>
+          </li>
+          <li class="t-item">
+            <p class="t-year mono">2026</p>
+            <div class="t-body">
+              <h3 class="t-title" data-en="Seventh semester and five projects">Séptimo semestre y cinco proyectos</h3>
+              <ul class="t-list">
+                <li data-en="Numi, an educational app that works offline (team).">Numi, app educativa que funciona sin internet (equipo).</li>
+                <li data-en="Casa Rendon, a website in production (team).">Casa Rendón, sitio web en producción (equipo).</li>
+                <li data-en="CineX 2.0, on my own: MySQL, tests, CI and deployment.">CineX 2.0, individual: MySQL, pruebas, CI y despliegue.</li>
+                <li data-en="Antioquia Public Health Observatory.">Observatorio de Salud Pública de Antioquia.</li>
+                <li data-en="Java Programming diploma, Politecnico de Colombia.">Diplomado en Programación en Java, Politécnico de Colombia.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="t-item t-next">
+            <p class="t-year mono" data-en="Next">Siguiente</p>
+            <div class="t-body">
+              <h3 class="t-title" data-en="Internship">Práctica empresarial</h3>
+              <p data-en="In software development or data analysis, contributing to a real team.">En desarrollo de software o análisis de datos, aportando en un equipo real.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section section-alt" id="sobre-mi" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-head">
+            <p class="label mono" aria-hidden="true">06 / <span data-en="About me">Sobre mí</span></p>
+            <h2 class="section-title" id="about-title" data-en="The whole application, end to end.">La aplicación completa, de punta a punta.</h2>
+          </div>
+          <div class="prose">
+            <p data-en="I have been studying Software Engineering at Universidad Cooperativa de Colombia since 2023, and I am in my seventh semester. I like understanding a whole application, from the database and the API to the interface people use.">Estudio Ingeniería de Software en la Universidad Cooperativa de Colombia desde 2023 y voy en séptimo semestre. Me gusta entender una aplicación completa, desde la base de datos y la API hasta la interfaz que usa la gente.</p>
+            <p data-en="I care about building software for people who are usually left out of technology. That is why I enjoyed Numi so much: the hard part was making it work on a phone with no internet.">Me interesa construir software para personas que normalmente quedan por fuera de la tecnología. Por eso me gustó tanto Numi: el reto era lograr que funcionara en un celular sin internet.</p>
+            <p data-en="I am taking the Java Programming diploma at Politecnico de Colombia and I keep learning data analysis with Python. I learn fast, I work well in a team, and I am looking for an internship in software development or data analysis.">Hago el Diplomado en Programación en Java del Politécnico de Colombia y sigo aprendiendo análisis de datos con Python. Aprendo rápido, trabajo bien en equipo y busco mi práctica empresarial en desarrollo de software o análisis de datos.</p>
+          </div>
+        </div>
+        <dl class="panel facts-panel">
+          <div><dt class="mono" data-en="Profile">Perfil</dt><dd data-en="Full stack developer in training">Desarrollador full stack en formación</dd></div>
+          <div><dt class="mono" data-en="Education">Formación</dt><dd data-en="Software Engineering, seventh semester">Ingeniería de Software, séptimo semestre</dd></div>
+          <div><dt class="mono" data-en="University">Universidad</dt><dd>Universidad Cooperativa de Colombia</dd></div>
+          <div><dt class="mono" data-en="In progress">En curso</dt><dd data-en="Java Programming diploma, Politecnico de Colombia">Diplomado en Programación en Java, Politécnico de Colombia</dd></div>
+          <div><dt class="mono" data-en="Languages">Idiomas</dt><dd data-en="Native Spanish, intermediate English (B1)">Español nativo, inglés intermedio (B1)</dd></div>
+          <div><dt class="mono" data-en="Based in">Ciudad</dt><dd data-en="Medellin, Colombia">Medellín, Colombia</dd></div>
+        </dl>
+      </div>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="contact" aria-labelledby="contact-title">
-      <h2 class="section-title" id="contact-title" data-en="Let's talk">Hablemos</h2>
-      <div class="read">
-        <p class="prompt" data-en="<span>Is your team looking for a full stack intern?</span> Tell me what it is about."><span>¿Tu equipo busca un practicante full stack?</span> Cuéntame de qué se trata.</p>
-        <form class="ask-form" id="mail-form" action="mailto:alexmejia0112@gmail.com" method="get">
-          <label class="visually-hidden" for="msg">Tu mensaje</label>
-          <input id="msg" name="body" type="text" placeholder="Hola Alexander, somos…" data-en-placeholder="Hi Alexander, we are…" autocomplete="off">
-          <input type="hidden" name="subject" value="Práctica empresarial">
-          <button type="submit" aria-label="Escribir el correo">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </form>
-        <p class="note" data-en="Your email app opens with the message ready to send.">Se abre tu correo con el mensaje listo para enviar.</p>
+    <section class="section contact" id="contacto" aria-labelledby="contact-title">
+      <div class="wrap">
+        <p class="label mono" aria-hidden="true">07 / <span data-en="Contact">Contacto</span></p>
+        <h2 class="contact-title" id="contact-title" data-en="Does your team need an intern? Let's talk.">¿Tu equipo necesita un practicante? Hablemos.</h2>
+        <div class="contact-grid">
+          <div class="mail-box">
+            <a class="mail" href="mailto:alexmejia0112@gmail.com">alexmejia0112@gmail.com</a>
+            <button class="btn btn-accent" type="button" id="copy-mail" data-mail="alexmejia0112@gmail.com" data-en="Copy">Copiar</button>
+            <p class="copy-status mono" id="copy-status" role="status" aria-live="polite"></p>
+          </div>
+          <ul class="contact-links">
+            <li><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="noopener">alexander-mejia-ospina</a></li>
+            <li><span class="mono">GitHub</span><a href="https://github.com/AlexanderM-Code" target="_blank" rel="noopener">AlexanderM-Code</a></li>
+            <li><span class="mono" data-en="Resume">Hoja de vida</span><span><a href="cv/CV_Alexander_Mejia_Ospina.pdf" download hreflang="es" data-en="Spanish">Español</a> · <a href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download hreflang="en" data-en="English">Inglés</a></span></li>
+          </ul>
+        </div>
       </div>
-      <dl class="contact-rows">
-        <div><dt data-en="Email">Correo</dt><dd><a href="mailto:alexmejia0112@gmail.com">alexmejia0112@gmail.com</a></dd></div>
-        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="noopener">alexander-mejia-ospina</a></dd></div>
-        <div><dt>GitHub</dt><dd><a href="https://github.com/AlexanderM-Code" target="_blank" rel="noopener">AlexanderM-Code</a></dd></div>
-        <div><dt data-en="Resume">Hoja de vida</dt><dd><a href="cv/CV_Alexander_Mejia_Ospina.pdf" download>Español</a> · <a href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download>English</a></dd></div>
-      </dl>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer-name" aria-hidden="true">Alexander Mejía Ospina</p>
-    <p class="footer-note" data-en="Medellin, <span id=&quot;year&quot;>2026</span>. Built with HTML, CSS and JavaScript.">Medellín, <span id="year">2026</span>. Hecho con HTML, CSS y JavaScript.</p>
-    <p class="credits" data-en="Chart data: Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0).">Datos del gráfico: Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0).</p>
+    <div class="wrap footer-grid">
+      <p class="footer-name">Alexander Mejía Ospina</p>
+      <p class="mono" data-en="Medellin, 2026 · Last updated: October 2026">Medellín, 2026 · Última actualización: octubre de 2026</p>
+      <p class="credits" data-en="Data: SIVIGILA, datos.gov.co (Observatory) and Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) and Simple Icons (CC0). Built with HTML, CSS and JavaScript.">Datos: SIVIGILA, datos.gov.co (Observatorio) y Auto MPG, UCI Machine Learning Repository. Logos: Devicon (MIT) y Simple Icons (CC0). Hecho con HTML, CSS y JavaScript.</p>
+    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Gráfica Auto MPG: se dibuja una vez y se usa en la tarjeta y en el diálogo -->
+  <svg width="0" height="0" class="defs" aria-hidden="true" focusable="false">
+    <symbol id="mpg-plot" viewBox="0 0 640 440"><g class="mpg-grid"><line x1="56" y1="350" x2="624" y2="350"/><line x1="56" y1="246" x2="624" y2="246"/><line x1="56" y1="141" x2="624" y2="141"/><line x1="56" y1="37" x2="624" y2="37"/></g><g class="dots"><circle cx="371.7" cy="294.8" r="3.2"/><circle cx="402.2" cy="321.5" r="3.2"/><circle cx="360.8" cy="294.8" r="3.2"/><circle cx="360.3" cy="312.6" r="3.2"/><circle cx="362.9" cy="303.7" r="3.2"/><circle cx="506.5" cy="321.5" r="3.2"/><circle cx="508.6" cy="330.3" r="3.2"/><circle cx="501.9" cy="330.3" r="3.2"/><circle cx="520.0" cy="330.3" r="3.2"/><circle cx="427.5" cy="321.5" r="3.2"/><circle cx="381.2" cy="321.5" r="3.2"/><circle cx="388.7" cy="330.3" r="3.2"/><circle cx="413.1" cy="321.5" r="3.2"/><circle cx="304.4" cy="330.3" r="3.2"/><circle cx="189.5" cy="241.5" r="3.2"/><circle cx="263.7" cy="259.3" r="3.2"/><circle cx="254.2" cy="294.8" r="3.2"/><circle cx="224.1" cy="268.2" r="3.2"/><circle cx="150.5" cy="214.9" r="3.2"/><circle cx="103.0" cy="223.8" r="3.2"/><circle cx="237.8" cy="232.7" r="3.2"/><circle cx="198.8" cy="241.5" r="3.2"/><circle cx="189.9" cy="232.7" r="3.2"/><circle cx="167.2" cy="223.8" r="3.2"/><circle cx="233.9" cy="268.2" r="3.2"/><circle cx="550.6" cy="365.9" r="3.2"/><circle cx="512.2" cy="365.9" r="3.2"/><circle cx="513.1" cy="357.0" r="3.2"/><circle cx="569.5" cy="374.7" r="3.2"/><circle cx="150.5" cy="214.9" r="3.2"/><circle cx="172.1" cy="206.0" r="3.2"/><circle cx="166.3" cy="232.7" r="3.2"/><circle cx="137.0" cy="232.7" r="3.2"/><circle cx="231.6" cy="285.9" r="3.2"/><circle cx="361.3" cy="312.6" r="3.2"/><circle cx="343.6" cy="303.7" r="3.2"/><circle cx="339.2" cy="285.9" r="3.2"/><circle cx="337.0" cy="294.8" r="3.2"/><circle cx="485.3" cy="330.3" r="3.2"/><circle cx="526.3" cy="330.3" r="3.2"/><circle cx="476.4" cy="330.3" r="3.2"/><circle cx="467.1" cy="330.3" r="3.2"/><circle cx="605.4" cy="348.1" r="3.2"/><circle cx="571.7" cy="339.2" r="3.2"/><circle cx="635.2" cy="339.2" r="3.2"/><circle cx="284.5" cy="294.8" r="3.2"/><circle cx="195.3" cy="259.3" r="3.2"/><circle cx="336.0" cy="285.9" r="3.2"/><circle cx="313.0" cy="294.8" r="3.2"/><circle cx="165.0" cy="250.4" r="3.2"/><circle cx="149.4" cy="206.0" r="3.2"/><circle cx="141.5" cy="188.3" r="3.2"/><circle cx="140.0" cy="188.3" r="3.2"/><circle cx="93.0" cy="179.4" r="3.2"/><circle cx="67.2" cy="143.9" r="3.2"/><circle cx="102.8" cy="214.9" r="3.2"/><circle cx="122.3" cy="223.8" r="3.2"/><circle cx="174.3" cy="241.5" r="3.2"/><circle cx="149.8" cy="232.7" r="3.2"/><circle cx="170.5" cy="250.4" r="3.2"/><circle cx="195.3" cy="277.1" r="3.2"/><circle cx="165.9" cy="268.2" r="3.2"/><circle cx="495.7" cy="339.2" r="3.2"/><circle cx="513.6" cy="330.3" r="3.2"/><circle cx="473.4" cy="321.5" r="3.2"/><circle cx="472.4" cy="330.3" r="3.2"/><circle cx="398.8" cy="303.7" r="3.2"/><circle cx="553.5" cy="357.0" r="3.2"/><circle cx="532.4" cy="339.2" r="3.2"/><circle cx="525.0" cy="348.1" r="3.2"/><circle cx="519.6" cy="339.2" r="3.2"/><circle cx="182.7" cy="285.9" r="3.2"/><circle cx="434.2" cy="321.5" r="3.2"/><circle cx="467.4" cy="339.2" r="3.2"/><circle cx="499.0" cy="339.2" r="3.2"/><circle cx="464.0" cy="330.3" r="3.2"/><circle cx="279.8" cy="294.8" r="3.2"/><circle cx="211.8" cy="259.3" r="3.2"/><circle cx="287.2" cy="268.2" r="3.2"/><circle cx="160.0" cy="223.8" r="3.2"/><circle cx="193.2" cy="259.3" r="3.2"/><circle cx="175.9" cy="206.0" r="3.2"/><circle cx="211.0" cy="250.4" r="3.2"/><circle cx="156.0" cy="206.0" r="3.2"/><circle cx="145.7" cy="214.9" r="3.2"/><circle cx="467.7" cy="339.2" r="3.2"/><circle cx="398.8" cy="330.3" r="3.2"/><circle cx="449.7" cy="339.2" r="3.2"/><circle cx="458.4" cy="330.3" r="3.2"/><circle cx="415.7" cy="321.5" r="3.2"/><circle cx="604.9" cy="348.1" r="3.2"/><circle cx="526.3" cy="339.2" r="3.2"/><circle cx="510.1" cy="339.2" r="3.2"/><circle cx="489.8" cy="330.3" r="3.2"/><circle cx="570.0" cy="339.2" r="3.2"/><circle cx="604.7" cy="348.1" r="3.2"/><circle cx="422.8" cy="339.2" r="3.2"/><circle cx="310.1" cy="294.8" r="3.2"/><circle cx="335.3" cy="312.6" r="3.2"/><circle cx="281.7" cy="294.8" r="3.2"/><circle cx="294.0" cy="294.8" r="3.2"/><circle cx="275.1" cy="250.4" r="3.2"/><circle cx="121.5" cy="223.8" r="3.2"/><circle cx="612.2" cy="357.0" r="3.2"/><circle cx="597.5" cy="348.1" r="3.2"/><circle cx="556.9" cy="339.2" r="3.2"/><circle cx="532.0" cy="348.1" r="3.2"/><circle cx="256.6" cy="294.8" r="3.2"/><circle cx="174.5" cy="277.1" r="3.2"/><circle cx="194.1" cy="268.2" r="3.2"/><circle cx="190.6" cy="259.3" r="3.2"/><circle cx="149.5" cy="294.8" r="3.2"/><circle cx="179.5" cy="285.9" r="3.2"/><circle cx="205.6" cy="268.2" r="3.2"/><circle cx="172.2" cy="223.8" r="3.2"/><circle cx="464.8" cy="321.5" r="3.2"/><circle cx="496.4" cy="312.6" r="3.2"/><circle cx="108.1" cy="197.2" r="3.2"/><circle cx="155.0" cy="241.5" r="3.2"/><circle cx="223.3" cy="277.1" r="3.2"/><circle cx="269.3" cy="285.9" r="3.2"/><circle cx="354.8" cy="321.5" r="3.2"/><circle cx="235.8" cy="241.5" r="3.2"/><circle cx="259.5" cy="277.1" r="3.2"/><circle cx="397.5" cy="357.0" r="3.2"/><circle cx="307.0" cy="277.1" r="3.2"/><circle cx="270.5" cy="268.2" r="3.2"/><circle cx="274.6" cy="285.9" r="3.2"/><circle cx="344.7" cy="321.5" r="3.2"/><circle cx="121.5" cy="179.4" r="3.2"/><circle cx="202.2" cy="223.8" r="3.2"/><circle cx="103.1" cy="170.5" r="3.2"/><circle cx="216.8" cy="232.7" r="3.2"/><circle cx="416.3" cy="312.6" r="3.2"/><circle cx="392.4" cy="312.6" r="3.2"/><circle cx="389.3" cy="294.8" r="3.2"/><circle cx="474.3" cy="312.6" r="3.2"/><circle cx="564.2" cy="339.2" r="3.2"/><circle cx="525.2" cy="330.3" r="3.2"/><circle cx="554.3" cy="330.3" r="3.2"/><circle cx="493.0" cy="330.3" r="3.2"/><circle cx="164.8" cy="197.2" r="3.2"/><circle cx="123.6" cy="223.8" r="3.2"/><circle cx="177.9" cy="223.8" r="3.2"/><circle cx="73.0" cy="179.4" r="3.2"/><circle cx="130.0" cy="170.5" r="3.2"/><circle cx="149.7" cy="206.0" r="3.2"/><circle cx="146.9" cy="241.5" r="3.2"/><circle cx="169.2" cy="223.8" r="3.2"/><circle cx="208.3" cy="241.5" r="3.2"/><circle cx="192.5" cy="223.8" r="3.2"/><circle cx="129.6" cy="179.4" r="3.2"/><circle cx="333.1" cy="285.9" r="3.2"/><circle cx="364.5" cy="294.8" r="3.2"/><circle cx="360.1" cy="321.5" r="3.2"/><circle cx="316.0" cy="321.5" r="3.2"/><circle cx="559.2" cy="312.6" r="3.2"/><circle cx="522.5" cy="321.5" r="3.2"/><circle cx="531.8" cy="312.6" r="3.2"/><circle cx="557.4" cy="330.3" r="3.2"/><circle cx="436.6" cy="303.7" r="3.2"/><circle cx="435.0" cy="312.6" r="3.2"/><circle cx="408.1" cy="321.5" r="3.2"/><circle cx="417.0" cy="294.8" r="3.2"/><circle cx="296.9" cy="268.2" r="3.2"/><circle cx="326.2" cy="277.1" r="3.2"/><circle cx="317.8" cy="339.2" r="3.2"/><circle cx="157.1" cy="197.2" r="3.2"/><circle cx="232.5" cy="250.4" r="3.2"/><circle cx="276.7" cy="277.1" r="3.2"/><circle cx="224.9" cy="250.4" r="3.2"/><circle cx="242.6" cy="241.5" r="3.2"/><circle cx="165.5" cy="232.7" r="3.2"/><circle cx="217.3" cy="241.5" r="3.2"/><circle cx="288.0" cy="294.8" r="3.2"/><circle cx="119.4" cy="197.2" r="3.2"/><circle cx="324.6" cy="285.9" r="3.2"/><circle cx="241.3" cy="250.4" r="3.2"/><circle cx="283.7" cy="250.4" r="3.2"/><circle cx="281.7" cy="259.3" r="3.2"/><circle cx="237.6" cy="232.7" r="3.2"/><circle cx="96.5" cy="161.6" r="3.2"/><circle cx="204.3" cy="206.0" r="3.2"/><circle cx="165.0" cy="232.7" r="3.2"/><circle cx="221.7" cy="232.7" r="3.2"/><circle cx="170.6" cy="223.8" r="3.2"/><circle cx="162.1" cy="214.9" r="3.2"/><circle cx="486.2" cy="299.3" r="3.2"/><circle cx="482.2" cy="312.6" r="3.2"/><circle cx="445.5" cy="317.0" r="3.2"/><circle cx="486.2" cy="325.9" r="3.2"/><circle cx="328.1" cy="259.3" r="3.2"/><circle cx="347.4" cy="259.3" r="3.2"/><circle cx="292.5" cy="241.5" r="3.2"/><circle cx="304.3" cy="254.9" r="3.2"/><circle cx="135.2" cy="197.2" r="3.2"/><circle cx="156.0" cy="237.1" r="3.2"/><circle cx="119.4" cy="197.2" r="3.2"/><circle cx="96.5" cy="161.6" r="3.2"/><circle cx="395.4" cy="277.1" r="3.2"/><circle cx="383.0" cy="294.8" r="3.2"/><circle cx="394.4" cy="290.4" r="3.2"/><circle cx="321.7" cy="299.3" r="3.2"/><circle cx="101.4" cy="192.7" r="3.2"/><circle cx="127.9" cy="170.5" r="3.2"/><circle cx="154.5" cy="206.0" r="3.2"/><circle cx="220.5" cy="219.4" r="3.2"/><circle cx="314.7" cy="277.1" r="3.2"/><circle cx="442.0" cy="339.2" r="3.2"/><circle cx="334.1" cy="285.9" r="3.2"/><circle cx="279.3" cy="285.9" r="3.2"/><circle cx="422.6" cy="308.1" r="3.2"/><circle cx="512.8" cy="308.1" r="3.2"/><circle cx="460.5" cy="339.2" r="3.2"/><circle cx="430.7" cy="339.2" r="3.2"/><circle cx="412.2" cy="339.2" r="3.2"/><circle cx="136.8" cy="175.0" r="3.2"/><circle cx="154.5" cy="188.3" r="3.2"/><circle cx="101.4" cy="135.0" r="3.2"/><circle cx="177.9" cy="228.2" r="3.2"/><circle cx="120.7" cy="157.2" r="3.2"/><circle cx="432.3" cy="299.3" r="3.2"/><circle cx="461.3" cy="303.7" r="3.2"/><circle cx="474.2" cy="317.0" r="3.2"/><circle cx="499.1" cy="321.5" r="3.2"/><circle cx="374.3" cy="299.3" r="3.2"/><circle cx="359.0" cy="272.6" r="3.2"/><circle cx="392.0" cy="285.9" r="3.2"/><circle cx="375.1" cy="290.4" r="3.2"/><circle cx="487.0" cy="312.6" r="3.2"/><circle cx="478.2" cy="317.0" r="3.2"/><circle cx="503.9" cy="317.0" r="3.2"/><circle cx="505.6" cy="312.6" r="3.2"/><circle cx="119.9" cy="197.2" r="3.2"/><circle cx="248.7" cy="237.1" r="3.2"/><circle cx="172.2" cy="223.8" r="3.2"/><circle cx="251.1" cy="228.2" r="3.2"/><circle cx="137.8" cy="183.8" r="3.2"/><circle cx="141.6" cy="157.2" r="3.2"/><circle cx="127.1" cy="188.3" r="3.2"/><circle cx="160.2" cy="183.8" r="3.2"/><circle cx="260.8" cy="259.3" r="3.2"/><circle cx="226.2" cy="263.7" r="3.2"/><circle cx="245.5" cy="263.7" r="3.2"/><circle cx="127.1" cy="71.9" r="3.2"/><circle cx="97.4" cy="134.1" r="3.2"/><circle cx="127.1" cy="163.4" r="3.2"/><circle cx="140.8" cy="104.8" r="3.2"/><circle cx="97.4" cy="134.1" r="3.2"/><circle cx="349.4" cy="278.0" r="3.2"/><circle cx="408.9" cy="282.4" r="3.2"/><circle cx="382.4" cy="275.3" r="3.2"/><circle cx="376.7" cy="284.2" r="3.2"/><circle cx="315.5" cy="272.6" r="3.2"/><circle cx="284.9" cy="275.3" r="3.2"/><circle cx="245.5" cy="231.8" r="3.2"/><circle cx="359.8" cy="272.6" r="3.2"/><circle cx="324.4" cy="282.4" r="3.2"/><circle cx="351.8" cy="271.7" r="3.2"/><circle cx="301.9" cy="270.0" r="3.2"/><circle cx="390.4" cy="289.5" r="3.2"/><circle cx="356.6" cy="293.9" r="3.2"/><circle cx="359.0" cy="284.2" r="3.2"/><circle cx="362.2" cy="297.5" r="3.2"/><circle cx="323.6" cy="293.9" r="3.2"/><circle cx="464.5" cy="299.3" r="3.2"/><circle cx="154.5" cy="188.3" r="3.2"/><circle cx="219.7" cy="210.5" r="3.2"/><circle cx="177.9" cy="213.1" r="3.2"/><circle cx="166.6" cy="180.3" r="3.2"/><circle cx="212.5" cy="267.3" r="3.2"/><circle cx="249.5" cy="248.7" r="3.2"/><circle cx="267.2" cy="243.3" r="3.2"/><circle cx="194.8" cy="242.4" r="3.2"/><circle cx="263.2" cy="274.4" r="3.2"/><circle cx="313.1" cy="303.7" r="3.2"/><circle cx="257.6" cy="262.9" r="3.2"/><circle cx="356.6" cy="310.8" r="3.2"/><circle cx="127.9" cy="175.0" r="3.2"/><circle cx="151.3" cy="192.7" r="3.2"/><circle cx="330.0" cy="263.7" r="3.2"/><circle cx="289.0" cy="278.8" r="3.2"/><circle cx="272.9" cy="256.6" r="3.2"/><circle cx="333.3" cy="275.3" r="3.2"/><circle cx="348.6" cy="271.7" r="3.2"/><circle cx="425.8" cy="303.7" r="3.2"/><circle cx="407.3" cy="298.4" r="3.2"/><circle cx="444.4" cy="308.1" r="3.2"/><circle cx="424.2" cy="293.1" r="3.2"/><circle cx="509.6" cy="304.6" r="3.2"/><circle cx="460.3" cy="317.0" r="3.2"/><circle cx="388.0" cy="284.2" r="3.2"/><circle cx="442.0" cy="290.4" r="3.2"/><circle cx="117.5" cy="171.4" r="3.2"/><circle cx="125.5" cy="151.9" r="3.2"/><circle cx="115.9" cy="137.7" r="3.2"/><circle cx="237.4" cy="211.4" r="3.2"/><circle cx="375.9" cy="229.1" r="3.2"/><circle cx="435.5" cy="250.4" r="3.2"/><circle cx="321.2" cy="213.1" r="3.2"/><circle cx="358.2" cy="242.4" r="3.2"/><circle cx="161.8" cy="151.0" r="3.2"/><circle cx="153.7" cy="148.3" r="3.2"/><circle cx="132.8" cy="172.3" r="3.2"/><circle cx="150.5" cy="123.4" r="3.2"/><circle cx="237.4" cy="202.5" r="3.2"/><circle cx="225.4" cy="198.9" r="3.2"/><circle cx="242.3" cy="216.7" r="3.2"/><circle cx="219.1" cy="157.2" r="3.2"/><circle cx="152.7" cy="86.2" r="3.2"/><circle cx="124.4" cy="116.3" r="3.2"/><circle cx="148.9" cy="169.6" r="3.2"/><circle cx="132.6" cy="124.3" r="3.2"/><circle cx="238.7" cy="206.0" r="3.2"/><circle cx="269.7" cy="220.2" r="3.2"/><circle cx="291.1" cy="238.9" r="3.2"/><circle cx="351.9" cy="285.1" r="3.2"/><circle cx="159.8" cy="150.1" r="3.2"/><circle cx="244.0" cy="190.0" r="3.2"/><circle cx="216.8" cy="176.7" r="3.2"/><circle cx="199.4" cy="126.1" r="3.2"/><circle cx="172.2" cy="168.7" r="3.2"/><circle cx="147.3" cy="40.9" r="3.2"/><circle cx="258.4" cy="206.9" r="3.2"/><circle cx="147.3" cy="92.4" r="3.2"/><circle cx="143.2" cy="61.3" r="3.2"/><circle cx="183.5" cy="69.3" r="3.2"/><circle cx="282.5" cy="131.4" r="3.2"/><circle cx="330.8" cy="188.3" r="3.2"/><circle cx="105.4" cy="58.6" r="3.2"/><circle cx="103.0" cy="91.5" r="3.2"/><circle cx="152.9" cy="154.5" r="3.2"/><circle cx="104.6" cy="190.0" r="3.2"/><circle cx="276.1" cy="164.3" r="3.2"/><circle cx="197.2" cy="244.2" r="3.2"/><circle cx="210.1" cy="143.9" r="3.2"/><circle cx="275.3" cy="245.1" r="3.2"/><circle cx="176.3" cy="167.0" r="3.2"/><circle cx="208.5" cy="213.1" r="3.2"/><circle cx="231.8" cy="218.5" r="3.2"/><circle cx="229.4" cy="225.6" r="3.2"/><circle cx="246.3" cy="246.0" r="3.2"/><circle cx="191.6" cy="188.3" r="3.2"/><circle cx="90.1" cy="107.5" r="3.2"/><circle cx="109.4" cy="108.4" r="3.2"/><circle cx="90.9" cy="143.0" r="3.2"/><circle cx="140.0" cy="167.8" r="3.2"/><circle cx="125.5" cy="126.1" r="3.2"/><circle cx="137.6" cy="119.9" r="3.2"/><circle cx="127.1" cy="151.9" r="3.2"/><circle cx="164.2" cy="146.5" r="3.2"/><circle cx="136.8" cy="149.2" r="3.2"/><circle cx="190.7" cy="189.2" r="3.2"/><circle cx="160.2" cy="161.6" r="3.2"/><circle cx="181.1" cy="148.3" r="3.2"/><circle cx="163.4" cy="155.4" r="3.2"/><circle cx="185.9" cy="167.0" r="3.2"/><circle cx="228.6" cy="162.5" r="3.2"/><circle cx="231.8" cy="174.1" r="3.2"/><circle cx="327.6" cy="205.1" r="3.2"/><circle cx="316.3" cy="182.1" r="3.2"/><circle cx="274.5" cy="229.1" r="3.2"/><circle cx="279.3" cy="239.8" r="3.2"/><circle cx="357.4" cy="255.8" r="3.2"/><circle cx="407.3" cy="218.5" r="3.2"/><circle cx="300.2" cy="275.3" r="3.2"/><circle cx="365.5" cy="298.4" r="3.2"/><circle cx="227.0" cy="206.0" r="3.2"/><circle cx="232.6" cy="214.9" r="3.2"/><circle cx="193.2" cy="152.8" r="3.2"/><circle cx="222.1" cy="179.4" r="3.2"/><circle cx="214.1" cy="197.2" r="3.2"/><circle cx="247.9" cy="214.9" r="3.2"/><circle cx="268.8" cy="241.5" r="3.2"/><circle cx="296.2" cy="250.4" r="3.2"/><circle cx="126.3" cy="135.0" r="3.2"/><circle cx="133.6" cy="126.1" r="3.2"/><circle cx="124.7" cy="179.4" r="3.2"/><circle cx="149.7" cy="117.2" r="3.2"/><circle cx="149.7" cy="135.0" r="3.2"/><circle cx="155.3" cy="135.0" r="3.2"/><circle cx="162.6" cy="135.0" r="3.2"/><circle cx="169.0" cy="152.8" r="3.2"/><circle cx="123.9" cy="117.2" r="3.2"/><circle cx="123.9" cy="170.5" r="3.2"/><circle cx="128.8" cy="117.2" r="3.2"/><circle cx="281.7" cy="232.7" r="3.2"/><circle cx="293.0" cy="117.2" r="3.2"/><circle cx="223.8" cy="223.8" r="3.2"/><circle cx="264.0" cy="259.3" r="3.2"/><circle cx="236.6" cy="170.5" r="3.2"/><circle cx="189.1" cy="135.0" r="3.2"/><circle cx="282.5" cy="214.9" r="3.2"/><circle cx="256.8" cy="214.9" r="3.2"/><circle cx="150.5" cy="64.0" r="3.2"/><circle cx="177.1" cy="170.5" r="3.2"/><circle cx="230.2" cy="206.0" r="3.2"/><circle cx="245.5" cy="179.4" r="3.2"/></g><line class="fit" x1="56.0" y1="148.6" x2="624.0" y2="389.0"/></symbol>
+  </svg>
 </body>
 </html>

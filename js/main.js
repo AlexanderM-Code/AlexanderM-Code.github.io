@@ -1,249 +1,707 @@
-// Marca que hay JavaScript: solo así se ocultan los elementos que entran con animación.
-// Si el script falla, todo el contenido queda visible.
-document.documentElement.classList.add('js');
+/* =========================================================
+   Portafolio de Alexander Mejía Ospina
+   Sin dependencias. Cada bloque funciona por su cuenta: si uno
+   falla (por ejemplo, la API no responde), el resto sigue.
+   ========================================================= */
 
-// Año actual en el pie de página
-document.getElementById('year').textContent = new Date().getFullYear();
-
+const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+const API = 'https://cinex-api-lt2q.onrender.com';
+const OBS_DATA = 'https://alexanderm-code.github.io/observatorio-salud-antioquia/data/eventos_por_anio.json';
 
 /* ---------------------------------------------------------
-   Barra: al bajar aparece el nombre y un fondo; el enlace
-   de la sección visible queda marcado.
+   Textos que escribe el JavaScript, en los dos idiomas.
+   Los textos fijos de la página llevan su inglés en data-en.
    --------------------------------------------------------- */
-const nav = document.getElementById('nav');
-const hero = document.getElementById('inicio');
-const heroVisual = document.querySelector('.hero-visual');
-const progressBar = document.querySelector('.progress');
-const navLinks = [...document.querySelectorAll('.nav ul a:not(.btn)')];
-
-function onScroll() {
-  const y = window.scrollY;
-  nav.classList.toggle('is-scrolled', y > 40);
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
-
-  // Las capturas del inicio se abren en abanico mientras el inicio sale de la pantalla
-  if (!reduceMotion) {
-    const p = Math.min(1, Math.max(0, y / (hero.offsetHeight * 0.7)));
-    heroVisual.style.setProperty('--p', p.toFixed(3));
+const T = {
+  es: {
+    title: 'Alexander Mejía Ospina | Desarrollador full stack y datos',
+    description: 'Portafolio de Alexander Mejía Ospina, estudiante de Ingeniería de Software en Medellín. APIs, sitios web y análisis de datos en producción, con pruebas automáticas y despliegue. Disponible para práctica empresarial.',
+    langButton: 'EN', langLabel: 'Read this page in English', langAttr: 'en',
+    apiChecking: 'Comprobando…',
+    apiOk: (ms) => `En línea · responde en ${ms} ms`,
+    apiWaking: (n, max) => `Despertando el servidor gratuito… (intento ${n} de ${max})`,
+    apiDown: 'Fuera de línea. El resto del sitio funciona igual.',
+    checkedAt: 'comprobado',
+    chartLoading: 'Cargando datos del observatorio…',
+    chartLive: 'Datos en vivo del observatorio',
+    chartFallback: 'Sin conexión con el observatorio: se muestran los datos de dengue guardados',
+    chartLabel: (ev, max, year) => `Casos anuales de ${ev} en Antioquia, 2007 a 2022. Máximo: ${max} casos en ${year}.`,
+    readout: (year, n, ev) => `${year} · ${n} casos de ${ev}`,
+    cases: 'casos',
+    events: { 210: 'dengue', 490: 'malaria vivax', 831: 'varicela' },
+    demoIdle: 'Pulsa el botón para enviar la petición real.',
+    demoSending: 'Enviando la petición…',
+    demoSlow: 'El servidor gratuito está despertando; puede tardar hasta un minuto…',
+    demoDone: (status, ms) => `HTTP ${status} · ${ms} ms · respuesta real de la API`,
+    demoFail: 'No hubo respuesta. Es un servidor gratuito: vuelve a intentarlo en un minuto.',
+    copy: 'Copiar', copied: 'Copiado', copiedMsg: 'Correo copiado al portapapeles.',
+    copyFail: 'No se pudo copiar. Selecciona el correo y cópialo a mano.',
+    skillsHint: 'Pasa el cursor o enfoca una habilidad para ver dónde la usé.',
+    themeDark: 'Cambiar a tema oscuro', themeLight: 'Cambiar a tema claro',
+    locale: 'es-CO'
+  },
+  en: {
+    title: 'Alexander Mejia Ospina | Full stack and data developer',
+    description: 'Portfolio of Alexander Mejia Ospina, a Software Engineering student in Medellin, Colombia. APIs, websites and data analysis running in production, with automated tests and deployment. Available for an internship.',
+    langButton: 'ES', langLabel: 'Leer esta página en español', langAttr: 'es',
+    apiChecking: 'Checking…',
+    apiOk: (ms) => `Online · responds in ${ms} ms`,
+    apiWaking: (n, max) => `Waking up the free server… (attempt ${n} of ${max})`,
+    apiDown: 'Offline. The rest of the site works the same.',
+    checkedAt: 'checked',
+    chartLoading: 'Loading data from the observatory…',
+    chartLive: 'Live data from the observatory',
+    chartFallback: 'No connection to the observatory: showing the saved dengue data',
+    chartLabel: (ev, max, year) => `Yearly ${ev} cases in Antioquia, 2007 to 2022. Peak: ${max} cases in ${year}.`,
+    readout: (year, n, ev) => `${year} · ${n} ${ev} cases`,
+    cases: 'cases',
+    events: { 210: 'dengue', 490: 'vivax malaria', 831: 'chickenpox' },
+    demoIdle: 'Press the button to send the real request.',
+    demoSending: 'Sending the request…',
+    demoSlow: 'The free server is waking up; it can take up to a minute…',
+    demoDone: (status, ms) => `HTTP ${status} · ${ms} ms · real API response`,
+    demoFail: 'No response. It is a free server: try again in a minute.',
+    copy: 'Copy', copied: 'Copied', copiedMsg: 'Email copied to the clipboard.',
+    copyFail: 'Could not copy. Select the email and copy it by hand.',
+    skillsHint: 'Hover or focus a skill to see where I used it.',
+    themeDark: 'Switch to dark theme', themeLight: 'Switch to light theme',
+    locale: 'en-US'
   }
-  if (y < hero.offsetHeight * 0.5) navLinks.forEach((a) => a.classList.remove('is-active'));
-  revealWords();
-}
-window.addEventListener('scroll', onScroll, { passive: true });
+};
 
-if ('IntersectionObserver' in window) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === `#${entry.target.id}`));
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  ['proyectos', 'habilidades', 'sobre-mi', 'contacto'].forEach((id) => sectionObserver.observe(document.getElementById(id)));
-}
+let lang = 'es';
+const t = () => T[lang];
+const fmt = (n, decimals = 0) => n.toLocaleString(t().locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+const langListeners = [];
 
 /* ---------------------------------------------------------
-   Sobre mí: cada palabra se enciende a medida que el texto
-   sube por la pantalla.
-   --------------------------------------------------------- */
-const wordsBox = document.querySelector('[data-words]');
-let words = [];
-
-function splitWords() {
-  words = [];
-  wordsBox.querySelectorAll('p').forEach((p) => {
-    const parts = p.textContent.trim().split(/\s+/);
-    p.textContent = '';
-    parts.forEach((word, i) => {
-      const span = document.createElement('span');
-      span.className = 'w';
-      span.textContent = word;
-      p.appendChild(span);
-      if (i < parts.length - 1) p.appendChild(document.createTextNode(' '));
-      words.push(span);
-    });
-  });
-}
-
-/* ---------------------------------------------------------
-   Titular: cada palabra entra por separado. El texto completo
-   queda en aria-label para los lectores de pantalla.
-   --------------------------------------------------------- */
-const headline = document.querySelector('.headline');
-
-function splitHeadline() {
-  if (reduceMotion) return;
-  const text = headline.textContent.trim();
-  headline.setAttribute('aria-label', text);
-  headline.classList.add('split');
-  headline.innerHTML = text.split(/\s+/)
-    .map((word, i) => `<span class="hw" aria-hidden="true" style="--i:${i}">${word}</span>`)
-    .join(' ');
-}
-
-/* ---------------------------------------------------------
-   Idioma: cada texto guarda su versión en inglés en data-en.
-   El botón las intercambia y la elección se recuerda.
+   Idioma
    --------------------------------------------------------- */
 const langToggle = document.getElementById('lang-toggle');
-const meta = {
-  es: { title: 'Alexander Mejía Ospina | Desarrollador Full Stack', button: 'EN', label: 'EN: read this page in English' },
-  en: { title: 'Alexander Mejía Ospina | Full Stack Developer', button: 'ES', label: 'ES: leer esta página en español' }
-};
-let lang = 'es';
 
-function setLang(next) {
-  if (next === lang) return;
-  document.querySelectorAll('[data-en]').forEach((el) => {
-    if (el.dataset.es === undefined) el.dataset.es = el.closest('[data-words]') || el === headline ? el.textContent.trim() : el.innerHTML;
-    el.innerHTML = next === 'en' ? el.dataset.en : el.dataset.es;
+function swapAttr(selector, attr, dataKey) {
+  document.querySelectorAll(selector).forEach((el) => {
+    const esKey = `es${dataKey}`;
+    if (el.dataset[esKey] === undefined) el.dataset[esKey] = el.getAttribute(attr) || '';
+    el.setAttribute(attr, lang === 'en' ? el.dataset[`en${dataKey}`] : el.dataset[esKey]);
   });
-  document.querySelectorAll('[data-en-href]').forEach((el) => {
-    if (el.dataset.esHref === undefined) el.dataset.esHref = el.getAttribute('href');
-    el.setAttribute('href', next === 'en' ? el.dataset.enHref : el.dataset.esHref);
-  });
-  document.querySelectorAll('[data-en-placeholder]').forEach((el) => {
-    if (el.dataset.esPlaceholder === undefined) el.dataset.esPlaceholder = el.placeholder;
-    el.placeholder = next === 'en' ? el.dataset.enPlaceholder : el.dataset.esPlaceholder;
-  });
-  lang = next;
-  document.documentElement.lang = next;
-  document.title = meta[next].title;
-  langToggle.textContent = meta[next].button;
-  langToggle.setAttribute('aria-label', meta[next].label);
-  langToggle.lang = next === 'en' ? 'es' : 'en';
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
-  splitWords();
-  splitHeadline();
-  revealWords();
-  try { localStorage.setItem('lang', next); } catch (e) { /* sin almacenamiento: no se recuerda */ }
 }
 
-const swapTargets = [document.querySelector('main'), document.querySelector('.footer'), document.querySelector('.nav nav')];
+function setLang(next, { save = true } = {}) {
+  lang = next;
+  document.querySelectorAll('[data-en]').forEach((el) => {
+    if (el.dataset.es === undefined) el.dataset.es = el.innerHTML;
+    el.innerHTML = next === 'en' ? el.dataset.en : el.dataset.es;
+  });
+  swapAttr('[data-en-href]', 'href', 'Href');
+  swapAttr('[data-en-aria]', 'aria-label', 'Aria');
+  swapAttr('[data-en-alt]', 'alt', 'Alt');
+
+  root.lang = next;
+  document.title = t().title;
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', t().description);
+  langToggle.querySelector('span').textContent = t().langButton;
+  langToggle.setAttribute('aria-label', t().langLabel);
+  langToggle.lang = t().langAttr;
+
+  langListeners.forEach((fn) => { try { fn(); } catch (e) { /* un bloque no tumba a los demás */ } });
+  if (save) { try { localStorage.setItem('lang', next); } catch (e) { /* sin almacenamiento */ } }
+}
 
 langToggle.addEventListener('click', () => {
   const next = lang === 'es' ? 'en' : 'es';
   if (reduceMotion) { setLang(next); return; }
-  swapTargets.forEach((el) => el.classList.add('lang-swap'));
-  setTimeout(() => {
-    setLang(next);
-    swapTargets.forEach((el) => { el.classList.add('lang-swap-in'); el.classList.remove('lang-swap'); });
-    setTimeout(() => swapTargets.forEach((el) => el.classList.remove('lang-swap-in')), 240);
-  }, 140);
+  root.classList.add('lang-swap');
+  setTimeout(() => { setLang(next); root.classList.remove('lang-swap'); }, 120);
 });
-
-function revealWords() {
-  const box = wordsBox.getBoundingClientRect();
-  const vh = window.innerHeight;
-  // Empieza cuando la carta entra al 85 % de la pantalla y termina cuando su final llega al 45 %
-  const start = vh * 0.85;
-  const end = vh * 0.45;
-  const progress = Math.min(1, Math.max(0, (start - box.top) / (box.height + start - end)));
-  const lit = Math.round(progress * words.length);
-  words.forEach((w, i) => w.classList.toggle('on', i < lit));
-}
 
 /* ---------------------------------------------------------
-   Tarjetas de proyectos y demás bloques: entran una vez
-   cuando aparecen en pantalla.
+   Tema claro / oscuro. Sin elección guardada, sigue al sistema.
    --------------------------------------------------------- */
-document.querySelectorAll('.card').forEach((card) => {
-  card.querySelectorAll('.card-text > *').forEach((el, i) => el.style.setProperty('--i', i));
-  card.querySelector('.card-media').style.setProperty('--i', 3);
-});
-document.querySelectorAll('.stack-row li').forEach((li, i) => li.style.setProperty('--i', i));
-document.querySelectorAll('.card-media').forEach((media) => {
-  [...media.children].filter((el) => el.tagName !== 'FIGCAPTION').forEach((el, i) => el.style.setProperty('--m', i));
-});
-document.querySelectorAll('.tech, .facts-panel, .contact-rows').forEach((list) => {
-  list.classList.add('stagger');
-  [...list.children].forEach((el, i) => el.style.setProperty('--i', i));
-});
+const themeToggle = document.getElementById('theme-toggle');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+const currentTheme = () => root.getAttribute('data-theme') || (systemDark.matches ? 'dark' : 'light');
 
-const revealTargets = document.querySelectorAll('.projects .section-title, .skills .giant, .skill-group, .about-letter .section-title, .sign, .sign-role, .facts-panel, .contact .section-title, .contact .read, .contact-rows');
-revealTargets.forEach((el) => el.classList.add('reveal'));
-
-if ('IntersectionObserver' in window) {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.card, .reveal').forEach((el) => io.observe(el));
-} else {
-  document.querySelectorAll('.card, .reveal').forEach((el) => el.classList.add('in'));
+function syncThemeButton() {
+  themeToggle.setAttribute('aria-label', currentTheme() === 'dark' ? t().themeLight : t().themeDark);
 }
+themeToggle.addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try { localStorage.setItem('theme', next); } catch (e) { /* sin almacenamiento */ }
+  syncThemeButton();
+});
+systemDark.addEventListener?.('change', syncThemeButton);
+langListeners.push(syncThemeButton);
 
-let saved = null;
-try { saved = localStorage.getItem('lang'); } catch (e) { /* sin almacenamiento */ }
-const preferred = saved || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en');
-splitWords();
-if (preferred === 'en') setLang('en');
-else splitHeadline();
+/* ---------------------------------------------------------
+   Barra: se compacta al bajar, marca la sección visible y en
+   celulares abre un menú accesible.
+   --------------------------------------------------------- */
+const nav = document.getElementById('nav');
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+const navLinks = [...document.querySelectorAll('.menu-links a')];
+const sectionToLink = [
+  ['proyectos', '#proyectos'], ['datos', '#datos'], ['mas-proyectos', '#proyectos'],
+  ['habilidades', '#habilidades'], ['como-trabajo', '#habilidades'],
+  ['trayectoria', '#trayectoria'], ['sobre-mi', '#trayectoria'], ['contacto', '#contacto']
+].map(([id, href]) => [document.getElementById(id), href]).filter(([el]) => el);
 
+let ticking = false;
+function onScroll() {
+  ticking = false;
+  nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  const line = window.innerHeight * 0.4;
+  let active = null;
+  sectionToLink.forEach(([el, href]) => {
+    const box = el.getBoundingClientRect();
+    if (box.top <= line && box.bottom > line) active = href;
+  });
+  navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === active));
+}
+window.addEventListener('scroll', () => {
+  if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+}, { passive: true });
 onScroll();
 
-/* ---------------------------------------------------------
-   Capturas del inicio: se inclinan levemente hacia el puntero.
-   Es decorativo, así que solo con mouse y sin movimiento reducido.
-   --------------------------------------------------------- */
-if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const target = { x: 0, y: 0 };
-  const current = { x: 0, y: 0 };
-  let raf = null;
-
-  const tick = () => {
-    current.x += (target.x - current.x) * 0.08;
-    current.y += (target.y - current.y) * 0.08;
-    heroVisual.style.transform = `perspective(1400px) rotateX(${current.y.toFixed(2)}deg) rotateY(${current.x.toFixed(2)}deg)`;
-    if (Math.abs(target.x - current.x) > 0.01 || Math.abs(target.y - current.y) > 0.01) raf = requestAnimationFrame(tick);
-    else raf = null;
-  };
-
-  hero.addEventListener('pointermove', (event) => {
-    const box = hero.getBoundingClientRect();
-    target.x = ((event.clientX - box.left) / box.width - 0.5) * 8;
-    target.y = -((event.clientY - box.top) / box.height - 0.5) * 6;
-    if (!raf) raf = requestAnimationFrame(tick);
-  });
-  hero.addEventListener('pointerleave', () => {
-    target.x = 0;
-    target.y = 0;
-    if (!raf) raf = requestAnimationFrame(tick);
-  });
+function setMenu(open, { focus = true } = {}) {
+  nav.classList.toggle('is-open', open);
+  menuToggle.setAttribute('aria-expanded', String(open));
+  if (open && focus) navLinks[0]?.focus();
 }
+menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
+menu.addEventListener('click', (event) => {
+  if (event.target.closest('a')) setMenu(false, { focus: false });
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+    setMenu(false);
+    menuToggle.focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (nav.classList.contains('is-open') && !nav.contains(event.target)) setMenu(false, { focus: false });
+});
 
 /* ---------------------------------------------------------
-   Video de Numi: se reproduce solo mientras está en pantalla.
-   Con movimiento reducido no arranca solo y muestra controles.
+   Estado del sistema: petición real a la API de CineX.
+   Si el servidor gratuito está dormido, reintenta cada 10 s.
    --------------------------------------------------------- */
-const demo = document.querySelector('video.phone-main');
-if (demo) {
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    demo.controls = true;
-    demo.preload = 'metadata';
+const apiRow = document.getElementById('api-row');
+const apiDetail = document.getElementById('api-detail');
+const apiMs = document.getElementById('api-ms');
+const statusClock = document.getElementById('status-clock');
+const MAX_TRIES = 6;
+let apiState = { kind: 'checking' };
+
+function renderApi() {
+  const s = apiState;
+  apiRow.dataset.state = s.kind;
+  if (s.kind === 'ok') {
+    apiDetail.textContent = t().apiOk(fmt(s.ms));
+    apiMs.textContent = `${fmt(s.ms)} ms`;
+  } else if (s.kind === 'waking') {
+    apiDetail.textContent = t().apiWaking(s.attempt, MAX_TRIES);
+    apiMs.textContent = '…';
+  } else if (s.kind === 'down') {
+    apiDetail.textContent = t().apiDown;
+    apiMs.textContent = '—';
   } else {
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) demo.play().catch(() => { demo.controls = true; });
-      else demo.pause();
-    }, { threshold: 0.4 }).observe(demo);
+    apiDetail.textContent = t().apiChecking;
+    apiMs.textContent = '';
+  }
+  if (s.at) statusClock.textContent = `${t().checkedAt} ${s.at.toLocaleTimeString(t().locale, { hour: '2-digit', minute: '2-digit' })}`;
+}
+langListeners.push(renderApi);
+
+async function timedGet(path, timeout) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+  const start = performance.now();
+  try {
+    const res = await fetch(API + path, { signal: controller.signal, headers: { Accept: 'application/json' }, cache: 'no-store' });
+    const body = await res.text();
+    return { res, body, ms: Math.round(performance.now() - start) };
+  } finally {
+    clearTimeout(timer);
   }
 }
 
-/* ---------------------------------------------------------
-   Contacto: el campo abre el correo con el mensaje escrito.
-   Sin JavaScript, el formulario hace lo mismo con mailto.
-   --------------------------------------------------------- */
-const mailForm = document.getElementById('mail-form');
+async function checkApi(attempt = 0) {
+  try {
+    const { res, ms } = await timedGet('/productos', 8000);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    apiState = { kind: 'ok', ms, at: new Date() };
+  } catch (e) {
+    const next = attempt + 1;
+    apiState = next > MAX_TRIES ? { kind: 'down', at: new Date() } : { kind: 'waking', attempt: next, at: new Date() };
+    if (next <= MAX_TRIES) setTimeout(() => checkApi(next), 10000);
+  }
+  renderApi();
+}
 
-mailForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const body = mailForm.elements.body.value.trim();
-  const params = new URLSearchParams({ subject: 'Práctica empresarial', body });
-  window.location.href = `mailto:alexmejia0112@gmail.com?${params.toString().replace(/\+/g, '%20')}`;
+/* ---------------------------------------------------------
+   Cifras del inicio: cuentan desde cero cuando aparecen.
+   --------------------------------------------------------- */
+const counters = [...document.querySelectorAll('.count')];
+const countFinal = (el) => {
+  const value = parseFloat(el.dataset.count);
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const suffix = lang === 'en' && el.dataset.enSuffix !== undefined ? el.dataset.enSuffix : (el.dataset.suffix || '');
+  return { value, decimals, suffix };
+};
+const renderCount = (el, v) => {
+  const { decimals, suffix } = countFinal(el);
+  el.textContent = fmt(v, decimals) + suffix;
+};
+counters.forEach((el) => { el.dataset.done = '1'; });
+langListeners.push(() => counters.forEach((el) => { if (el.dataset.done) renderCount(el, countFinal(el).value); }));
+
+function runCounters() {
+  if (reduceMotion) return;
+  const start = performance.now();
+  const duration = 1300;
+  counters.forEach((el) => { el.dataset.done = ''; renderCount(el, 0); });
+  const step = (now) => {
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(2, -10 * p);
+    counters.forEach((el) => renderCount(el, countFinal(el).value * (p === 1 ? 1 : eased)));
+    if (p < 1) requestAnimationFrame(step);
+    else counters.forEach((el) => { el.dataset.done = '1'; });
+  };
+  requestAnimationFrame(step);
+}
+
+/* ---------------------------------------------------------
+   Gráfica del Observatorio: datos reales con SVG propio.
+   Se puede recorrer con el cursor o con las flechas.
+   --------------------------------------------------------- */
+const DENGUE_BACKUP = { anios: [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+  eventos: [{ codigo: '210', nombre: 'Dengue', casos: [98, 2505, 1321, 25804, 1963, 1991, 5761, 6762, 6780, 27628, 4091, 3670, 4980, 2133, 1239, 2007] }] };
+
+const chart = {
+  el: document.getElementById('chart'),
+  svg: document.getElementById('chart-svg'),
+  tip: document.getElementById('chart-tip'),
+  readout: document.getElementById('chart-readout'),
+  source: document.getElementById('chart-source'),
+  buttons: [...document.querySelectorAll('.segmented button')],
+  data: null, live: false, code: '210', active: -1, drawn: false
+};
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function svgEl(name, attrs, parent) {
+  const node = document.createElementNS(SVG_NS, name);
+  Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
+  if (parent) parent.appendChild(node);
+  return node;
+}
+
+function niceMax(v) {
+  const pow = Math.pow(10, Math.floor(Math.log10(v)));
+  const n = v / pow;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 3 ? 3 : n <= 4 ? 4 : n <= 5 ? 5 : 10) * pow;
+}
+
+function currentSeries() {
+  if (!chart.data) return null;
+  const ev = chart.data.eventos.find((e) => String(e.codigo) === chart.code);
+  return ev ? { years: chart.data.anios, values: ev.casos } : null;
+}
+
+function drawChart({ animate = false } = {}) {
+  const series = currentSeries();
+  if (!series) return;
+  const { years, values } = series;
+  const w = chart.svg.clientWidth || 600;
+  const h = chart.svg.clientHeight || 300;
+  const m = { top: 26, right: 4, bottom: 26, left: 52 };
+  const iw = w - m.left - m.right;
+  const ih = h - m.top - m.bottom;
+  const max = niceMax(Math.max(...values));
+  const band = iw / values.length;
+  const barW = Math.max(4, band * 0.68);
+  const y = (v) => m.top + ih - (v / max) * ih;
+
+  // Barras destacadas: años muy por encima de lo normal (o el máximo)
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  const sd = Math.sqrt(values.reduce((a, b) => a + (b - mean) ** 2, 0) / values.length);
+  let hot = values.map((v) => v > mean + 1.5 * sd);
+  if (!hot.some(Boolean)) hot = values.map((v) => v === Math.max(...values));
+
+  chart.svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  chart.svg.textContent = '';
+  const grid = svgEl('g', {}, chart.svg);
+  for (let i = 0; i <= 4; i += 1) {
+    const v = (max / 4) * i;
+    const gy = y(v);
+    svgEl('line', { class: i === 0 ? 'base-line' : 'grid-line', x1: m.left, x2: w - m.right, y1: gy, y2: gy }, grid);
+    const label = svgEl('text', { x: m.left - 8, y: gy + 4, 'text-anchor': 'end' }, grid);
+    label.textContent = fmt(v);
+  }
+  const step = band < 30 ? 3 : 1;
+  const bars = svgEl('g', { class: 'bars' }, chart.svg);
+  values.forEach((v, i) => {
+    const x = m.left + band * i + (band - barW) / 2;
+    const cls = ['bar', hot[i] ? 'is-hot' : '', i === chart.active ? 'is-active' : ''].join(' ').trim();
+    svgEl('rect', { class: cls, x, y: y(v), width: barW, height: Math.max(0, m.top + ih - y(v)), rx: 2, style: `--i:${i}` }, bars);
+    if (hot[i]) {
+      const lbl = svgEl('text', { class: 'bar-label', x: x + barW / 2, y: y(v) - 7, 'text-anchor': 'middle' }, bars);
+      lbl.textContent = fmt(v);
+    }
+    if ((i % step === 0) || i === values.length - 1) {
+      const yl = svgEl('text', { x: x + barW / 2, y: h - 6, 'text-anchor': 'middle' }, chart.svg);
+      yl.textContent = band < 30 ? `'${String(years[i]).slice(2)}` : years[i];
+    }
+  });
+  const hits = svgEl('g', {}, chart.svg);
+  values.forEach((v, i) => {
+    const hit = svgEl('rect', { class: 'hit', x: m.left + band * i, y: m.top, width: band, height: ih }, hits);
+    hit.addEventListener('pointerenter', () => setActive(i));
+  });
+
+  chart.geom = { m, band, barW, y, w };
+  const peak = values.indexOf(Math.max(...values));
+  chart.el.setAttribute('aria-label', t().chartLabel(t().events[chart.code], fmt(values[peak]), years[peak]));
+
+  if (animate && !reduceMotion) {
+    chart.el.classList.remove('is-drawing');
+    void chart.el.offsetWidth;
+    chart.el.classList.add('is-drawing');
+  }
+  if (chart.active >= 0) setActive(chart.active, { announce: false });
+}
+
+function setActive(i, { announce = true } = {}) {
+  const series = currentSeries();
+  if (!series || !chart.geom) return;
+  chart.active = Math.max(0, Math.min(series.values.length - 1, i));
+  chart.svg.querySelectorAll('.bar').forEach((b, k) => b.classList.toggle('is-active', k === chart.active));
+  const { m, band, y } = chart.geom;
+  const v = series.values[chart.active];
+  const yr = series.years[chart.active];
+  const scale = chart.el.clientWidth / (chart.geom.w || chart.el.clientWidth);
+  chart.tip.textContent = `${yr} · ${fmt(v)} ${t().cases}`;
+  chart.tip.style.left = `${(m.left + band * chart.active + band / 2) * scale}px`;
+  chart.tip.style.top = `${Math.max(14, y(v) - 6)}px`;
+  chart.tip.classList.add('is-on');
+  if (announce) chart.readout.textContent = t().readout(yr, fmt(v), t().events[chart.code]);
+}
+
+function clearActive() {
+  chart.tip.classList.remove('is-on');
+  chart.svg.querySelectorAll('.bar').forEach((b) => b.classList.remove('is-active'));
+  chart.active = -1;
+}
+
+function renderChartSource() {
+  if (!chart.data) { chart.source.textContent = t().chartLoading; return; }
+  chart.source.textContent = chart.live ? t().chartLive : t().chartFallback;
+  chart.source.classList.toggle('is-live', chart.live);
+}
+
+async function loadChart() {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 8000);
+    const res = await fetch(OBS_DATA, { signal: controller.signal });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data.anios) || !Array.isArray(data.eventos)) throw new Error('formato');
+    chart.data = data;
+    chart.live = true;
+  } catch (e) {
+    chart.data = DENGUE_BACKUP;
+    chart.live = false;
+    chart.code = '210';
+    chart.buttons.forEach((b) => {
+      const available = b.dataset.event === '210';
+      b.disabled = !available;
+      b.setAttribute('aria-pressed', String(available));
+    });
+  }
+  renderChartSource();
+  drawChart({ animate: !chart.drawn });
+  chart.drawn = true;
+}
+
+chart.buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    chart.code = button.dataset.event;
+    chart.buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+    clearActive();
+    chart.readout.textContent = '';
+    drawChart({ animate: true });
+  });
 });
+chart.el.addEventListener('pointerleave', clearActive);
+chart.el.addEventListener('blur', clearActive);
+chart.el.addEventListener('focus', () => {
+  const series = currentSeries();
+  if (series && chart.active < 0) setActive(series.values.indexOf(Math.max(...series.values)));
+});
+chart.el.addEventListener('keydown', (event) => {
+  const series = currentSeries();
+  if (!series) return;
+  const last = series.values.length - 1;
+  const moves = { ArrowRight: chart.active + 1, ArrowUp: chart.active + 1, ArrowLeft: chart.active - 1, ArrowDown: chart.active - 1, Home: 0, End: last };
+  if (event.key in moves) {
+    event.preventDefault();
+    setActive(moves[event.key]);
+  }
+});
+if ('ResizeObserver' in window) {
+  let lastWidth = 0;
+  new ResizeObserver(([entry]) => {
+    const width = Math.round(entry.contentRect.width);
+    if (width !== lastWidth && chart.data) { lastWidth = width; drawChart(); }
+  }).observe(chart.el);
+}
+langListeners.push(() => {
+  renderChartSource();
+  if (chart.data) drawChart();
+  if (chart.active >= 0) setActive(chart.active);
+});
+
+/* ---------------------------------------------------------
+   Demo de CineX: solo lecturas (GET), nunca escrituras.
+   --------------------------------------------------------- */
+const demoOut = document.getElementById('demo-out');
+const demoStatus = document.getElementById('demo-status');
+const demoSeats = document.getElementById('demo-seats');
+const demoButtons = [document.getElementById('demo-run'), document.getElementById('demo-404')];
+let demoLast = null;
+
+const escapeHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function highlightJson(text) {
+  let pretty = text;
+  try { pretty = JSON.stringify(JSON.parse(text), null, 2); } catch (e) { /* no es JSON: se muestra tal cual */ }
+  return escapeHtml(pretty).replace(
+    /("(?:\\.|[^"\\])*")(\s*:)?|\b(-?\d+(?:\.\d+)?)\b|\b(true|false|null)\b/g,
+    (match, str, colon, num, lit) => {
+      if (str) return colon ? `<span class="t-key">${str}</span>${colon}` : `<span class="t-str">${str}</span>`;
+      if (num) return `<span class="t-num">${num}</span>`;
+      return `<span class="t-num">${lit}</span>`;
+    }
+  );
+}
+
+function renderDemoStatus() {
+  if (!demoLast) return;
+  if (demoLast.kind === 'done') demoStatus.textContent = t().demoDone(demoLast.status, fmt(demoLast.ms));
+  else if (demoLast.kind === 'fail') demoStatus.textContent = t().demoFail;
+  else if (demoLast.kind === 'slow') demoStatus.textContent = t().demoSlow;
+  else demoStatus.textContent = t().demoSending;
+}
+langListeners.push(renderDemoStatus);
+
+async function runDemo(button) {
+  const path = button.dataset.path;
+  demoButtons.forEach((b) => { b.disabled = true; });
+  demoOut.innerHTML = `<code><span class="t-dim">$ curl -s ${API}${path}</span>\n</code>`;
+  demoLast = { kind: 'sending' };
+  renderDemoStatus();
+  const slowTimer = setTimeout(() => { demoLast = { kind: 'slow' }; renderDemoStatus(); }, 5000);
+  try {
+    const { res, body, ms } = await timedGet(path, 65000);
+    const cls = res.ok ? 't-ok' : 't-err';
+    demoOut.innerHTML = `<code><span class="t-dim">$ curl -s ${API}${path}</span>\n<span class="${cls}">HTTP ${res.status}</span>\n${highlightJson(body)}</code>`;
+    demoLast = { kind: 'done', status: res.status, ms };
+    let data = null;
+    try { data = JSON.parse(body); } catch (e) { /* respuesta sin JSON */ }
+    if (res.ok && data && typeof data.capacidad === 'number') {
+      document.getElementById('seat-cap').textContent = fmt(data.capacidad);
+      document.getElementById('seat-sold').textContent = fmt(data.vendidas);
+      document.getElementById('seat-free').textContent = fmt(data.disponibles);
+      const ratio = data.capacidad > 0 ? data.disponibles / data.capacidad : 0;
+      document.getElementById('seat-fill').style.transform = `scaleX(${ratio})`;
+      demoSeats.hidden = false;
+    } else {
+      demoSeats.hidden = true;
+    }
+    if (apiState.kind !== 'ok') { apiState = { kind: 'ok', ms, at: new Date() }; renderApi(); }
+  } catch (e) {
+    demoOut.innerHTML = `<code><span class="t-dim">$ curl -s ${API}${path}</span>\n<span class="t-err">${escapeHtml(t().demoFail)}</span></code>`;
+    demoLast = { kind: 'fail' };
+  } finally {
+    clearTimeout(slowTimer);
+    demoButtons.forEach((b) => { b.disabled = false; });
+    renderDemoStatus();
+  }
+}
+demoButtons.forEach((b) => b && b.addEventListener('click', () => runDemo(b)));
+
+/* ---------------------------------------------------------
+   Más proyectos: diálogos nativos. Esc cierra, el foco queda
+   dentro mientras está abierto y vuelve al botón al cerrar.
+   --------------------------------------------------------- */
+let lastTrigger = null;
+document.querySelectorAll('[data-dialog]').forEach((trigger) => {
+  const dialog = document.getElementById(trigger.dataset.dialog);
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  trigger.addEventListener('click', () => {
+    lastTrigger = trigger;
+    dialog.showModal();
+    root.style.overflow = 'hidden';
+    const video = dialog.querySelector('video');
+    if (video) {
+      if (reduceMotion) { video.controls = true; video.preload = 'metadata'; } else video.play().catch(() => { video.controls = true; });
+    }
+  });
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog || event.target.closest('[data-close]')) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    root.style.overflow = '';
+    dialog.querySelector('video')?.pause();
+    lastTrigger?.focus();
+  });
+});
+
+// Video de Numi en la tarjeta: se reproduce al pasar el cursor
+if (canHover && !reduceMotion) {
+  document.querySelectorAll('.more-open').forEach((card) => {
+    const video = card.querySelector('.hover-video');
+    if (!video) return;
+    card.addEventListener('pointerenter', () => { video.play().catch(() => {}); });
+    card.addEventListener('pointerleave', () => { video.pause(); });
+  });
+}
+
+/* ---------------------------------------------------------
+   Habilidades: la lectura del instrumento dice dónde usé cada una.
+   --------------------------------------------------------- */
+document.querySelectorAll('.skills').forEach((list) => {
+  const readout = document.createElement('p');
+  readout.className = 'tier-readout';
+  readout.setAttribute('aria-hidden', 'true');
+  list.after(readout);
+  const idle = () => { readout.textContent = t().skillsHint; };
+  const show = (li) => {
+    list.querySelectorAll('li').forEach((x) => x.classList.toggle('is-active', x === li));
+    readout.innerHTML = '';
+    const strong = document.createElement('strong');
+    strong.textContent = li.querySelector('.s-name').textContent;
+    readout.append(strong, ` — ${li.querySelector('.s-where').textContent}`);
+  };
+  list.querySelectorAll('li').forEach((li) => {
+    li.addEventListener('pointerenter', () => show(li));
+    li.addEventListener('focus', () => show(li));
+  });
+  list.addEventListener('pointerleave', () => {
+    if (!list.contains(document.activeElement)) { list.querySelectorAll('li').forEach((x) => x.classList.remove('is-active')); idle(); }
+  });
+  list.addEventListener('focusout', (event) => {
+    if (!list.contains(event.relatedTarget)) { list.querySelectorAll('li').forEach((x) => x.classList.remove('is-active')); idle(); }
+  });
+  idle();
+  langListeners.push(() => {
+    const on = list.querySelector('li.is-active');
+    if (on) show(on); else idle();
+  });
+});
+
+/* ---------------------------------------------------------
+   Contacto: copiar el correo, con respaldo para navegadores
+   sin portapapeles.
+   --------------------------------------------------------- */
+const copyButton = document.getElementById('copy-mail');
+const copyStatus = document.getElementById('copy-status');
+let copyTimer = null;
+
+function legacyCopy(text) {
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  area.remove();
+  return ok;
+}
+
+copyButton.addEventListener('click', async () => {
+  const mail = copyButton.dataset.mail;
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(mail);
+    ok = true;
+  } catch (e) {
+    ok = legacyCopy(mail);
+  }
+  copyStatus.textContent = ok ? t().copiedMsg : t().copyFail;
+  if (ok) {
+    copyButton.textContent = t().copied;
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(() => { copyButton.textContent = t().copy; copyStatus.textContent = ''; }, 2400);
+  }
+});
+
+/* ---------------------------------------------------------
+   Entradas al hacer scroll: una vez por bloque, escalonadas.
+   Lo que ya está en pantalla al cargar no se esconde.
+   --------------------------------------------------------- */
+const revealGroups = [
+  '.section-head > *', '.case', '.more-card', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
+  '.contact-title', '.mail-box', '.contact-links'
+];
+const revealEls = [];
+revealGroups.forEach((selector) => {
+  document.querySelectorAll(selector).forEach((el) => {
+    const siblings = [...el.parentElement.children].filter((c) => c.matches(selector));
+    el.style.setProperty('--i', Math.min(siblings.indexOf(el), 5));
+    revealEls.push(el);
+  });
+});
+
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const vh = window.innerHeight;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  revealEls.forEach((el) => {
+    if (el.getBoundingClientRect().top < vh) return;
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+
+  // La gráfica se dibuja y las cifras cuentan cuando aparecen
+  const once = (el, fn, threshold = 0.35) => {
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { obs.disconnect(); fn(); }
+    }, { threshold });
+    obs.observe(el);
+  };
+  once(document.querySelector('.metrics'), runCounters, 0.4);
+  once(chart.el, loadChart, 0.15);
+} else {
+  loadChart();
+}
+
+/* ---------------------------------------------------------
+   Arranque
+   --------------------------------------------------------- */
+const pending = root.getAttribute('data-lang-pending');
+let saved = null;
+try { saved = localStorage.getItem('lang'); } catch (e) { /* sin almacenamiento */ }
+const fromQuery = /[?&]lang=(es|en)\b/.exec(location.search);
+if (pending === 'en' || (!saved && !fromQuery && !(navigator.language || 'es').toLowerCase().startsWith('es'))) {
+  setLang('en', { save: Boolean(saved) || Boolean(fromQuery) });
+} else {
+  langListeners.forEach((fn) => { try { fn(); } catch (e) { /* sigue */ } });
+}
+root.removeAttribute('data-lang-pending');
+checkApi();
