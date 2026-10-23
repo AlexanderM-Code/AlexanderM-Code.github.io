@@ -19,7 +19,7 @@ const T = {
   es: {
     title: 'Alexander Mejía Ospina | Desarrollador full stack y datos',
     description: 'Portafolio de Alexander Mejía Ospina, estudiante de Ingeniería de Software en Medellín. APIs, sitios web y análisis de datos en producción, con pruebas automáticas y despliegue. Disponible para práctica empresarial.',
-    langButton: 'EN', langLabel: 'Read this page in English', langAttr: 'en',
+    langButton: 'EN', langLabel: 'EN, read this page in English', langAttr: 'en',
     apiChecking: 'Comprobando…',
     apiOk: (ms) => `En línea · responde en ${ms} ms`,
     apiWaking: (n, max) => `Despertando el servidor gratuito… (intento ${n} de ${max})`,
@@ -46,7 +46,7 @@ const T = {
   en: {
     title: 'Alexander Mejia Ospina | Full stack and data developer',
     description: 'Portfolio of Alexander Mejia Ospina, a Software Engineering student in Medellin, Colombia. APIs, websites and data analysis running in production, with automated tests and deployment. Available for an internship.',
-    langButton: 'ES', langLabel: 'Leer esta página en español', langAttr: 'es',
+    langButton: 'ES', langLabel: 'ES, leer esta página en español', langAttr: 'es',
     apiChecking: 'Checking…',
     apiOk: (ms) => `Online · responds in ${ms} ms`,
     apiWaking: (n, max) => `Waking up the free server… (attempt ${n} of ${max})`,
@@ -552,6 +552,10 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
     dialog.showModal();
     root.style.overflow = 'hidden';
     const video = dialog.querySelector('video');
+    if (video && video.dataset.src && !video.getAttribute('src')) {
+      video.poster = video.dataset.poster || '';
+      video.src = video.dataset.src;
+    }
     if (video) {
       if (reduceMotion) { video.controls = true; video.preload = 'metadata'; } else video.play().catch(() => { video.controls = true; });
     }
@@ -571,8 +575,11 @@ if (canHover && !reduceMotion) {
   document.querySelectorAll('.more-open').forEach((card) => {
     const video = card.querySelector('.hover-video');
     if (!video) return;
-    card.addEventListener('pointerenter', () => { video.play().catch(() => {}); });
-    card.addEventListener('pointerleave', () => { video.pause(); });
+    card.addEventListener('pointerenter', () => {
+      if (!video.getAttribute('src')) video.src = video.dataset.src;
+      video.play().then(() => video.classList.add('is-playing')).catch(() => {});
+    });
+    card.addEventListener('pointerleave', () => { video.pause(); video.classList.remove('is-playing'); });
   });
 }
 
@@ -706,4 +713,6 @@ if (pending === 'en' || (!saved && !fromQuery && !(navigator.language || 'es').t
   langListeners.forEach((fn) => { try { fn(); } catch (e) { /* sigue */ } });
 }
 root.removeAttribute('data-lang-pending');
-checkApi();
+// La API se consulta cuando la página terminó de cargar, para no competir con lo esencial
+if (document.readyState === 'complete') checkApi();
+else window.addEventListener('load', () => checkApi(), { once: true });
