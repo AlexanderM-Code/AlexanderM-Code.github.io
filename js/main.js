@@ -6,7 +6,6 @@
 
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 const API = 'https://cinex-api-lt2q.onrender.com';
 const OBS_DATA = 'https://alexanderm-code.github.io/observatorio-salud-antioquia/data/eventos_por_anio.json';
@@ -40,6 +39,7 @@ const T = {
     copy: 'Copiar', copied: 'Copiado', copiedMsg: 'Correo copiado al portapapeles.',
     copyFail: 'No se pudo copiar. Selecciona el correo y cópialo a mano.',
     skillsHint: 'Pasa el cursor o enfoca una habilidad para ver dónde la usé.',
+    caseMore: 'Ver caso completo', caseLess: 'Ocultar',
     themeDark: 'Cambiar a tema oscuro', themeLight: 'Cambiar a tema claro',
     locale: 'es-CO'
   },
@@ -67,6 +67,7 @@ const T = {
     copy: 'Copy', copied: 'Copied', copiedMsg: 'Email copied to the clipboard.',
     copyFail: 'Could not copy. Select the email and copy it by hand.',
     skillsHint: 'Hover or focus a skill to see where I used it.',
+    caseMore: 'See full case study', caseLess: 'Hide',
     themeDark: 'Switch to dark theme', themeLight: 'Switch to light theme',
     locale: 'en-US'
   }
@@ -600,18 +601,32 @@ if (numiVideo) {
   }
 }
 
-// Video en tarjetas de "Más proyectos": se reproduce al pasar el cursor
-if (canHover && !reduceMotion) {
-  document.querySelectorAll('.more-open').forEach((card) => {
-    const video = card.querySelector('.hover-video');
-    if (!video) return;
-    card.addEventListener('pointerenter', () => {
-      if (!video.getAttribute('src')) video.src = video.dataset.src;
-      video.play().then(() => video.classList.add('is-playing')).catch(() => {});
-    });
-    card.addEventListener('pointerleave', () => { video.pause(); video.classList.remove('is-playing'); });
+/* ---------------------------------------------------------
+   Casos de estudio: la ficha completa se pliega. Cerrada, queda
+   inerte para que el teclado no entre en ella. Sin JavaScript,
+   todo queda abierto.
+   --------------------------------------------------------- */
+document.querySelectorAll('.case-toggle').forEach((button) => {
+  const panel = document.getElementById(button.getAttribute('aria-controls'));
+  const label = button.querySelector('.case-toggle-label');
+  if (!panel || !label) return;
+  const render = () => {
+    label.textContent = button.getAttribute('aria-expanded') === 'true' ? t().caseLess : t().caseMore;
+  };
+  panel.inert = true;
+  button.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    panel.classList.toggle('is-open', open);
+    panel.inert = !open;
+    render();
+    // Al cerrar desde abajo, vuelve a dejar el botón a la vista
+    if (!open && button.getBoundingClientRect().top < 0) {
+      button.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
   });
-}
+  langListeners.push(render);
+});
 
 /* ---------------------------------------------------------
    Habilidades: la lectura del instrumento dice dónde usé cada una.
