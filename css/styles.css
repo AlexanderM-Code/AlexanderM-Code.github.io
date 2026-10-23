@@ -4,6 +4,24 @@
    en vivo. Tema oscuro con los mismos papeles.
    ========================================================= */
 
+/* Fuentes servidas desde el propio sitio (OFL), subconjunto latino */
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("../assets/fonts/schibsted-grotesk-latin.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/jetbrains-mono-latin.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --paper: #f3efe6;
   --paper-2: #ebe5d8;
@@ -178,7 +196,9 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .dot-live { background: var(--orange); }
 [data-state="waking"] > .dot { background: var(--orange); }
 [data-state="down"] > .dot { background: var(--red); }
+.dot-dev, [data-state="dev"] > .dot { background: var(--blue); }
 .dot-ok::after, .dot-live::after,
+.dot-dev::after, [data-state="dev"] > .dot::after,
 [data-state="ok"] > .dot::after, [data-state="waking"] > .dot::after, [data-state="checking"] > .dot::after {
   animation: pulse 1.8s var(--ease-out) infinite;
 }
@@ -340,6 +360,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
   border: 1px solid color-mix(in srgb, var(--orange) 55%, transparent); border-radius: 999px;
   color: var(--orange-text); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.75rem;
 }
+.dev-pill { border-color: color-mix(in srgb, var(--blue) 55%, transparent); color: var(--blue); }
 .case-title {
   margin-top: 16px;
   font-size: clamp(1.875rem, 3.4vw, 2.75rem); font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; text-wrap: balance;
@@ -443,6 +464,27 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .js .chart.is-drawing rect.bar { animation: grow 700ms var(--ease-out) both; animation-delay: calc(var(--i) * 28ms); }
 @keyframes grow { from { transform: scaleY(0); } }
 
+/* Numi: tres pantallas reales con el video al centro */
+.case-phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 18px); align-items: center; padding: 8px 4% 0; }
+.case-phones .phone { width: 100%; border-radius: 18px; border: 1px solid var(--line-strong); background: var(--paper-2); }
+.case-phones .phone-main { transform: scale(1.08); box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.45); }
+.case-phones figcaption { grid-column: 1 / -1; margin-top: 18px; }
+
+/* Numi: el recorrido de una pregunta dentro del celular */
+.pipeline { grid-area: chart; display: grid; gap: 0; counter-reset: step; }
+.pipeline li { position: relative; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: start; padding: 0 0 22px; }
+.pipeline li::before { content: ""; position: absolute; left: 47px; top: 30px; bottom: 0; width: 1.5px; background: var(--line-strong); }
+.pipeline li:last-child { padding-bottom: 0; }
+.pipeline li:last-child::before { display: none; }
+.step-tag {
+  position: relative; z-index: 1; justify-self: center; padding: 4px 8px; min-width: 76px; text-align: center;
+  border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface);
+  font-size: 0.75rem; color: var(--ink);
+}
+.pipeline li:last-child .step-tag { background: var(--blue); border-color: var(--blue); color: var(--blue-ink); }
+.step-name { font-weight: 700; }
+.pipeline li div p:last-child:not(.step-name) { color: var(--ink-2); font-size: 0.9375rem; line-height: 1.45; margin-top: 2px; }
+
 .findings { grid-area: finds; display: grid; gap: 12px; align-content: start; }
 .finding { padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
 .finding p:last-child { color: var(--ink-2); font-size: 0.9375rem; line-height: 1.45; margin-top: 6px; }
@@ -484,7 +526,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .seat-bar span { display: block; height: 100%; width: 100%; background: #6bd897; transform-origin: left; transition: transform 600ms var(--ease-out); }
 
 /* ---------- Más proyectos ---------- */
-.more-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
+.more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }
 .more-open {
   display: flex; flex-direction: column; width: 100%; height: 100%; padding: 0; text-align: left;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -492,7 +534,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
   transition: border-color 200ms ease, transform 200ms var(--ease-out);
 }
 .more-open:active { transform: scale(0.985); }
-.more-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); border-bottom: 1px solid var(--line); }
+.more-media { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-2); border-bottom: 1px solid var(--line); }
 .more-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 500ms var(--ease-out); }
 .more-media-phone { display: grid; place-items: center; padding-top: 18px; }
 .more-media-phone .phone-frame { position: relative; display: block; width: 44%; align-self: end; overflow: hidden; border-radius: 14px 14px 0 0; border: 1px solid var(--line-strong); border-bottom: 0; transition: transform 500ms var(--ease-out); }
@@ -701,7 +743,6 @@ main, .footer { transition: opacity 180ms ease; }
   .lab { grid-template-columns: minmax(0, 1fr); grid-template-areas: "lhead" "chart" "finds"; }
   .lab-cinex { grid-template-areas: "rules" "term"; }
   .findings { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .more-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dlg-body { grid-template-columns: minmax(0, 1fr); }
   .about-grid, .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -727,6 +768,10 @@ main, .footer { transition: opacity 180ms ease; }
   .t-item::before { left: 5px; }
   .t-item::after { left: 0; top: 5px; }
   .rule-list li { grid-template-columns: 44px minmax(0, 1fr); }
+  .pipeline li { grid-template-columns: 78px minmax(0, 1fr); gap: 12px; }
+  .pipeline li::before { left: 38px; }
+  .step-tag { min-width: 70px; padding: 4px 4px; font-size: 0.6875rem; }
+  .case-phones { padding-inline: 0; }
   .shots-pair { padding-bottom: 0; }
   .shots-pair .browser:first-child { width: 92%; }
   .shots-pair .browser:nth-child(2) { position: relative; width: 70%; margin: -14% 0 0 auto; }

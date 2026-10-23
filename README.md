@@ -14,7 +14,7 @@ js/main.js        # Idioma ES/EN, tema, menú, estado de la API de CineX, cifras
                   # gráfica del Observatorio, demo de CineX, diálogos y copiar correo
 404.html          # Página de error con el mismo estilo
 robots.txt, sitemap.xml
-assets/           # Capturas reales (WebP), video de Numi, logos, íconos y og.jpg
+assets/           # Capturas reales (WebP), video de Numi, logos, fuentes (OFL), íconos y og.jpg
 cv/               # Hoja de vida en español e inglés (no cambiar las rutas)
 ```
 

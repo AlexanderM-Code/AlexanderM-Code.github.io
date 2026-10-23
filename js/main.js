@@ -570,7 +570,37 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
   });
 });
 
-// Video de Numi en la tarjeta: se reproduce al pasar el cursor
+// Video de Numi en su caso de estudio: carga y se reproduce solo mientras se ve.
+// Con movimiento reducido no arranca solo y muestra controles.
+const numiVideo = document.getElementById('numi-video');
+if (numiVideo) {
+  const loadPoster = () => { if (!numiVideo.getAttribute('poster')) numiVideo.poster = numiVideo.dataset.poster; };
+  const loadVideo = () => { loadPoster(); if (!numiVideo.getAttribute('src')) numiVideo.src = numiVideo.dataset.src; };
+  if (!('IntersectionObserver' in window)) {
+    numiVideo.controls = true;
+    loadVideo();
+  } else if (reduceMotion) {
+    // Sin reproducción automática: póster y controles cuando se acerca
+    numiVideo.controls = true;
+    numiVideo.preload = 'metadata';
+    const near = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { near.disconnect(); loadVideo(); }
+    }, { rootMargin: '600px 0px' });
+    near.observe(numiVideo);
+  } else {
+    // El póster llega un poco antes de que el video entre en pantalla
+    const near = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { near.disconnect(); loadPoster(); }
+    }, { rootMargin: '600px 0px' });
+    near.observe(numiVideo);
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { loadVideo(); numiVideo.play().catch(() => { numiVideo.controls = true; }); }
+      else numiVideo.pause();
+    }, { threshold: 0.35 }).observe(numiVideo);
+  }
+}
+
+// Video en tarjetas de "Más proyectos": se reproduce al pasar el cursor
 if (canHover && !reduceMotion) {
   document.querySelectorAll('.more-open').forEach((card) => {
     const video = card.querySelector('.hover-video');
