@@ -190,7 +190,8 @@ p, li, dd, dt, figcaption { text-wrap: pretty; }
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
-html { scrollbar-color: var(--line-strong) transparent; }
+/* Barra de desplazamiento con los colores del tema */
+html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--paper); scrollbar-width: thin; }
 
 .wrap { width: 100%; max-width: calc(var(--wrap) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
 
@@ -1040,7 +1041,36 @@ main, .footer { transition: opacity 180ms ease; }
   .js .reveal, .js .hero .rise { opacity: 1; transform: none; }
 }
 
+/* ---------- Impresión: blanco y negro, sin navegación ni animaciones, con las URL visibles ---------- */
 @media print {
-  .nav, .terminal-actions, .segmented { display: none; }
-  body { background: #fff; }
+  @page { margin: 16mm 14mm; }
+  :root:not(#_), :root:not(#_)[data-theme] {
+    --paper: #fff; --paper-2: #fff; --surface: #fff; --ink: #000; --ink-2: #222; --ink-3: #444;
+    --line: #bbb; --line-strong: #777; --blue: #000; --blue-ink: #fff; --blue-soft: transparent;
+    --orange: #000; --orange-text: #000; --green: #000; --green-text: #000; --red: #000;
+    --grid: transparent; --bar: #aaa; --bar-hot: #000; --grain: none;
+    --shot-shadow: none; --shot-shadow-raised: none; --shot-filter: grayscale(1);
+    color-scheme: light;
+  }
+  *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+  body { background: #fff !important; font-size: 10.5pt; }
+  .nav, .progress, .skip, .cmdk, .toast, .dlg, .spot, .terminal-actions, .terminal-status, .segmented, .case-toggle,
+  .chart-help, .tier-readout, #copy-mail, .copy-status, .local-time, .to-top, video, .panel-foot, .metric-go { display: none !important; }
+  .hero { padding-top: 0; }
+  .section, .section-alt { padding: 8mm 0; background: none !important; }
+  .js .reveal, .js .hero .rise { opacity: 1 !important; transform: none !important; }
+  .js .case-more { grid-template-rows: 1fr !important; }
+  .js .case-more .case-more-inner { opacity: 1 !important; visibility: visible !important; }
+  img, svg { filter: grayscale(1); }
+  .js .fade-img { opacity: 1 !important; }
+  .hero .actions { display: none !important; }
+  .btn { min-height: 0; padding: 0; border: 0; background: none !important; color: #000 !important; justify-content: flex-start; text-align: left; }
+  .case-links, .more-actions, .colophon-actions { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .terminal { background: #fff; color: #000; border: 1px solid #777; }
+  .terminal-out, .t-dim, .t-key, .t-num, .t-str, .t-ok, .t-err { color: #000 !important; }
+  a { color: #000; }
+  a[href^="http"]::after, a[href^="mailto:"]::after { content: " (" attr(href) ")"; font-family: var(--mono); font-size: 0.8em; font-weight: 400; word-break: break-all; }
+  .metric-link::after { content: none !important; }
+  h2, h3, h4 { break-after: avoid; }
+  .habit, .t-item, .finding, .fact, .more-card, .cert, .learned, figure { break-inside: avoid; }
 }
