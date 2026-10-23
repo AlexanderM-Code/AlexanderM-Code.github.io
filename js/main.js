@@ -196,7 +196,7 @@ function onScroll() {
 window.addEventListener('scroll', () => {
   if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
 }, { passive: true });
-onScroll();
+requestAnimationFrame(onScroll);
 
 // Sección visible: la que cruza una línea al 40 % de la pantalla. El fondo
 // del enlace activo se desliza de un enlace al siguiente.
@@ -821,17 +821,25 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMo
    --------------------------------------------------------- */
 const localTime = document.getElementById('local-time');
 const localTimeText = document.getElementById('local-time-text');
+// El formateador con zona horaria es caro de crear: se guarda uno por idioma
+const clockFormats = {};
+let clockStarted = false;
 function renderLocalTime() {
-  const time = new Intl.DateTimeFormat(t().locale, { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
-  localTimeText.textContent = t().localTime(time);
-  localTime.hidden = false;
+  if (!clockStarted) return;
+  try {
+    clockFormats[lang] ||= new Intl.DateTimeFormat(t().locale, { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' });
+    localTimeText.textContent = t().localTime(clockFormats[lang].format(new Date()));
+    localTime.hidden = false;
+  } catch (e) { localTime.hidden = true; }
 }
-try {
+langListeners.push(renderLocalTime);
+// Arranca cuando la página ya cargó, para no competir con el primer pintado
+function startClock() {
+  clockStarted = true;
   renderLocalTime();
-  langListeners.push(renderLocalTime);
   // Se alinea con el cambio de minuto y luego avanza cada 60 s
   setTimeout(() => { renderLocalTime(); setInterval(renderLocalTime, 60000); }, 60000 - (Date.now() % 60000) + 50);
-} catch (e) { localTime.hidden = true; }
+}
 
 /* ---------------------------------------------------------
    Pie: cuándo se actualizó el sitio por última vez, según el
@@ -1117,7 +1125,9 @@ root.removeAttribute('data-lang-pending');
 // La API se consulta cuando la página terminó de cargar, para no competir con lo esencial
 const afterLoad = () => {
   checkApi();
-  (window.requestIdleCallback || ((fn) => setTimeout(fn, 1200)))(loadSiteUpdated);
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
+  idle(startClock);
+  idle(loadSiteUpdated);
 };
 if (document.readyState === 'complete') afterLoad();
 else window.addEventListener('load', afterLoad, { once: true });

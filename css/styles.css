@@ -997,7 +997,6 @@ main, .footer { transition: opacity 180ms ease; }
   .skills li { display: inline-flex; gap: 8px; padding: 6px 10px 6px 8px; }
   .skills img { width: 20px; height: 20px; }
   .skills .s-name { font-size: 0.875rem; }
-  .actions .btn { flex: 1 1 auto; }
   .habits { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .habit { padding: var(--space-4); gap: var(--space-2); }
   .habit > p:not(.evidence) { font-size: 0.9375rem; }
