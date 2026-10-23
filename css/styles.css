@@ -670,6 +670,22 @@ html { scrollbar-color: var(--line-strong) transparent; }
   :root:not([data-theme="light"]) .skills img, :root:not([data-theme="light"]) .learning img { padding: 3px; background: #ece8df; border-radius: 6px; }
 }
 .learning .s-where { margin-top: 2px; }
+.tier-side { display: grid; gap: clamp(24px, 2.8vw, 32px); align-content: start; }
+.tier-4 .tier-mark { background: transparent; color: var(--blue); border: 1.5px solid var(--blue); }
+.certs { display: grid; gap: 6px; margin-top: 16px; }
+.cert {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px;
+  padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  color: inherit; text-decoration: none; transition: border-color 160ms ease, background-color 160ms ease;
+}
+div.cert { grid-template-columns: 28px minmax(0, 1fr); }
+.cert img { width: 28px; height: 28px; }
+.cert .s-where { margin-top: 2px; }
+.cert-go { font-family: var(--mono); color: var(--blue); }
+a.cert:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { a.cert:hover { border-color: var(--blue); background: var(--blue-soft); } }
+:root[data-theme="dark"] .cert img { padding: 3px; background: #ece8df; border-radius: 6px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cert img { padding: 3px; background: #ece8df; border-radius: 6px; } }
 
 /* ---------- Cómo trabajo ---------- */
 .habits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 20px); counter-reset: habit; }
