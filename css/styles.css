@@ -523,7 +523,6 @@ html { scrollbar-color: var(--line-strong) transparent; }
   width: min(1100px, calc(100% - 24px)); max-height: min(92dvh, 900px);
   padding: 0; border: 1px solid var(--line-strong); border-radius: 12px;
   background: var(--surface); color: var(--ink);
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.5);
   opacity: 1; transform: none;
   transition: opacity 200ms var(--ease-out), transform 240ms var(--ease-out), overlay 240ms allow-discrete, display 240ms allow-discrete;
 }
@@ -545,7 +544,7 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .dlg-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 4vw, 48px); margin-top: 24px; align-items: start; }
 .dlg-text > * + * { margin-top: 16px; }
 .dlg-lede { font-size: 1.25rem; font-weight: 500; line-height: 1.35; }
-.role { padding: 12px 14px; border-left: 2px solid var(--blue); background: var(--blue-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.role { padding: 12px 14px; background: var(--blue-soft); border-radius: var(--radius-sm); }
 .dlg-phones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: center; }
 .dlg-phones .phone { width: 100%; border-radius: 16px; border: 1px solid var(--line-strong); background: var(--paper-2); }
 .dlg-phones .phone-main { transform: scale(1.06); }
