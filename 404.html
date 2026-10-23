@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada | Alexander Mejía Ospina</title>
+  <meta name="description" content="Esta página no existe. Vuelve al portafolio de Alexander Mejía Ospina.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script>
+    (function () {
+      var d = document.documentElement, theme = null, lang = null;
+      try { theme = localStorage.getItem('theme'); lang = localStorage.getItem('lang'); } catch (e) { /* sin almacenamiento */ }
+      if (theme === 'light' || theme === 'dark') d.setAttribute('data-theme', theme);
+      if (!lang) lang = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+      d.lang = lang;
+    })();
+  </script>
+  <style>
+    .lost { min-height: 100vh; min-height: 100dvh; display: grid; align-content: center; padding-block: 64px; }
+    .lost-code { font-size: clamp(5rem, 22vw, 14rem); font-weight: 500; line-height: 0.9; letter-spacing: -0.06em; color: var(--blue); }
+    .lost h1 { margin-top: 20px; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; }
+    .lost p { margin-top: 14px; max-width: 46ch; font-size: 1.1875rem; color: var(--ink-2); }
+    .lost .actions { margin-top: 28px; }
+    [lang="es"] .en, [lang="en"] .es { display: none; }
+  </style>
+</head>
+<body>
+  <main class="lost wrap">
+    <p class="label mono">GET <span id="path">/</span> · 404</p>
+    <p class="lost-code mono" aria-hidden="true">404</p>
+    <h1><span class="es">Esta página no existe.</span><span class="en" lang="en">This page does not exist.</span></h1>
+    <p><span class="es">Puede que el enlace esté mal escrito o que la página se haya movido. Todo el portafolio está en el inicio.</span><span class="en" lang="en">The link may be mistyped or the page may have moved. The whole portfolio is on the home page.</span></p>
+    <div class="actions">
+      <a class="btn btn-accent" href="/"><span class="es">Volver al inicio</span><span class="en" lang="en">Back to the home page</span></a>
+      <a class="btn btn-line" href="/#proyectos"><span class="es">Ver proyectos</span><span class="en" lang="en">See projects</span></a>
+    </div>
+  </main>
+  <script>
+    document.getElementById('path').textContent = location.pathname;
+    if (document.documentElement.lang === 'en') document.title = 'Page not found | Alexander Mejia Ospina';
+  </script>
+</body>
+</html>
