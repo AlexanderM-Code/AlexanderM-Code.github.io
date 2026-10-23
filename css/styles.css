@@ -822,7 +822,7 @@ div.cert { grid-template-columns: 28px minmax(0, 1fr); }
 .habit-title { font-size: 1.1875rem; font-weight: 800; letter-spacing: var(--track-h4); line-height: 1.2; }
 .habit > p:not(.evidence) { color: var(--ink-2); font-size: 0.9875rem; }
 .evidence { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.8125rem; }
-.evidence a { color: var(--blue); }
+.evidence a { align-self: flex-start; color: var(--blue); }
 
 /* ---------- Trayectoria ---------- */
 .timeline { position: relative; display: grid; gap: 0; max-width: 900px; }
