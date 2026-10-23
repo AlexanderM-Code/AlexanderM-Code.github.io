@@ -70,6 +70,7 @@
 </head>
 <body>
   <a class="skip" href="#contenido" data-en="Skip to content">Saltar al contenido</a>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
   <header class="nav" id="nav">
     <div class="wrap nav-row">
@@ -81,6 +82,7 @@
         <span data-en="Menu">Menú</span>
       </button>
       <nav class="menu" id="menu" aria-label="Principal" data-en-aria="Main">
+        <div class="menu-rail">
         <ul class="menu-links">
           <li><a href="#proyectos" data-en="Projects">Proyectos</a></li>
           <li><a href="#datos" data-en="Data">Datos</a></li>
@@ -88,6 +90,8 @@
           <li><a href="#trayectoria" data-en="Journey">Trayectoria</a></li>
           <li><a href="#contacto" data-en="Contact">Contacto</a></li>
         </ul>
+        <span class="menu-indicator" id="menu-indicator" aria-hidden="true"></span>
+        </div>
         <div class="menu-tools">
           <button class="tool" type="button" id="lang-toggle" aria-label="EN, read this page in English" lang="en"><span class="mono">EN</span></button>
           <button class="tool" type="button" id="theme-toggle" aria-label="Cambiar a tema oscuro" data-label-dark="Cambiar a tema oscuro" data-label-light="Cambiar a tema claro" data-en-label-dark="Switch to dark theme" data-en-label-light="Switch to light theme">
