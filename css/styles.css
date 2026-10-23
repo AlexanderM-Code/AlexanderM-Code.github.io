@@ -252,8 +252,8 @@ html { scrollbar-color: var(--line-strong) transparent; }
 .tag { font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
 .availability {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 14px;
-  padding: 6px 12px 6px 11px; border: 1px solid var(--line-strong); border-radius: 999px;
-  font-size: 0.9375rem; font-weight: 500; background: var(--surface);
+  padding: 6px 14px 6px 12px; border: 1px solid var(--line-strong); border-radius: 18px;
+  font-size: 0.9375rem; font-weight: 500; line-height: 1.35; background: var(--surface);
 }
 .name {
   margin-top: 28px;
