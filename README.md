@@ -37,3 +37,9 @@ python -m http.server 8000
 ```
 
 Abre `http://localhost:8000` (la API de CineX acepta peticiones desde ese puerto).
+
+## Al publicar cambios de CSS o JavaScript
+
+Sube el número de versión `?v=...` en los enlaces a `css/styles.css` y `js/main.js` de `index.html`
+(y de `404.html`). Así los navegadores descargan los archivos nuevos en vez de usar la copia guardada,
+que GitHub Pages deja en caché 10 minutos.
