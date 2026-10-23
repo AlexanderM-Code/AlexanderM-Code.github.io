@@ -33,7 +33,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;700;800&amp;display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Schibsted+Grotesk:wght@400;500;700;800&amp;display=swap"></noscript>
   <link rel="stylesheet" href="css/styles.css">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
@@ -76,7 +77,7 @@
 
   <header class="nav" id="nav">
     <div class="wrap nav-row">
-      <a class="brand" href="#inicio" aria-label="Alexander Mejía Ospina, inicio" data-en-aria="Alexander Mejia Ospina, home">
+      <a class="brand" href="#inicio">
         <span class="brand-mark" aria-hidden="true">AM</span><span class="brand-name">Alexander Mejía Ospina</span>
       </a>
       <button class="menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="menu">
@@ -92,7 +93,7 @@
           <li><a href="#contacto" data-en="Contact">Contacto</a></li>
         </ul>
         <div class="menu-tools">
-          <button class="tool" type="button" id="lang-toggle" aria-label="Read this page in English" lang="en"><span class="mono">EN</span></button>
+          <button class="tool" type="button" id="lang-toggle" aria-label="EN, read this page in English" lang="en"><span class="mono">EN</span></button>
           <button class="tool" type="button" id="theme-toggle" aria-label="Cambiar a tema oscuro" data-label-dark="Cambiar a tema oscuro" data-label-light="Cambiar a tema claro" data-en-label-dark="Switch to dark theme" data-en-label-light="Switch to light theme">
             <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
             <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -109,21 +110,21 @@
     <section class="hero" id="inicio" aria-labelledby="hero-name">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="tag mono rise" style="--i:0" data-en="Software Engineering · Medellin">Ingeniería de Software · Medellín</p>
-          <p class="availability rise" style="--i:1">
+          <p class="tag mono" data-en="Software Engineering · Medellin">Ingeniería de Software · Medellín</p>
+          <p class="availability">
             <span class="dot dot-ok" aria-hidden="true"></span>
             <span data-en="Available for an internship">Disponible para práctica empresarial</span>
             <!-- TODO fecha: agrega desde cuándo estás disponible, por ejemplo "desde enero de 2027" (y su traducción en data-en). -->
           </p>
-          <h1 class="name rise" style="--i:2" id="hero-name">Alexander <span>Mejía Ospina</span></h1>
-          <p class="value rise" style="--i:3" data-en="I build APIs, websites and data analysis that run in production, with tests and deployment.">Construyo APIs, sitios web y análisis de datos que funcionan en producción, con pruebas y despliegue.</p>
-          <div class="actions rise" style="--i:4">
+          <h1 class="name" id="hero-name">Alexander <span>Mejía Ospina</span></h1>
+          <p class="value" data-en="I build APIs, websites and data analysis that run in production, with tests and deployment.">Construyo APIs, sitios web y análisis de datos que funcionan en producción, con pruebas y despliegue.</p>
+          <div class="actions">
             <a class="btn btn-accent" href="#proyectos" data-en="See projects">Ver proyectos</a>
             <a class="btn btn-line" href="cv/CV_Alexander_Mejia_Ospina.pdf" data-en-href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download data-en="Download resume">Descargar hoja de vida</a>
           </div>
         </div>
 
-        <aside class="panel status rise" style="--i:3" aria-labelledby="status-title">
+        <aside class="panel status rise" style="--i:1" aria-labelledby="status-title">
           <div class="panel-head">
             <h2 class="panel-title mono" id="status-title" data-en="System status">Estado del sistema</h2>
             <span class="mono panel-meta" id="status-clock" aria-hidden="true"></span>
@@ -159,7 +160,7 @@
       </div>
 
       <div class="wrap">
-        <dl class="metrics rise" style="--i:5">
+        <dl class="metrics rise" style="--i:3">
           <div class="metric">
             <dt data-en="projects online">proyectos en línea</dt>
             <dd class="mono"><span class="count" data-count="3">3</span></dd>
@@ -256,15 +257,15 @@
             </figure>
             <ul class="findings">
               <li class="finding">
-                <p class="finding-num mono">27.628</p>
+                <p class="finding-num mono" data-en="27,628">27.628</p>
                 <p data-en="Dengue comes in waves: epidemics in 2010 (25,804 cases) and 2016 (27,628).">El dengue llega en olas: epidemias en 2010 (25.804 casos) y 2016 (27.628).</p>
               </li>
               <li class="finding">
-                <p class="finding-num mono">51 %</p>
+                <p class="finding-num mono" data-en="51%">51 %</p>
                 <p data-en="Medellin accounts for 51% of all dengue cases in the department.">Medellín concentra el 51 % del dengue del departamento.</p>
               </li>
               <li class="finding">
-                <p class="finding-num mono">−90 %</p>
+                <p class="finding-num mono" data-en="−90%">−90 %</p>
                 <p data-en="Vivax malaria fell almost 90% between 2010 and 2017: from 36,768 to 3,748 cases.">La malaria vivax cayó casi 90 % entre 2010 y 2017: de 36.768 a 3.748 casos.</p>
               </li>
             </ul>
@@ -398,7 +399,10 @@
           <li class="more-card">
             <button class="more-open" type="button" data-dialog="dlg-numi" aria-haspopup="dialog">
               <span class="more-media more-media-phone">
-                <video class="hover-video" src="assets/numi-demo.mp4" poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+                <span class="phone-frame">
+                  <img src="assets/numi-demo-poster.webp" width="540" height="1200" loading="lazy" decoding="async" alt="">
+                  <video class="hover-video" data-src="assets/numi-demo.mp4" width="540" height="1200" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+                </span>
               </span>
               <span class="more-body">
                 <span class="more-kind mono" data-en="Mobile app · Team · 2026">App móvil · Equipo · 2026</span>
@@ -461,7 +465,7 @@
             </div>
             <figure class="dlg-media dlg-phones">
               <img class="phone" src="assets/numi-progreso.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pantalla de progreso de Numi con las cinco materias: matemáticas, inglés, ciencias naturales, español y sociales" data-en-alt="Numi progress screen with the five subjects: math, English, science, Spanish and social studies">
-              <video class="phone phone-main" id="numi-video" src="assets/numi-demo.mp4" poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet" data-en-aria="Numi video in airplane mode: someone types what is a fraction and the assistant answers with no internet"></video>
+              <video class="phone phone-main" id="numi-video" data-src="assets/numi-demo.mp4" data-poster="assets/numi-demo-poster.webp" width="540" height="1200" muted loop playsinline preload="none" aria-label="Video de Numi en modo avión: se escribe la pregunta qué es una fracción y el asistente responde sin internet" data-en-aria="Numi video in airplane mode: someone types what is a fraction and the assistant answers with no internet"></video>
               <img class="phone" src="assets/numi-quiz.webp" width="560" height="1211" loading="lazy" decoding="async" alt="Pregunta de matemáticas en Numi: cuánto es 347 más 285, con cuatro opciones" data-en-alt="A math question in Numi: what is 347 plus 285, with four options">
               <figcaption data-en="Real video of the assistant answering in airplane mode, with the progress screen and a quiz on each side.">Video real del asistente respondiendo en modo avión, con el progreso y un quiz a los lados.</figcaption>
             </figure>
