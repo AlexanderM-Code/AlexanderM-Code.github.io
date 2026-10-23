@@ -100,6 +100,7 @@ function setLang(next, { save = true } = {}) {
   swapAttr('[data-en-href]', 'href', 'Href');
   swapAttr('[data-en-aria]', 'aria-label', 'Aria');
   swapAttr('[data-en-alt]', 'alt', 'Alt');
+  swapAttr('[data-en-placeholder]', 'placeholder', 'Placeholder');
 
   root.lang = next;
   document.title = t().title;
@@ -721,20 +722,205 @@ function legacyCopy(text) {
   return ok;
 }
 
-copyButton.addEventListener('click', async () => {
-  const mail = copyButton.dataset.mail;
-  let ok = false;
+async function copyText(text) {
   try {
-    await navigator.clipboard.writeText(mail);
-    ok = true;
+    await navigator.clipboard.writeText(text);
+    return true;
   } catch (e) {
-    ok = legacyCopy(mail);
+    return legacyCopy(text);
   }
+}
+
+copyButton.addEventListener('click', async () => {
+  const ok = await copyText(copyButton.dataset.mail);
   copyStatus.textContent = ok ? t().copiedMsg : t().copyFail;
   if (ok) {
     copyButton.textContent = t().copied;
     clearTimeout(copyTimer);
     copyTimer = setTimeout(() => { copyButton.textContent = t().copy; copyStatus.textContent = ''; }, 2400);
+  }
+});
+
+/* ---------------------------------------------------------
+   Aviso breve, para acciones que no tienen dónde mostrar su resultado.
+   --------------------------------------------------------- */
+const toast = document.getElementById('toast');
+let toastTimer = null;
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('is-on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.classList.remove('is-on'); setTimeout(() => { toast.textContent = ''; }, 250); }, 2200);
+}
+
+/* ---------------------------------------------------------
+   Paleta de comandos: Ctrl/⌘ + K, o el botón de búsqueda.
+   Un <dialog> modal deja el resto de la página inerte y cierra
+   con Esc; las flechas recorren las opciones (aria-activedescendant).
+   Sin animación de entrada: se usa con el teclado y debe ser inmediata.
+   --------------------------------------------------------- */
+const cmdk = document.getElementById('cmdk');
+const cmdkInput = document.getElementById('cmdk-input');
+const cmdkList = document.getElementById('cmdk-list');
+const cmdkEmpty = document.getElementById('cmdk-empty');
+const isMac = /Mac|iPhone|iPad/.test(navigator.userAgentData?.platform || navigator.platform || navigator.userAgent);
+document.querySelectorAll('.cmdk-kbd').forEach((k) => { k.textContent = isMac ? '⌘K' : 'Ctrl K'; });
+
+const CMDK_TEXT = {
+  es: { sections: 'Secciones', projects: 'Proyectos', actions: 'Acciones', empty: (q) => `Nada coincide con «${q}».`, section: 'sección', project: 'proyecto', mailCopied: 'Correo copiado al portapapeles.', mailFail: 'No se pudo copiar el correo.' },
+  en: { sections: 'Sections', projects: 'Projects', actions: 'Actions', empty: (q) => `Nothing matches “${q}”.`, section: 'section', project: 'project', mailCopied: 'Email copied to the clipboard.', mailFail: 'Could not copy the email.' }
+};
+const goTo = (hash) => () => {
+  const target = document.querySelector(hash);
+  if (!target) return;
+  target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  history.pushState(null, '', hash);
+  if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
+};
+const openDialog = (id) => () => document.querySelector(`[data-dialog="${id}"]`)?.click();
+const openUrl = (url) => () => window.open(url, '_blank', 'noopener');
+const download = (href) => () => {
+  const a = document.createElement('a');
+  a.href = href; a.download = '';
+  document.body.appendChild(a); a.click(); a.remove();
+};
+const CV = 'cv/CV_Alexander_Mejia_Ospina.pdf';
+const CV_EN = 'cv/Resume_Alexander_Mejia_Ospina_EN.pdf';
+const CV_DATA = 'cv/CV_Alexander_Mejia_Ospina_Analista_Datos.pdf';
+
+const CMDK_ITEMS = [
+  ['sections', 'Inicio', 'Home', '', goTo('#inicio')],
+  ['sections', 'Proyectos', 'Projects', 'casos', goTo('#proyectos')],
+  ['sections', 'Datos: gráfica del Observatorio', 'Data: Observatory chart', 'dengue malaria varicela', goTo('#datos')],
+  ['sections', 'Más proyectos', 'More projects', '', goTo('#mas-proyectos')],
+  ['sections', 'Habilidades', 'Skills', 'certificaciones certifications', goTo('#habilidades')],
+  ['sections', 'Cómo trabajo', 'How I work', 'hábitos habits', goTo('#como-trabajo')],
+  ['sections', 'Trayectoria', 'Journey', '', goTo('#trayectoria')],
+  ['sections', 'Sobre mí', 'About me', '', goTo('#sobre-mi')],
+  ['sections', 'Contacto', 'Contact', 'correo email', goTo('#contacto')],
+  ['projects', 'Observatorio de Salud Pública de Antioquia', 'Antioquia Public Health Observatory', 'python sql etl', goTo('#observatorio')],
+  ['projects', 'Numi', 'Numi', 'flutter app rag ia ai', goTo('#numi')],
+  ['projects', 'CineX', 'CineX', 'java spring api', goTo('#cinex')],
+  ['projects', 'Casa Rendón', 'Casa Rendon', 'react cliente client', openDialog('dlg-casa')],
+  ['projects', 'Datos con Python', 'Data with Python', 'regresión regression', openDialog('dlg-datos')],
+  ['actions', 'Descargar hoja de vida (español)', 'Download resume (Spanish)', 'cv pdf', download(CV), 'PDF'],
+  ['actions', 'Descargar hoja de vida (inglés)', 'Download resume (English)', 'cv pdf', download(CV_EN), 'PDF'],
+  ['actions', 'Descargar hoja de vida de analista de datos', 'Download data analyst resume (Spanish)', 'cv pdf datos', download(CV_DATA), 'PDF'],
+  ['actions', 'Copiar correo', 'Copy email', 'mail gmail', async () => {
+    const ok = await copyText(copyButton.dataset.mail);
+    showToast(ok ? CMDK_TEXT[lang].mailCopied : CMDK_TEXT[lang].mailFail);
+  }],
+  ['actions', 'Abrir GitHub', 'Open GitHub', 'código code', openUrl('https://github.com/AlexanderM-Code'), '↗'],
+  ['actions', 'Abrir LinkedIn', 'Open LinkedIn', '', openUrl('https://www.linkedin.com/in/alexander-mejia-ospina'), '↗'],
+  ['actions', 'Cambiar tema claro / oscuro', 'Switch light / dark theme', 'dark light modo mode', () => themeToggle.click()],
+  ['actions', 'Read this page in English', 'Leer esta página en español', 'idioma language ingles english espanol', () => langToggle.click()]
+].map(([group, es, en, keywords, run, hint = ''], i) => ({ id: `cmdk-opt-${i}`, group, es, en, keywords, run, hint }));
+
+const normalize = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+let cmdkResults = [];
+let cmdkIndex = 0;
+let cmdkOpener = null;
+
+function renderCmdk() {
+  const text = CMDK_TEXT[lang];
+  const words = normalize(cmdkInput.value.trim()).split(/\s+/).filter(Boolean);
+  cmdkResults = CMDK_ITEMS.filter((item) => {
+    const hay = normalize(`${item.es} ${item.en} ${item.keywords}`);
+    return words.every((w) => hay.includes(w));
+  });
+  cmdkIndex = Math.min(cmdkIndex, Math.max(0, cmdkResults.length - 1));
+  cmdkList.textContent = '';
+  let group = null;
+  cmdkResults.forEach((item, i) => {
+    if (item.group !== group) {
+      group = item.group;
+      const head = document.createElement('li');
+      head.className = 'cmdk-group';
+      head.setAttribute('role', 'presentation');
+      head.textContent = text[group];
+      cmdkList.append(head);
+    }
+    const li = document.createElement('li');
+    li.className = 'cmdk-item';
+    li.id = item.id;
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', String(i === cmdkIndex));
+    const label = document.createElement('span');
+    label.className = 'cmdk-label';
+    label.textContent = item[lang];
+    label.lang = item === CMDK_ITEMS[CMDK_ITEMS.length - 1] ? (lang === 'es' ? 'en' : 'es') : lang;
+    li.append(label);
+    const hint = item.hint || (group === 'sections' ? text.section : group === 'projects' ? text.project : '');
+    if (hint) {
+      const h = document.createElement('span');
+      h.className = 'cmdk-hint';
+      h.setAttribute('aria-hidden', 'true');
+      h.textContent = hint;
+      li.append(h);
+    }
+    li.addEventListener('pointermove', () => { if (cmdkIndex !== i) { cmdkIndex = i; markCmdk(); } });
+    li.addEventListener('click', () => runCmdk(i));
+    cmdkList.append(li);
+  });
+  cmdkEmpty.hidden = cmdkResults.length > 0;
+  cmdkEmpty.textContent = cmdkResults.length ? '' : text.empty(cmdkInput.value.trim());
+  markCmdk();
+}
+
+function markCmdk() {
+  const current = cmdkResults[cmdkIndex];
+  cmdkList.querySelectorAll('.cmdk-item').forEach((li) => li.setAttribute('aria-selected', String(li.id === current?.id)));
+  if (current) {
+    cmdkInput.setAttribute('aria-activedescendant', current.id);
+    document.getElementById(current.id)?.scrollIntoView({ block: 'nearest' });
+  } else {
+    cmdkInput.removeAttribute('aria-activedescendant');
+  }
+}
+
+function runCmdk(i) {
+  const item = cmdkResults[i];
+  if (!item) return;
+  cmdk.close();
+  item.run();
+}
+
+function openCmdk(opener) {
+  document.querySelectorAll('dialog.dlg[open]').forEach((d) => d.close());
+  if (nav.classList.contains('is-open')) setMenu(false, { focus: false });
+  cmdkOpener = opener || document.activeElement;
+  cmdkInput.value = '';
+  cmdkIndex = 0;
+  renderCmdk();
+  cmdk.showModal();
+  root.style.overflow = 'hidden';
+  cmdkInput.focus();
+}
+
+document.querySelectorAll('.cmdk-open').forEach((b) => b.addEventListener('click', () => openCmdk(b)));
+cmdk.querySelector('.cmdk-close').addEventListener('click', () => cmdk.close());
+cmdk.addEventListener('click', (event) => { if (event.target === cmdk) cmdk.close(); });
+cmdk.addEventListener('close', () => {
+  root.style.overflow = '';
+  if (cmdkOpener && document.contains(cmdkOpener) && document.activeElement === document.body) cmdkOpener.focus();
+});
+cmdkInput.addEventListener('input', () => { cmdkIndex = 0; renderCmdk(); });
+cmdkInput.addEventListener('keydown', (event) => {
+  const n = cmdkResults.length;
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    if (!n) return;
+    cmdkIndex = (cmdkIndex + (event.key === 'ArrowDown' ? 1 : -1) + n) % n;
+    markCmdk();
+  } else if (event.key === 'Home' && n) { event.preventDefault(); cmdkIndex = 0; markCmdk(); }
+  else if (event.key === 'End' && n) { event.preventDefault(); cmdkIndex = n - 1; markCmdk(); }
+  else if (event.key === 'Enter') { event.preventDefault(); runCmdk(cmdkIndex); }
+});
+document.addEventListener('keydown', (event) => {
+  if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === 'k') {
+    event.preventDefault();
+    if (cmdk.open) cmdk.close(); else openCmdk();
   }
 });
 
