@@ -135,9 +135,23 @@ function syncThemeButton() {
 }
 themeToggle.addEventListener('click', () => {
   const next = currentTheme() === 'dark' ? 'light' : 'dark';
-  root.setAttribute('data-theme', next);
-  try { localStorage.setItem('theme', next); } catch (e) { /* sin almacenamiento */ }
-  syncThemeButton();
+  const apply = () => {
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) { /* sin almacenamiento */ }
+    syncThemeButton();
+  };
+  if (!document.startViewTransition || reduceMotion) { apply(); return; }
+  // Revelado circular desde el botón; si el botón está oculto (menú cerrado), desde la esquina
+  const box = themeToggle.getBoundingClientRect();
+  const x = box.width ? box.left + box.width / 2 : window.innerWidth - 32;
+  const y = box.height ? box.top + box.height / 2 : 32;
+  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+  document.startViewTransition(apply).ready.then(() => {
+    root.animate(
+      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+      { duration: 420, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', pseudoElement: '::view-transition-new(root)' }
+    );
+  }).catch(() => { /* sin transición: el tema ya cambió */ });
 });
 systemDark.addEventListener?.('change', syncThemeButton);
 langListeners.push(syncThemeButton);
@@ -740,6 +754,29 @@ copyButton.addEventListener('click', async () => {
     copyTimer = setTimeout(() => { copyButton.textContent = t().copy; copyStatus.textContent = ''; }, 2400);
   }
 });
+
+/* ---------------------------------------------------------
+   Luz que sigue al cursor en las tarjetas de proyecto. Solo con
+   mouse y sin movimiento reducido; se mueve con transform.
+   --------------------------------------------------------- */
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+  document.querySelectorAll('.case, .more-card').forEach((card) => {
+    const spot = document.createElement('span');
+    spot.className = 'spot';
+    spot.setAttribute('aria-hidden', 'true');
+    card.prepend(spot);
+    let frame = 0;
+    card.addEventListener('pointermove', (event) => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const box = card.getBoundingClientRect();
+        spot.style.setProperty('--x', `${Math.round(event.clientX - box.left)}px`);
+        spot.style.setProperty('--y', `${Math.round(event.clientY - box.top)}px`);
+      });
+    });
+  });
+}
 
 /* ---------------------------------------------------------
    Aviso breve, para acciones que no tienen dónde mostrar su resultado.
