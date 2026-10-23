@@ -41,6 +41,8 @@ const T = {
     skillsHint: 'Pasa el cursor o enfoca una habilidad para ver dónde la usé.',
     caseMore: 'Ver caso completo', caseLess: 'Ocultar',
     themeDark: 'Cambiar a tema oscuro', themeLight: 'Cambiar a tema claro',
+    localTime: (time) => `${/^1:/.test(time) ? 'Ahora es la' : 'Ahora son las'} ${time} en Medellín (UTC−5)`,
+    siteUpdated: (when) => `Última actualización del sitio: ${when}`,
     locale: 'es-CO'
   },
   en: {
@@ -69,6 +71,8 @@ const T = {
     skillsHint: 'Hover or focus a skill to see where I used it.',
     caseMore: 'See full case study', caseLess: 'Hide',
     themeDark: 'Switch to dark theme', themeLight: 'Switch to light theme',
+    localTime: (time) => `It is ${time} in Medellin right now (UTC−5)`,
+    siteUpdated: (when) => `Site last updated ${when}`,
     locale: 'en-US'
   }
 };
@@ -791,6 +795,57 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMo
 }
 
 /* ---------------------------------------------------------
+   Contacto: la hora en Medellín, al minuto.
+   --------------------------------------------------------- */
+const localTime = document.getElementById('local-time');
+const localTimeText = document.getElementById('local-time-text');
+function renderLocalTime() {
+  const time = new Intl.DateTimeFormat(t().locale, { hour: 'numeric', minute: '2-digit', timeZone: 'America/Bogota' }).format(new Date());
+  localTimeText.textContent = t().localTime(time);
+  localTime.hidden = false;
+}
+try {
+  renderLocalTime();
+  langListeners.push(renderLocalTime);
+  // Se alinea con el cambio de minuto y luego avanza cada 60 s
+  setTimeout(() => { renderLocalTime(); setInterval(renderLocalTime, 60000); }, 60000 - (Date.now() % 60000) + 50);
+} catch (e) { localTime.hidden = true; }
+
+/* ---------------------------------------------------------
+   Pie: cuándo se actualizó el sitio por última vez, según el
+   último commit en GitHub. Si la API falla, la línea no aparece.
+   --------------------------------------------------------- */
+const siteUpdated = document.getElementById('site-updated');
+let lastCommit = null;
+function renderSiteUpdated() {
+  if (!lastCommit) return;
+  const days = Math.max(0, Math.round((Date.now() - lastCommit.getTime()) / 86400000));
+  const rtf = new Intl.RelativeTimeFormat(t().locale, { numeric: 'auto' });
+  const when = days < 45 ? rtf.format(-days, 'day') : rtf.format(-Math.round(days / 30), 'month');
+  siteUpdated.textContent = t().siteUpdated(when);
+  siteUpdated.hidden = false;
+}
+langListeners.push(renderSiteUpdated);
+async function loadSiteUpdated() {
+  try {
+    let iso = null;
+    try { iso = sessionStorage.getItem('site-updated'); } catch (e) { /* sin almacenamiento */ }
+    if (!iso) {
+      const res = await fetch('https://api.github.com/repos/AlexanderM-Code/AlexanderM-Code.github.io/commits?per_page=1', { headers: { Accept: 'application/vnd.github+json' } });
+      if (!res.ok) return;
+      const [commit] = await res.json();
+      iso = commit?.commit?.committer?.date;
+      if (!iso) return;
+      try { sessionStorage.setItem('site-updated', iso); } catch (e) { /* sin almacenamiento */ }
+    }
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return;
+    lastCommit = date;
+    renderSiteUpdated();
+  } catch (e) { /* sin conexión o sin permiso: la línea sigue oculta */ }
+}
+
+/* ---------------------------------------------------------
    Aviso breve, para acciones que no tienen dónde mostrar su resultado.
    --------------------------------------------------------- */
 const toast = document.getElementById('toast');
@@ -1038,5 +1093,9 @@ if (pending === 'en' || (!saved && !fromQuery && !(navigator.language || 'es').t
 }
 root.removeAttribute('data-lang-pending');
 // La API se consulta cuando la página terminó de cargar, para no competir con lo esencial
-if (document.readyState === 'complete') checkApi();
-else window.addEventListener('load', () => checkApi(), { once: true });
+const afterLoad = () => {
+  checkApi();
+  (window.requestIdleCallback || ((fn) => setTimeout(fn, 1200)))(loadSiteUpdated);
+};
+if (document.readyState === 'complete') afterLoad();
+else window.addEventListener('load', afterLoad, { once: true });
