@@ -15,7 +15,7 @@ js/main.js        # Idioma ES/EN, tema, menú, estado de la API de CineX, cifras
 404.html          # Página de error con el mismo estilo
 robots.txt, sitemap.xml
 assets/           # Capturas reales (WebP), video de Numi, logos, fuentes (OFL), íconos y og.jpg
-cv/               # Hoja de vida en español e inglés (no cambiar las rutas)
+cv/               # Hojas de vida: español, inglés y analista de datos (no cambiar las rutas)
 ```
 
 Para cambiar un texto, edítalo en `index.html` y actualiza también su atributo `data-en`.
