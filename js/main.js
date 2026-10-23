@@ -711,7 +711,10 @@ const revealGroups = [
 const revealEls = [];
 revealGroups.forEach((selector) => {
   document.querySelectorAll(selector).forEach((el) => {
-    const siblings = [...el.parentElement.children].filter((c) => c.matches(selector));
+    // C y D van dentro de .tier-side; se cuentan junto a A y B para mantener el orden de lectura.
+    const siblings = el.matches('.tier')
+      ? [...el.closest('.tiers').querySelectorAll('.tier')]
+      : [...el.parentElement.children].filter((c) => c.matches(selector));
     el.style.setProperty('--i', Math.min(siblings.indexOf(el), 5));
     revealEls.push(el);
   });
