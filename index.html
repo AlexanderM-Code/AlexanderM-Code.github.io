@@ -587,6 +587,34 @@
               </p>
             </div>
           </li>
+          <li class="more-card">
+            <div class="more-media">
+              <img src="assets/rfid-montaje.webp" width="720" height="720" loading="lazy" decoding="async" alt="">
+            </div>
+            <div class="more-body">
+              <p class="more-kind mono" data-en="Ubiquitous Computing course · 2025">Curso de Computación Ubicua · 2025</p>
+              <h3 class="more-name" data-en="Arduino and RFID lock">Arduino y cerradura RFID</h3>
+              <p class="more-text" data-en="A lock that opens with an RFID card, seven sensor labs and a radio-controlled car.">Una cerradura que abre con tarjeta RFID, siete laboratorios con sensores y un carro a control remoto.</p>
+              <p class="more-actions">
+                <a class="btn btn-accent btn-sm" href="https://www.youtube.com/watch?v=429Tt-C3h7E" target="_blank" rel="noopener" data-en="Watch the video">Ver el video</a>
+                <button class="btn btn-line btn-sm" type="button" data-dialog="dlg-rfid" aria-haspopup="dialog" data-en="See details">Ver detalle</button>
+              </p>
+            </div>
+          </li>
+          <li class="more-card">
+            <div class="more-media">
+              <img src="assets/blackjack.webp" width="880" height="810" loading="lazy" decoding="async" alt="">
+            </div>
+            <div class="more-body">
+              <p class="more-kind mono" data-en="Browser game · Team · 2025">Juego web · Equipo · 2025</p>
+              <h3 class="more-name">BlackJack Royale</h3>
+              <p class="more-text" data-en="BlackJack in the browser against the dealer or with friends in real time.">BlackJack en el navegador contra el crupier o con amigos en tiempo real.</p>
+              <p class="more-actions">
+                <a class="btn btn-accent btn-sm" href="https://luism7p7.github.io/BlackJack/Casino/public/" target="_blank" rel="noopener" data-en="Play now">Jugar ahora</a>
+                <button class="btn btn-line btn-sm" type="button" data-dialog="dlg-blackjack" aria-haspopup="dialog" data-en="See details">Ver detalle</button>
+              </p>
+            </div>
+          </li>
         </ul>
       </div>
 
@@ -647,6 +675,70 @@
               <p class="plot-sub mono" data-en="398 vehicles from the Auto MPG dataset · linear regression · R² = 0.69">398 vehículos del conjunto Auto MPG · regresión lineal · R² = 0,69</p>
               <svg class="mpg" viewBox="0 0 640 440" role="img" aria-labelledby="mpg-t mpg-d"><title id="mpg-t">Peso del vehículo contra rendimiento de combustible</title><desc id="mpg-d">398 vehículos del conjunto Auto MPG. La recta de regresión muestra que cada 100 kg más reducen el rendimiento en 0,72 km/l; R² = 0,69.</desc><use href="#mpg-plot"/><g class="mpg-axis"><text x="162" y="422" text-anchor="middle">1.000 kg</text><text x="304" y="422" text-anchor="middle">1.400 kg</text><text x="446" y="422" text-anchor="middle">1.800 kg</text><text x="588" y="422" text-anchor="middle">2.200 kg</text><text x="46" y="355" text-anchor="end">5</text><text x="46" y="251" text-anchor="end">10</text><text x="46" y="146" text-anchor="end">15</text><text x="46" y="42" text-anchor="end">20</text></g></svg>
               <figcaption class="plot-axis" data-en="Vertical axis: fuel efficiency in km/l. Horizontal axis: vehicle weight.">Eje vertical: rendimiento en km/l. Eje horizontal: peso del vehículo.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </dialog>
+      <dialog class="dlg" id="dlg-rfid" aria-labelledby="dlg-rfid-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-kind mono" data-en="Ubiquitous Computing course · 2025">Curso de Computación Ubicua · 2025</p>
+            <h3 class="dlg-title" id="dlg-rfid-title" data-en="Arduino and RFID lock">Arduino y cerradura RFID</h3>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="A lock that opens with an RFID card instead of a key, plus the labs that led up to it.">Una cerradura que se abre con una tarjeta RFID en lugar de llave, y los laboratorios que llevaron hasta ella.</p>
+              <ul class="ticks">
+                <li data-en="Final project (team): an RC522 reader checks the card against a list of authorized UIDs and drives the lock through a TIP120 transistor.">Proyecto final (en equipo): un lector RC522 compara la tarjeta con una lista de UID autorizados y acciona la cerradura con un transistor TIP120.</li>
+                <li data-en="Uses millis() instead of delay(), so the reader keeps listening while the lock is open.">Usa <code>millis()</code> en lugar de <code>delay()</code>, así el lector sigue atento mientras la cerradura está abierta.</li>
+                <li data-en="Seven individual labs: LED, push button, PWM, LM35 and DHT sensors, a 16×2 LCD and ultrasound, each with an online simulator.">Siete laboratorios individuales: LED, pulsador, PWM, sensores LM35 y DHT, pantalla LCD 16×2 y ultrasonido, cada uno con simulador en línea.</li>
+                <li data-en="MultiBot (individual): a two-motor car with an H-bridge and radio control.">MultiBot (individual): carro de dos motores con puente H y control por radio.</li>
+              </ul>
+              <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="I built the labs and the MultiBot on my own, and the RFID lock with Luis Miguel Muñoz and Santiago Mayorga.">hice solo los laboratorios y el MultiBot, y la cerradura RFID con Luis Miguel Muñoz y Santiago Mayorga.</span></p>
+              <ul class="chips"><li>Arduino</li><li>C++</li><li>RFID</li><li>Tinkercad</li><li>Wokwi</li></ul>
+              <p class="case-links">
+                <a class="btn btn-accent" href="https://www.youtube.com/watch?v=429Tt-C3h7E" target="_blank" rel="noopener" data-en="Watch the video">Ver el video</a>
+                <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Computacion-Ubicua" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+              </p>
+            </div>
+            <figure class="dlg-media dlg-duo">
+              <img src="assets/rfid-montaje.webp" width="720" height="720" loading="lazy" decoding="async" alt="Montaje real de la cerradura: Arduino UNO, protoboard con LEDs, lector RFID y la cerradura de solenoide" data-en-alt="The real build: Arduino UNO, breadboard with LEDs, RFID reader and the solenoid lock">
+              <img src="assets/rfid-circuito.webp" width="1302" height="669" loading="lazy" decoding="async" alt="Diagrama del circuito: Arduino, lector RC522, LEDs, transistor, cerradura y fuente" data-en-alt="Circuit diagram: Arduino, RC522 reader, LEDs, transistor, lock and power supply">
+              <figcaption data-en="The real build and its circuit diagram.">El montaje real y su diagrama del circuito.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog class="dlg" id="dlg-blackjack" aria-labelledby="dlg-blackjack-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-kind mono" data-en="Browser game · Team project, 2025">Juego web · Proyecto en equipo, 2025</p>
+            <h3 class="dlg-title" id="dlg-blackjack-title">BlackJack Royale</h3>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="A casino in the browser: BlackJack against the dealer or with friends in real time.">Un casino en el navegador: BlackJack contra el crupier o con amigos en tiempo real.</p>
+              <ul class="ticks">
+                <li data-en="Full rules: bets, hit, stand and the dealer's turn.">Reglas completas: apuestas, pedir carta, plantarse y el turno del crupier.</li>
+                <li data-en="Real-time multiplayer with a Python WebSocket server and its tests.">Multijugador en tiempo real con un servidor de WebSockets en Python y sus pruebas.</li>
+                <li data-en="JavaScript split into modules: deck, player, game rules, UI, storage and connection.">JavaScript dividido en módulos: baraja, jugador, reglas, interfaz, guardado y conexión.</li>
+              </ul>
+              <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="team project with Luis Miguel Muñoz; we all worked on every part: HTML, CSS, JavaScript and testing with the Python server.">proyecto en equipo con Luis Miguel Muñoz; todos trabajamos en cada parte: HTML, CSS, JavaScript y pruebas con el servidor de Python.</span></p>
+              <ul class="chips"><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Python</li><li>WebSockets</li></ul>
+              <p class="case-links">
+                <a class="btn btn-accent" href="https://luism7p7.github.io/BlackJack/Casino/public/" target="_blank" rel="noopener" data-en="Play now">Jugar ahora</a>
+                <a class="btn btn-line" href="https://github.com/luism7p7/BlackJack" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+              </p>
+            </div>
+            <figure class="dlg-media">
+              <div class="browser" data-ui>
+                <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>BlackJack Royale</span></p>
+                <img src="assets/blackjack.webp" width="880" height="810" loading="lazy" decoding="async" alt="Mesa de BlackJack: el crupier arriba con una carta tapada y el jugador abajo con 11 puntos y los botones pedir carta y plantarse" data-en-alt="BlackJack table: the dealer at the top with a face-down card and the player below with 11 points and the hit and stand buttons">
+              </div>
+              <figcaption data-en="A round against the dealer.">Una ronda contra el crupier.</figcaption>
             </figure>
           </div>
         </div>

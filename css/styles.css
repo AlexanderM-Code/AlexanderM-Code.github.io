@@ -704,6 +704,9 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 .dlg-casa .browser { width: 84%; }
 .dlg-casa .phone-shot { position: absolute; right: 0; bottom: 30px; width: 28%; aspect-ratio: 420 / 860; border-radius: 14px; border: var(--shot-border); box-shadow: var(--shot-shadow-raised); }
 .dlg-casa figcaption { margin-top: 12px; }
+.dlg-duo { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 12px; align-items: center; }
+.dlg-duo img { width: 100%; height: auto; border-radius: var(--radius); border: var(--shot-border); background: var(--paper-2); }
+.dlg-duo figcaption { grid-column: 1 / -1; margin-top: 0; }
 .plot { padding: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
 .plot-title { font-weight: 700; font-size: 1.125rem; }
 .plot-sub { margin-top: 4px; font-size: 0.8125rem; color: var(--ink-3); }
