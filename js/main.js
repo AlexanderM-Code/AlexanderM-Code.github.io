@@ -1067,7 +1067,7 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.idx-row', '.ar-row', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.habit', '.t-item', '.prose', '.facts-panel',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
