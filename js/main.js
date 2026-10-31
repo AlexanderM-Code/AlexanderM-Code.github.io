@@ -1179,9 +1179,9 @@ else window.addEventListener('load', afterLoad, { once: true });
     oscuro = (paper[0] + paper[1] + paper[2]) / 3 < 128;
     col = {
       paper, ink, blue, orange,
-      mont1: mez(paper, ink, oscuro ? 0.07 : 0.06),
-      mont2: mez(paper, ink, oscuro ? 0.12 : 0.1),
-      casa: mez(paper, ink, oscuro ? 0.17 : 0.15),
+      mont1: mez(paper, ink, oscuro ? 0.07 : 0.14),
+      mont2: mez(paper, ink, oscuro ? 0.12 : 0.24),
+      casa: mez(paper, ink, oscuro ? 0.17 : 0.4),
       edif: mez(paper, ink, oscuro ? 0.22 : 0.9),
       edif2: mez(paper, ink, oscuro ? 0.3 : 0.82),
       vidrio: mez(paper, ink, 0.6),
@@ -1192,7 +1192,8 @@ else window.addEventListener('load', afterLoad, { once: true });
       cable: mez(paper, ink, oscuro ? 0.35 : 0.3),
       cabina: mez(paper, blue, oscuro ? 0.9 : 0.85),
       estrella: mez(paper, ink, 0.55),
-      nube: mez(paper, ink, 0.05),
+      nube: mez(paper, ink, oscuro ? 0.05 : 0.12),
+      nubeSombra: mez(paper, ink, 0.2),
       luna: mez(paper, ink, 0.75),
       viaducto: mez(paper, ink, oscuro ? 0.4 : 0.7),
       pilar: mez(paper, ink, oscuro ? 0.32 : 0.6),
@@ -1286,7 +1287,8 @@ else window.addEventListener('load', afterLoad, { once: true });
     } else {
       for (const n of nubes) {
         const nx = ((n.x + t * n.v) % (W + n.w * 2)) - n.w;
-        px(nx, n.y, n.w, 2, col.nube); px(nx + 3, n.y - 1, n.w - 6, 1, col.nube);
+        px(nx + 3, n.y - 2, n.w - 8, 1, col.nube); px(nx + 1, n.y - 1, n.w - 2, 1, col.nube);
+        px(nx, n.y, n.w, 2, col.nube); px(nx + 2, n.y + 2, n.w - 4, 1, col.nubeSombra);
       }
     }
     // Montañas del valle de Aburrá
