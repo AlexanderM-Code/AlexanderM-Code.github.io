@@ -352,7 +352,7 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 }
 /* Captura que sigue al cursor */
 .idx-float {
-  position: absolute; z-index: 2; top: 0; left: 0; width: 340px; aspect-ratio: 4 / 3; object-fit: cover; object-position: top left;
+  position: absolute; z-index: 2; top: 0; left: 0; width: 380px; aspect-ratio: 4 / 3; object-fit: cover; object-position: top left;
   border: var(--shot-border); border-radius: 10px; box-shadow: var(--shot-shadow-raised); background: var(--paper-2);
   pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(0.9) rotate(-3deg);
   transition: opacity 220ms ease, transform 280ms var(--ease-out);

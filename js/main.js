@@ -1229,26 +1229,38 @@ if (location.hash.length > 1) {
   const idx = document.querySelector('.idx');
   const flot = idx && idx.querySelector('.idx-float');
   if (!idx || !flot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  let x = 0, y = 0, fx = 0, fy = 0, raf = 0, actual = '';
+  // Al pasar el cursor por un proyecto aparece un video corto de cómo funciona.
+  // Con "reducir movimiento" se muestra solo la imagen fija.
+  let x = 0, y = 0, fx = 0, fy = 0, raf = 0, actual = null;
   const seguir = () => {
     fx += (x - fx) * (reduceMotion ? 1 : 0.18); fy += (y - fy) * (reduceMotion ? 1 : 0.18);
     flot.style.left = `${fx}px`; flot.style.top = `${fy}px`;
     raf = Math.abs(x - fx) + Math.abs(y - fy) > 0.5 ? requestAnimationFrame(seguir) : 0;
   };
+  const mostrar = (fila) => {
+    if (fila === actual) return;
+    actual = fila;
+    flot.poster = fila.dataset.preview || '';
+    if (reduceMotion || !fila.dataset.video) { flot.removeAttribute('src'); flot.load(); return; }
+    // WebM es más liviano; MP4 queda para Safari
+    flot.src = flot.canPlayType('video/webm; codecs="vp9"') ? fila.dataset.video.replace(/\.mp4$/, '.webm') : fila.dataset.video;
+    flot.currentTime = 0;
+    flot.play().catch(() => {});
+  };
   idx.addEventListener('pointermove', (e) => {
     const r = idx.getBoundingClientRect();
-    x = e.clientX - r.left + 190; y = e.clientY - r.top;
+    x = e.clientX - r.left + 200; y = e.clientY - r.top;
     const fila = e.target.closest('.idx-row');
-    const src = fila && fila.dataset.preview;
-    if (src) {
-      if (src !== actual) { actual = src; flot.src = src; }
+    if (fila && (fila.dataset.video || fila.dataset.preview)) {
       if (!flot.classList.contains('is-on')) { fx = x; fy = y; }
+      mostrar(fila);
       flot.classList.add('is-on');
-    } else flot.classList.remove('is-on');
+    } else { flot.classList.remove('is-on'); }
     if (!raf) raf = requestAnimationFrame(seguir);
   });
-  idx.addEventListener('pointerleave', () => flot.classList.remove('is-on'));
-  idx.querySelectorAll('.idx-row[data-preview]').forEach((f) => { if (f.dataset.preview) { const i = new Image(); i.src = f.dataset.preview; } });
+  idx.addEventListener('pointerleave', () => { flot.classList.remove('is-on'); flot.pause(); actual = null; });
+  // Las imágenes fijas se cargan antes para que el cambio sea inmediato
+  idx.querySelectorAll('.idx-row').forEach((f) => { if (f.dataset.preview) { const i = new Image(); i.src = f.dataset.preview; } });
 })();
 
 /* ---------------------------------------------------------
