@@ -377,7 +377,7 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 /* Cifras */
 .metrics {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: clamp(var(--space-6), 4vw, var(--space-7)); border-top: 1.5px solid var(--ink);
+  margin-top: clamp(var(--space-6), 4vw, var(--space-7)); border-top: 1.5px solid transparent; /* la vía del metro hace de línea */
 }
 .metric { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 6px; padding: 18px 20px 0 0; }
 .metric + .metric { padding-left: 20px; border-left: 1px solid var(--line); }
