@@ -1328,7 +1328,8 @@ else window.addEventListener('load', afterLoad, { once: true });
     }
     // Metro de Medellín, como en la trayectoria del README: corre sobre la
     // línea de las cifras de un extremo al otro, debajo de la ciudad.
-    px(0, suelo, W, 1, col.viaducto);
+    const inicioCiudad = edificios.length ? edificios[0].x : 0;
+    px(inicioCiudad, suelo, W - inicioCiudad, 1, col.viaducto);   // la línea solo bajo la ciudad
     px(0, H - 1, W, 1, col.viaducto);
     for (let x = 3; x < W; x += 6) px(x, H - 2, 2, 1, col.pilar);
     const VAGON = 20, VAGONES = 3, largo = VAGONES * (VAGON + 1);
