@@ -512,6 +512,39 @@ a.cert:hover { border-color: var(--blue); }
   .mt-dot { top: 0; left: 0; margin-left: 0; width: 30px; height: 30px; }
 }
 
+/* ---------- Sobre mí: tarjeta Dev · Datos (estilo tarjeta del metro) ---------- */
+.dcard-wrap { display: grid; justify-items: center; gap: 18px; align-self: center; perspective: 1400px; }
+.dcard { position: relative; width: min(100%, 460px); aspect-ratio: 1.586; transform: rotate(-3deg); transform-style: preserve-3d; transition: transform 700ms var(--ease-out); }
+.dcard.is-flipped { transform: rotate(-3deg) rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) { .dcard-wrap:hover .dcard:not(.is-flipped) { transform: rotate(0deg) rotateY(180deg); } }
+.dc-face {
+  position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: clamp(16px, 4%, 24px);
+  border-radius: 18px; color: #fff; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background: linear-gradient(135deg, #1f9a55, #12603a); box-shadow: 0 32px 50px -26px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+.dc-face::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 100% 0%, rgba(255,255,255,.18), transparent 55%); pointer-events: none; }
+.dc-back { transform: rotateY(180deg); background: linear-gradient(135deg, #17181c, #2a2d35); }
+.dc-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.dc-brand { font-size: clamp(1.125rem, 2.4vw, 1.5rem); font-weight: 800; letter-spacing: -0.02em; }
+.dc-brand span { opacity: 0.75; }
+.dc-city { font-size: 0.6875rem; letter-spacing: var(--track-label); text-transform: uppercase; opacity: 0.85; }
+.dc-body { display: grid; grid-template-columns: 28% 1fr; gap: 16px; align-items: center; }
+.dc-photo { aspect-ratio: 4 / 5; border-radius: 10px; background: #e8f5ee; display: grid; place-items: end center; overflow: hidden; }
+.dc-avatar { width: 86%; height: auto; image-rendering: pixelated; }
+.dc-data { display: grid; gap: 6px; margin: 0; }
+.dc-data dt { font-size: 0.625rem; letter-spacing: var(--track-label); text-transform: uppercase; opacity: 0.7; }
+.dc-data dd { margin: 0; font-size: 0.875rem; font-weight: 600; line-height: 1.25; }
+.dc-data div:first-child dd { font-size: clamp(1rem, 2vw, 1.1875rem); font-weight: 800; }
+.dc-contact { align-content: center; }
+.dc-contact div:first-child dd { font-size: 0.9375rem; }
+.dc-contact a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.4); text-underline-offset: 3px; }
+.dc-contact a:hover, .dc-contact a:focus-visible { text-decoration-color: #fff; }
+.dc-foot { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; letter-spacing: 0.18em; opacity: 0.9; }
+.dc-chip { width: 40px; height: 30px; border-radius: 6px; background: linear-gradient(135deg, #f2d27a, #c9a23e); }
+@media (prefers-reduced-motion: reduce) { .dcard { transition: none; } }
+@media (max-width: 900px) { .dcard { transform: none; } .dcard.is-flipped { transform: rotateY(180deg); } .dc-data dd { font-size: 0.8125rem; } }
+
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(40px, 4vw, 56px); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }

@@ -1067,7 +1067,7 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.metro', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.metro', '.prose', '.dcard-wrap',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
@@ -1185,6 +1185,19 @@ else window.addEventListener('load', afterLoad, { once: true });
   window.addEventListener('scroll', pedir, { passive: true });
   window.addEventListener('resize', pedir, { passive: true });
   mover();
+})();
+
+/* Sobre mí: la tarjeta se voltea con el botón (y con el cursor en computador) */
+(() => {
+  const card = document.getElementById('dcard');
+  const btn = document.querySelector('.dc-flip');
+  if (!card || !btn) return;
+  btn.addEventListener('click', () => {
+    const on = card.classList.toggle('is-flipped');
+    btn.setAttribute('aria-pressed', String(on));
+  });
+  // Al recorrer con el teclado los enlaces del reverso, la tarjeta muestra ese lado
+  card.querySelectorAll('.dc-back a').forEach((a) => a.addEventListener('focus', () => { card.classList.add('is-flipped'); btn.setAttribute('aria-pressed', 'true'); }));
 })();
 
 /* ---------------------------------------------------------
