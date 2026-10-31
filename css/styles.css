@@ -726,6 +726,8 @@ a.cert:hover { border-color: var(--blue); }
 .learned { margin-top: var(--space-6); padding: var(--space-4) var(--space-5); background: var(--blue-soft); border-radius: var(--radius-sm); }
 .learned-title { font-size: 0.75rem; font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--blue); }
 .learned .ticks { margin-top: var(--space-3); }
+.learned-next { margin-top: var(--space-4); }
+.learned-text { margin-top: var(--space-2); }
 .case-kind { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 0.8125rem; color: var(--ink-2); }
 .live-pill {
   display: inline-flex; align-items: center; gap: 8px; padding: 3px 10px 3px 9px;
