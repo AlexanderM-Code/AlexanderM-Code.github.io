@@ -1134,3 +1134,141 @@ const afterLoad = () => {
 };
 if (document.readyState === 'complete') afterLoad();
 else window.addEventListener('load', afterLoad, { once: true });
+
+/* ---------------------------------------------------------
+   Campo de datos del inicio: una matriz de puntos que ondula
+   sin parar. Los puntos se apartan del cursor y cada clic
+   lanza una onda naranja. Con "reducir movimiento" se dibuja
+   quieto y solo reacciona al cursor.
+   --------------------------------------------------------- */
+(() => {
+  const field = document.querySelector('.hero-field');
+  const canvas = document.getElementById('hero-canvas');
+  const hero = document.getElementById('inicio');
+  if (!field || !canvas || !hero || !canvas.getContext) return;
+  const ctx = canvas.getContext('2d');
+  const GAP = 22;
+  const RADIO = 130;
+  let w = 0, h = 0, dpr = 1, dots = [], colors = {};
+  let pointer = { x: -9999, y: -9999, active: false };
+  let waves = [];
+  let running = false, visible = true, raf = 0, t0 = performance.now();
+
+  const readColors = () => {
+    const cs = getComputedStyle(root);
+    colors = {
+      ink: cs.getPropertyValue('--ink').trim() || '#17181c',
+      blue: cs.getPropertyValue('--blue').trim() || '#2141b5',
+      orange: cs.getPropertyValue('--orange').trim() || '#e2560e',
+    };
+  };
+
+  const resize = () => {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = r.width; h = r.height;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    dots = [];
+    for (let y = GAP / 2; y < h; y += GAP) {
+      for (let x = GAP / 2; x < w; x += GAP) dots.push({ bx: x, by: y, x, y, vx: 0, vy: 0 });
+    }
+    if (!running) draw(performance.now());
+  };
+
+  const draw = (now) => {
+    const t = (now - t0) / 1000;
+    ctx.clearRect(0, 0, w, h);
+    const mx = pointer.x, my = pointer.y;
+    waves = waves.filter((wv) => (t - wv.t) < 2.4);
+    for (const d of dots) {
+      // Ola de fondo
+      const ola = Math.sin(d.bx * 0.018 + t * 1.1) * Math.cos(d.by * 0.022 - t * 0.8);
+      let ox = 0, oy = ola * 4;
+      let calor = 0, onda = 0;
+      // El cursor aparta los puntos
+      if (pointer.active) {
+        const dx = d.bx - mx, dy = d.by - my, dist = Math.hypot(dx, dy);
+        if (dist < RADIO) {
+          const f = (1 - dist / RADIO) ** 2;
+          ox += (dx / (dist || 1)) * f * 26;
+          oy += (dy / (dist || 1)) * f * 26;
+          calor = f;
+        }
+      }
+      // Ondas de los clics
+      for (const wv of waves) {
+        const edad = t - wv.t;
+        const frente = edad * 320;
+        const dist = Math.hypot(d.bx - wv.x, d.by - wv.y);
+        const cerca = 1 - Math.min(Math.abs(dist - frente) / 38, 1);
+        if (cerca > 0) {
+          const fuerza = cerca * (1 - edad / 2.4);
+          ox += ((d.bx - wv.x) / (dist || 1)) * fuerza * 12;
+          oy += ((d.by - wv.y) / (dist || 1)) * fuerza * 12;
+          onda = Math.max(onda, fuerza);
+        }
+      }
+      // Resorte suave hacia la posición objetivo
+      d.vx = (d.vx + (d.bx + ox - d.x) * 0.12) * 0.78;
+      d.vy = (d.vy + (d.by + oy - d.y) * 0.12) * 0.78;
+      d.x += d.vx; d.y += d.vy;
+
+      const base = 0.18 + (ola + 1) * 0.16;
+      const radio = 1.1 + (ola + 1) * 0.55 + calor * 2.2 + onda * 2.4;
+      ctx.globalAlpha = Math.min(1, base + calor * 0.7 + onda * 0.8);
+      ctx.fillStyle = onda > 0.15 ? colors.orange : calor > 0.12 ? colors.blue : colors.ink;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, radio, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  };
+
+  const loop = (now) => {
+    draw(now);
+    raf = requestAnimationFrame(loop);
+  };
+  const start = () => {
+    if (running || reduceMotion || !visible || document.hidden) return;
+    running = true; raf = requestAnimationFrame(loop);
+  };
+  const stop = () => { running = false; cancelAnimationFrame(raf); };
+
+  const usado = () => field.classList.add('is-used');
+  const local = (e) => {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  };
+  hero.addEventListener('pointermove', (e) => {
+    const p = local(e);
+    pointer = { ...p, active: true };
+    if (p.x >= 0 && p.x <= w && p.y >= 0 && p.y <= h) usado();
+    if (!running) draw(performance.now());
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => {
+    pointer.active = false;
+    if (!running) draw(performance.now());
+  });
+  hero.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('a, button')) return;
+    const p = local(e);
+    if (p.x < 0 || p.x > w || p.y < 0 || p.y > h) return;
+    waves.push({ ...p, t: (performance.now() - t0) / 1000 });
+    usado();
+    if (reduceMotion) draw(performance.now());
+  });
+
+  readColors();
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+  new MutationObserver(() => { readColors(); if (!running) draw(performance.now()); })
+    .observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); if (!running) draw(performance.now()); });
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    visible ? start() : stop();
+  }).observe(hero);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  start();
+})();
