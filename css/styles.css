@@ -330,14 +330,10 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 /* Campo de datos animado: puntos que ondulan, se apartan del cursor y reaccionan al clic */
 .hero-field {
   position: absolute; z-index: 0; inset: var(--nav-h) 0 0 0;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.65) 35%, #000 62%), linear-gradient(180deg, #000 68%, rgba(0,0,0,.35) 100%);
-  -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.65) 35%, #000 62%), linear-gradient(180deg, #000 68%, rgba(0,0,0,.35) 100%);
-          mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.75) 35%, #000 55%);
+          mask-image: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.75) 35%, #000 55%);
 }
-/* Halo del color de fondo detrás del texto del inicio: se lee bien sobre los puntos */
-.hero :is(.tag, .name, .value, .metric dt, .metric dd) { text-shadow: 0 0 2px var(--paper), 0 0 8px var(--paper), 0 0 16px var(--paper); }
-.hero-field canvas { display: block; width: 100%; height: 100%; }
+.hero-field canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
 .hero-hint {
   position: absolute; right: 6%; top: 2%; font-size: 0.75rem; letter-spacing: var(--track-label);
   text-transform: uppercase; color: var(--ink-3); transition: opacity 600ms ease;
@@ -1005,7 +1001,7 @@ main, .footer { transition: opacity 180ms ease; }
   .menu-indicator { display: none; }
   .menu-tools .btn { flex: 1; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .hero-field { opacity: 0.45; }
+  .hero-field { opacity: 0.4; }
   .hero-hint { display: none; }
   .case { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "head" "shot" "chips" "links" "note" "lab" "more"; }
   .case-shot { margin-top: 28px; }

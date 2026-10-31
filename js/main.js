@@ -1136,163 +1136,226 @@ if (document.readyState === 'complete') afterLoad();
 else window.addEventListener('load', afterLoad, { once: true });
 
 /* ---------------------------------------------------------
-   Campo de datos del inicio: una superficie de puntos en
-   perspectiva que ondula sin parar, como un mar de datos.
-   El cursor levanta una colina azul, cada clic lanza una onda
-   naranja que recorre la superficie y cada pocos segundos
-   aparece un pulso suave. Con "reducir movimiento" se dibuja
-   quieta y solo reacciona al cursor.
+   Medellín en pixeles detrás del inicio, como en el README de
+   GitHub: montañas, comunas, edificios con ventanas encendidas
+   y el Metrocable en movimiento. El cursor enciende las ventanas
+   cercanas y cada clic lanza un fuego artificial. La ciudad se
+   apoya en la línea de las cifras. Con "reducir movimiento" se
+   dibuja quieta.
    --------------------------------------------------------- */
 (() => {
   const field = document.querySelector('.hero-field');
   const canvas = document.getElementById('hero-canvas');
   const hero = document.getElementById('inicio');
+  const cifras = hero && hero.querySelector('.metrics');
   if (!field || !canvas || !hero || !canvas.getContext) return;
   const ctx = canvas.getContext('2d');
-  let COLS = 34, ROWS = 22;
-  let w = 0, h = 0, dpr = 1, pts = [], col = {};
-  const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999, on: 0, target: 0 };
-  let waves = [];
-  let running = false, visible = true, raf = 0, ultimoPulso = 0, ultimoUso = -99;
+  const P = 4;                                   // tamaño de cada pixel en pantalla
+  let W = 0, H = 0, suelo = 0, escena = null, col = {}, oscuro = false;
+  const cursor = { x: -99, y: -99, on: false };
+  let cohetes = [], chispas = [];
+  let running = false, visible = true, raf = 0, ultimo = 0;
   const t0 = performance.now();
   const ahora = () => (performance.now() - t0) / 1000;
 
-  // Convierte cualquier color CSS a [r, g, b]
+  // Números pseudoaleatorios repetibles: la ciudad es siempre la misma
+  const azar = (semilla) => () => ((semilla = (semilla * 16807) % 2147483647) - 1) / 2147483646;
+
   const rgb = (c) => {
     ctx.fillStyle = '#000'; ctx.fillStyle = c;
     const v = ctx.fillStyle;
     if (v[0] === '#') return [1, 3, 5].map((k) => parseInt(v.slice(k, k + 2), 16));
     return v.match(/\d+(\.\d+)?/g).slice(0, 3).map(Number);
   };
-  const mezcla = (a, b, k) => a.map((v, i) => Math.round(v + (b[i] - v) * k));
+  const mez = (a, b, k) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * k)).join(',')})`;
 
   const leerColores = () => {
     const cs = getComputedStyle(root);
+    const paper = rgb(cs.getPropertyValue('--paper').trim() || '#f3efe6');
+    const ink = rgb(cs.getPropertyValue('--ink').trim() || '#17181c');
+    const blue = rgb(cs.getPropertyValue('--blue').trim() || '#2141b5');
+    const orange = rgb(cs.getPropertyValue('--orange').trim() || '#e2560e');
+    oscuro = (paper[0] + paper[1] + paper[2]) / 3 < 128;
     col = {
-      ink: rgb(cs.getPropertyValue('--ink').trim() || '#17181c'),
-      blue: rgb(cs.getPropertyValue('--blue').trim() || '#2141b5'),
-      orange: rgb(cs.getPropertyValue('--orange').trim() || '#e2560e'),
+      paper, ink, blue, orange,
+      mont1: mez(paper, ink, oscuro ? 0.07 : 0.06),
+      mont2: mez(paper, ink, oscuro ? 0.12 : 0.1),
+      casa: mez(paper, ink, oscuro ? 0.17 : 0.15),
+      edif: mez(paper, ink, oscuro ? 0.22 : 0.2),
+      edif2: mez(paper, ink, oscuro ? 0.3 : 0.28),
+      apagada: mez(paper, ink, oscuro ? 0.12 : 0.1),
+      luz: mez(paper, orange, oscuro ? 0.85 : 0.75),
+      luzFria: mez(paper, blue, oscuro ? 0.8 : 0.6),
+      cable: mez(paper, ink, oscuro ? 0.35 : 0.3),
+      cabina: mez(paper, blue, oscuro ? 0.9 : 0.85),
+      estrella: mez(paper, ink, 0.55),
+      nube: mez(paper, ink, 0.05),
+      luna: mez(paper, ink, 0.75),
     };
   };
 
-  // Cuadrícula en perspectiva: las filas lejanas arriba y más juntas
+  // Construye la ciudad una sola vez por tamaño de pantalla
+  const construir = () => {
+    const r = azar(7);
+    const montes = (alto, base, fase, paso) => {
+      const ys = [];
+      for (let x = 0; x < W; x++) {
+        const y = base - alto * (0.55 + 0.25 * Math.sin(x / (W * 0.13) + fase) + 0.2 * Math.sin(x / (W * 0.05) + fase * 2));
+        ys.push(Math.round(y / paso) * paso);
+      }
+      return ys;
+    };
+    const altoCiudad = Math.max(30, Math.min(suelo * 0.62, 120));
+    const m1 = montes(altoCiudad * 1.05, suelo, 1.3, 2);
+    const m2 = montes(altoCiudad * 0.7, suelo, 4.1, 1);
+    // Comunas: casitas sobre las laderas
+    const casas = [];
+    for (let x = 0; x < W; x += 3 + Math.floor(r() * 3)) {
+      const centro = Math.abs(x / W - 0.62) < 0.2;
+      if (centro || r() < 0.35) continue;
+      const y = m2[x];
+      const w = 3 + Math.floor(r() * 3), h = 2 + Math.floor(r() * 3);
+      casas.push({ x, y: y - h, w, h, luz: r() < 0.45, fase: r() * 10 });
+    }
+    // Edificios del centro, más altos hacia la derecha
+    const edificios = [];
+    let x = Math.round(W * 0.42);
+    while (x < W * 0.96) {
+      const w = 5 + Math.floor(r() * 7);
+      const cerca = 1 - Math.abs((x / W) - 0.7) / 0.3;
+      const h = Math.round(altoCiudad * (0.3 + 0.7 * Math.max(0, cerca) * (0.55 + r() * 0.45)));
+      const ventanas = [];
+      for (let vy = suelo - h + 2; vy < suelo - 2; vy += 3) {
+        for (let vx = x + 1; vx < x + w - 1; vx += 2) ventanas.push({ x: vx, y: vy, luz: r() < 0.32, fria: r() < 0.18, fase: r() * 40 });
+      }
+      edificios.push({ x, w, h, tono: r() < 0.5, antena: h > altoCiudad * 0.7 && r() < 0.5, ventanas });
+      x += w + (r() < 0.25 ? 1 : 0);
+    }
+    // Metrocable: de la ladera izquierda hacia el centro
+    const ax = Math.min(W - 2, Math.round(W * 0.985));
+    const a = { x: ax, y: Math.min(m1[ax], suelo - Math.round(altoCiudad * 0.9)) - 3 };
+    const b = { x: Math.round(W * 0.6), y: suelo - Math.round(altoCiudad * 1.12) };
+    const estrellas = Array.from({ length: Math.round(W * H / 900) }, () => ({ x: Math.floor(r() * W), y: Math.floor(r() * (suelo - altoCiudad)), fase: r() * 6 }));
+    const nubes = Array.from({ length: 4 }, () => ({ x: r() * W, y: 4 + Math.floor(r() * (suelo - altoCiudad * 1.3)), w: 10 + Math.floor(r() * 14), v: 0.6 + r() * 0.8 }));
+    escena = { m1, m2, casas, edificios, a, b, estrellas, nubes };
+  };
+
   const medir = () => {
     const r = canvas.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = r.width; h = r.height;
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    COLS = Math.max(18, Math.min(56, Math.round(w / 30)));
-    ROWS = Math.max(16, Math.min(30, Math.round(h / 26)));
-    pts = [];
-    for (let j = 0; j < ROWS; j++) {
-      const d = j / (ROWS - 1);                  // 0 = fondo, 1 = frente
-      const s = 0.32 + 0.68 * d ** 1.15;         // escala por profundidad
-      const y = h * (0.06 + 0.9 * d ** 1.3);
-      for (let i = 0; i < COLS; i++) {
-        const u = i / (COLS - 1) - 0.5;
-        pts.push({ i, j, d, s, bx: w * (0.5 + u * 1.25 * s), by: y, x: 0, y: 0, alt: 0 });
-      }
-    }
+    W = Math.max(1, Math.ceil(r.width / P)); H = Math.max(1, Math.ceil(r.height / P));
+    canvas.width = W; canvas.height = H;
+    // El suelo de la ciudad es la línea de las cifras
+    const c = cifras ? cifras.getBoundingClientRect() : null;
+    suelo = c && c.top > r.top ? Math.floor((c.top - r.top) / P) - 1 : H - 1;
+    construir();
     if (!running) pintar();
   };
 
+  const px = (x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(Math.round(x), Math.round(y), w, h); };
+
+  const puntoCable = (k) => {
+    const { a, b } = escena;
+    return { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k + Math.sin(k * Math.PI) * 5 };
+  };
+
   const pintar = () => {
+    if (!escena) return;
     const t = ahora();
-    ctx.clearRect(0, 0, w, h);
-    // El cursor se mueve con suavidad
-    mouse.x += (mouse.tx - mouse.x) * 0.14;
-    mouse.y += (mouse.ty - mouse.y) * 0.14;
-    mouse.on += (mouse.target - mouse.on) * 0.08;
-    waves = waves.filter((o) => t - o.t < 3.2);
+    ctx.clearRect(0, 0, W, H);
+    const { m1, m2, casas, edificios, estrellas, nubes } = escena;
 
-    for (const p of pts) {
-      // Mar de fondo: tres olas suaves que se cruzan
-      let alt = Math.sin(p.i * 0.32 + t * 1.15) * 0.55
-              + Math.sin(p.j * 0.42 - t * 0.9 + p.i * 0.08) * 0.45
-              + Math.sin((p.i + p.j) * 0.16 + t * 0.6) * 0.35;
-      let azul = 0, naranja = 0;
-      // Colina bajo el cursor
-      if (mouse.on > 0.01) {
-        const dx = p.bx - mouse.x, dy = (p.by - mouse.y) * 1.6;
-        const k = Math.exp(-(dx * dx + dy * dy) / (2 * 120 * 120)) * mouse.on;
-        alt += k * 3.6; azul = k;
+    // Cielo: estrellas de noche, nubes de día
+    if (oscuro) {
+      for (const e of estrellas) if (Math.sin(t * 1.3 + e.fase) > 0.2) px(e.x, e.y, 1, 1, col.estrella);
+      const lx = Math.round(W * 0.8), ly = Math.max(3, Math.round(suelo * 0.1));
+      px(lx + 1, ly, 5, 7, col.luna); px(lx, ly + 1, 7, 5, col.luna); px(lx + 3, ly + 1, 3, 3, col.mont1);
+    } else {
+      for (const n of nubes) {
+        const nx = ((n.x + t * n.v) % (W + n.w * 2)) - n.w;
+        px(nx, n.y, n.w, 2, col.nube); px(nx + 3, n.y - 1, n.w - 6, 1, col.nube);
       }
-      // Ondas de clics y pulsos
-      for (const o of waves) {
-        const edad = t - o.t;
-        const dist = Math.hypot(p.bx - o.x, (p.by - o.y) * 1.6);
-        const frente = edad * 340;
-        const k = Math.exp(-((dist - frente) ** 2) / (2 * 34 * 34)) * (1 - edad / 3.2) * o.fuerza;
-        alt += k * 2.6;
-        if (o.clic) naranja = Math.max(naranja, k); else azul = Math.max(azul, k * 0.6);
+    }
+    // Montañas del valle de Aburrá
+    for (let x = 0; x < W; x++) { px(x, m1[x], 1, suelo - m1[x], col.mont1); }
+    for (let x = 0; x < W; x++) { px(x, m2[x], 1, suelo - m2[x], col.mont2); }
+    // Comunas
+    for (const c of casas) {
+      px(c.x, c.y, c.w, c.h, col.casa);
+      if (c.luz && Math.sin(t * 0.4 + c.fase) > -0.6) px(c.x + 1, c.y + 1, 1, 1, col.luz);
+    }
+    // Torres del Metrocable (detrás de los edificios)
+    const { a, b } = escena;
+    px(a.x, a.y, 1, suelo - a.y, col.cable); px(b.x, b.y, 1, suelo - b.y, col.cable);
+    // Edificios con ventanas
+    for (const e of edificios) {
+      px(e.x, suelo - e.h, e.w, e.h, e.tono ? col.edif : col.edif2);
+      if (e.antena) { px(e.x + Math.floor(e.w / 2), suelo - e.h - 4, 1, 4, col.edif2); if (Math.sin(t * 3) > 0) px(e.x + Math.floor(e.w / 2), suelo - e.h - 5, 1, 1, col.luz); }
+      for (const v of e.ventanas) {
+        const dx = v.x - cursor.x, dy = (v.y - cursor.y) * 1.2;
+        const cerca = cursor.on && dx * dx + dy * dy < 22 * 22;
+        const parpadeo = Math.sin(t * 0.25 + v.fase) > 0.92;
+        const encendida = cerca || (v.luz !== parpadeo);
+        px(v.x, v.y, 1, 1, encendida ? (cerca ? col.luz : v.fria ? col.luzFria : col.luz) : col.apagada);
       }
-      p.alt = alt; p.azul = azul; p.nar = naranja;
-      p.x = p.bx;
-      p.y = p.by - alt * 15 * p.s;
     }
-
-    // Líneas de cada fila: dan la sensación de superficie
-    ctx.lineWidth = 1;
-    for (let j = 0; j < ROWS; j++) {
-      const fila = pts.slice(j * COLS, (j + 1) * COLS);
-      ctx.strokeStyle = `rgba(${col.ink.join(',')},${0.05 + 0.12 * fila[0].d})`;
-      ctx.beginPath();
-      fila.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
-      ctx.stroke();
+    // Metrocable
+    for (let k = 0; k <= 1; k += 1 / Math.max(40, Math.abs(b.x - a.x))) { const q = puntoCable(k); px(q.x, q.y, 1, 1, col.cable); }
+    for (let g = 0; g < 3; g++) {
+      const k = ((t * 0.035 + g / 3) % 1);
+      const q = puntoCable(k);
+      px(q.x, q.y + 1, 1, 2, col.cable);
+      px(q.x - 2, q.y + 3, 5, 4, col.cabina);
+      px(q.x - 1, q.y + 4, 3, 1, col.paper ? `rgb(${col.paper.join(',')})` : '#fff');
     }
-
-    // Puntos, del fondo hacia el frente
-    for (const p of pts) {
-      const cresta = Math.max(0, Math.min(1, (p.alt + 1.2) / 3));
-      let c = mezcla(col.ink, col.blue, Math.min(1, cresta * 0.7 + p.azul));
-      if (p.nar > 0.04) c = mezcla(c, col.orange, Math.min(1, p.nar * 1.4));
-      ctx.fillStyle = `rgb(${c.join(',')})`;
-      ctx.globalAlpha = Math.min(1, 0.22 + p.d * 0.5 + cresta * 0.3 + p.azul * 0.4 + p.nar * 0.5);
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, (0.9 + 2 * p.s) * (0.8 + cresta * 0.7), 0, Math.PI * 2);
-      ctx.fill();
-    }
+    // Fuegos artificiales
+    for (const c of cohetes) { px(c.x, c.y, 1, 2, col.luz); px(c.x, c.y + 2, 1, 2, col.apagada); }
+    for (const s of chispas) { ctx.globalAlpha = Math.max(0, s.vida); px(s.x, s.y, s.vida > 0.5 ? 2 : 1, s.vida > 0.5 ? 2 : 1, s.c); }
     ctx.globalAlpha = 1;
   };
 
-  const ciclo = () => {
-    const t = ahora();
-    // Un pulso suave cada pocos segundos si nadie está interactuando
-    if (t - ultimoPulso > 4.2 && t - ultimoUso > 3) {
-      ultimoPulso = t;
-      waves.push({ x: w * (0.45 + Math.random() * 0.45), y: h * (0.3 + Math.random() * 0.45), t, fuerza: 0.7, clic: false });
+  const lanzar = (x, y) => {
+    cohetes.push({ x, y: suelo - 1, meta: Math.max(3, y), vy: -Math.max(1.6, (suelo - y) / 22) });
+  };
+  const explotar = (c) => {
+    const colores = [col.luz, col.luzFria, mez(col.paper, col.orange, 1)];
+    for (let i = 0; i < 40; i++) {
+      const ang = (i / 40) * Math.PI * 2 + Math.random() * 0.15, v = 0.7 + Math.random() * 1.1;
+      chispas.push({ x: c.x, y: c.meta, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, vida: 1, c: colores[i % colores.length] });
     }
+  };
+  const fisica = (dt) => {
+    for (const c of cohetes) { c.y += c.vy * dt * 60; if (c.y <= c.meta) { c.listo = true; explotar(c); } }
+    cohetes = cohetes.filter((c) => !c.listo);
+    for (const s of chispas) { s.x += s.vx * dt * 60; s.y += s.vy * dt * 60; s.vy += 0.035 * dt * 60; s.vx *= 0.985; s.vida -= dt * 0.75; }
+    chispas = chispas.filter((s) => s.vida > 0 && s.y < suelo);
+  };
+
+  const ciclo = (now) => {
+    const dt = Math.min(0.05, (now - (ultimo || now)) / 1000); ultimo = now;
+    fisica(dt);
     pintar();
     raf = requestAnimationFrame(ciclo);
   };
-  const iniciar = () => {
-    if (running || reduceMotion || !visible || document.hidden) return;
-    running = true; raf = requestAnimationFrame(ciclo);
-  };
+  const iniciar = () => { if (running || reduceMotion || !visible || document.hidden) return; running = true; ultimo = 0; raf = requestAnimationFrame(ciclo); };
   const parar = () => { running = false; cancelAnimationFrame(raf); };
 
   const local = (e) => {
     const r = canvas.getBoundingClientRect();
-    return { x: e.clientX - r.left, y: e.clientY - r.top };
+    return { x: (e.clientX - r.left) / P, y: (e.clientY - r.top) / P };
   };
-  const dentro = (q) => q.x >= 0 && q.x <= w && q.y >= 0 && q.y <= h;
   hero.addEventListener('pointermove', (e) => {
     const q = local(e);
-    mouse.tx = q.x; mouse.ty = q.y;
-    if (mouse.x < -999) { mouse.x = q.x; mouse.y = q.y; }
-    mouse.target = dentro(q) ? 1 : 0;
-    if (dentro(q)) { field.classList.add('is-used'); ultimoUso = ahora(); }
-    if (reduceMotion) { mouse.x = q.x; mouse.y = q.y; mouse.on = mouse.target; pintar(); }
+    cursor.x = q.x; cursor.y = q.y; cursor.on = q.y >= 0 && q.y <= suelo;
+    if (cursor.on) field.classList.add('is-used');
+    if (!running) pintar();
   }, { passive: true });
-  hero.addEventListener('pointerleave', () => { mouse.target = 0; if (reduceMotion) { mouse.on = 0; pintar(); } });
+  hero.addEventListener('pointerleave', () => { cursor.on = false; if (!running) pintar(); });
   hero.addEventListener('pointerdown', (e) => {
-    if (e.target.closest('a, button')) return;
+    if (e.target.closest('a, button') || reduceMotion) return;
     const q = local(e);
-    if (!dentro(q)) return;
-    waves.push({ ...q, t: ahora(), fuerza: 1, clic: true });
-    field.classList.add('is-used'); ultimoUso = ahora();
-    if (reduceMotion) pintar();
+    if (q.y < 0 || q.y >= suelo) return;
+    lanzar(Math.round(q.x), Math.round(q.y));
+    field.classList.add('is-used');
   });
 
   leerColores();
@@ -1301,6 +1364,7 @@ else window.addEventListener('load', afterLoad, { once: true });
   const recolor = () => { leerColores(); if (!running) pintar(); };
   new MutationObserver(recolor).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor);
+  if (document.fonts) document.fonts.ready.then(medir);
   new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? iniciar() : parar(); }).observe(hero);
   document.addEventListener('visibilitychange', () => (document.hidden ? parar() : iniciar()));
   iniciar();
