@@ -899,6 +899,7 @@ const cmdkList = document.getElementById('cmdk-list');
 const cmdkEmpty = document.getElementById('cmdk-empty');
 const isMac = /Mac|iPhone|iPad/.test(navigator.userAgentData?.platform || navigator.platform || navigator.userAgent);
 document.querySelectorAll('.cmdk-kbd').forEach((k) => { k.textContent = isMac ? '⌘K' : 'Ctrl K'; });
+document.querySelectorAll('.cmdk-search-btn').forEach((b) => { b.title = `${b.textContent.trim()} (${isMac ? '⌘K' : 'Ctrl K'})`; });
 
 const CMDK_TEXT = {
   es: { sections: 'Secciones', projects: 'Proyectos', actions: 'Acciones', empty: (q) => `Nada coincide con «${q}».`, section: 'sección', project: 'proyecto', mailCopied: 'Correo copiado al portapapeles.', mailFail: 'No se pudo copiar el correo.' },
