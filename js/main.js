@@ -1068,7 +1068,7 @@ document.addEventListener('keydown', (event) => {
    --------------------------------------------------------- */
 const revealGroups = [
   '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.metro', '.prose', '.dcard-wrap',
-  '.contact-title', '.mail-box', '.contact-links'
+  '.ct-sign', '.contact-title', '.mail-box', '.ct-links', '.ct-side'
 ];
 const revealEls = [];
 revealGroups.forEach((selector) => {
