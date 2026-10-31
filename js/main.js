@@ -1243,12 +1243,17 @@ else window.addEventListener('load', afterLoad, { once: true });
   };
 
   const medir = () => {
+    // El lienzo termina justo en la línea de las cifras (offsetTop ignora la animación de entrada)
+    if (cifras) {
+      let y = 0, el = cifras;
+      while (el && el !== hero) { y += el.offsetTop; el = el.offsetParent; }
+      const abajo = Math.max(0, hero.offsetHeight - y);
+      if (field.style.bottom !== abajo + 'px') field.style.bottom = abajo + 'px';
+    }
     const r = canvas.getBoundingClientRect();
     W = Math.max(1, Math.ceil(r.width / P)); H = Math.max(1, Math.ceil(r.height / P));
     canvas.width = W; canvas.height = H;
-    // El suelo de la ciudad es la línea de las cifras
-    const c = cifras ? cifras.getBoundingClientRect() : null;
-    suelo = c && c.top > r.top ? Math.floor((c.top - r.top) / P) - 1 : H - 1;
+    suelo = H;
     construir();
     if (!running) pintar();
   };
@@ -1367,7 +1372,8 @@ else window.addEventListener('load', afterLoad, { once: true });
 
   leerColores();
   medir();
-  new ResizeObserver(medir).observe(canvas);
+  const ro = new ResizeObserver(medir);
+  ro.observe(canvas); ro.observe(hero); if (cifras) ro.observe(cifras);
   const recolor = () => { leerColores(); if (!running) pintar(); };
   new MutationObserver(recolor).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', recolor);
