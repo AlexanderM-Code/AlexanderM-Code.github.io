@@ -476,6 +476,42 @@ a.cert:hover { border-color: var(--blue); }
   .hb-code { font-size: 0.75rem; padding: 18px; }
 }
 
+/* ---------- Trayectoria: Línea A del Metro de Medellín ---------- */
+.metro { --mt-green: #1c8a4b; --mt-n: 6; position: relative; margin-top: var(--space-6); }
+.mt-line-name { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--mt-green); font-weight: 700; }
+.mt-a { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--mt-green); color: #fff; font-size: 0.8125rem; }
+.mt-track {
+  position: relative; height: 12px; margin: 40px calc((100% - (var(--mt-n) - 1) * 18px) / var(--mt-n) - 15px) 0 15px; border-radius: 6px;
+  background: linear-gradient(90deg, var(--mt-green) 0 calc(100% - 100% / (var(--mt-n) - 1)), transparent 0),
+              repeating-linear-gradient(90deg, var(--orange) 0 14px, transparent 14px 24px);
+}
+.mt-train { position: absolute; top: -12px; left: 0; display: flex; gap: 2px; transform: translateX(var(--mt-x, 0px)); transition: transform 120ms linear; }
+.mt-train i { position: relative; display: block; width: 46px; height: 22px; border: 2px solid var(--ink-2); border-radius: 4px; background: #fff;
+  background-image: linear-gradient(var(--mt-green), var(--mt-green)), repeating-linear-gradient(90deg, #9fb0e6 0 7px, transparent 7px 10px);
+  background-size: calc(100% - 6px) 3px, calc(100% - 10px) 5px; background-position: 3px 13px, 5px 4px; background-repeat: no-repeat; }
+.mt-train i:last-child::after { content: ""; position: absolute; right: -4px; top: 11px; width: 3px; height: 3px; background: var(--orange); }
+.mt-stations { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--mt-n), minmax(0, 1fr)); gap: 0 18px; }
+.mt-st { position: relative; padding-top: 30px; }
+.mt-dot { position: absolute; top: -26px; left: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--paper); border: 7px solid var(--mt-green); }
+.mt-next .mt-dot { border-color: var(--orange); }
+.mt-sem { font-size: 0.8125rem; font-weight: 700; color: var(--mt-green); }
+.mt-next .mt-sem { color: var(--orange-text); text-transform: uppercase; letter-spacing: var(--track-label); font-size: 0.75rem; }
+.mt-title { margin-top: 6px; font-size: 1.125rem; font-weight: 800; letter-spacing: var(--track-h4); line-height: 1.2; }
+.mt-items { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; font-size: 0.9375rem; color: var(--ink-2); line-height: 1.35; }
+.mt-when { display: block; font-size: 0.75rem; color: var(--ink-3); margin-top: 1px; }
+.mt-link { padding: 0; border: 0; background: none; font: inherit; color: var(--ink); font-weight: 600; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.mt-link:hover, .mt-link:focus-visible { color: var(--blue); text-decoration-color: currentColor; }
+.mt-cta { margin-top: 14px; }
+@media (max-width: 900px) {
+  .mt-track { display: none; }
+  .mt-stations { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 20px; }
+  .mt-st { padding: 0 0 28px 44px; }
+  .mt-st::before { content: ""; position: absolute; left: 11px; top: 6px; bottom: -6px; width: 8px; background: var(--mt-green); }
+  .mt-st.mt-next::before { display: none; }
+  .mt-st:nth-last-child(2)::before { background: linear-gradient(var(--mt-green) 60%, var(--orange)); }
+  .mt-dot { top: 0; left: 0; margin-left: 0; width: 30px; height: 30px; }
+}
+
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(40px, 4vw, 56px); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }

@@ -1067,7 +1067,7 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.t-item', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.metro', '.prose', '.facts-panel',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
@@ -1160,6 +1160,31 @@ else window.addEventListener('load', afterLoad, { once: true });
       select(tabs[(map[e.key] + tabs.length) % tabs.length], true);
     });
   });
+})();
+
+/* ---------------------------------------------------------
+   Trayectoria: el tren avanza por la Línea A mientras bajas,
+   desde 2023 hasta la estación "Práctica empresarial".
+   --------------------------------------------------------- */
+(() => {
+  const metro = document.querySelector('.metro');
+  const track = metro && metro.querySelector('.mt-track');
+  const train = track && track.querySelector('.mt-train');
+  if (!train) return;
+  let raf = 0;
+  const mover = () => {
+    raf = 0;
+    const r = metro.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const k = reduceMotion ? 0.85 : Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.7)));
+    const max = track.clientWidth - train.offsetWidth;
+    // El tren se detiene justo antes de la última estación
+    train.style.setProperty('--mt-x', `${Math.round(k * max * 0.93)}px`);
+  };
+  const pedir = () => { if (!raf) raf = requestAnimationFrame(mover); };
+  window.addEventListener('scroll', pedir, { passive: true });
+  window.addEventListener('resize', pedir, { passive: true });
+  mover();
 })();
 
 /* ---------------------------------------------------------
