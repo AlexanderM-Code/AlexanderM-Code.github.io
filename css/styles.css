@@ -415,7 +415,8 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 .extra .learning li { padding: 10px 16px; gap: 10px; }
 .extra .learning img { width: auto; height: 26px; }
 .extra .learning .s-name { font-weight: 700; }
-.extra #certificaciones { margin-top: var(--space-6); scroll-margin-top: calc(var(--nav-h) + 24px); }
+.extra #certificaciones { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.extra .certs + .tier-title { margin-top: var(--space-6); }
 .extra .certs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .extra .cert { display: flex; flex-direction: column; align-items: stretch; gap: 8px; height: 100%; padding: 16px; border-radius: 10px; }
 .extra .cert-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
