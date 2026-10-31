@@ -1177,17 +1177,18 @@ div.cert { grid-template-columns: 28px minmax(0, 1fr); }
 }
 @media print {
   .hero-field { display: none; } .city { display: none; } }
-.footer { padding: var(--space-6) 0 var(--space-7); border-top: 1.5px solid var(--ink); background: var(--paper); }
-.footer-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-5) clamp(var(--space-6), 5vw, 72px); align-items: start; }
-.footer-main { display: grid; gap: var(--space-2); }
-.footer-meta .site-updated::before { content: " · "; }
-.colophon { display: grid; gap: var(--space-2); font-size: 0.9375rem; color: var(--ink-2); }
-.colophon-title { font-size: 0.75rem; font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--blue); }
-.colophon-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-5); margin-top: var(--space-2); }
-.colophon-actions a:not(.btn) { color: var(--ink); font-weight: 700; }
-.footer-name { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; letter-spacing: var(--track-h2); line-height: 1; }
-.footer-meta { font-size: 0.8125rem; color: var(--ink-2); }
-.credits { max-width: 80ch; font-size: 0.8125rem; color: var(--ink-3); }
+/* ---------- Pie: firma ---------- */
+.footer { padding: var(--space-6) 0 var(--space-7); background: var(--paper); }
+.sig { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-5); padding-top: var(--space-6); border-top: 1.5px solid var(--ink); }
+.sig-name { white-space: nowrap; font-size: clamp(2.5rem, 7.5vw, 6.5rem); font-weight: 800; letter-spacing: var(--track-display); line-height: 0.9; }
+.sig-dot { color: var(--orange); }
+.sig-side { display: grid; justify-items: end; gap: 10px; text-align: right; max-width: 460px; }
+.sig-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-bottom: 6px; }
+.sig-meta { font-size: 0.8125rem; color: var(--ink-2); }
+.sig-meta .site-updated { display: block; margin-top: 2px; color: var(--ink-3); }
+.sig-credits { max-width: 52ch; font-size: 0.75rem; color: var(--ink-3); line-height: 1.5; }
+.sig-credits a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .sig { grid-template-columns: minmax(0, 1fr); } .sig-side { justify-items: start; text-align: left; } .sig-actions { justify-content: flex-start; } }
 
 /* ---------- Microinteracciones ---------- */
 /* Enlaces de texto: una línea tenue en reposo y otra que crece de izquierda a derecha */
