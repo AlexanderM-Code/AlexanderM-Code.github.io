@@ -1067,13 +1067,13 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.idx-row', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.ar-row', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
 revealGroups.forEach((selector) => {
   document.querySelectorAll(selector).forEach((el) => {
-    // C y D van dentro de .tier-side; se cuentan junto a A y B para mantener el orden de lectura.
+    // Los bloques de una misma sección entran escalonados en orden de lectura.
     const siblings = el.matches('.tier')
       ? [...el.closest('.tiers').querySelectorAll('.tier')]
       : [...el.parentElement.children].filter((c) => c.matches(selector));
