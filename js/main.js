@@ -1149,7 +1149,7 @@ else window.addEventListener('load', afterLoad, { once: true });
   const hero = document.getElementById('inicio');
   if (!field || !canvas || !hero || !canvas.getContext) return;
   const ctx = canvas.getContext('2d');
-  const COLS = 34, ROWS = 22;
+  let COLS = 34, ROWS = 22;
   let w = 0, h = 0, dpr = 1, pts = [], col = {};
   const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999, on: 0, target: 0 };
   let waves = [];
@@ -1182,14 +1182,16 @@ else window.addEventListener('load', afterLoad, { once: true });
     w = r.width; h = r.height;
     canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    COLS = Math.max(18, Math.min(56, Math.round(w / 30)));
+    ROWS = Math.max(16, Math.min(30, Math.round(h / 26)));
     pts = [];
     for (let j = 0; j < ROWS; j++) {
       const d = j / (ROWS - 1);                  // 0 = fondo, 1 = frente
       const s = 0.32 + 0.68 * d ** 1.15;         // escala por profundidad
-      const y = h * (0.1 + 0.8 * d ** 1.35);
+      const y = h * (0.06 + 0.9 * d ** 1.3);
       for (let i = 0; i < COLS; i++) {
         const u = i / (COLS - 1) - 0.5;
-        pts.push({ i, j, d, s, bx: w * (0.55 + u * 1.5 * s), by: y, x: 0, y: 0, alt: 0 });
+        pts.push({ i, j, d, s, bx: w * (0.5 + u * 1.25 * s), by: y, x: 0, y: 0, alt: 0 });
       }
     }
     if (!running) pintar();
@@ -1213,28 +1215,28 @@ else window.addEventListener('load', afterLoad, { once: true });
       // Colina bajo el cursor
       if (mouse.on > 0.01) {
         const dx = p.bx - mouse.x, dy = (p.by - mouse.y) * 1.6;
-        const k = Math.exp(-(dx * dx + dy * dy) / (2 * 95 * 95)) * mouse.on;
-        alt += k * 3.2; azul = k;
+        const k = Math.exp(-(dx * dx + dy * dy) / (2 * 120 * 120)) * mouse.on;
+        alt += k * 3.6; azul = k;
       }
       // Ondas de clics y pulsos
       for (const o of waves) {
         const edad = t - o.t;
         const dist = Math.hypot(p.bx - o.x, (p.by - o.y) * 1.6);
-        const frente = edad * 260;
-        const k = Math.exp(-((dist - frente) ** 2) / (2 * 26 * 26)) * (1 - edad / 3.2) * o.fuerza;
+        const frente = edad * 340;
+        const k = Math.exp(-((dist - frente) ** 2) / (2 * 34 * 34)) * (1 - edad / 3.2) * o.fuerza;
         alt += k * 2.6;
         if (o.clic) naranja = Math.max(naranja, k); else azul = Math.max(azul, k * 0.6);
       }
       p.alt = alt; p.azul = azul; p.nar = naranja;
       p.x = p.bx;
-      p.y = p.by - alt * 9 * p.s;
+      p.y = p.by - alt * 15 * p.s;
     }
 
     // Líneas de cada fila: dan la sensación de superficie
     ctx.lineWidth = 1;
     for (let j = 0; j < ROWS; j++) {
       const fila = pts.slice(j * COLS, (j + 1) * COLS);
-      ctx.strokeStyle = `rgba(${col.ink.join(',')},${0.03 + 0.07 * fila[0].d})`;
+      ctx.strokeStyle = `rgba(${col.ink.join(',')},${0.05 + 0.12 * fila[0].d})`;
       ctx.beginPath();
       fila.forEach((p, i) => (i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
       ctx.stroke();
@@ -1243,12 +1245,12 @@ else window.addEventListener('load', afterLoad, { once: true });
     // Puntos, del fondo hacia el frente
     for (const p of pts) {
       const cresta = Math.max(0, Math.min(1, (p.alt + 1.2) / 3));
-      let c = mezcla(col.ink, col.blue, Math.min(1, cresta * 0.5 + p.azul));
+      let c = mezcla(col.ink, col.blue, Math.min(1, cresta * 0.7 + p.azul));
       if (p.nar > 0.04) c = mezcla(c, col.orange, Math.min(1, p.nar * 1.4));
       ctx.fillStyle = `rgb(${c.join(',')})`;
-      ctx.globalAlpha = Math.min(1, 0.12 + p.d * 0.45 + cresta * 0.35 + p.azul * 0.4 + p.nar * 0.5);
+      ctx.globalAlpha = Math.min(1, 0.22 + p.d * 0.5 + cresta * 0.3 + p.azul * 0.4 + p.nar * 0.5);
       ctx.beginPath();
-      ctx.arc(p.x, p.y, (0.7 + 1.5 * p.s) * (0.8 + cresta * 0.7), 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, (0.9 + 2 * p.s) * (0.8 + cresta * 0.7), 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
@@ -1259,7 +1261,7 @@ else window.addEventListener('load', afterLoad, { once: true });
     // Un pulso suave cada pocos segundos si nadie está interactuando
     if (t - ultimoPulso > 4.2 && t - ultimoUso > 3) {
       ultimoPulso = t;
-      waves.push({ x: w * (0.35 + Math.random() * 0.45), y: h * (0.35 + Math.random() * 0.4), t, fuerza: 0.55, clic: false });
+      waves.push({ x: w * (0.45 + Math.random() * 0.45), y: h * (0.3 + Math.random() * 0.45), t, fuerza: 0.7, clic: false });
     }
     pintar();
     raf = requestAnimationFrame(ciclo);
