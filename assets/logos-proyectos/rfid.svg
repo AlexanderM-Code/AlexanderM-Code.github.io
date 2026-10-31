@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Arduino y cerradura RFID</title>
+<rect width="64" height="64" rx="14" fill="#0e4d5c"/>
+<path d="M22 30 V24 a10 10 0 0 1 20 0 V30" fill="none" stroke="#f3efe6" stroke-width="4" stroke-linecap="round"/>
+<rect x="15" y="29" width="34" height="27" rx="6" fill="#f2b632"/>
+<rect x="15" y="29" width="34" height="5" rx="2" fill="#d9981c"/>
+<circle cx="32" cy="41" r="4" fill="#0e4d5c"/><path d="M30.4 43 L29.4 50 h5.2 L33.6 43 Z" fill="#0e4d5c"/>
+<path d="M45 12 a7 7 0 0 1 7 7" fill="none" stroke="#7fe0c4" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M45 6 a13 13 0 0 1 13 13" fill="none" stroke="#7fe0c4" stroke-width="2.6" stroke-linecap="round" opacity=".7"/>
+<circle cx="45" cy="19" r="2.4" fill="#7fe0c4"/>
+</svg>

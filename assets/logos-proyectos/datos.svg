@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Datos con Python</title>
+<rect width="64" height="64" rx="14" fill="#1f2a5c"/>
+<path d="M9 46 A23 23 0 0 1 55 46" fill="none" stroke="#3a4a8c" stroke-width="7" stroke-linecap="round"/>
+<path d="M9 46 A23 23 0 0 1 20 26" fill="none" stroke="#e2560e" stroke-width="7" stroke-linecap="round"/>
+<g fill="#9fb0e6"><circle cx="22" cy="31" r="2.4"/><circle cx="28" cy="33" r="2.4"/><circle cx="33" cy="38" r="2.4"/><circle cx="40" cy="38" r="2.4"/><circle cx="45" cy="43" r="2.4"/></g>
+<path d="M32 46 L19 28" stroke="#f3efe6" stroke-width="3" stroke-linecap="round"/>
+<circle cx="32" cy="46" r="4.6" fill="#f3efe6"/><circle cx="32" cy="46" r="1.8" fill="#1f2a5c"/>
+</svg>

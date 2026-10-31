@@ -330,13 +330,15 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 .idx-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line-strong); }
 .idx-row {
   position: relative; z-index: 1; display: grid; width: 100%; align-items: center; text-align: left;
-  grid-template-columns: 64px minmax(0, 1fr) minmax(0, 220px) 160px 32px; column-gap: 16px;
+  grid-template-columns: 48px 52px minmax(0, 1fr) minmax(0, 220px) 160px 32px; column-gap: 18px;
   padding: clamp(16px, 2vw, 22px) 12px; border: 0; border-top: 1px solid var(--line-strong);
   background: transparent; color: var(--ink); font: inherit; cursor: pointer; border-radius: 0;
   transition: background-color 200ms ease, padding 260ms var(--ease-out);
 }
 .idx-num { color: var(--ink-3); font-size: 0.875rem; }
 .idx-thumb { display: none; }
+.idx-logo { width: 52px; height: 52px; border-radius: 13px; box-shadow: 0 1px 2px rgba(23,24,28,.12); transition: transform 260ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .idx-row:hover .idx-logo { transform: rotate(-6deg) scale(1.06); } }
 .idx-name { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; letter-spacing: var(--track-h3); line-height: 1.1; }
 .idx-area { color: var(--ink-2); font-size: 0.9375rem; }
 .idx-pill { justify-self: start; display: inline-flex; align-items: center; gap: 7px; padding: 4px 10px; border: 1px solid var(--line-strong); border-radius: 20px; font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
@@ -364,9 +366,10 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 .dlg-case-bar .dlg-close { position: relative; top: 14px; right: 14px; background: var(--surface); }
 .dlg-case > .case { border: 0; border-radius: 0; }
 @media (max-width: 900px) {
-  .idx-row { grid-template-columns: 56px minmax(0, 1fr) 28px; grid-template-rows: auto auto; row-gap: 8px; padding: 14px 4px; }
+  .idx-row { grid-template-columns: 52px minmax(0, 1fr) 28px; grid-template-rows: auto auto; row-gap: 8px; column-gap: 14px; padding: 14px 4px; }
+  .idx-logo { grid-row: 1 / 3; grid-column: 1; align-self: center; }
   .idx-num { display: none; }
-  .idx-thumb { display: block; grid-row: 1 / 3; width: 56px; height: 56px; object-fit: cover; object-position: top left; border-radius: 8px; border: 1px solid var(--line); background: var(--paper-2); }
+  .idx-thumb { display: none; grid-row: 1 / 3; width: 56px; height: 56px; object-fit: cover; object-position: top left; border-radius: 8px; border: 1px solid var(--line); background: var(--paper-2); }
   .idx-thumb-plot svg { width: 100%; height: 100%; }
   .idx-name { grid-column: 2; font-size: 1.25rem; }
   .idx-area { display: none; }
