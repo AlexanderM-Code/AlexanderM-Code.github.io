@@ -179,7 +179,7 @@ const menuToggle = document.getElementById('menu-toggle');
 const menu = document.getElementById('menu');
 const navLinks = [...document.querySelectorAll('.menu-links a')];
 const sectionToLink = [
-  ['proyectos', '#proyectos'], ['datos', '#datos'], ['mas-proyectos', '#proyectos'],
+  ['proyectos', '#proyectos'],
   ['habilidades', '#habilidades'], ['como-trabajo', '#habilidades'],
   ['trayectoria', '#trayectoria'], ['sobre-mi', '#trayectoria'], ['contacto', '#contacto']
 ].map(([id, href]) => [document.getElementById(id), href]).filter(([el]) => el);
@@ -908,6 +908,7 @@ const CMDK_TEXT = {
 const goTo = (hash) => () => {
   const target = document.querySelector(hash);
   if (!target) return;
+  if (abrirEnDialogo(target)) return;
   target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   history.pushState(null, '', hash);
   if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
@@ -928,16 +929,15 @@ const CMDK_ITEMS = [
   ['sections', 'Inicio', 'Home', '', goTo('#inicio')],
   ['sections', 'Proyectos', 'Projects', 'casos', goTo('#proyectos')],
   ['sections', 'Datos: gráfica del Observatorio', 'Data: Observatory chart', 'dengue malaria varicela', goTo('#datos')],
-  ['sections', 'Más proyectos', 'More projects', '', goTo('#mas-proyectos')],
   ['sections', 'Habilidades', 'Skills', '', goTo('#habilidades')],
   ['sections', 'Certificaciones', 'Certifications', 'google cloud cisco credly diplomados', goTo('#certificaciones')],
   ['sections', 'Cómo trabajo', 'How I work', 'hábitos habits', goTo('#como-trabajo')],
   ['sections', 'Trayectoria', 'Journey', '', goTo('#trayectoria')],
   ['sections', 'Sobre mí', 'About me', '', goTo('#sobre-mi')],
   ['sections', 'Contacto', 'Contact', 'correo email', goTo('#contacto')],
-  ['projects', 'Observatorio de Salud Pública de Antioquia', 'Antioquia Public Health Observatory', 'python sql etl', goTo('#observatorio')],
-  ['projects', 'Numi', 'Numi', 'flutter app rag ia ai', goTo('#numi')],
-  ['projects', 'CineX', 'CineX', 'java spring api', goTo('#cinex')],
+  ['projects', 'Observatorio de Salud Pública de Antioquia', 'Antioquia Public Health Observatory', 'python sql etl', openDialog('dlg-observatorio')],
+  ['projects', 'Numi', 'Numi', 'flutter app rag ia ai', openDialog('dlg-numi')],
+  ['projects', 'CineX', 'CineX', 'java spring api', openDialog('dlg-cinex')],
   ['projects', 'Casa Rendón', 'Casa Rendon', 'react cliente client', openDialog('dlg-casa')],
   ['projects', 'Datos con Python', 'Data with Python', 'regresión regression', openDialog('dlg-datos')],
   ['projects', 'Arduino y cerradura RFID', 'Arduino and RFID lock', 'computación ubicua iot sensores sensors', openDialog('dlg-rfid')],
@@ -1067,7 +1067,7 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.case', '.more-card', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.tier', '.habit', '.t-item', '.prose', '.facts-panel',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
@@ -1135,6 +1135,57 @@ const afterLoad = () => {
 };
 if (document.readyState === 'complete') afterLoad();
 else window.addEventListener('load', afterLoad, { once: true });
+
+/* ---------------------------------------------------------
+   Índice de proyectos: la captura del proyecto sigue al cursor.
+   Los enlaces a algo que vive dentro de un caso (#datos,
+   #observatorio…) abren su ventana y llevan hasta ahí.
+   --------------------------------------------------------- */
+function abrirEnDialogo(target) {
+  const dlg = target.closest('dialog.dlg');
+  if (!dlg) return false;
+  const trigger = document.querySelector(`[data-dialog="${dlg.id}"]`);
+  if (!dlg.open) (trigger ? trigger.click() : dlg.showModal());
+  requestAnimationFrame(() => {
+    if (target !== dlg.querySelector('.case')) target.scrollIntoView({ block: 'start' });
+  });
+  return true;
+}
+document.addEventListener('click', (event) => {
+  const a = event.target.closest('a[href^="#"]');
+  if (!a || a.getAttribute('href').length < 2) return;
+  const target = document.querySelector(a.getAttribute('href'));
+  if (target && target.closest('dialog.dlg')) { event.preventDefault(); abrirEnDialogo(target); }
+});
+if (location.hash.length > 1) {
+  const destino = document.querySelector(location.hash);
+  if (destino && destino.closest('dialog.dlg')) setTimeout(() => abrirEnDialogo(destino), 300);
+}
+(() => {
+  const idx = document.querySelector('.idx');
+  const flot = idx && idx.querySelector('.idx-float');
+  if (!idx || !flot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  let x = 0, y = 0, fx = 0, fy = 0, raf = 0, actual = '';
+  const seguir = () => {
+    fx += (x - fx) * (reduceMotion ? 1 : 0.18); fy += (y - fy) * (reduceMotion ? 1 : 0.18);
+    flot.style.left = `${fx}px`; flot.style.top = `${fy}px`;
+    raf = Math.abs(x - fx) + Math.abs(y - fy) > 0.5 ? requestAnimationFrame(seguir) : 0;
+  };
+  idx.addEventListener('pointermove', (e) => {
+    const r = idx.getBoundingClientRect();
+    x = e.clientX - r.left + 190; y = e.clientY - r.top;
+    const fila = e.target.closest('.idx-row');
+    const src = fila && fila.dataset.preview;
+    if (src) {
+      if (src !== actual) { actual = src; flot.src = src; }
+      if (!flot.classList.contains('is-on')) { fx = x; fy = y; }
+      flot.classList.add('is-on');
+    } else flot.classList.remove('is-on');
+    if (!raf) raf = requestAnimationFrame(seguir);
+  });
+  idx.addEventListener('pointerleave', () => flot.classList.remove('is-on'));
+  idx.querySelectorAll('.idx-row[data-preview]').forEach((f) => { if (f.dataset.preview) { const i = new Image(); i.src = f.dataset.preview; } });
+})();
 
 /* ---------------------------------------------------------
    Medellín en pixeles detrás del inicio, como en el README de
