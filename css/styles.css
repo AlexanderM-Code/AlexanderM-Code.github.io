@@ -335,7 +335,7 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 }
 .hero-field canvas { display: block; width: 100%; height: 100%; }
 .hero-hint {
-  position: absolute; right: 9%; bottom: 14%; font-size: 0.75rem; letter-spacing: var(--track-label);
+  position: absolute; right: 6%; top: 2%; font-size: 0.75rem; letter-spacing: var(--track-label);
   text-transform: uppercase; color: var(--ink-3); transition: opacity 600ms ease;
 }
 .hero-field.is-used .hero-hint { opacity: 0; }
