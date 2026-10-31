@@ -325,10 +325,7 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
 
 /* ---------- Hero ---------- */
 .hero { padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(40px, 4vw, 56px); }
-.hero-grid {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(32px, 5vw, 72px); align-items: end;
-}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
 .tag { font-size: 0.8125rem; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-2); }
 .availability {
   display: inline-flex; align-items: center; gap: 10px; margin-top: var(--space-3);
@@ -883,6 +880,7 @@ div.cert { grid-template-columns: 28px minmax(0, 1fr); }
   font-size: clamp(2.25rem, 5vw, 4.25rem); font-weight: 800; line-height: 0.98; letter-spacing: var(--track-display);
 }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(var(--space-6), 4vw, 56px); margin-top: var(--space-6); align-items: start; }
+.contact-main { display: grid; gap: var(--space-5); }
 .mail-box { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; padding: 22px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .mail { font-family: var(--mono); font-size: clamp(1.0625rem, 2.2vw, 1.625rem); font-weight: 500; word-break: break-all; }
 .copy-status { flex-basis: 100%; min-height: 1.4em; font-size: 0.8125rem; color: var(--green-text); }

@@ -132,40 +132,6 @@
             <a class="btn btn-line" href="cv/CV_Alexander_Mejia_Ospina.pdf" data-en-href="cv/Resume_Alexander_Mejia_Ospina_EN.pdf" download data-en="Download resume">Descargar hoja de vida</a>
           </div>
         </div>
-
-        <aside class="panel status rise" style="--i:1" aria-labelledby="status-title">
-          <div class="panel-head">
-            <h2 class="panel-title mono" id="status-title" data-en="System status">Estado del sistema</h2>
-            <span class="mono panel-meta" id="status-clock" aria-hidden="true"></span>
-          </div>
-          <ul class="status-list">
-            <li class="status-row" id="api-row" data-state="checking">
-              <span class="dot" aria-hidden="true"></span>
-              <div class="status-text">
-                <p class="status-name"><a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="CineX API">API de CineX</a></p>
-                <p class="status-detail" id="api-detail" role="status" aria-live="polite">Comprobando…</p>
-              </div>
-              <span class="status-metric mono" id="api-ms" aria-hidden="true"></span>
-            </li>
-            <li class="status-row" data-state="ok">
-              <span class="dot" aria-hidden="true"></span>
-              <div class="status-text">
-                <p class="status-name"><a href="https://alexanderm-code.github.io/observatorio-salud-antioquia/" target="_blank" rel="noopener" data-en="Public Health Observatory">Observatorio de Salud</a></p>
-                <p class="status-detail" data-en="Data updated monthly with GitHub Actions">Datos actualizados mensualmente con GitHub Actions</p>
-              </div>
-              <span class="status-metric mono" data-en="cron">cron</span>
-            </li>
-            <li class="status-row" data-state="ok">
-              <span class="dot" aria-hidden="true"></span>
-              <div class="status-text">
-                <p class="status-name"><a href="https://casarendon.com" target="_blank" rel="noopener">casarendon.com</a></p>
-                <p class="status-detail" data-en="In production">En producción</p>
-              </div>
-              <span class="status-metric mono">web</span>
-            </li>
-          </ul>
-          <p class="panel-foot mono"><span>GET /productos</span><span data-en="real request from your browser">petición real desde tu navegador</span></p>
-        </aside>
       </div>
 
       <div class="wrap">
@@ -977,11 +943,46 @@
         <p class="label mono" aria-hidden="true">07 / <span data-en="Contact">Contacto</span></p>
         <h2 class="contact-title" id="contact-title" data-en="Does your team need an intern? Let's talk.">¿Tu equipo necesita un practicante? Hablemos.</h2>
         <div class="contact-grid">
-          <div class="mail-box">
-            <a class="mail" href="mailto:alexmejia0112@gmail.com">alexmejia0112@gmail.com</a>
-            <button class="btn btn-accent" type="button" id="copy-mail" data-mail="alexmejia0112@gmail.com" data-en="Copy">Copiar</button>
-            <p class="copy-status mono" id="copy-status" role="status" aria-live="polite"></p>
-            <p class="local-time" id="local-time" hidden><span class="dot dot-ok" aria-hidden="true"></span><span id="local-time-text"></span></p>
+          <div class="contact-main">
+            <div class="mail-box">
+              <a class="mail" href="mailto:alexmejia0112@gmail.com">alexmejia0112@gmail.com</a>
+              <button class="btn btn-accent" type="button" id="copy-mail" data-mail="alexmejia0112@gmail.com" data-en="Copy">Copiar</button>
+              <p class="copy-status mono" id="copy-status" role="status" aria-live="polite"></p>
+              <p class="local-time" id="local-time" hidden><span class="dot dot-ok" aria-hidden="true"></span><span id="local-time-text"></span></p>
+            </div>
+            <aside class="panel status" aria-labelledby="status-title">
+              <div class="panel-head">
+                <h3 class="panel-title mono" id="status-title" data-en="System status">Estado del sistema</h3>
+                <span class="mono panel-meta" id="status-clock" aria-hidden="true"></span>
+              </div>
+              <ul class="status-list">
+                <li class="status-row" id="api-row" data-state="checking">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div class="status-text">
+                    <p class="status-name"><a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="CineX API">API de CineX</a></p>
+                    <p class="status-detail" id="api-detail" role="status" aria-live="polite">Comprobando…</p>
+                  </div>
+                  <span class="status-metric mono" id="api-ms" aria-hidden="true"></span>
+                </li>
+                <li class="status-row" data-state="ok">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div class="status-text">
+                    <p class="status-name"><a href="https://alexanderm-code.github.io/observatorio-salud-antioquia/" target="_blank" rel="noopener" data-en="Public Health Observatory">Observatorio de Salud</a></p>
+                    <p class="status-detail" data-en="Data updated monthly with GitHub Actions">Datos actualizados mensualmente con GitHub Actions</p>
+                  </div>
+                  <span class="status-metric mono" data-en="cron">cron</span>
+                </li>
+                <li class="status-row" data-state="ok">
+                  <span class="dot" aria-hidden="true"></span>
+                  <div class="status-text">
+                    <p class="status-name"><a href="https://casarendon.com" target="_blank" rel="noopener">casarendon.com</a></p>
+                    <p class="status-detail" data-en="In production">En producción</p>
+                  </div>
+                  <span class="status-metric mono">web</span>
+                </li>
+              </ul>
+              <p class="panel-foot mono"><span>GET /productos</span><span data-en="real request from your browser">petición real desde tu navegador</span></p>
+            </aside>
           </div>
           <ul class="contact-links">
             <li><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/alexander-mejia-ospina" target="_blank" rel="me noopener">alexander-mejia-ospina</a></li>
