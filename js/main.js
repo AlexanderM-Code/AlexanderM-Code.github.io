@@ -1067,7 +1067,7 @@ document.addEventListener('keydown', (event) => {
    Lo que ya está en pantalla al cargar no se esconde.
    --------------------------------------------------------- */
 const revealGroups = [
-  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.habit', '.t-item', '.prose', '.facts-panel',
+  '.section-head > *', '.idx-row', '.ar-row', '.extra', '.hb', '.t-item', '.prose', '.facts-panel',
   '.contact-title', '.mail-box', '.contact-links'
 ];
 const revealEls = [];
@@ -1135,6 +1135,32 @@ const afterLoad = () => {
 };
 if (document.readyState === 'complete') afterLoad();
 else window.addEventListener('load', afterLoad, { once: true });
+
+/* ---------------------------------------------------------
+   Cómo trabajo: pestañas accesibles (flechas, Inicio, Fin).
+   --------------------------------------------------------- */
+(() => {
+  const tabs = [...document.querySelectorAll('.hb-tab')];
+  if (!tabs.length) return;
+  const select = (tab, focus) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab, false));
+    tab.addEventListener('keydown', (e) => {
+      const map = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      select(tabs[(map[e.key] + tabs.length) % tabs.length], true);
+    });
+  });
+})();
 
 /* ---------------------------------------------------------
    Índice de proyectos: la captura del proyecto sigue al cursor.

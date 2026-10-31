@@ -33,7 +33,7 @@
   <link rel="me" href="https://github.com/AlexanderM-Code">
   <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-10-31a">
+  <link rel="stylesheet" href="css/styles.css?v=2026-10-31b">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -53,7 +53,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-10-30q" defer></script>
+  <script src="js/main.js?v=2026-10-31b" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -801,40 +801,93 @@
           <h2 class="section-title" id="work-title" data-en="Habits you can check.">Hábitos que se pueden comprobar.</h2>
           <p class="section-lede" data-en="Each one links to the evidence in my repositories.">Cada uno enlaza a la evidencia en mis repositorios.</p>
         </div>
-        <ol class="habits">
-          <li class="habit">
-            <h3 class="habit-title" data-en="I test what I build">Pruebo lo que construyo</h3>
-            <p data-en="17 tests with JUnit and Mockito in CineX, and pytest tests for cleaning, MySQL loading and the API in the Observatory.">17 pruebas con JUnit y Mockito en CineX, y pruebas con pytest para la limpieza, la carga en MySQL y la API del Observatorio.</p>
-            <p class="evidence mono">
-              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/tree/main/CineX-Backend/cineX_spring_boot/demo/src/test" target="_blank" rel="noopener" data-en="CineX tests">Pruebas de CineX</a>
-              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/tree/main/tests" target="_blank" rel="noopener" data-en="Observatory tests">Pruebas del Observatorio</a>
-            </p>
-          </li>
-          <li class="habit">
-            <h3 class="habit-title" data-en="I automate">Automatizo</h3>
-            <p data-en="GitHub Actions runs CineX's tests on every push and pull request, and refreshes the Observatory's data every month.">GitHub Actions corre las pruebas de CineX en cada push y pull request, y actualiza los datos del Observatorio cada mes.</p>
-            <p class="evidence mono">
-              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/blob/main/.github/workflows/backend.yml" target="_blank" rel="noopener" data-en="CineX CI">CI de CineX</a>
-              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/blob/main/.github/workflows/actualizar-datos.yml" target="_blank" rel="noopener" data-en="Monthly update">Actualización mensual</a>
-            </p>
-          </li>
-          <li class="habit">
-            <h3 class="habit-title" data-en="I document">Documento</h3>
-            <p data-en="The CineX API is documented with Swagger, and every repository has a README that explains how to run it.">La API de CineX está documentada con Swagger, y cada repositorio tiene un README que explica cómo correrlo.</p>
-            <p class="evidence mono">
-              <a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Swagger">Swagger</a>
-              <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia#readme" target="_blank" rel="noopener" data-en="Observatory README">README del Observatorio</a>
-            </p>
-          </li>
-          <li class="habit">
-            <h3 class="habit-title" data-en="I work in a team with Git">Trabajo en equipo con Git</h3>
-            <p data-en="In CineX I set up the repository and reviewed and integrated my teammates&#39; pull requests. In Numi, three of us work on the same repository, each team on its own layer.">En CineX armé el repositorio y revisé e integré los pull requests de mis compañeros. En Numi trabajamos tres personas sobre el mismo repositorio, cada equipo en su capa.</p>
-            <p class="evidence mono">
-              <a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/pulls?q=is%3Apr+is%3Aclosed" target="_blank" rel="noopener" data-en="CineX pull requests">Pull requests de CineX</a>
-              <a href="https://github.com/geminitodo5-sketch/app-educativa-medellin/graphs/contributors" target="_blank" rel="noopener" data-en="Numi contributors">Colaboradores de Numi</a>
-            </p>
-          </li>
-        </ol>
+
+        <div class="hb">
+          <div class="hb-tabs" role="tablist" aria-label="Hábitos" data-en-aria="Habits">
+            <button class="hb-tab" type="button" role="tab" id="hb-tab-pruebas" aria-controls="hb-pruebas" aria-selected="true" tabindex="0">
+              <span class="hb-num mono">01</span>
+              <span class="hb-name" data-en="I test what I build">Pruebo lo que construyo</span>
+            </button>
+            <button class="hb-tab" type="button" role="tab" id="hb-tab-automatizo" aria-controls="hb-automatizo" aria-selected="false" tabindex="-1">
+              <span class="hb-num mono">02</span>
+              <span class="hb-name" data-en="I automate">Automatizo</span>
+            </button>
+            <button class="hb-tab" type="button" role="tab" id="hb-tab-documento" aria-controls="hb-documento" aria-selected="false" tabindex="-1">
+              <span class="hb-num mono">03</span>
+              <span class="hb-name" data-en="I document">Documento</span>
+            </button>
+            <button class="hb-tab" type="button" role="tab" id="hb-tab-equipo" aria-controls="hb-equipo" aria-selected="false" tabindex="-1">
+              <span class="hb-num mono">04</span>
+              <span class="hb-name" data-en="I work as a team with Git">Trabajo en equipo con Git</span>
+            </button>
+          </div>
+          <div class="hb-term">
+          <div class="hb-panel" role="tabpanel" id="hb-pruebas" aria-labelledby="hb-tab-pruebas">
+            <p class="hb-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>CineX · mvn verify</span></p>
+            <pre class="hb-code mono" tabindex="0"><span class="t-dim">$ mvn verify</span>
+<span class="t-ok">✓</span> noVendeMasSillasQueLaCapacidadDeLaSala
+<span class="t-ok">✓</span> noProgramaDosFuncionesEnLaMismaSalaALaMismaHora
+<span class="t-ok">✓</span> funcionConPeliculaInexistenteResponde404
+<span class="t-ok">✓</span> rechazaDatosInvalidosConElCampoQueFallo
+<span class="t-ok">✓</span> noEliminaRegistrosQueEstanEnUso
+<span class="t-dim">  … 14 más</span>
+<span class="t-num">Tests run: 19, Failures: 0</span>
+
+<span class="t-dim">$ pytest  # Observatorio</span>
+<span class="t-ok">✓</span> test_rellena_codigos_divipola
+<span class="t-ok">✓</span> test_corrige_santa_fe_de_antioquia
+<span class="t-ok">✓</span> test_modelo_estrella_sin_llaves_repetidas
+<span class="t-num">15 passed</span></pre>
+            <div class="hb-foot"><p data-en="19 tests in CineX and 15 in the Observatory.">19 pruebas en CineX y 15 en el Observatorio.</p><p class="hb-links mono"><a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/tree/main/CineX-Backend/cineX_spring_boot/demo/src/test" target="_blank" rel="noopener" data-en="CineX tests ↗">Pruebas de CineX ↗</a> <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/tree/main/tests" target="_blank" rel="noopener" data-en="Observatory tests ↗">Pruebas del Observatorio ↗</a></p></div>
+          </div>
+          <div class="hb-panel" role="tabpanel" id="hb-automatizo" aria-labelledby="hb-tab-automatizo" hidden>
+            <p class="hb-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>.github/workflows</span></p>
+            <pre class="hb-code mono" tabindex="0"><span class="t-dim"># CineX · backend.yml</span>
+<span class="t-key">on</span>: [push, pull_request]
+<span class="t-key">jobs</span>:
+  <span class="t-key">pruebas</span>: <span class="t-dim"># JUnit con mvn verify</span>
+  <span class="t-key">postman</span>: <span class="t-dim"># levanta la API real y corre 26 solicitudes</span>
+
+<span class="t-dim"># Observatorio · actualizar-datos.yml</span>
+<span class="t-key">on</span>:
+  <span class="t-key">schedule</span>:
+    - <span class="t-key">cron</span>: <span class="t-str">"17 11 1 * *"</span>  <span class="t-dim"># el día 1 de cada mes</span>
+  <span class="t-key">steps</span>: descargar SIVIGILA → limpiar → publicar
+
+<span class="t-ok">✓</span> <span class="t-str">Pruebas (JUnit)</span>         <span class="t-ok">✓</span> <span class="t-str">API real + Postman</span></pre>
+            <div class="hb-foot"><p data-en="Tests run on every change and the Observatory updates itself every month.">Las pruebas corren solas en cada cambio y el Observatorio se actualiza cada mes.</p><p class="hb-links mono"><a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/blob/main/.github/workflows/backend.yml" target="_blank" rel="noopener" data-en="CineX CI ↗">CI de CineX ↗</a> <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/blob/main/.github/workflows/actualizar-datos.yml" target="_blank" rel="noopener" data-en="Monthly update ↗">Actualización mensual ↗</a></p></div>
+          </div>
+          <div class="hb-panel" role="tabpanel" id="hb-documento" aria-labelledby="hb-tab-documento" hidden>
+            <p class="hb-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>Swagger · CineX API</span></p>
+            <pre class="hb-code mono" tabindex="0"><span class="t-num">GET</span>    /showtimes/{id}/availability   <span class="t-dim">sillas libres</span>
+<span class="t-num">POST</span>   /bookings                     <span class="t-dim">comprar sillas</span>
+<span class="t-num">GET</span>    /movies                       <span class="t-dim">cartelera</span>
+<span class="t-num">POST</span>   /showtimes                    <span class="t-dim">programar función</span>
+
+<span class="t-dim">Respuestas documentadas:</span>
+  <span class="t-str">201</span> creada    <span class="t-str">400</span> datos inválidos
+  <span class="t-str">404</span> no existe  <span class="t-str">409</span> sala llena u horario ocupado
+
+<span class="t-dim">$ cat README.md</span>
+## Cómo ejecutarlo
+docker compose up   <span class="t-dim"># API + MySQL en un comando</span></pre>
+            <div class="hb-foot"><p data-en="The API explains itself with Swagger and every repository says how to run it.">La API se explica sola con Swagger y cada repositorio dice cómo correrlo.</p><p class="hb-links mono"><a href="https://cinex-api-lt2q.onrender.com/swagger-ui/index.html" target="_blank" rel="noopener" data-en="Open Swagger ↗">Abrir Swagger ↗</a> <a href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia#readme" target="_blank" rel="noopener" data-en="Observatory README ↗">README del Observatorio ↗</a></p></div>
+          </div>
+          <div class="hb-panel" role="tabpanel" id="hb-equipo" aria-labelledby="hb-tab-equipo" hidden>
+            <p class="hb-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>CineX · pull requests</span></p>
+            <pre class="hb-code mono" tabindex="0"><span class="t-dim">$ gh pr list --state merged</span>
+<span class="t-ok">✓</span> <span class="t-num">#1</span> entidades y servicios           <span class="t-dim">qxsantx</span>
+<span class="t-ok">✓</span> <span class="t-num">#2</span> controladores y base de datos   <span class="t-dim">santiago12R</span>
+<span class="t-ok">✓</span> <span class="t-num">#3</span> CSS y JavaScript                <span class="t-dim">RONALD-GM</span>
+<span class="t-ok">✓</span> <span class="t-num">#4</span> páginas HTML                    <span class="t-dim">daniel2722d</span>
+
+<span class="t-dim">4 pull requests revisados e integrados en main</span>
+
+<span class="t-dim"># Numi: 3 personas, un repositorio, cada una en su capa</span></pre>
+            <div class="hb-foot"><p data-en="In CineX I set up the repository and reviewed and merged my teammates' work.">En CineX armé el repositorio y revisé e integré el trabajo de mis compañeros.</p><p class="hb-links mono"><a href="https://github.com/AlexanderM-Code/CineX---Proyecto-Final/pulls?q=is%3Apr+is%3Aclosed" target="_blank" rel="noopener" data-en="CineX pull requests ↗">Pull requests de CineX ↗</a> <a href="https://github.com/geminitodo5-sketch/app-educativa-medellin/graphs/contributors" target="_blank" rel="noopener" data-en="Numi contributors ↗">Colaboradores de Numi ↗</a></p></div>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -437,6 +437,45 @@ a.cert:hover { border-color: var(--blue); }
   .ar-tip span { display: none; }
 }
 
+/* ---------- Cómo trabajo: hábitos con evidencia en una terminal ---------- */
+.hb { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); margin-top: var(--space-6); border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.hb-tabs { display: flex; flex-direction: column; border-right: 1px solid var(--line-strong); }
+.hb-tab {
+  display: grid; gap: 4px; padding: 22px 24px; border: 0; border-bottom: 1px solid var(--line); background: transparent;
+  color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: background-color 200ms ease, color 200ms ease;
+}
+.hb-tab:last-child { border-bottom: 0; }
+.hb-num { font-size: 0.75rem; color: var(--ink-3); }
+.hb-name { font-size: 1.125rem; font-weight: 800; letter-spacing: var(--track-h4); line-height: 1.2; }
+.hb-tab[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.hb-tab[aria-selected="true"] .hb-num { color: color-mix(in srgb, var(--paper) 60%, transparent); }
+.hb-tab:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+@media (hover: hover) and (pointer: fine) { .hb-tab[aria-selected="false"]:hover { background: var(--blue-soft); } }
+.hb-term { background: var(--term-bg); color: var(--term-ink); min-height: 440px; display: grid; }
+.hb-panel { display: grid; grid-template-rows: auto 1fr auto; }
+.hb-panel[hidden] { display: none; }
+.hb-bar .browser-dots { background: rgba(255,255,255,.22); box-shadow: 13px 0 0 rgba(255,255,255,.22), 26px 0 0 rgba(255,255,255,.22); margin-right: 26px; }
+.hb-bar { display: flex; align-items: center; gap: 12px; padding: 14px 22px; font-size: 0.8125rem; color: var(--term-dim); border-bottom: 1px solid rgba(255,255,255,.08); }
+.hb-code { margin: 0; padding: 22px 26px; overflow-x: auto; font-size: 0.875rem; line-height: 1.75; white-space: pre; color: var(--term-ink); background: transparent; }
+.hb-code:focus-visible { outline: 2px solid var(--term-key); outline-offset: -4px; }
+.hb-code .t-ok { color: var(--term-str); }
+.hb-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; align-items: center; padding: 16px 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: 0.9375rem; color: var(--term-ink); }
+.hb-links { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.8125rem; }
+.hb-links a { color: var(--term-num); text-decoration: none; }
+.hb-links a:hover, .hb-links a:focus-visible { text-decoration: underline; }
+@media (prefers-reduced-motion: no-preference) {
+  .hb-panel:not([hidden]) .hb-code { animation: hb-in 320ms var(--ease-out); }
+  @keyframes hb-in { from { opacity: 0; transform: translateY(6px); } }
+}
+@media (max-width: 900px) {
+  .hb { grid-template-columns: minmax(0, 1fr); }
+  .hb-tabs { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line-strong); scrollbar-width: none; }
+  .hb-tab { flex: none; padding: 14px 16px; border-bottom: 0; border-right: 1px solid var(--line); }
+  .hb-name { font-size: 0.9375rem; white-space: nowrap; }
+  .hb-term { min-height: 0; }
+  .hb-code { font-size: 0.75rem; padding: 18px; }
+}
+
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: calc(var(--nav-h) + clamp(28px, 5vw, 64px)) 0 clamp(40px, 4vw, 56px); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
