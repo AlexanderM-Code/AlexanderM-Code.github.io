@@ -1181,8 +1181,10 @@ else window.addEventListener('load', afterLoad, { once: true });
       mont1: mez(paper, ink, oscuro ? 0.07 : 0.06),
       mont2: mez(paper, ink, oscuro ? 0.12 : 0.1),
       casa: mez(paper, ink, oscuro ? 0.17 : 0.15),
-      edif: mez(paper, ink, oscuro ? 0.22 : 0.2),
-      edif2: mez(paper, ink, oscuro ? 0.3 : 0.28),
+      edif: mez(paper, ink, oscuro ? 0.22 : 0.9),
+      edif2: mez(paper, ink, oscuro ? 0.3 : 0.82),
+      vidrio: mez(paper, ink, 0.6),
+      reflejo: mez(paper, blue, 0.55),
       apagada: mez(paper, ink, oscuro ? 0.12 : 0.1),
       luz: mez(paper, orange, oscuro ? 0.85 : 0.75),
       luzFria: mez(paper, blue, oscuro ? 0.8 : 0.6),
@@ -1281,7 +1283,7 @@ else window.addEventListener('load', afterLoad, { once: true });
     // Comunas
     for (const c of casas) {
       px(c.x, c.y, c.w, c.h, col.casa);
-      if (c.luz && Math.sin(t * 0.4 + c.fase) > -0.6) px(c.x + 1, c.y + 1, 1, 1, col.luz);
+      if (oscuro && c.luz && Math.sin(t * 0.4 + c.fase) > -0.6) px(c.x + 1, c.y + 1, 1, 1, col.luz);
     }
     // Torres del Metrocable (detrás de los edificios)
     const { a, b } = escena;
@@ -1294,6 +1296,11 @@ else window.addEventListener('load', afterLoad, { once: true });
         const dx = v.x - cursor.x, dy = (v.y - cursor.y) * 1.2;
         const cerca = cursor.on && dx * dx + dy * dy < 22 * 22;
         const parpadeo = Math.sin(t * 0.25 + v.fase) > 0.92;
+        if (!oscuro) {
+          // De día las luces están apagadas: vidrio que refleja el cielo
+          px(v.x, v.y, 1, 1, cerca || v.fria ? col.reflejo : col.vidrio);
+          continue;
+        }
         const encendida = cerca || (v.luz !== parpadeo);
         px(v.x, v.y, 1, 1, encendida ? (cerca ? col.luz : v.fria ? col.luzFria : col.luz) : col.apagada);
       }
