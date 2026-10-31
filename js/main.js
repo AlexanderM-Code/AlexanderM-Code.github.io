@@ -1151,6 +1151,7 @@ else window.addEventListener('load', afterLoad, { once: true });
   if (!field || !canvas || !hero || !canvas.getContext) return;
   const ctx = canvas.getContext('2d');
   const P = 4;                                   // tamaño de cada pixel en pantalla
+  const CARRIL = 9;                              // franja del metro sobre la línea de las cifras
   let W = 0, H = 0, suelo = 0, escena = null, col = {}, oscuro = false;
   const cursor = { x: -99, y: -99, on: false };
   let cohetes = [], chispas = [];
@@ -1259,7 +1260,7 @@ else window.addEventListener('load', afterLoad, { once: true });
     const r = canvas.getBoundingClientRect();
     W = Math.max(1, Math.ceil(r.width / P)); H = Math.max(1, Math.ceil(r.height / P));
     canvas.width = W; canvas.height = H;
-    suelo = H;
+    suelo = H - CARRIL;                          // la ciudad se apoya encima de la línea del metro
     construir();
     if (!running) pintar();
   };
@@ -1325,32 +1326,22 @@ else window.addEventListener('load', afterLoad, { once: true });
       px(q.x - 2, q.y + 3, 5, 4, col.cabina);
       px(q.x - 1, q.y + 4, 3, 1, col.paper ? `rgb(${col.paper.join(',')})` : '#fff');
     }
-    // Metro de Medellín por el viaducto, como en la trayectoria del README.
-    // El viaducto cruza el centro y termina en una estación, lejos del texto.
-    const via = suelo - Math.max(9, Math.round(suelo * 0.13));
-    const x0 = Math.round(W * 0.43);
-    px(x0, via, W - x0, 2, col.viaducto);
-    for (let x = x0 + 14; x < W; x += 24) px(x, via + 2, 2, suelo - via - 2, col.pilar);
+    // Metro de Medellín, como en la trayectoria del README: corre sobre la
+    // línea de las cifras de un extremo al otro, debajo de la ciudad.
+    px(0, suelo, W, 1, col.viaducto);
+    px(0, H - 1, W, 1, col.viaducto);
+    for (let x = 3; x < W; x += 6) px(x, H - 2, 2, 1, col.pilar);
     const VAGON = 20, VAGONES = 3, largo = VAGONES * (VAGON + 1);
-    const recorrido = W - x0 + largo + 60;
-    const tx = W - ((t * 14) % recorrido);           // entra por la derecha y llega a la estación
-    ctx.save();
-    ctx.beginPath(); ctx.rect(x0 + 6, 0, W, H); ctx.clip();
+    const tx = ((t * 16) % (W + largo + 40)) - largo - 20;   // de izquierda a derecha
     for (let k = 0; k < VAGONES; k++) {
-      const x = Math.round(tx + k * (VAGON + 1)), y = via - 7;
+      const x = Math.round(tx + k * (VAGON + 1)), y = H - 9;
       px(x, y, VAGON, 7, col.trenBorde);
       px(x + 1, y + 1, VAGON - 2, 5, col.tren);
       px(x + 1, y + 4, VAGON - 2, 1, col.franja);
       for (let v = 0; v < 4; v++) px(x + 2 + v * 4, y + 2, 3, 2, col.ventanaTren);
-      if (k === 0) { px(x + 1, y + 1, 1, 3, col.trenBorde); if (oscuro) px(x - 1, y + 4, 1, 1, col.luz); }
+      if (k === VAGONES - 1) { px(x + VAGON - 2, y + 1, 1, 3, col.trenBorde); if (oscuro) px(x + VAGON, y + 4, 1, 1, col.luz); }
       if (k < VAGONES - 1) px(x + VAGON, y + 2, 1, 3, col.trenBorde);
     }
-    ctx.restore();
-    // Estación
-    px(x0, via - 10, 8, 12, col.trenBorde);
-    px(x0 + 1, via - 9, 6, 2, col.franja);
-    px(x0 + 2, via - 5, 4, 3, col.ventanaTren);
-    px(x0 + 3, via + 2, 2, suelo - via - 2, col.pilar);
     // Fuegos artificiales
     for (const c of cohetes) { px(c.x, c.y, 1, 2, col.luz); px(c.x, c.y + 2, 1, 2, col.apagada); }
     for (const s of chispas) { ctx.globalAlpha = Math.max(0, s.vida); px(s.x, s.y, s.vida > 0.5 ? 2 : 1, s.vida > 0.5 ? 2 : 1, s.c); }
