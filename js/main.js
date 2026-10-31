@@ -1193,6 +1193,12 @@ else window.addEventListener('load', afterLoad, { once: true });
       estrella: mez(paper, ink, 0.55),
       nube: mez(paper, ink, 0.05),
       luna: mez(paper, ink, 0.75),
+      viaducto: mez(paper, ink, oscuro ? 0.4 : 0.7),
+      pilar: mez(paper, ink, oscuro ? 0.32 : 0.6),
+      tren: oscuro ? 'rgb(232,238,240)' : mez(paper, ink, 0.02),
+      trenBorde: mez(paper, ink, oscuro ? 0.55 : 0.85),
+      franja: `rgb(${rgb(cs.getPropertyValue('--green').trim() || '#1c8a4b').join(',')})`,
+      ventanaTren: oscuro ? mez(paper, orange, 0.75) : mez(paper, blue, 0.6),
     };
   };
 
@@ -1319,6 +1325,32 @@ else window.addEventListener('load', afterLoad, { once: true });
       px(q.x - 2, q.y + 3, 5, 4, col.cabina);
       px(q.x - 1, q.y + 4, 3, 1, col.paper ? `rgb(${col.paper.join(',')})` : '#fff');
     }
+    // Metro de Medellín por el viaducto, como en la trayectoria del README.
+    // El viaducto cruza el centro y termina en una estación, lejos del texto.
+    const via = suelo - Math.max(9, Math.round(suelo * 0.13));
+    const x0 = Math.round(W * 0.43);
+    px(x0, via, W - x0, 2, col.viaducto);
+    for (let x = x0 + 14; x < W; x += 24) px(x, via + 2, 2, suelo - via - 2, col.pilar);
+    const VAGON = 20, VAGONES = 3, largo = VAGONES * (VAGON + 1);
+    const recorrido = W - x0 + largo + 60;
+    const tx = W - ((t * 14) % recorrido);           // entra por la derecha y llega a la estación
+    ctx.save();
+    ctx.beginPath(); ctx.rect(x0 + 6, 0, W, H); ctx.clip();
+    for (let k = 0; k < VAGONES; k++) {
+      const x = Math.round(tx + k * (VAGON + 1)), y = via - 7;
+      px(x, y, VAGON, 7, col.trenBorde);
+      px(x + 1, y + 1, VAGON - 2, 5, col.tren);
+      px(x + 1, y + 4, VAGON - 2, 1, col.franja);
+      for (let v = 0; v < 4; v++) px(x + 2 + v * 4, y + 2, 3, 2, col.ventanaTren);
+      if (k === 0) { px(x + 1, y + 1, 1, 3, col.trenBorde); if (oscuro) px(x - 1, y + 4, 1, 1, col.luz); }
+      if (k < VAGONES - 1) px(x + VAGON, y + 2, 1, 3, col.trenBorde);
+    }
+    ctx.restore();
+    // Estación
+    px(x0, via - 10, 8, 12, col.trenBorde);
+    px(x0 + 1, via - 9, 6, 2, col.franja);
+    px(x0 + 2, via - 5, 4, 3, col.ventanaTren);
+    px(x0 + 3, via + 2, 2, suelo - via - 2, col.pilar);
     // Fuegos artificiales
     for (const c of cohetes) { px(c.x, c.y, 1, 2, col.luz); px(c.x, c.y + 2, 1, 2, col.apagada); }
     for (const s of chispas) { ctx.globalAlpha = Math.max(0, s.vida); px(s.x, s.y, s.vida > 0.5 ? 2 : 1, s.vida > 0.5 ? 2 : 1, s.c); }
