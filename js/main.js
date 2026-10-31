@@ -899,7 +899,9 @@ const cmdkList = document.getElementById('cmdk-list');
 const cmdkEmpty = document.getElementById('cmdk-empty');
 const isMac = /Mac|iPhone|iPad/.test(navigator.userAgentData?.platform || navigator.platform || navigator.userAgent);
 document.querySelectorAll('.cmdk-kbd').forEach((k) => { k.textContent = isMac ? '⌘K' : 'Ctrl K'; });
-document.querySelectorAll('.cmdk-search-btn').forEach((b) => { b.title = `${b.textContent.trim()} (${isMac ? '⌘K' : 'Ctrl K'})`; });
+const tituloBuscar = () => document.querySelectorAll('.cmdk-search-btn').forEach((b) => { b.title = `${b.textContent.trim()} (${isMac ? '⌘K' : 'Ctrl K'})`; });
+tituloBuscar();
+langListeners.push(tituloBuscar);
 
 const CMDK_TEXT = {
   es: { sections: 'Secciones', projects: 'Proyectos', actions: 'Acciones', empty: (q) => `Nada coincide con «${q}».`, section: 'sección', project: 'proyecto', mailCopied: 'Correo copiado al portapapeles.', mailFail: 'No se pudo copiar el correo.' },
@@ -1496,11 +1498,13 @@ if (location.hash.length > 1) {
     chispas = chispas.filter((s) => s.vida > 0 && s.y < suelo);
   };
 
+  // Arte pixel: 30 cuadros por segundo bastan y ahorran batería
   const ciclo = (now) => {
+    raf = requestAnimationFrame(ciclo);
+    if (ultimo && now - ultimo < 32) return;
     const dt = Math.min(0.05, (now - (ultimo || now)) / 1000); ultimo = now;
     fisica(dt);
     pintar();
-    raf = requestAnimationFrame(ciclo);
   };
   const iniciar = () => { if (running || reduceMotion || !visible || document.hidden) return; running = true; ultimo = 0; raf = requestAnimationFrame(ciclo); };
   const parar = () => { running = false; cancelAnimationFrame(raf); };
@@ -1534,5 +1538,7 @@ if (location.hash.length > 1) {
   if (document.fonts) document.fonts.ready.then(medir);
   new IntersectionObserver(([en]) => { visible = en.isIntersecting; visible ? iniciar() : parar(); }).observe(hero);
   document.addEventListener('visibilitychange', () => (document.hidden ? parar() : iniciar()));
-  iniciar();
+  // Empieza cuando la página ya cargó, para no competir con lo primero que se ve
+  const arrancar = () => ('requestIdleCallback' in window ? requestIdleCallback(iniciar, { timeout: 1200 }) : setTimeout(iniciar, 300));
+  if (document.readyState === 'complete') arrancar(); else window.addEventListener('load', arrancar, { once: true });
 })();
