@@ -1249,6 +1249,7 @@ if (location.hash.length > 1) {
     if (fila === actual) return;
     actual = fila;
     flot.poster = fila.dataset.preview || '';
+    flot.classList.toggle('is-vertical', 'vertical' in fila.dataset);
     if (reduceMotion || !fila.dataset.video) { flot.removeAttribute('src'); flot.load(); return; }
     // WebM es más liviano; MP4 queda para Safari
     flot.src = flot.canPlayType('video/webm; codecs="vp9"') ? fila.dataset.video.replace(/\.mp4$/, '.webm') : fila.dataset.video;

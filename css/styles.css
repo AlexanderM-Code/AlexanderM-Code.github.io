@@ -359,6 +359,8 @@ html { scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) var(--
   pointer-events: none; opacity: 0; transition: opacity 350ms var(--ease-out); will-change: transform;
 }
 .idx-float.is-on { opacity: 1; }
+/* Apps móviles: video vertical, como la pantalla del celular */
+.idx-float.is-vertical { width: 210px; aspect-ratio: 9 / 20; border-radius: 22px; }
 /* Caso de estudio dentro de una ventana */
 .dlg-case { width: min(1240px, calc(100% - 24px)); }
 .dlg-case-bar { position: sticky; top: 0; z-index: 3; display: flex; justify-content: flex-end; height: 0; }
