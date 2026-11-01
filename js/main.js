@@ -1233,11 +1233,17 @@ if (location.hash.length > 1) {
   if (!idx || !flot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   // Al pasar el cursor por un proyecto aparece un video corto de cómo funciona.
   // Con "reducir movimiento" se muestra solo la imagen fija.
-  let x = 0, y = 0, fx = 0, fy = 0, raf = 0, actual = null;
+  // El video aparece a la derecha del cursor, centrado en vertical, y lo sigue con un leve retraso.
+  let x = 0, y = 0, fx = 0, fy = 0, raf = 0, actual = null, visible = false;
   const seguir = () => {
-    fx += (x - fx) * (reduceMotion ? 1 : 0.18); fy += (y - fy) * (reduceMotion ? 1 : 0.18);
-    flot.style.left = `${fx}px`; flot.style.top = `${fy}px`;
-    raf = Math.abs(x - fx) + Math.abs(y - fy) > 0.5 ? requestAnimationFrame(seguir) : 0;
+    const k = reduceMotion ? 1 : 0.14;
+    fx += (x - fx) * k; fy += (y - fy) * k;
+    // Si no cabe a la derecha, se pasa al lado izquierdo del cursor
+    const w = flot.offsetWidth, h = flot.offsetHeight;
+    const left = fx + 28 + w > window.innerWidth - 12 ? fx - 28 - w : fx + 28;
+    const top = Math.min(Math.max(fy - h / 2, 12), window.innerHeight - h - 12);
+    flot.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+    raf = visible || Math.abs(x - fx) + Math.abs(y - fy) > 0.5 ? requestAnimationFrame(seguir) : 0;
   };
   const mostrar = (fila) => {
     if (fila === actual) return;
@@ -1250,17 +1256,19 @@ if (location.hash.length > 1) {
     flot.play().catch(() => {});
   };
   idx.addEventListener('pointermove', (e) => {
-    const r = idx.getBoundingClientRect();
-    x = e.clientX - r.left + 200; y = e.clientY - r.top;
+    if (e.pointerType !== 'mouse') return;
+    x = e.clientX; y = e.clientY;
     const fila = e.target.closest('.idx-row');
     if (fila && (fila.dataset.video || fila.dataset.preview)) {
-      if (!flot.classList.contains('is-on')) { fx = x; fy = y; }
+      if (!visible) { fx = x; fy = y; }
+      visible = true;
       mostrar(fila);
       flot.classList.add('is-on');
-    } else { flot.classList.remove('is-on'); }
+    } else { visible = false; flot.classList.remove('is-on'); }
     if (!raf) raf = requestAnimationFrame(seguir);
   });
-  idx.addEventListener('pointerleave', () => { flot.classList.remove('is-on'); flot.pause(); actual = null; });
+  window.addEventListener('scroll', () => { if (visible) { visible = false; flot.classList.remove('is-on'); } }, { passive: true });
+  idx.addEventListener('pointerleave', () => { visible = false; flot.classList.remove('is-on'); flot.pause(); actual = null; });
   // Las imágenes fijas se cargan antes para que el cambio sea inmediato
   idx.querySelectorAll('.idx-row').forEach((f) => { if (f.dataset.preview) { const i = new Image(); i.src = f.dataset.preview; } });
 })();
