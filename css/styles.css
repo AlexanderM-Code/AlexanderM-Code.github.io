@@ -699,6 +699,7 @@ a.cert:hover { border-color: var(--blue); }
 .case-top > .case-links { grid-area: links; }
 .case-top > .small-note { grid-area: note; }
 .case-shot { grid-area: shot; align-self: start; }
+.case-shot .shot-2 { margin-top: 22px; }
 .case-more-wrap { grid-area: more; }
 
 /* Plegable "Ver caso completo": la altura se anima con filas de grid */
@@ -780,6 +781,7 @@ a.cert:hover { border-color: var(--blue); }
 /* Proporción fija y color de fondo mientras cargan; el JavaScript las funde al llegar */
 .browser img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
 .dlg-casa .browser img { aspect-ratio: 4 / 3; }
+.case-shot .shot-2 img { aspect-ratio: 1280 / 714; }
 .browser img, .phone, .phone-shot, .more-media img { background: var(--paper-2); filter: var(--shot-filter); }
 .js .fade-img { opacity: 0; transition: opacity 400ms ease; }
 .js .fade-img.is-loaded { opacity: 1; }
