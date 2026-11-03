@@ -104,6 +104,7 @@ function setLang(next, { save = true } = {}) {
   swapAttr('[data-en-href]', 'href', 'Href');
   swapAttr('[data-en-aria]', 'aria-label', 'Aria');
   swapAttr('[data-en-alt]', 'alt', 'Alt');
+  swapAttr('[data-en-title]', 'title', 'Title');
   swapAttr('[data-en-placeholder]', 'placeholder', 'Placeholder');
 
   root.lang = next;
@@ -617,6 +618,7 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
   if (!dialog || typeof dialog.showModal !== 'function') return;
   trigger.addEventListener('click', () => {
     lastTrigger = trigger;
+    dialog.returnTo = trigger;
     dialog.showModal();
     root.style.overflow = 'hidden';
     const video = dialog.querySelector('video');
@@ -632,11 +634,23 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
     if (event.target === dialog || event.target.closest('[data-close]')) dialog.close();
   });
   dialog.addEventListener('close', () => {
-    root.style.overflow = '';
+    if (!document.querySelector('dialog.dlg[open]')) root.style.overflow = '';
     dialog.querySelector('video')?.pause();
-    lastTrigger?.focus();
+    (dialog.returnTo || lastTrigger)?.focus();
   });
 });
+
+// Visor de notebook: el HTML del notebook se carga solo la primera vez que se abre.
+const nbDialog = document.getElementById('dlg-nb');
+if (nbDialog) {
+  const frame = nbDialog.querySelector('iframe');
+  const loading = nbDialog.querySelector('.nb-load');
+  frame.addEventListener('load', () => { if (frame.getAttribute('src')) nbDialog.classList.add('is-loaded'); });
+  document.querySelectorAll('[data-dialog="dlg-nb"]').forEach((b) => b.addEventListener('click', () => {
+    if (!frame.getAttribute('src')) frame.src = frame.dataset.src;
+  }));
+  if (loading) loading.setAttribute('aria-live', 'polite');
+}
 
 // Video de Numi en su caso de estudio: carga y se reproduce solo mientras se ve.
 // Con movimiento reducido no arranca solo y muestra controles.
