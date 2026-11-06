@@ -33,7 +33,7 @@
   <link rel="me" href="https://github.com/AlexanderM-Code">
   <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-11-05c">
+  <link rel="stylesheet" href="css/styles.css?v=2026-11-05d">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -53,7 +53,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-11-05c" defer></script>
+  <script src="js/main.js?v=2026-11-05d" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -882,33 +882,94 @@
           </div>
         </div>
       </dialog>
-      <dialog class="dlg" id="dlg-historias" aria-labelledby="dlg-historias-title">
-        <div class="dlg-inner">
-          <div class="dlg-head">
-            <p class="more-tags"><span class="idx-pill mono st-doc"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Documenting">En documentación</span></span></p>
-            <p class="more-kind mono" data-en="Capstone project · Team, 2026–2027">Proyecto de grado · En equipo, 2026–2027</p>
-            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/historias.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-historias-title" data-en="Digital dental records">Historias clínicas digitales</h3></div>
-            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <dialog class="dlg dlg-case" id="dlg-historias" aria-label="Caso de estudio">
+        <div class="dlg-case-bar"><button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+        <article class="case case-historias" id="historias" aria-labelledby="historias-title">
+          <div class="case-top">
+            <header class="case-head">
+              <p class="case-kind mono"><span class="idx-pill mono st-doc"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Documenting">En documentación</span></span> <span data-en="Capstone project · Team · 2026–2027">Proyecto de grado · En equipo · 2026–2027</span></p>
+              <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/historias.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="case-title" id="historias-title" data-en="Digital dental records">Historias clínicas digitales</h3></div>
+              <p class="case-lede" data-en="A web app so students in the Oral Health Assistant program at UCC Envigado can record each patient visit, and their supervising teacher can review and approve it, without the paper form.">Un aplicativo web para que los estudiantes del Técnico Auxiliar en Salud Oral de la UCC Envigado registren cada atención y su docente la revise y apruebe, sin el formato en papel.</p>
+              <dl class="kpis"><div class="kpi"><dt class="mono" data-en="144">144</dt><dd data-en="patients seen in practice last semester">pacientes atendidos en la práctica el semestre anterior</dd></div><div class="kpi"><dt class="mono" data-en="400–500">400–500</dt><dd data-en="records per semester projected for 2027-1">historias por semestre proyectadas para 2027-1</dd></div><div class="kpi"><dt class="mono" data-en="34">34</dt><dd data-en="students expected in 2027-1, versus 6 today">estudiantes previstos en 2027-1, frente a 6 hoy</dd></div></dl>
+            </header>
+            <ul class="chips" aria-label="Métodos" data-en-aria="Methods">
+              <li data-en="Requirements engineering">Ingeniería de requisitos</li><li>Scrum</li><li data-en="Use cases">Casos de uso</li><li data-en="ER model">Modelo E-R</li><li>ISO/IEC 29148</li><li>ISO/IEC 25010</li>
+            </ul>
+            <p class="small-note" data-en="It is a proposal for now: the code and the demo will be here when construction starts in March 2027.">Por ahora es un anteproyecto: el código y la demo estarán aquí cuando empiece la construcción, en marzo de 2027.</p>
           </div>
-          <div class="dlg-body">
-            <div class="dlg-text">
-              <p class="dlg-lede" data-en="My capstone project: a web app to manage clinical records digitally for the Oral Health Assistant Technician program.">Mi proyecto de grado: un aplicativo web para gestionar de forma digital las historias clínicas del Técnico Auxiliar en Salud Oral.</p>
-              <dl class="kpis"><div class="kpi"><dt class="mono">8</dt><dd data-en="proposal deliverables, E1 to E8">entregas del anteproyecto, de la E1 a la E8</dd></div><div class="kpi"><dt class="mono">3</dt><dd data-en="team members and a technical advisor">integrantes y una asesora técnica</dd></div><div class="kpi"><dt class="mono" data-en="2027">2027</dt><dd data-en="development, February to May">desarrollo, de febrero a mayo</dd></div></dl>
-              <ol class="flow" aria-label="Etapas del proyecto" data-en-aria="Project stages">
-                <li class="flow-step"><span class="flow-k mono">01</span><b data-en="Proposal">Anteproyecto</b><span data-en="E1 to E8">E1 a E8</span></li>
-                <li class="flow-step"><span class="flow-k mono">02</span><b data-en="Defense">Sustentación</b><span data-en="Nov 2026">nov. 2026</span></li>
-                <li class="flow-step"><span class="flow-k mono">03</span><b data-en="Requirements">Requisitos</b><span data-en="approved, Nov 2026">aprobados, nov. 2026</span></li>
-                <li class="flow-step"><span class="flow-k mono">04</span><b data-en="Development">Desarrollo</b><span data-en="Feb – May 2027">feb. – may. 2027</span></li>
-              </ol>
-              <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="research and documentation of the proposal with Santiago Rodríguez and Santiago Mayorga, advised by Adriana Paredes Salinas.">investigación y documentación del anteproyecto con Santiago Rodríguez y Santiago Mayorga, con la asesoría técnica de Adriana Paredes Salinas.</span></p>
-              <p class="small-note" data-en="It is a proposal for now: the code and the demo will be here once development starts.">Por ahora es un anteproyecto: el código y la demo estarán aquí cuando empiece el desarrollo.</p>
+
+          <figure class="case-shot">
+            <img class="pan-hero hist-hero" src="assets/portada-historias.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Portada del proyecto de grado: las 8 entregas del anteproyecto, las fechas de sustentación, requisitos y construcción, y un boceto de odontograma digital" data-en-alt="Capstone cover: the 8 proposal deliverables, the defense, requirements and build dates, and a sketch of a digital dental chart">
+            <figcaption data-en="Today every visit is written on a paper form that the teacher signs and stamps. The app replaces that signature with a traceable review flow.">Hoy cada atención se anota en un formato en papel que el docente firma y sella. El aplicativo reemplaza esa firma con un flujo de revisión trazable.</figcaption>
+          </figure>
+
+          <div class="lab lab-numi" aria-labelledby="hist-flow-title">
+            <div class="lab-head">
+              <div>
+                <h4 class="lab-title" id="hist-flow-title" data-en="How a record moves from student to teacher">Así viaja un registro del estudiante al docente</h4>
+                <p class="lab-sub mono" data-en="Four states, each with its owner, date and time">Cuatro estados, cada uno con responsable, fecha y hora</p>
+              </div>
             </div>
-            <figure class="dlg-media dlg-cover">
-              <img src="assets/portada-historias.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Portada del proyecto de grado: avance del anteproyecto de la E1 a la E8, fechas de sustentación y desarrollo, y un boceto de odontograma digital" data-en-alt="Capstone cover: proposal progress from E1 to E8, defense and development dates, and a sketch of a digital dental chart">
-              <figcaption data-en="Proposal progress and the core idea: the dental chart in digital form.">El avance del anteproyecto y la idea central: el odontograma en digital.</figcaption>
-            </figure>
+            <ol class="pipeline">
+              <li><span class="step-tag mono" data-en="student">estudiante</span><div><p class="step-name" data-en="In progress">En elaboración</p><p data-en="Patient details, history, oral habits, exam, dental chart, plaque index and the RIPS and CUPS codes. No diagnosis field: that is not the assistant&#39;s job.">Datos del paciente, antecedentes, hábitos, examen, odontograma, índice de placa y los códigos RIPS y CUPS. Sin campo de diagnóstico: no le corresponde al auxiliar.</p></div></li>
+              <li><span class="step-tag mono" data-en="student">estudiante</span><div><p class="step-name" data-en="Sent for review">Enviada a revisión</p><p data-en="Only if the required fields are complete. Editing is locked and the 7-day review window starts.">Solo si los campos obligatorios están completos. Se bloquea la edición y corre un plazo de 7 días.</p></div></li>
+              <li><span class="step-tag mono" data-en="teacher">docente</span><div><p class="step-name" data-en="Returned with notes">Devuelta con observaciones</p><p data-en="The student fixes it and sends it again, without losing the review history.">El estudiante corrige y la reenvía, sin perder el historial de revisiones.</p></div></li>
+              <li><span class="step-tag mono" data-en="teacher">docente</span><div><p class="step-name" data-en="Approved">Aprobada</p><p data-en="It can no longer be changed; any later correction is added as a clarifying note with author and date.">Ya no se modifica; cualquier corrección se agrega como nota aclaratoria con autor y fecha.</p></div></li>
+            </ol>
+            <ul class="findings">
+              <li class="finding"><p class="finding-num mono">17</p><p data-en="simultaneous sessions it must handle: half of the students at once.">sesiones simultáneas que debe soportar: la mitad de los estudiantes a la vez.</p></li>
+              <li class="finding"><p class="finding-num mono" data-en="15 yrs">15 años</p><p data-en="minimum retention for a clinical record, so backups are part of the design.">de conservación mínima de una historia clínica, por eso el respaldo es parte del diseño.</p></li>
+              <li class="finding"><p class="finding-num mono">0</p><p data-en="access from outside campus: it runs on a local server, on the internal network only.">accesos desde fuera del campus: corre en un servidor local, solo en la red interna.</p></li>
+            </ul>
           </div>
-        </div>
+
+          <div class="case-more-wrap">
+            <button class="case-toggle" type="button" aria-expanded="false" aria-controls="historias-more">
+              <span class="case-toggle-label">Ver caso completo</span><span class="case-toggle-time"></span>
+              <svg class="case-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="case-more" id="historias-more">
+              <div class="case-more-inner">
+                <dl class="facts">
+                  <div class="fact">
+                    <dt class="mono" data-en="Problem">Problema</dt>
+                    <dd data-en="The university already has clinical record software with teacher approval, but only Dentistry uses it. The assistant level was left on paper because its record is simpler and has no diagnosis. Out of eight prior works, none covers that level, the current paper form and authorized use in practice at the same time.">La universidad ya tiene un software de historia clínica con aprobación docente, pero solo lo usa Odontología. El nivel auxiliar quedó en papel porque su historia es más básica y no tiene diagnóstico. De ocho antecedentes revisados, ninguno cubre a la vez ese nivel, el formato vigente y un uso autorizado en la práctica.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="What we propose">Qué proponemos</dt>
+                    <dd data-en="A web app with three roles (student, supervising teacher and coordination) that follows the program&#39;s paper form section by section: record, send for review, approve or return, search the history by name or ID, and PDF reports by student and period.">Un aplicativo web con tres roles (estudiante, docente supervisor y coordinación) que sigue sección por sección el formato en papel del programa: registrar, enviar a revisión, aprobar o devolver, consultar el historial por nombre o documento y sacar reportes en PDF por estudiante y periodo.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                    <dd>
+                      <ul class="ticks">
+                        <li data-en="We compared 5 alternatives with a 7-criteria matrix; building our own app on a campus server was the only one that passed every eliminating criterion (2.60 points).">Comparamos 5 alternativas con una matriz de 7 criterios; el aplicativo propio en un servidor del campus fue el único que pasó todos los criterios eliminatorios (2,60 puntos).</li>
+                        <li data-en="A three-layer modular monolith: the review rules live in one place and can be tested without the UI.">Monolito modular de tres capas: las reglas de revisión viven en un solo lugar y se prueban sin pasar por la interfaz.</li>
+                        <li data-en="Relational database, an audit log of every action and role- and group-based access, because health data is sensitive under Law 1581 of 2012.">Base de datos relacional, bitácora de cada acción y acceso por rol y grupo, porque los datos de salud son sensibles según la Ley 1581 de 2012.</li>
+                        <li data-en="9 use cases, 10 functional and 7 non-functional requirements, each with a testable acceptance criterion.">9 casos de uso, 10 requisitos funcionales y 7 no funcionales, cada uno con un criterio de aceptación comprobable.</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Status">Estado</dt>
+                    <dd data-en="Proposal finished (E1 to E8), defended on November 6, 2026. Next: requirements approved by the program in December, detailed design in February and five two-week sprints from March to May 2027, tested only with fictitious data.">Anteproyecto terminado (E1 a E8), con sustentación el 6 de noviembre de 2026. Sigue: requisitos aprobados por la coordinación en diciembre, diseño detallado en febrero y cinco sprints de dos semanas entre marzo y mayo de 2027, probado solo con datos ficticios.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="My role">Mi rol</dt>
+                    <dd data-en="Co-author of the proposal with Santiago Rodríguez and Santiago Mayorga, advised by Adriana Paredes Salinas. I signed for the team on the advisory minutes and on the decision record for the chosen alternative.">Coautor del anteproyecto con Santiago Rodríguez y Santiago Mayorga, con la asesoría técnica de Adriana Paredes Salinas. Firmé como representante del equipo las actas de asesoría y el registro de la decisión de la alternativa.</dd>
+                  </div>
+                </dl>
+                <div class="learned">
+                  <h4 class="learned-title mono" data-en="What I learned">Qué aprendí</h4>
+                  <ul class="ticks">
+                    <li data-en="Before proposing software you have to prove the gap: teacher approval already existed in three solutions, so it could not be our contribution.">Antes de proponer software hay que demostrar la brecha: la aprobación docente ya existía en tres soluciones, así que no podía ser nuestro aporte.</li>
+                    <li data-en="Without a measured baseline you cannot promise improvements: savings in paper or review time are stated as potential until we measure them.">Sin línea base medida no se pueden prometer mejoras: el ahorro de papel o de tiempo de revisión queda como potencial hasta medirlo.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
       </dialog>
       <dialog class="dlg dlg-nb" id="dlg-nb" aria-labelledby="dlg-nb-title">
         <div class="nb-bar">

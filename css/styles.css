@@ -1615,3 +1615,6 @@ main, .footer { transition: opacity 180ms ease; }
 :root[data-theme="dark"] .st-doc .st { --c: #3fb8a9; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .st-doc .st { --c: #3fb8a9; } }
 #dlg-historias .flow { margin-top: 4px; }
+.hist-hero { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--radius); border: var(--shot-border); box-shadow: var(--shot-shadow); background: var(--paper-2); }
+.case-historias .pipeline .step-tag { font-size: 0.75rem; }
+.kpi dt { white-space: nowrap; }
