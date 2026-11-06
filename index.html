@@ -33,7 +33,7 @@
   <link rel="me" href="https://github.com/AlexanderM-Code">
   <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-11-03">
+  <link rel="stylesheet" href="css/styles.css?v=2026-11-05">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -53,7 +53,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-11-03" defer></script>
+  <script src="js/main.js?v=2026-11-05" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -195,6 +195,15 @@
             <img class="idx-logo" src="assets/logos-proyectos/numi.webp?v=2" width="52" height="52" alt="" loading="lazy" decoding="async">
             <span class="idx-name">Numi</span>
             <span class="idx-area" data-en="Mobile · Flutter · AI">Móvil · Flutter · IA</span>
+            <span class="idx-pill mono st-build"><i class="st" aria-hidden="true"></i><span data-en="In progress">En desarrollo</span></span>
+            <span class="idx-go" aria-hidden="true">↗</span>
+          </button></li>
+          <li class="idx-sub"><button class="idx-row idx-row-sub" type="button" data-dialog="dlg-paneles" data-preview="assets/paneles.webp" aria-haspopup="dialog">
+            <span class="idx-num mono" aria-hidden="true"></span>
+            <img class="idx-thumb" src="assets/paneles.webp" alt="" loading="lazy" decoding="async">
+            <img class="idx-logo" src="assets/logos-proyectos/paneles.webp" width="52" height="52" alt="" loading="lazy" decoding="async">
+            <span class="idx-name"><span class="idx-via mono"><img src="assets/logos-proyectos/numi.webp?v=2" width="14" height="14" alt=""><span data-en="Part of Numi">Parte de Numi</span></span><span data-en="Numi Panels">Paneles de Numi</span></span>
+            <span class="idx-area" data-en="Web · Flask · MySQL">Web · Flask · MySQL</span>
             <span class="idx-pill mono st-build"><i class="st" aria-hidden="true"></i><span data-en="In progress">En desarrollo</span></span>
             <span class="idx-go" aria-hidden="true">↗</span>
           </button></li>
@@ -379,6 +388,11 @@
             <p class="case-links">
               <a class="btn btn-accent" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
             </p>
+            <button class="sub-link" type="button" data-dialog="dlg-paneles" data-swap aria-haspopup="dialog">
+              <img src="assets/logos-proyectos/paneles.webp" width="40" height="40" alt="" loading="lazy" decoding="async">
+              <span><b data-en="Admin and teacher panels">Paneles administrativo y docente</b><small data-en="See the entry for Numi&#39;s web panels">Ver la ficha de los paneles web de Numi</small></span>
+              <span class="sub-link-go mono" aria-hidden="true">→</span>
+            </button>
           </div>
 
 
@@ -477,6 +491,121 @@
                   <h4 class="learned-title mono learned-next" data-en="What I would improve">Qué mejoraría</h4>
                   <p class="learned-text" data-en="Next I would test it with real children in schools and measure how much the assistant actually helps them.">Lo siguiente: probarlo con niños reales en colegios y medir cuánto les ayuda de verdad el asistente.</p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </dialog>
+      <dialog class="dlg dlg-case" id="dlg-paneles" aria-label="Caso de estudio">
+        <div class="dlg-case-bar"><button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+        <article class="case case-paneles" id="paneles" aria-labelledby="paneles-title">
+          <div class="case-top">
+            <header class="case-head">
+              <p class="case-kind mono"><span class="live-pill dev-pill"><span class="dot dot-dev" aria-hidden="true"></span><span data-en="In development">En desarrollo</span></span> <span class="idx-via"><img src="assets/logos-proyectos/numi.webp?v=2" width="14" height="14" alt=""><span data-en="Part of Numi">Parte de Numi</span></span> <span data-en="Web · Team project · 2026">Web · Proyecto en equipo · 2026</span></p>
+              <h3 class="case-title" id="paneles-title" data-en="Numi Panels">Paneles de Numi</h3>
+              <p class="case-lede" data-en="The web side of Numi: an admin panel that manages the content and a teacher panel that follows each group&#39;s progress, both connected to the phone app.">La parte web de Numi: un panel administrativo que gestiona el contenido y un panel docente que sigue el avance de cada grupo, los dos conectados con la app del celular.</p>
+              <ol class="flow" aria-label="Cómo se conecta con la app" data-en-aria="How it connects with the app">
+                <li class="flow-step"><span class="flow-k mono">01</span><b data-en="Numi app">App Numi</b><span data-en="the child&#39;s phone, offline">celular del niño, sin internet</span></li>
+                <li class="flow-step"><span class="flow-k mono">02</span><b data-en="Keyed bridge">Puente con clave</b><span>/api/app/v1</span></li>
+                <li class="flow-step"><span class="flow-k mono">03</span><b>MySQL</b><span data-en="one shared database">una sola base</span></li>
+                <li class="flow-step"><span class="flow-k mono">04</span><b data-en="Admin · teacher">Admin · docente</b><span data-en="content and progress">contenido y avance</span></li>
+              </ol>
+            </header>
+            <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
+              <li>Python</li><li>Flask</li><li>MySQL</li><li>Bootstrap</li><li>JavaScript</li><li>pytest</li>
+            </ul>
+            <p class="case-links">
+              <a class="btn btn-accent" href="https://github.com/luism7p7/numi-paneles-roles" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
+            </p>
+            <button class="sub-link" type="button" data-dialog="dlg-numi" data-swap aria-haspopup="dialog">
+              <img src="assets/logos-proyectos/numi.webp?v=2" width="40" height="40" alt="" loading="lazy" decoding="async">
+              <span><b data-en="Numi, the phone app">Numi, la app del celular</b><small data-en="See the educational app entry">Ver la ficha de la app educativa</small></span>
+              <span class="sub-link-go mono" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <figure class="case-shot">
+            <div class="browser" data-ui>
+              <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span data-en="Numi · admin and teacher panels">Numi · paneles administrativo y docente</span></p>
+              <img class="pan-hero" src="assets/paneles.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Los paneles de Numi: el panel administrativo y el docente en el computador, junto a la app en el celular" data-en-alt="Numi panels: the admin and teacher panels on a computer, next to the app on a phone">
+            </div>
+            <figcaption data-en="What the admin publishes reaches the app, and what the child does is seen by their teacher.">Lo que publica el administrador llega a la app, y lo que hace el niño lo ve su docente.</figcaption>
+          </figure>
+
+          <div class="lab lab-shots" aria-labelledby="pan-shots-title">
+            <div class="lab-head">
+              <div>
+                <h4 class="lab-title" id="pan-shots-title" data-en="The screens">Las pantallas</h4>
+                <p class="lab-sub mono" data-en="Real screenshots of both panels">Capturas reales de los dos paneles</p>
+              </div>
+              <div class="segmented shots-tabs" role="group" aria-label="Panel" data-en-aria="Panel">
+                <button type="button" data-g="admin" aria-pressed="true" data-en="Admin panel">Panel administrativo</button>
+                <button type="button" data-g="docente" aria-pressed="false" data-en="Teacher panel">Panel docente</button>
+              </div>
+            </div>
+            <div class="shots-main">
+              <div class="browser shots-view" data-ui>
+                <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span class="shots-url">numi · admin · /inicio</span></p>
+                <img data-i="0" src="assets/paneles/admin-inicio.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Inicio del panel administrativo. Resumen de la red: instituciones, docentes, grupos y estudiantes, cobertura por comuna y lo que requiere acción." data-en-alt="Admin home. Network overview: schools, teachers, groups and students, coverage by district and what needs action.">
+                <img data-i="1" src="assets/paneles/admin-constructor.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Constructor de actividades. La actividad se arma en una sola vista con imágenes y audios, y llega al celular en la próxima sincronización." data-en-alt="Activity builder. Activities are built in one view with images and audio, and reach the phone on the next sync." hidden>
+                <img data-i="2" src="assets/paneles/admin-login.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Acceso del administrador. Solo entran las cuentas institucionales con rol de administrador." data-en-alt="Admin sign-in. Only institutional accounts with the admin role can enter." hidden>
+                <img data-i="3" src="assets/paneles/docente-panel.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Panel del grupo. Estudiantes activos en la semana, racha, avance por materia y quiénes requieren atención." data-en-alt="Group dashboard. Weekly active students, streak, progress by subject and who needs attention." hidden>
+                <img data-i="4" src="assets/paneles/docente-actividades.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Actividades del grupo. El docente activa o desactiva cada actividad para su grupo y ve en cuáles hay más errores." data-en-alt="Group activities. Teachers turn each activity on or off for their group and see where students make more mistakes." hidden>
+                <img data-i="5" src="assets/paneles/docente-login.webp" width="1600" height="708" loading="lazy" decoding="async" alt="Acceso del docente. Con el correo institucional que entrega la coordinación de la sede." data-en-alt="Teacher sign-in. With the institutional email given by the school coordinator." hidden>
+              </div>
+              <p class="shots-cap" data-i="0"><b data-en="Admin home.">Inicio del panel administrativo.</b> <span data-en="Network overview: schools, teachers, groups and students, coverage by district and what needs action.">Resumen de la red: instituciones, docentes, grupos y estudiantes, cobertura por comuna y lo que requiere acción.</span></p>
+              <p class="shots-cap" data-i="1" hidden><b data-en="Activity builder.">Constructor de actividades.</b> <span data-en="Activities are built in one view with images and audio, and reach the phone on the next sync.">La actividad se arma en una sola vista con imágenes y audios, y llega al celular en la próxima sincronización.</span></p>
+              <p class="shots-cap" data-i="2" hidden><b data-en="Admin sign-in.">Acceso del administrador.</b> <span data-en="Only institutional accounts with the admin role can enter.">Solo entran las cuentas institucionales con rol de administrador.</span></p>
+              <p class="shots-cap" data-i="3" hidden><b data-en="Group dashboard.">Panel del grupo.</b> <span data-en="Weekly active students, streak, progress by subject and who needs attention.">Estudiantes activos en la semana, racha, avance por materia y quiénes requieren atención.</span></p>
+              <p class="shots-cap" data-i="4" hidden><b data-en="Group activities.">Actividades del grupo.</b> <span data-en="Teachers turn each activity on or off for their group and see where students make more mistakes.">El docente activa o desactiva cada actividad para su grupo y ve en cuáles hay más errores.</span></p>
+              <p class="shots-cap" data-i="5" hidden><b data-en="Teacher sign-in.">Acceso del docente.</b> <span data-en="With the institutional email given by the school coordinator.">Con el correo institucional que entrega la coordinación de la sede.</span></p>
+            </div>
+            <div class="shots-thumbs">
+              <button class="shots-thumb" type="button" data-i="0" data-g="admin" data-url="numi · admin · /inicio" aria-pressed="true"><img src="assets/paneles/admin-inicio.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Admin home.">Inicio del panel administrativo.</span></button>
+              <button class="shots-thumb" type="button" data-i="1" data-g="admin" data-url="numi · admin · /constructor" aria-pressed="false"><img src="assets/paneles/admin-constructor.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Activity builder.">Constructor de actividades.</span></button>
+              <button class="shots-thumb" type="button" data-i="2" data-g="admin" data-url="numi · admin · /index" aria-pressed="false"><img src="assets/paneles/admin-login.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Admin sign-in.">Acceso del administrador.</span></button>
+              <button class="shots-thumb" type="button" data-i="3" data-g="docente" data-url="numi · docente · /panel" aria-pressed="false" hidden><img src="assets/paneles/docente-panel.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Group dashboard.">Panel del grupo.</span></button>
+              <button class="shots-thumb" type="button" data-i="4" data-g="docente" data-url="numi · docente · /actividades" aria-pressed="false" hidden><img src="assets/paneles/docente-actividades.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Group activities.">Actividades del grupo.</span></button>
+              <button class="shots-thumb" type="button" data-i="5" data-g="docente" data-url="numi · docente · /index" aria-pressed="false" hidden><img src="assets/paneles/docente-login.webp" width="1600" height="708" alt="" loading="lazy" decoding="async"><span class="visually-hidden" data-en="Teacher sign-in.">Acceso del docente.</span></button>
+            </div>
+          </div>
+
+          <div class="case-more-wrap">
+            <button class="case-toggle" type="button" aria-expanded="false" aria-controls="paneles-more">
+              <span class="case-toggle-label">Ver caso completo</span><span class="case-toggle-time"></span>
+              <svg class="case-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="case-more" id="paneles-more">
+              <div class="case-more-inner">
+                <dl class="facts">
+                  <div class="fact">
+                    <dt class="mono" data-en="Problem">Problema</dt>
+                    <dd data-en="The app works offline on each child&#39;s phone, but someone has to create the activities, manage schools and users, and teachers need to see how their group is doing.">La app funciona sin internet en el celular de cada niño, pero alguien tiene que crear las actividades y gestionar instituciones y usuarios, y los docentes necesitan ver cómo va su grupo.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="What we built">Qué construimos</dt>
+                    <dd data-en="Two web panels in Flask and MySQL. In the admin panel, content is managed (activities, images and audio, schools, groups and users) and you can see which phones have not synced for days. In the teacher panel, each teacher follows their group by subject and decides which activities stay active.">Dos paneles web en Flask y MySQL. En el administrativo se gestiona el contenido (actividades, imágenes y audios, instituciones, grupos y usuarios) y se ve qué celulares llevan días sin sincronizar. En el docente, cada profesor sigue a su grupo por materia y decide qué actividades quedan activas.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Technical decisions">Decisiones técnicas</dt>
+                    <dd>
+                      <ul class="ticks">
+                        <li data-en="A keyed bridge (/api/app/v1) connects the panels with the app backend; progress uses the same table and the same rule: the highest progress wins.">Un puente con clave (/api/app/v1) conecta los paneles con el backend de la app; el progreso usa la misma tabla y la misma regla: gana el mayor avance.</li>
+                        <li data-en="Activity builder: what is published reaches the child&#39;s phone on the next sync.">Constructor de actividades: lo que se publica llega al celular del niño en su próxima sincronización.</li>
+                        <li data-en="Each role has its own sign-in, and only authorized institutional accounts can enter.">Cada rol tiene su propio acceso, y solo entran las cuentas institucionales autorizadas.</li>
+                        <li data-en="Teacher reports in Excel and PDF, and 110 automated tests with pytest.">Reportes del docente en Excel y PDF, y 110 pruebas automáticas con pytest.</li>
+                      </ul>
+                    </dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="Status">Estado</dt>
+                    <dd data-en="In development: we are improving both panels and their connection with the app.">En desarrollo: estamos mejorando los dos paneles y su conexión con la app.</dd>
+                  </div>
+                  <div class="fact">
+                    <dt class="mono" data-en="My role">Mi rol</dt>
+                    <dd data-en="I worked on both panels with Luis Miguel Muñoz: the Flask server that feeds each screen with real MySQL data, the connection with the app and the tests. The screen design is by the team.">Trabajé en los dos paneles con Luis Miguel Muñoz: el servidor en Flask que alimenta cada pantalla con datos reales de MySQL, la conexión con la app y las pruebas. El diseño de las pantallas es del equipo.</dd>
+                  </div>
+                </dl>
               </div>
             </div>
           </div>

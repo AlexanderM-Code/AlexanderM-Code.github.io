@@ -1466,3 +1466,65 @@ main, .footer { transition: opacity 180ms ease; }
   .js .name .ln > span { animation: none; }
   .st, .st::before, .st::after, .st b, .idx-pill::after, .flow-step::before { animation: none !important; }
 }
+
+/* ---------- Paneles de Numi: subproyecto enlazado a Numi ---------- */
+/* Fila del índice: va sangrada y unida a Numi con un conector punteado */
+.idx-row-sub { border-top-style: dashed; grid-template-columns: 48px 44px minmax(0, 1fr) minmax(0, 220px) 160px 32px; }
+.idx-row-sub .idx-logo { width: 44px; height: 44px; border-radius: 11px; }
+.idx-row-sub .idx-name { display: grid; gap: 4px; font-size: clamp(1.25rem, 2.4vw, 1.75rem); }
+.idx-row-sub::before {
+  content: ""; position: absolute; left: 22px; top: -1px; width: 18px; height: calc(50% + 1px);
+  border-left: 1.5px dashed var(--orange); border-bottom: 1.5px dashed var(--orange); border-bottom-left-radius: 10px; pointer-events: none;
+}
+.idx-via { display: inline-flex; align-items: center; gap: 6px; font-size: 0.6875rem; font-weight: 500; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--orange-text); }
+.idx-via img { width: 14px; height: 14px; border-radius: 4px; }
+@media (max-width: 900px) {
+  .idx-row-sub { grid-template-columns: 44px minmax(0, 1fr) 28px; padding-left: 30px; }
+  .idx-row-sub::before { left: 10px; width: 14px; }
+}
+
+/* Tarjeta que lleva de un proyecto a su pareja (Numi ↔ paneles) */
+.sub-link {
+  grid-area: note; align-self: start; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  width: 100%; margin-top: var(--space-4); padding: 12px 16px; text-align: left; font: inherit; color: var(--ink); cursor: pointer;
+  background: var(--paper); border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+  transition: border-color 200ms ease, transform 200ms var(--ease-out), background-color 200ms ease;
+}
+.sub-link img { width: 40px; height: 40px; border-radius: 10px; }
+.sub-link b { display: block; font-weight: 700; }
+.sub-link small { display: block; font-size: 0.875rem; color: var(--ink-3); }
+.sub-link-go { color: var(--blue); font-size: 1.125rem; transition: transform 200ms var(--ease-out); }
+.sub-link:active { transform: scale(0.99); }
+@media (hover: hover) and (pointer: fine) {
+  .sub-link:hover { border-color: var(--blue); background: var(--surface); }
+  .sub-link:hover .sub-link-go { transform: translateX(3px); }
+}
+.case-top > .small-note + .sub-link { grid-area: auto; }
+.case-paneles .flow-step:last-child b { white-space: nowrap; }
+.case-paneles .pan-hero { aspect-ratio: 16 / 9; }
+
+/* Galería de pantallas: pestañas por panel, vista grande y miniaturas */
+.lab-shots { grid-template-columns: minmax(0, 1fr); grid-template-areas: "lhead" "main" "thumbs"; }
+.shots-main { grid-area: main; min-width: 0; }
+.shots-view img { aspect-ratio: 1600 / 708; object-position: top left; }
+.shots-view img[hidden] { display: none; }
+.shots-view img:not([hidden]) { animation: shot-in 320ms var(--ease-out); }
+@keyframes shot-in { from { opacity: 0; transform: scale(0.99); } }
+.shots-cap { margin-top: 12px; font-size: 0.9375rem; color: var(--ink-2); }
+.shots-cap b { color: var(--ink); }
+.shots-thumbs { grid-area: thumbs; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.shots-thumb { padding: 0; border: 1px solid var(--line-strong); border-radius: var(--shot-radius); overflow: hidden; background: var(--paper-2); cursor: pointer;
+  opacity: 0.6; transition: opacity 200ms ease, border-color 200ms ease, transform 200ms var(--ease-out); }
+.shots-thumb[hidden] { display: none; }
+.shots-thumb img { display: block; width: 100%; aspect-ratio: 1600 / 708; object-fit: cover; object-position: top left; }
+.shots-thumb[aria-pressed="true"] { opacity: 1; border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+.shots-thumb:active { transform: scale(0.98); }
+@media (hover: hover) and (pointer: fine) { .shots-thumb:hover { opacity: 1; } }
+@media (max-width: 560px) {
+  .shots-tabs { width: 100%; }
+  .shots-tabs button { flex: 1; padding: 6px 8px; font-size: 0.875rem; }
+  .shots-thumbs { gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shots-view img:not([hidden]) { animation: none; }
+}

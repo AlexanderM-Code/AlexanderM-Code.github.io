@@ -618,8 +618,12 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
   if (!dialog || typeof dialog.showModal !== 'function') return;
   trigger.addEventListener('click', () => {
     lastTrigger = trigger;
-    dialog.returnTo = trigger;
+    // data-swap: se pasa de un caso a otro (Numi ↔ paneles) cerrando el actual;
+    // al cerrar el nuevo, el foco vuelve a la fila del índice que abrió el primero.
+    const from = 'swap' in trigger.dataset ? trigger.closest('dialog') : null;
+    if (from) { dialog.returnTo = from.returnTo; from.skipFocus = true; from.close(); } else dialog.returnTo = trigger;
     dialog.showModal();
+    if (from) dialog.scrollTop = 0;
     root.style.overflow = 'hidden';
     const video = dialog.querySelector('video');
     if (video && video.dataset.src && !video.getAttribute('src')) {
@@ -636,9 +640,29 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
   dialog.addEventListener('close', () => {
     if (!document.querySelector('dialog.dlg[open]')) root.style.overflow = '';
     dialog.querySelector('video')?.pause();
+    if (dialog.skipFocus) { dialog.skipFocus = false; return; }
     (dialog.returnTo || lastTrigger)?.focus();
   });
 });
+
+// Paneles de Numi: pestañas por panel y miniaturas que cambian la captura grande
+const shotsLab = document.querySelector('.lab-shots');
+if (shotsLab) {
+  const thumbs = [...shotsLab.querySelectorAll('.shots-thumb')];
+  const tabs = [...shotsLab.querySelectorAll('.shots-tabs button')];
+  const url = shotsLab.querySelector('.shots-url');
+  const show = (i) => {
+    shotsLab.querySelectorAll('.shots-view img, .shots-cap').forEach((el) => { el.hidden = el.dataset.i !== String(i); });
+    thumbs.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.i === String(i))));
+    url.textContent = thumbs[i].dataset.url;
+  };
+  thumbs.forEach((b) => b.addEventListener('click', () => show(Number(b.dataset.i))));
+  tabs.forEach((tab) => tab.addEventListener('click', () => {
+    tabs.forEach((t2) => t2.setAttribute('aria-pressed', String(t2 === tab)));
+    thumbs.forEach((b) => { b.hidden = b.dataset.g !== tab.dataset.g; });
+    show(Number(thumbs.find((b) => b.dataset.g === tab.dataset.g).dataset.i));
+  }));
+}
 
 // Visor de notebook: el HTML del notebook se carga solo la primera vez que se abre.
 const nbDialog = document.getElementById('dlg-nb');
@@ -953,6 +977,7 @@ const CMDK_ITEMS = [
   ['sections', 'Contacto', 'Contact', 'correo email', goTo('#contacto')],
   ['projects', 'Observatorio de Salud Pública de Antioquia', 'Antioquia Public Health Observatory', 'python sql etl', openDialog('dlg-observatorio')],
   ['projects', 'Numi', 'Numi', 'flutter app rag ia ai', openDialog('dlg-numi')],
+  ['projects', 'Paneles de Numi', 'Numi Panels', 'flask mysql admin docente teacher web', openDialog('dlg-paneles')],
   ['projects', 'CineX', 'CineX', 'java spring api', openDialog('dlg-cinex')],
   ['projects', 'Casa Rendón', 'Casa Rendon', 'react cliente client', openDialog('dlg-casa')],
   ['projects', 'Datos con Python', 'Data with Python', 'regresión regression', openDialog('dlg-datos')],
