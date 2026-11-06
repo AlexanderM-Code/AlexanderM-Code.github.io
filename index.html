@@ -33,7 +33,7 @@
   <link rel="me" href="https://github.com/AlexanderM-Code">
   <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-11-05b">
+  <link rel="stylesheet" href="css/styles.css?v=2026-11-05c">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -53,7 +53,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-11-05b" defer></script>
+  <script src="js/main.js?v=2026-11-05c" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -207,7 +207,7 @@
             <span class="idx-pill mono st-build"><i class="st" aria-hidden="true"></i><span data-en="In progress">En desarrollo</span></span>
             <span class="idx-go" aria-hidden="true">↗</span>
           </button></li>
-          <li><button class="idx-row" type="button" data-dialog="dlg-casa" data-video="assets/previews/casa.mp4" data-preview="assets/casa-rendon.webp" aria-haspopup="dialog">
+          <li><button class="idx-row" type="button" data-dialog="dlg-casa" data-video="assets/previews/casa.mp4" data-preview="assets/casa-rendon-poster.webp" aria-haspopup="dialog">
             <span class="idx-num mono">04</span>
             <img class="idx-thumb" src="assets/casa-rendon.webp" alt="" loading="lazy" decoding="async">
             <img class="idx-logo" src="assets/logos-proyectos/casa-rendon.webp" width="52" height="52" alt="" loading="lazy" decoding="async">
@@ -216,9 +216,9 @@
             <span class="idx-pill mono st-client"><i class="st" aria-hidden="true"></i><span data-en="Real client">Cliente real</span></span>
             <span class="idx-go" aria-hidden="true">↗</span>
           </button></li>
-          <li><button class="idx-row" type="button" data-dialog="dlg-rfid" data-preview="assets/previews/rfid-simulador.webp" aria-haspopup="dialog">
+          <li><button class="idx-row" type="button" data-dialog="dlg-rfid" data-preview="assets/portada-arduino.webp" aria-haspopup="dialog">
             <span class="idx-num mono">05</span>
-            <img class="idx-thumb" src="assets/previews/rfid-simulador.webp" alt="" loading="lazy" decoding="async">
+            <img class="idx-thumb" src="assets/portada-arduino.webp" alt="" loading="lazy" decoding="async">
             <img class="idx-logo" src="assets/logos-proyectos/rfid.svg" width="52" height="52" alt="" loading="lazy" decoding="async">
             <span class="idx-name" data-en="Arduino and RFID lock">Arduino y cerradura RFID</span>
             <span class="idx-area" data-en="IoT · C++">IoT · C++</span>
@@ -234,13 +234,22 @@
             <span class="idx-pill mono st-team"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Team">Equipo</span></span>
             <span class="idx-go" aria-hidden="true">↗</span>
           </button></li>
-          <li><button class="idx-row" type="button" data-dialog="dlg-datos" data-video="assets/previews/datos.mp4" data-preview="assets/previews/datos.webp" aria-haspopup="dialog">
+          <li><button class="idx-row" type="button" data-dialog="dlg-datos" data-preview="assets/portada-datos.webp" aria-haspopup="dialog">
             <span class="idx-num mono">07</span>
             <span class="idx-thumb idx-thumb-plot" aria-hidden="true"><svg viewBox="0 0 640 440"><use href="#mpg-plot"/></svg></span>
             <img class="idx-logo" src="assets/logos-proyectos/datos.svg" width="52" height="52" alt="" loading="lazy" decoding="async">
             <span class="idx-name" data-en="Data with Python">Datos con Python</span>
             <span class="idx-area" data-en="Analytics · Pandas">Analítica · Pandas</span>
             <span class="idx-pill mono st-course"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Coursework">Clase</span></span>
+            <span class="idx-go" aria-hidden="true">↗</span>
+          </button></li>
+          <li><button class="idx-row" type="button" data-dialog="dlg-historias" data-preview="assets/portada-historias.webp" aria-haspopup="dialog">
+            <span class="idx-num mono">08</span>
+            <img class="idx-thumb" src="assets/portada-historias.webp" alt="" loading="lazy" decoding="async">
+            <img class="idx-logo" src="assets/logos-proyectos/historias.svg" width="52" height="52" alt="" loading="lazy" decoding="async">
+            <span class="idx-name" data-en="Digital dental records">Historias clínicas digitales</span>
+            <span class="idx-area" data-en="Capstone · Web · Health">Proyecto de grado · Web · Salud</span>
+            <span class="idx-pill mono st-doc"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Documenting">En documentación</span></span>
             <span class="idx-go" aria-hidden="true">↗</span>
           </button></li>
           </ol>
@@ -689,16 +698,12 @@
             </div>
           </div>
 
-          <figure class="case-shot shots-pair">
+          <figure class="case-shot dlg-video">
             <div class="browser" data-ui>
               <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>alexanderm-code.github.io/CineX---Proyecto-Final</span></p>
-              <img src="assets/cinex-inicio.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Página principal de CineX: estreno destacado con el título Estrenos que no te puedes perder y el botón Ver ahora" data-en-alt="CineX home page: a featured release under the title Premieres you cannot miss and a Watch now button">
+              <video data-src="assets/previews/cinex-recorrido.mp4" data-poster="assets/previews/cinex-poster.webp" width="640" height="480" muted loop playsinline controls preload="none" aria-label="Recorrido completo de CineX: cartelera, detalle de una película y panel de administración conectado a la API" data-en-aria="Full CineX walkthrough: showtimes, a movie detail page and the admin panel connected to the API"></video>
             </div>
-            <div class="browser" data-ui>
-              <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>alexanderm-code.github.io/CineX---Proyecto-Final</span></p>
-              <img src="assets/cinex-admin.webp" width="1280" height="800" loading="lazy" decoding="async" alt="Panel de administración de CineX con el formulario de reservas y la lista de usuarios" data-en-alt="CineX admin panel with the booking form and the user list">
-            </div>
-            <figcaption data-en="The home page and the admin panel, both running against the API.">La página principal y el panel de administración, los dos conectados a la API.</figcaption>
+            <figcaption data-en="The full site: showtimes, a movie page and the admin panel, all running against the API.">El sitio completo: cartelera, detalle de una película y panel de administración, todo conectado a la API.</figcaption>
           </figure>
 
           <div class="case-more-wrap">
@@ -774,13 +779,12 @@
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
               </p>
             </div>
-            <figure class="dlg-media dlg-casa">
+            <figure class="dlg-media dlg-video">
               <div class="browser" data-ui>
                 <p class="browser-bar mono"><span class="browser-dots" aria-hidden="true"></span><span>casarendon.com</span></p>
-                <img src="assets/casa-rendon.webp" width="1280" height="960" loading="lazy" decoding="async" alt="Página de inicio de Entre Sorbos, Casa Rendón: título grande, la frase de la familia y los botones para conocer su historia y escribir" data-en-alt="Entre Sorbos, Casa Rendon home page: a large title, the family's tagline and buttons to read their story and get in touch">
+                <video data-src="assets/casa-rendon-video.mp4" data-poster="assets/casa-rendon-poster.webp" width="1280" height="644" muted loop playsinline controls preload="none" aria-label="Recorrido por casarendon.com: inicio, historia de la familia, café, vino, galería y visitas" data-en-aria="A tour of casarendon.com: home, the family story, coffee, wine, gallery and visits"></video>
               </div>
-              <img class="phone-shot" src="assets/casa-rendon-movil.webp" width="420" height="860" loading="lazy" decoding="async" alt="El mismo sitio en un celular" data-en-alt="The same site on a phone">
-              <figcaption data-en="casarendon.com on desktop and on mobile.">casarendon.com en escritorio y en celular.</figcaption>
+              <figcaption data-en="A tour of casarendon.com, the site the family uses today.">Recorrido por casarendon.com, el sitio que la familia usa hoy.</figcaption>
             </figure>
           </div>
         </div>
@@ -809,12 +813,17 @@
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/analisis-datos-python" target="_blank" rel="noopener" data-en="View the 23 labs on GitHub">Ver los 23 laboratorios en GitHub</a>
               </p>
             </div>
+            <div class="dlg-side">
+            <figure class="dlg-media dlg-cover">
+              <img src="assets/portada-datos.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Portada de Datos con Python: 23 laboratorios en Google Colab, con gráficas de calidad de datos, regresión, distribución normal y una red neuronal" data-en-alt="Data with Python cover: 23 labs in Google Colab, with charts for data quality, regression, the normal distribution and a neural network">
+            </figure>
             <figure class="dlg-media plot">
               <p class="plot-title" data-en="Every extra 100 kg, 0.72 km/l less">Cada 100 kg de más, 0,72 km/l menos</p>
               <p class="plot-sub mono" data-en="398 vehicles from the Auto MPG dataset · linear regression · R² = 0.69">398 vehículos del conjunto Auto MPG · regresión lineal · R² = 0,69</p>
               <svg class="mpg" viewBox="0 0 640 440" role="img" aria-labelledby="mpg-t mpg-d"><title id="mpg-t">Peso del vehículo contra rendimiento de combustible</title><desc id="mpg-d">398 vehículos del conjunto Auto MPG. La recta de regresión muestra que cada 100 kg más reducen el rendimiento en 0,72 km/l; R² = 0,69.</desc><use href="#mpg-plot"/><g class="mpg-axis"><text x="162" y="422" text-anchor="middle">1.000 kg</text><text x="304" y="422" text-anchor="middle">1.400 kg</text><text x="446" y="422" text-anchor="middle">1.800 kg</text><text x="588" y="422" text-anchor="middle">2.200 kg</text><text x="46" y="355" text-anchor="end">5</text><text x="46" y="251" text-anchor="end">10</text><text x="46" y="146" text-anchor="end">15</text><text x="46" y="42" text-anchor="end">20</text></g></svg>
               <figcaption class="plot-axis" data-en="Vertical axis: fuel efficiency in km/l. Horizontal axis: vehicle weight.">Eje vertical: rendimiento en km/l. Eje horizontal: peso del vehículo.</figcaption>
             </figure>
+            </div>
           </div>
           <div class="labs" aria-labelledby="labs-title">
             <div class="labs-head">
@@ -873,6 +882,34 @@
           </div>
         </div>
       </dialog>
+      <dialog class="dlg" id="dlg-historias" aria-labelledby="dlg-historias-title">
+        <div class="dlg-inner">
+          <div class="dlg-head">
+            <p class="more-tags"><span class="idx-pill mono st-doc"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Documenting">En documentación</span></span></p>
+            <p class="more-kind mono" data-en="Capstone project · Team, 2026–2027">Proyecto de grado · En equipo, 2026–2027</p>
+            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/historias.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-historias-title" data-en="Digital dental records">Historias clínicas digitales</h3></div>
+            <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          </div>
+          <div class="dlg-body">
+            <div class="dlg-text">
+              <p class="dlg-lede" data-en="My capstone project: a web app to manage clinical records digitally for the Oral Health Assistant Technician program.">Mi proyecto de grado: un aplicativo web para gestionar de forma digital las historias clínicas del Técnico Auxiliar en Salud Oral.</p>
+              <dl class="kpis"><div class="kpi"><dt class="mono">8</dt><dd data-en="proposal deliverables, E1 to E8">entregas del anteproyecto, de la E1 a la E8</dd></div><div class="kpi"><dt class="mono">3</dt><dd data-en="team members and a technical advisor">integrantes y una asesora técnica</dd></div><div class="kpi"><dt class="mono" data-en="2027">2027</dt><dd data-en="development, February to May">desarrollo, de febrero a mayo</dd></div></dl>
+              <ol class="flow" aria-label="Etapas del proyecto" data-en-aria="Project stages">
+                <li class="flow-step"><span class="flow-k mono">01</span><b data-en="Proposal">Anteproyecto</b><span data-en="E1 to E8">E1 a E8</span></li>
+                <li class="flow-step"><span class="flow-k mono">02</span><b data-en="Defense">Sustentación</b><span data-en="Nov 2026">nov. 2026</span></li>
+                <li class="flow-step"><span class="flow-k mono">03</span><b data-en="Requirements">Requisitos</b><span data-en="approved, Nov 2026">aprobados, nov. 2026</span></li>
+                <li class="flow-step"><span class="flow-k mono">04</span><b data-en="Development">Desarrollo</b><span data-en="Feb – May 2027">feb. – may. 2027</span></li>
+              </ol>
+              <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="research and documentation of the proposal with Santiago Rodríguez and Santiago Mayorga, advised by Adriana Paredes Salinas.">investigación y documentación del anteproyecto con Santiago Rodríguez y Santiago Mayorga, con la asesoría técnica de Adriana Paredes Salinas.</span></p>
+              <p class="small-note" data-en="It is a proposal for now: the code and the demo will be here once development starts.">Por ahora es un anteproyecto: el código y la demo estarán aquí cuando empiece el desarrollo.</p>
+            </div>
+            <figure class="dlg-media dlg-cover">
+              <img src="assets/portada-historias.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Portada del proyecto de grado: avance del anteproyecto de la E1 a la E8, fechas de sustentación y desarrollo, y un boceto de odontograma digital" data-en-alt="Capstone cover: proposal progress from E1 to E8, defense and development dates, and a sketch of a digital dental chart">
+              <figcaption data-en="Proposal progress and the core idea: the dental chart in digital form.">El avance del anteproyecto y la idea central: el odontograma en digital.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </dialog>
       <dialog class="dlg dlg-nb" id="dlg-nb" aria-labelledby="dlg-nb-title">
         <div class="nb-bar">
           <div class="nb-head">
@@ -913,10 +950,9 @@
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Computacion-Ubicua" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
               </p>
             </div>
-            <figure class="dlg-media dlg-duo">
-              <img src="assets/rfid-montaje.webp" width="720" height="720" loading="lazy" decoding="async" alt="Montaje real de la cerradura: Arduino UNO, protoboard con LEDs, lector RFID y la cerradura de solenoide" data-en-alt="The real build: Arduino UNO, breadboard with LEDs, RFID reader and the solenoid lock">
-              <img src="assets/rfid-circuito.webp" width="1302" height="669" loading="lazy" decoding="async" alt="Diagrama del circuito: Arduino, lector RC522, LEDs, transistor, cerradura y fuente" data-en-alt="Circuit diagram: Arduino, RC522 reader, LEDs, transistor, lock and power supply">
-              <figcaption data-en="The real build and its circuit diagram.">El montaje real y su diagrama del circuito.</figcaption>
+            <figure class="dlg-media dlg-cover">
+              <img src="assets/portada-arduino.webp" width="1600" height="900" loading="lazy" decoding="async" alt="Portada de Arduino y cerradura RFID: el montaje real, el diagrama del circuito, los pasos para abrir la puerta y los 7 laboratorios" data-en-alt="Arduino and RFID lock cover: the real build, the circuit diagram, the steps to open the door and the 7 labs">
+              <figcaption data-en="The real build, its circuit and how the lock decides whether to open.">El montaje real, su circuito y cómo decide la cerradura si abre.</figcaption>
             </figure>
           </div>
         </div>

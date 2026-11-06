@@ -981,6 +981,7 @@ const CMDK_ITEMS = [
   ['projects', 'CineX', 'CineX', 'java spring api', openDialog('dlg-cinex')],
   ['projects', 'Casa Rendón', 'Casa Rendon', 'react cliente client', openDialog('dlg-casa')],
   ['projects', 'Datos con Python', 'Data with Python', 'regresión regression', openDialog('dlg-datos')],
+  ['projects', 'Historias clínicas digitales (proyecto de grado)', 'Digital dental records (capstone)', 'salud oral odontograma tesis grado capstone', openDialog('dlg-historias')],
   ['projects', 'Arduino y cerradura RFID', 'Arduino and RFID lock', 'computación ubicua iot sensores sensors', openDialog('dlg-rfid')],
   ['projects', 'BlackJack Royale', 'BlackJack Royale', 'juego game websockets', openDialog('dlg-blackjack')],
   ['actions', 'Descargar hoja de vida (español)', 'Download resume (Spanish)', 'cv pdf', download(CV), 'PDF'],
