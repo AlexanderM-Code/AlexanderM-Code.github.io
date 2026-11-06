@@ -33,7 +33,7 @@
   <link rel="me" href="https://github.com/AlexanderM-Code">
   <link rel="me" href="https://www.linkedin.com/in/alexander-mejia-ospina">
   <link rel="preconnect" href="https://cinex-api-lt2q.onrender.com" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=2026-11-05">
+  <link rel="stylesheet" href="css/styles.css?v=2026-11-05b">
   <script>
     // Tema e idioma antes de pintar, para que la página no parpadee.
     (function () {
@@ -53,7 +53,7 @@
       }
     })();
   </script>
-  <script src="js/main.js?v=2026-11-05" defer></script>
+  <script src="js/main.js?v=2026-11-05b" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -255,7 +255,7 @@
           <div class="case-top">
             <header class="case-head">
               <p class="case-kind mono"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Live">En vivo</span></span> <span data-en="Personal project · 2026">Proyecto personal · 2026</span></p>
-              <h3 class="case-title" id="obs-title" data-en="Antioquia Public Health Observatory">Observatorio de Salud Pública de Antioquia</h3>
+              <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/observatorio.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="case-title" id="obs-title" data-en="Antioquia Public Health Observatory">Observatorio de Salud Pública de Antioquia</h3></div>
               <p class="case-lede" data-en="A data pipeline, an API and a public page about the cases reported to SIVIGILA in Antioquia between 2007 and 2022.">Pipeline de datos, API y página pública sobre los casos notificados al SIVIGILA en Antioquia entre 2007 y 2022.</p>
               <ol class="flow" aria-label="Cómo viajan los datos" data-en-aria="How the data flows">
                 <li class="flow-step"><span class="flow-k mono">01</span><b>SIVIGILA</b><span data-en="open data">datos abiertos</span></li>
@@ -266,13 +266,25 @@
               </ol>
             </header>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
-              <li>Python</li><li>pandas</li><li>SQL</li><li>MySQL</li><li>FastAPI</li><li>Power BI</li><li>pytest</li><li>Docker</li><li>GitHub Actions</li>
+              <li><img src="assets/logos/python.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Python</li><li><img src="assets/logos/pandas.svg" width="16" height="16" alt="" loading="lazy" decoding="async">pandas</li><li><img src="assets/logos/sql.svg" width="16" height="16" alt="" loading="lazy" decoding="async">SQL</li><li><img src="assets/logos/mysql.svg" width="16" height="16" alt="" loading="lazy" decoding="async">MySQL</li><li><img src="assets/logos/fastapi.svg" width="16" height="16" alt="" loading="lazy" decoding="async">FastAPI</li><li><img src="assets/logos/powerbi.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Power BI</li><li><img src="assets/logos/pytest.svg" width="16" height="16" alt="" loading="lazy" decoding="async">pytest</li><li><img src="assets/logos/docker.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Docker</li><li><img src="assets/logos/githubactions.svg" width="16" height="16" alt="" loading="lazy" decoding="async">GitHub Actions</li>
             </ul>
             <p class="case-links">
               <a class="btn btn-accent" href="https://alexanderm-code.github.io/observatorio-salud-antioquia/" target="_blank" rel="noopener" data-en="Open the observatory">Ver observatorio</a>
-              <a class="btn btn-line" href="https://datastudio.google.com/reporting/fa318396-d03e-4a63-96a4-4c17ff79d889" target="_blank" rel="noopener" data-en="Interactive dashboard">Tablero interactivo</a>
               <a class="btn btn-line" href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia" target="_blank" rel="noopener" data-en="Code">Código</a>
             </p>
+            <div class="res">
+              <p class="res-label mono" data-en="Data and analysis">Datos y análisis</p>
+              <a class="res-card" href="https://datastudio.google.com/reporting/fa318396-d03e-4a63-96a4-4c17ff79d889" target="_blank" rel="noopener">
+                <img src="assets/logos/lookerstudio.svg" width="28" height="28" alt="">
+                <span><b data-en="Interactive dashboard">Tablero interactivo</b><small data-en="Looker Studio: cases by year and week, and the municipalities with the most cases and the highest risk. Hover over the charts.">Looker Studio: casos por año y semana, y los municipios con más casos y más riesgo. Pasa el cursor por las gráficas.</small></span>
+                <span class="res-go" aria-hidden="true">↗</span>
+              </a>
+              <a class="res-card" href="https://github.com/AlexanderM-Code/observatorio-salud-antioquia/tree/main/powerbi" target="_blank" rel="noopener">
+                <img src="assets/logos/powerbi.svg" width="28" height="28" alt="">
+                <span><b data-en="Power BI dashboard">Tablero en Power BI</b><small data-en="The .pbix file with the model, the DAX measures and the rate per 100,000 people, ready to download.">El archivo .pbix con el modelo, las medidas DAX y la tasa por 100.000 habitantes, listo para descargar.</small></span>
+                <span class="res-go" aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
 
           <div class="lab" id="datos" aria-labelledby="chart-title">
@@ -379,11 +391,11 @@
           <div class="case-top">
             <header class="case-head">
               <p class="case-kind mono"><span class="live-pill dev-pill"><span class="dot dot-dev" aria-hidden="true"></span><span data-en="In development">En desarrollo</span></span> <span data-en="Mobile app · Team project · 2026">App móvil · Proyecto en equipo · 2026</span></p>
-              <h3 class="case-title" id="numi-title">Numi</h3>
+              <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/numi.webp?v=2" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="case-title" id="numi-title">Numi</h3></div>
               <p class="case-lede" data-en="An educational app that works with no internet, with an AI assistant that runs on the phone itself, for children in rural Medellin.">Una app educativa que funciona sin internet, con un asistente de IA que corre en el propio celular, para niños de zonas rurales de Medellín.</p>
             </header>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
-              <li>Flutter</li><li>Dart</li><li>Riverpod</li><li>SQLite</li><li>Gemma 2B</li><li>TFLite</li><li>FastAPI</li><li>Firebase Auth</li>
+              <li><img src="assets/logos/flutter.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Flutter</li><li><img src="assets/logos/dart.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Dart</li><li>Riverpod</li><li><img src="assets/logos/sqlite.svg" width="16" height="16" alt="" loading="lazy" decoding="async">SQLite</li><li>Gemma 2B</li><li>TFLite</li><li><img src="assets/logos/fastapi.svg" width="16" height="16" alt="" loading="lazy" decoding="async">FastAPI</li><li><img src="assets/logos/firebase.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Firebase Auth</li>
             </ul>
             <p class="case-links">
               <a class="btn btn-accent" href="https://github.com/geminitodo5-sketch/app-educativa-medellin" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
@@ -502,8 +514,9 @@
           <div class="case-top">
             <header class="case-head">
               <p class="case-kind mono"><span class="live-pill dev-pill"><span class="dot dot-dev" aria-hidden="true"></span><span data-en="In development">En desarrollo</span></span> <span class="idx-via"><img src="assets/logos-proyectos/numi.webp?v=2" width="14" height="14" alt=""><span data-en="Part of Numi">Parte de Numi</span></span> <span data-en="Web · Team project · 2026">Web · Proyecto en equipo · 2026</span></p>
-              <h3 class="case-title" id="paneles-title" data-en="Numi Panels">Paneles de Numi</h3>
+              <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/paneles.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="case-title" id="paneles-title" data-en="Numi Panels">Paneles de Numi</h3></div>
               <p class="case-lede" data-en="The web side of Numi: an admin panel that manages the content and a teacher panel that follows each group&#39;s progress, both connected to the phone app.">La parte web de Numi: un panel administrativo que gestiona el contenido y un panel docente que sigue el avance de cada grupo, los dos conectados con la app del celular.</p>
+              <dl class="kpis"><div class="kpi"><dt class="mono" data-en="110">110</dt><dd data-en="automated tests with pytest">pruebas automáticas con pytest</dd></div><div class="kpi"><dt class="mono" data-en="2">2</dt><dd data-en="roles, each with its own sign-in">roles, cada uno con su propio acceso</dd></div><div class="kpi"><dt class="mono" data-en="1">1</dt><dd data-en="MySQL database shared with the app">base MySQL compartida con la app</dd></div></dl>
               <ol class="flow" aria-label="Cómo se conecta con la app" data-en-aria="How it connects with the app">
                 <li class="flow-step"><span class="flow-k mono">01</span><b data-en="Numi app">App Numi</b><span data-en="the child&#39;s phone, offline">celular del niño, sin internet</span></li>
                 <li class="flow-step"><span class="flow-k mono">02</span><b data-en="Keyed bridge">Puente con clave</b><span>/api/app/v1</span></li>
@@ -512,7 +525,7 @@
               </ol>
             </header>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
-              <li>Python</li><li>Flask</li><li>MySQL</li><li>Bootstrap</li><li>JavaScript</li><li>pytest</li>
+              <li><img src="assets/logos/python.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Python</li><li>Flask</li><li><img src="assets/logos/mysql.svg" width="16" height="16" alt="" loading="lazy" decoding="async">MySQL</li><li><img src="assets/logos/bootstrap.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Bootstrap</li><li><img src="assets/logos/javascript.svg" width="16" height="16" alt="" loading="lazy" decoding="async">JavaScript</li><li><img src="assets/logos/pytest.svg" width="16" height="16" alt="" loading="lazy" decoding="async">pytest</li>
             </ul>
             <p class="case-links">
               <a class="btn btn-accent" href="https://github.com/luism7p7/numi-paneles-roles" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
@@ -616,12 +629,13 @@
         <article class="case case-cinex" id="cinex" aria-labelledby="cinex-title">
           <div class="case-top">
             <header class="case-head">
-              <p class="case-kind mono"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Live">En vivo</span></span> <span data-en="Academic team project · 2025 · v2.0 solo, 2026">Proyecto académico en equipo · 2025 · v2.0 individual, 2026</span></p>
-              <h3 class="case-title" id="cinex-title">CineX</h3>
+              <p class="case-kind mono"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Live">En vivo</span></span> <span data-en="Team, 2025 · v2.0 solo, 2026">Equipo, 2025 · v2.0 individual, 2026</span></p>
+              <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/cinex.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="case-title" id="cinex-title">CineX</h3></div>
               <p class="case-lede" data-en="A movie theater management system: showtimes with real movies from the TMDB API, theaters, screenings, seat sales, snack bar, users and bookings.">Sistema de gestión de cine: cartelera con películas reales de la API de TMDB, salas, funciones, venta de sillas, confitería, usuarios y reservas.</p>
+              <dl class="kpis"><div class="kpi"><dt class="mono" data-en="19">19</dt><dd data-en="automated tests with JUnit and Mockito">pruebas automáticas con JUnit y Mockito</dd></div><div class="kpi"><dt class="mono" data-en="26">26</dt><dd data-en="requests in the Postman collection">solicitudes en la colección de Postman</dd></div><div class="kpi"><dt class="mono" data-en="4">4</dt><dd data-en="business rules with their HTTP code">reglas de negocio con su código HTTP</dd></div></dl>
             </header>
             <ul class="chips" aria-label="Tecnologías" data-en-aria="Technologies">
-              <li>Java 21</li><li>Spring Boot</li><li>Spring Data JPA</li><li>MySQL</li><li>JUnit</li><li>Postman</li><li>Swagger</li><li>Docker</li><li>GitHub Actions</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
+              <li><img src="assets/logos/java.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Java 21</li><li><img src="assets/logos/spring.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Spring Boot</li><li><img src="assets/logos/spring.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Spring Data JPA</li><li><img src="assets/logos/mysql.svg" width="16" height="16" alt="" loading="lazy" decoding="async">MySQL</li><li><img src="assets/logos/junit.svg" width="16" height="16" alt="" loading="lazy" decoding="async">JUnit</li><li><img src="assets/logos/postman.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Postman</li><li><img src="assets/logos/swagger.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Swagger</li><li><img src="assets/logos/docker.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Docker</li><li><img src="assets/logos/githubactions.svg" width="16" height="16" alt="" loading="lazy" decoding="async">GitHub Actions</li><li><img src="assets/logos/html5.svg" width="16" height="16" alt="" loading="lazy" decoding="async">HTML</li><li><img src="assets/logos/css3.svg" width="16" height="16" alt="" loading="lazy" decoding="async">CSS</li><li><img src="assets/logos/javascript.svg" width="16" height="16" alt="" loading="lazy" decoding="async">JavaScript</li>
             </ul>
             <p class="case-links">
               <a class="btn btn-accent" href="https://alexanderm-code.github.io/CineX---Proyecto-Final/" target="_blank" rel="noopener" data-en="View site">Ver sitio</a>
@@ -743,7 +757,7 @@
           <div class="dlg-head">
             <p class="more-tags"><span class="live-pill"><span class="dot dot-live" aria-hidden="true"></span><span data-en="Real client · In production">Cliente real · En producción</span></span></p>
             <p class="more-kind mono" data-en="Frontend in production · Team project, 2026">Frontend en producción · Proyecto en equipo, 2026</p>
-            <h3 class="dlg-title" id="dlg-casa-title">Casa Rendón</h3>
+            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/casa-rendon.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-casa-title">Casa Rendón</h3></div>
             <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
           </div>
           <div class="dlg-body">
@@ -754,7 +768,7 @@
                 <li data-en="A form that sends visit bookings through WhatsApp, where the family already talks to its customers.">Un formulario que envía las reservas de visita por WhatsApp, donde la familia ya atiende a sus clientes.</li>
               </ul>
               <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="design and development of the site.">diseño y desarrollo del sitio.</span></p>
-              <ul class="chips"><li>React</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+              <ul class="chips"><li><img src="assets/logos/react.svg" width="16" height="16" alt="" loading="lazy" decoding="async">React</li><li><img src="assets/logos/javascript.svg" width="16" height="16" alt="" loading="lazy" decoding="async">JavaScript</li><li><img src="assets/logos/html5.svg" width="16" height="16" alt="" loading="lazy" decoding="async">HTML</li><li><img src="assets/logos/css3.svg" width="16" height="16" alt="" loading="lazy" decoding="async">CSS</li></ul>
               <p class="case-links">
                 <a class="btn btn-accent" href="https://casarendon.com" target="_blank" rel="noopener" data-en="Visit the site">Visitar el sitio</a>
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Entre-sorbos---Casa-Rendon" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
@@ -775,8 +789,9 @@
       <dialog class="dlg" id="dlg-datos" aria-labelledby="dlg-datos-title">
         <div class="dlg-inner">
           <div class="dlg-head">
+            <p class="more-tags"><span class="idx-pill mono st-course"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Coursework">Clase</span></span></p>
             <p class="more-kind mono" data-en="Data Analytics course · October 2026">Curso de Analítica de Datos · Octubre de 2026</p>
-            <h3 class="dlg-title" id="dlg-datos-title" data-en="Data with Python">Datos con Python</h3>
+            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/datos.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-datos-title" data-en="Data with Python">Datos con Python</h3></div>
             <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
           </div>
           <div class="dlg-body">
@@ -786,9 +801,9 @@
                 <li data-en="Linear regression and ANOVA to predict vehicle fuel efficiency.">Regresión lineal y ANOVA para predecir el rendimiento de combustible de vehículos.</li>
                 <li data-en="Logistic regression to classify benign and malignant tumors.">Regresión logística para clasificar tumores benignos y malignos.</li>
                 <li data-en="Data cleaning, exploration and visualization with Pandas.">Limpieza, exploración y visualización de datos con Pandas.</li>
-                <li data-en="23 labs, from EDA and hypothesis tests to k-means, time series and a neural network that reads digits with 97.6% accuracy.">23 laboratorios, del EDA y las pruebas de hipótesis a k-means, series de tiempo y una red neuronal que reconoce dígitos con 97,6 % de exactitud.</li>
               </ul>
-              <ul class="chips"><li>Python</li><li>Pandas</li><li>scikit-learn</li><li>TensorFlow</li><li>Jupyter</li><li>Google Colab</li></ul>
+              <dl class="kpis"><div class="kpi"><dt class="mono" data-en="23">23</dt><dd data-en="labs, from EDA to neural networks">laboratorios, del EDA a redes neuronales</dd></div><div class="kpi"><dt class="mono" data-en="97.6%">97,6 %</dt><dd data-en="accuracy reading handwritten digits">de exactitud reconociendo dígitos</dd></div><div class="kpi"><dt class="mono" data-en="0.69">0,69</dt><dd data-en="R² in the fuel efficiency model">de R² en el modelo de rendimiento</dd></div></dl>
+              <ul class="chips"><li><img src="assets/logos/python.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Python</li><li><img src="assets/logos/pandas.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Pandas</li><li>scikit-learn</li><li>TensorFlow</li><li><img src="assets/logos/jupyter.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Jupyter</li><li><img src="assets/logos/googlecolab.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Google Colab</li></ul>
               <p class="case-links">
                 <button class="btn btn-accent" type="button" data-dialog="dlg-nb" aria-haspopup="dialog" data-en="Open the neural network notebook">Abrir el notebook de redes neuronales</button>
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/analisis-datos-python" target="_blank" rel="noopener" data-en="View the 23 labs on GitHub">Ver los 23 laboratorios en GitHub</a>
@@ -800,6 +815,61 @@
               <svg class="mpg" viewBox="0 0 640 440" role="img" aria-labelledby="mpg-t mpg-d"><title id="mpg-t">Peso del vehículo contra rendimiento de combustible</title><desc id="mpg-d">398 vehículos del conjunto Auto MPG. La recta de regresión muestra que cada 100 kg más reducen el rendimiento en 0,72 km/l; R² = 0,69.</desc><use href="#mpg-plot"/><g class="mpg-axis"><text x="162" y="422" text-anchor="middle">1.000 kg</text><text x="304" y="422" text-anchor="middle">1.400 kg</text><text x="446" y="422" text-anchor="middle">1.800 kg</text><text x="588" y="422" text-anchor="middle">2.200 kg</text><text x="46" y="355" text-anchor="end">5</text><text x="46" y="251" text-anchor="end">10</text><text x="46" y="146" text-anchor="end">15</text><text x="46" y="42" text-anchor="end">20</text></g></svg>
               <figcaption class="plot-axis" data-en="Vertical axis: fuel efficiency in km/l. Horizontal axis: vehicle weight.">Eje vertical: rendimiento en km/l. Eje horizontal: peso del vehículo.</figcaption>
             </figure>
+          </div>
+          <div class="labs" aria-labelledby="labs-title">
+            <div class="labs-head">
+              <h4 class="lab-title" id="labs-title" data-en="The 23 labs">Los 23 laboratorios</h4>
+              <p class="lab-sub mono" data-en="Each one opens and runs in Google Colab">Cada uno se abre y se ejecuta en Google Colab</p>
+            </div>
+              <details class="labs-g" open>
+                <summary><span class="labs-dot" aria-hidden="true"></span><span data-en="Data preparation and EDA">Preparación de datos y EDA</span><span class="labs-c mono" data-en="6 labs">6 laboratorios</span></summary>
+                <ol>
+                  <li><span class="labs-n mono">Lab 1</span><span class="labs-t" data-en="First look at the dataset">Inspección inicial del dataset</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab01_inspeccion_dataset.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 2</span><span class="labs-t" data-en="Data quality">Calidad de los datos</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab02_calidad_datos.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 3</span><span class="labs-t" data-en="Data preparation">Preparación de los datos</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab03_preparacion_datos.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 4</span><span class="labs-t" data-en="Exploratory analysis (EDA)">Análisis exploratorio (EDA)</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab04_eda.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 5</span><span class="labs-t" data-en="Descriptive statistics">Descripción estadística</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab05_descripcion_estadistica.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 6</span><span class="labs-t" data-en="Outliers">Valores atípicos</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/01-preparacion-y-eda/lab06_valores_atipicos.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                </ol>
+              </details>
+              <details class="labs-g">
+                <summary><span class="labs-dot" aria-hidden="true"></span><span data-en="Correlation and probability">Correlación y probabilidad</span><span class="labs-c mono" data-en="6 labs">6 laboratorios</span></summary>
+                <ol>
+                  <li><span class="labs-n mono">Lab 7</span><span class="labs-t" data-en="Relationships and patterns">Relaciones y patrones</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab07_relaciones_y_patrones.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 7.1</span><span class="labs-t" data-en="Correlations: visual and quantitative">Correlaciones: visual y cuantitativo</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab07_1_correlaciones_visual_cuantitativo.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 8</span><span class="labs-t" data-en="Pearson vs. Spearman">Pearson frente a Spearman</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab08_pearson_vs_spearman.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 9</span><span class="labs-t" data-en="Correlation significance">Significancia de la correlación</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab09_significancia_correlacion.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 10</span><span class="labs-t" data-en="Probability distributions">Distribuciones de probabilidad</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab10_distribuciones_probabilidad.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 11</span><span class="labs-t" data-en="Normal distribution and z-score">Distribución normal y puntaje Z</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab11_distribucion_normal_z_score.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 12</span><span class="labs-t" data-en="Confidence intervals">Intervalos de confianza</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/02-correlacion-y-estadistica/lab12_intervalos_confianza.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                </ol>
+              </details>
+              <details class="labs-g">
+                <summary><span class="labs-dot" aria-hidden="true"></span><span data-en="Regression and classification">Regresión y clasificación</span><span class="labs-c mono" data-en="6 labs">6 laboratorios</span></summary>
+                <ol>
+                  <li><span class="labs-n mono">Lab 13</span><span class="labs-t" data-en="Simple linear regression">Regresión lineal simple</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab13_regresion_lineal_simple.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 14</span><span class="labs-t" data-en="Multiple linear regression">Regresión lineal múltiple</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab14_regresion_lineal_multiple.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 15</span><span class="labs-t" data-en="ANOVA with Iris">ANOVA con Iris</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab15_anova_iris.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 16</span><span class="labs-t" data-en="Logistic regression with Iris">Regresión logística con Iris</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab16_regresion_logistica_iris.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 17</span><span class="labs-t" data-en="Regression tree with Iris">Árbol de regresión con Iris</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab17_arbol_regresion_iris.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 18</span><span class="labs-t" data-en="Cross-validation">Validación cruzada</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/03-regresion-y-clasificacion/lab18_validacion_cruzada_iris.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                </ol>
+              </details>
+              <details class="labs-g">
+                <summary><span class="labs-dot" aria-hidden="true"></span><span data-en="Unsupervised and time series">No supervisado y series de tiempo</span><span class="labs-c mono" data-en="3 labs">3 laboratorios</span></summary>
+                <ol>
+                  <li><span class="labs-n mono">Lab 19</span><span class="labs-t" data-en="K-means with Iris">K-means con Iris</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/04-no-supervisado-y-series/lab19_kmeans_iris.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 20</span><span class="labs-t" data-en="Association rules">Reglas de asociación</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/04-no-supervisado-y-series/lab20_reglas_asociacion.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 21</span><span class="labs-t" data-en="Time series">Series de tiempo</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/04-no-supervisado-y-series/lab21_series_de_tiempo.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                </ol>
+              </details>
+              <details class="labs-g">
+                <summary><span class="labs-dot" aria-hidden="true"></span><span data-en="Feature selection and neural networks">Selección de variables y redes neuronales</span><span class="labs-c mono" data-en="2 labs">2 laboratorios</span></summary>
+                <ol>
+                  <li><span class="labs-n mono">Lab 22</span><span class="labs-t" data-en="Feature selection with random forest">Selección de variables con random forest</span><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/05-seleccion-de-variables-y-redes/lab22_seleccion_variables_random_forest.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                  <li><span class="labs-n mono">Lab 23</span><span class="labs-t" data-en="Neural networks with MNIST: 97.64%">Redes neuronales con MNIST: 97,64 %</span><button class="labs-view" type="button" data-dialog="dlg-nb" aria-haspopup="dialog" data-en="View here">Ver aquí</button><a class="labs-open mono" href="https://colab.research.google.com/github/AlexanderM-Code/analisis-datos-python/blob/main/05-seleccion-de-variables-y-redes/lab23_mnist_redes_neuronales.ipynb" target="_blank" rel="noopener" data-en="Open in Colab ↗">Abrir en Colab ↗</a></li>
+                </ol>
+              </details>
           </div>
         </div>
       </dialog>
@@ -822,8 +892,9 @@
       <dialog class="dlg" id="dlg-rfid" aria-labelledby="dlg-rfid-title">
         <div class="dlg-inner">
           <div class="dlg-head">
+            <p class="more-tags"><span class="idx-pill mono st-course"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Coursework">Clase</span></span></p>
             <p class="more-kind mono" data-en="Ubiquitous Computing course · 2025">Curso de Computación Ubicua · 2025</p>
-            <h3 class="dlg-title" id="dlg-rfid-title" data-en="Arduino and RFID lock">Arduino y cerradura RFID</h3>
+            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/rfid.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-rfid-title" data-en="Arduino and RFID lock">Arduino y cerradura RFID</h3></div>
             <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
           </div>
           <div class="dlg-body">
@@ -836,7 +907,7 @@
                 <li data-en="MultiBot (individual): a two-motor car with an H-bridge and radio control.">MultiBot (individual): carro de dos motores con puente H y control por radio.</li>
               </ul>
               <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="I built the labs and the MultiBot on my own, and the RFID lock with Luis Miguel Muñoz and Santiago Mayorga.">hice solo los laboratorios y el MultiBot, y la cerradura RFID con Luis Miguel Muñoz y Santiago Mayorga.</span></p>
-              <ul class="chips"><li>Arduino</li><li>C++</li><li>RFID</li><li>Tinkercad</li><li>Wokwi</li></ul>
+              <ul class="chips"><li>Arduino</li><li><img src="assets/logos/cplusplus.svg" width="16" height="16" alt="" loading="lazy" decoding="async">C++</li><li>RFID</li><li>Tinkercad</li><li>Wokwi</li></ul>
               <p class="case-links">
                 <a class="btn btn-accent" href="https://www.youtube.com/watch?v=429Tt-C3h7E" target="_blank" rel="noopener" data-en="Watch the video">Ver el video</a>
                 <a class="btn btn-line" href="https://github.com/AlexanderM-Code/Computacion-Ubicua" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
@@ -854,8 +925,9 @@
       <dialog class="dlg" id="dlg-blackjack" aria-labelledby="dlg-blackjack-title">
         <div class="dlg-inner">
           <div class="dlg-head">
+            <p class="more-tags"><span class="idx-pill mono st-team"><i class="st" aria-hidden="true"><b></b><b></b><b></b></i><span data-en="Team">Equipo</span></span></p>
             <p class="more-kind mono" data-en="Browser game · Team project, 2025">Juego web · Proyecto en equipo, 2025</p>
-            <h3 class="dlg-title" id="dlg-blackjack-title">BlackJack Royale</h3>
+            <div class="case-id"><img class="case-logo" src="assets/logos-proyectos/blackjack.webp" width="56" height="56" alt="" loading="lazy" decoding="async"><h3 class="dlg-title" id="dlg-blackjack-title">BlackJack Royale</h3></div>
             <button class="dlg-close" type="button" data-close aria-label="Cerrar" data-en-aria="Close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
           </div>
           <div class="dlg-body">
@@ -867,7 +939,7 @@
                 <li data-en="JavaScript split into modules: deck, player, game rules, UI, storage and connection.">JavaScript dividido en módulos: baraja, jugador, reglas, interfaz, guardado y conexión.</li>
               </ul>
               <p class="role"><strong data-en="My role:">Mi rol:</strong> <span data-en="team project with Luis Miguel Muñoz; we all worked on every part: HTML, CSS, JavaScript and testing with the Python server.">proyecto en equipo con Luis Miguel Muñoz; todos trabajamos en cada parte: HTML, CSS, JavaScript y pruebas con el servidor de Python.</span></p>
-              <ul class="chips"><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Python</li><li>WebSockets</li></ul>
+              <ul class="chips"><li><img src="assets/logos/javascript.svg" width="16" height="16" alt="" loading="lazy" decoding="async">JavaScript</li><li><img src="assets/logos/html5.svg" width="16" height="16" alt="" loading="lazy" decoding="async">HTML</li><li><img src="assets/logos/css3.svg" width="16" height="16" alt="" loading="lazy" decoding="async">CSS</li><li><img src="assets/logos/python.svg" width="16" height="16" alt="" loading="lazy" decoding="async">Python</li><li>WebSockets</li></ul>
               <p class="case-links">
                 <a class="btn btn-accent" href="https://luism7p7.github.io/BlackJack/Casino/public/" target="_blank" rel="noopener" data-en="Play now">Jugar ahora</a>
                 <a class="btn btn-line" href="https://github.com/luism7p7/BlackJack" target="_blank" rel="noopener" data-en="View code on GitHub">Ver código en GitHub</a>
