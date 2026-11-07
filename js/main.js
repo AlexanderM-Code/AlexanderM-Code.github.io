@@ -634,15 +634,37 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
       if (reduceMotion) { video.controls = true; video.preload = 'metadata'; } else video.play().catch(() => { video.controls = true; });
     }
   });
+  // Varios botones abren la misma ficha: sus eventos se registran una sola vez
+  if (dialog.dataset.ready) return;
+  dialog.dataset.ready = '1';
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog || event.target.closest('[data-close]')) dialog.close();
   });
   dialog.addEventListener('close', () => {
     if (!document.querySelector('dialog.dlg[open]')) root.style.overflow = '';
-    dialog.querySelector('video')?.pause();
+    dialog.querySelectorAll('video').forEach((v) => v.pause());
+    // La dirección deja de apuntar al proyecto al cerrar su ficha
+    if (dialog.dataset.slug && location.hash === `#${dialog.dataset.slug}`) history.replaceState(null, '', location.pathname + location.search);
     if (dialog.skipFocus) { dialog.skipFocus = false; return; }
     (dialog.returnTo || lastTrigger)?.focus();
   });
+  // Cada proyecto tiene su enlace (…/#cinex) para compartirlo; se escribe al abrir la ficha
+  if (dialog.dataset.slug) {
+    new MutationObserver(() => {
+      if (dialog.open && location.hash !== `#${dialog.dataset.slug}`) history.replaceState(null, '', `#${dialog.dataset.slug}`);
+    }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
+  }
+});
+
+// Fichas de proyecto: ← y → pasan al proyecto anterior o siguiente sin cerrar
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  const dlg = document.querySelector('dialog.dlg-p[open]');
+  if (!dlg || document.querySelector('dialog.dlg-nb[open]')) return;
+  if (event.target.closest('input, textarea, select, video, [contenteditable], .chart, .segmented, .shots-tabs, .shots-thumbs')) return;
+  const btn = dlg.querySelector(event.key === 'ArrowLeft' ? '.p-nav-prev' : '.p-nav-next');
+  if (btn) { event.preventDefault(); btn.click(); }
 });
 
 // Paneles de Numi: pestañas por panel y miniaturas que cambian la captura grande
@@ -1253,7 +1275,7 @@ function abrirEnDialogo(target) {
   const trigger = document.querySelector(`[data-dialog="${dlg.id}"]`);
   if (!dlg.open) (trigger ? trigger.click() : dlg.showModal());
   requestAnimationFrame(() => {
-    if (target !== dlg.querySelector('.case')) target.scrollIntoView({ block: 'start' });
+    if (target !== dlg.querySelector('.case, .p-body')) target.scrollIntoView({ block: 'start' });
   });
   return true;
 }
