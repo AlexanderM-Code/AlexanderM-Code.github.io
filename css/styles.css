@@ -1755,3 +1755,10 @@ main, .footer { transition: opacity 180ms ease; }
   .p-logo { width: 40px; height: 40px; }
   .p-actions .btn { padding-inline: 12px; }
 }
+/* Capturas dentro de las fichas: siempre completas, sin recortes */
+.p-shot .browser img { aspect-ratio: auto; height: auto; object-fit: contain; }
+/* Observatorio: la web y el tablero de Power BI, lado a lado */
+.p-media-duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); align-items: start; }
+.p-media-duo .p-shot-2 .browser { box-shadow: var(--shot-shadow); }
+.p-media-duo figcaption b { color: var(--ink); font-weight: 700; }
+@media (max-width: 820px) { .p-media-duo { grid-template-columns: minmax(0, 1fr); } }
