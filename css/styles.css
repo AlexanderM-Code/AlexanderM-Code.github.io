@@ -1604,7 +1604,7 @@ main, .footer { transition: opacity 180ms ease; }
 .dlg-cover img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: var(--radius); border: var(--shot-border); box-shadow: var(--shot-shadow); background: var(--paper-2); }
 .dlg-cover figcaption { margin-top: 12px; }
 .dlg-video video { display: block; width: 100%; height: auto; background: #0b0d12; }
-.case-shot.dlg-video video { aspect-ratio: 4 / 3; }
+.case-shot.dlg-video video { aspect-ratio: 16 / 10; }
 .dlg-media.dlg-video video { aspect-ratio: 1280 / 644; }
 /* Estado "En documentación": tres puntos que esperan, en verde azulado */
 .st-doc .st { --c: #0f766e; width: 14px; display: flex; gap: 2px; align-items: center; justify-content: center; }
