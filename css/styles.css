@@ -1762,3 +1762,6 @@ main, .footer { transition: opacity 180ms ease; }
 .p-media-duo .p-shot-2 .browser { box-shadow: var(--shot-shadow); }
 .p-media-duo figcaption b { color: var(--ink); font-weight: 700; }
 @media (max-width: 820px) { .p-media-duo { grid-template-columns: minmax(0, 1fr); } }
+/* Video o imagen principal: tamaño contenido y centrado, para que la ficha no sea solo la imagen */
+.p-media:not(.p-media-duo) > .p-shot { max-width: 840px; margin-inline: auto; }
+.p-media:not(.p-media-duo) > .p-shot figcaption { text-align: center; }

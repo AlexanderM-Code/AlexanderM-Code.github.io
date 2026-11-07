@@ -623,7 +623,8 @@ document.querySelectorAll('[data-dialog]').forEach((trigger) => {
     const from = 'swap' in trigger.dataset ? trigger.closest('dialog') : null;
     if (from) { dialog.returnTo = from.returnTo; from.skipFocus = true; from.close(); } else dialog.returnTo = trigger;
     dialog.showModal();
-    if (from) dialog.scrollTop = 0;
+    dialog.scrollTop = 0;
+    requestAnimationFrame(() => { dialog.scrollTop = 0; });
     root.style.overflow = 'hidden';
     const video = dialog.querySelector('video');
     if (video && video.dataset.src && !video.getAttribute('src')) {
@@ -1289,6 +1290,16 @@ if (location.hash.length > 1) {
   const destino = document.querySelector(location.hash);
   if (destino && destino.closest('dialog.dlg')) setTimeout(() => abrirEnDialogo(destino), 300);
 }
+// Si cambia la dirección (…/#cinex pegado o el botón atrás), abre esa ficha
+window.addEventListener('hashchange', () => {
+  if (location.hash.length < 2) return;
+  let destino = null;
+  try { destino = document.querySelector(location.hash); } catch { return; }
+  const dlg = destino && destino.closest('dialog.dlg');
+  if (!dlg || dlg.open) return;
+  document.querySelectorAll('dialog.dlg[open]').forEach((d) => { d.skipFocus = true; d.close(); });
+  abrirEnDialogo(destino);
+});
 (() => {
   const idx = document.querySelector('.idx');
   const flot = idx && idx.querySelector('.idx-float');
