@@ -18,7 +18,8 @@ js/main.js        # Idioma ES/EN, tema (con View Transitions), menú con secció
 404.html          # Página de error con el mismo estilo
 robots.txt, sitemap.xml
 assets/           # Capturas reales (WebP), video de Numi, logos, fuentes (OFL), íconos y og.jpg
-cv/               # Hojas de vida: español, inglés y analista de datos (no cambiar las rutas)
+cv/               # Hojas de vida (una página): general, analista de datos e inglés.
+                  # Última versión: 7 nov. 2026. No cambiar los nombres de archivo.
 ```
 
 Para cambiar un texto, edítalo en `index.html` y actualiza también su atributo `data-en`.
@@ -53,3 +54,6 @@ Abre `http://localhost:8000` (la API de CineX acepta peticiones desde ese puerto
 Sube el número de versión `?v=...` en los enlaces a `css/styles.css` y `js/main.js` de `index.html`
 (y de `404.html`). Así los navegadores descargan los archivos nuevos en vez de usar la copia guardada,
 que GitHub Pages deja en caché 10 minutos.
+
+Si actualizas una hoja de vida, reemplaza el PDF con el mismo nombre y sube el `?v=...` de sus enlaces en `index.html`
+para que nadie descargue la versión vieja.
