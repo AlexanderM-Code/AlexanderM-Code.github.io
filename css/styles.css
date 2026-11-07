@@ -1627,7 +1627,7 @@ main, .footer { transition: opacity 180ms ease; }
 .dlg-p { width: min(1120px, calc(100% - 24px)); background: var(--paper); }
 .p-bar {
   position: sticky; top: 0; z-index: 6;
-  display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto auto; align-items: center; gap: 14px;
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 14px;
   padding: 12px clamp(16px, 2.6vw, 28px);
   background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -1722,7 +1722,7 @@ main, .footer { transition: opacity 180ms ease; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .chips li img { background: #fff; border-radius: 4px; padding: 1px; } }
 
 @media (max-width: 820px) {
-  .p-bar { grid-template-columns: auto minmax(0, 1fr) auto auto; row-gap: 10px; }
+  .p-bar { grid-template-columns: auto minmax(0, 1fr) auto; row-gap: 10px; }
   .p-actions { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; }
   .p-intro, .p-rt { grid-template-columns: minmax(0, 1fr); }
   .p-flow .flow { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
