@@ -909,7 +909,7 @@ function startClock() {
 const siteUpdated = document.getElementById('site-updated');
 let lastCommit = null;
 function renderSiteUpdated() {
-  if (!lastCommit) return;
+  if (!lastCommit || !siteUpdated) return;
   const days = Math.max(0, Math.round((Date.now() - lastCommit.getTime()) / 86400000));
   const rtf = new Intl.RelativeTimeFormat(t().locale, { numeric: 'auto' });
   const when = days < 45 ? rtf.format(-days, 'day') : rtf.format(-Math.round(days / 30), 'month');
@@ -918,6 +918,7 @@ function renderSiteUpdated() {
 }
 langListeners.push(renderSiteUpdated);
 async function loadSiteUpdated() {
+  if (!siteUpdated) return;
   try {
     let iso = null;
     try { iso = sessionStorage.getItem('site-updated'); } catch (e) { /* sin almacenamiento */ }

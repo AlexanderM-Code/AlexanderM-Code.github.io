@@ -1187,10 +1187,10 @@ div.cert { grid-template-columns: 28px minmax(0, 1fr); }
   .hero-field { display: none; } .city { display: none; } }
 /* ---------- Pie: firma ---------- */
 .footer { padding: var(--space-6) 0 var(--space-7); background: var(--paper); }
-.sig { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--space-5); padding-top: var(--space-6); border-top: 1.5px solid var(--ink); }
-.sig-name { white-space: nowrap; font-size: clamp(2.5rem, 7.5vw, 6.5rem); font-weight: 800; letter-spacing: var(--track-display); line-height: 0.9; }
+.sig { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-5); padding-top: var(--space-6); border-top: 1.5px solid var(--ink); }
+.sig-name { white-space: nowrap; font-size: clamp(2.25rem, 5vw, 4.25rem); font-weight: 800; letter-spacing: var(--track-display); line-height: 0.9; }
 .sig-dot { color: var(--orange); }
-.sig-side { display: grid; justify-items: end; gap: 10px; text-align: right; max-width: 460px; }
+.sig-side { display: grid; justify-items: end; gap: 12px; text-align: right; max-width: 460px; }
 .sig-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-bottom: 6px; }
 .sig-meta { font-size: 0.8125rem; color: var(--ink-2); }
 .sig-meta .site-updated { display: block; margin-top: 2px; color: var(--ink-3); }
