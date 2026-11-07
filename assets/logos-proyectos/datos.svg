@@ -1,8 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Datos con Python</title>
-<rect width="64" height="64" rx="14" fill="#1f2a5c"/>
-<path d="M9 46 A23 23 0 0 1 55 46" fill="none" stroke="#3a4a8c" stroke-width="7" stroke-linecap="round"/>
-<path d="M9 46 A23 23 0 0 1 20 26" fill="none" stroke="#e2560e" stroke-width="7" stroke-linecap="round"/>
-<g fill="#9fb0e6"><circle cx="22" cy="31" r="2.4"/><circle cx="28" cy="33" r="2.4"/><circle cx="33" cy="38" r="2.4"/><circle cx="40" cy="38" r="2.4"/><circle cx="45" cy="43" r="2.4"/></g>
-<path d="M32 46 L19 28" stroke="#f3efe6" stroke-width="3" stroke-linecap="round"/>
-<circle cx="32" cy="46" r="4.6" fill="#f3efe6"/><circle cx="32" cy="46" r="1.8" fill="#1f2a5c"/>
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3159d6"/><stop offset="1" stop-color="#1b2a6b"/></linearGradient></defs>
+<rect width="64" height="64" rx="14" fill="url(#g)"/>
+<path d="M0 14a14 14 0 0 1 14-14h36a14 14 0 0 1 14 14v6H0z" fill="#fff" opacity=".08"/>
+<path d="M12 12v40h40" fill="none" stroke="#9fb4ff" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+<g fill="#e7e3d9"><circle cx="19" cy="19" r="3.1"/><circle cx="23" cy="28" r="3.1"/><circle cx="28" cy="23" r="3.1"/><circle cx="32" cy="34" r="3.1"/><circle cx="37" cy="29" r="3.1"/><circle cx="41" cy="41" r="3.1"/><circle cx="46" cy="36" r="3.1"/><circle cx="49" cy="45" r="3.1"/></g>
+<path d="M16 20 L52 44" stroke="#ff7a3d" stroke-width="3.6" stroke-linecap="round"/>
+<rect x="34" y="8" width="22" height="13" rx="4" fill="#ffd343"/>
+<text x="45" y="17.6" text-anchor="middle" font-family="JetBrains Mono,Consolas,monospace" font-size="8.2" font-weight="700" fill="#1b2a6b">R²</text>
 </svg>
