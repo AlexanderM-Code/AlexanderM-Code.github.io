@@ -1765,3 +1765,4 @@ main, .footer { transition: opacity 180ms ease; }
 /* Video o imagen principal: tamaño contenido y centrado, para que la ficha no sea solo la imagen */
 .p-media:not(.p-media-duo) > .p-shot { max-width: 840px; margin-inline: auto; }
 .p-media:not(.p-media-duo) > .p-shot figcaption { text-align: center; }
+.p-cover-sm { max-width: 840px; margin-inline: auto; }
